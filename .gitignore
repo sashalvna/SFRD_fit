@@ -10,5 +10,8 @@ arxiv.tar.gz
 # Figure output
 src/tex/figures/*
 
+# output
+
+
 # Miscellaneous
 __pycache__
