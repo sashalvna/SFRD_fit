@@ -33,20 +33,19 @@ def Mchirp(m1, m2):
 #########################################
 # Read data
 #########################################
-def read_data(loc = '/output/COMPAS_Output_wWeights.h5', rate_key = 'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned', read_SFRD = True, DCO_type = "BBH", verbose=False):
+def read_data(loc = '/output/COMPAS_Output_wWeights.h5', verbose=False):
     """
         Read DCO, SYS and merger rate data, necesarry to make the plots in this 
         
         Args:
             loc                  --> [string] Location of data
             rate_key             --> [string] group key name of COMPAS HDF5 data that contains your merger rate
-            DCO_type             --> [string] Which favour of dco do you want [BBH", "NSNS", "BHNS", "BBH_BHNS"]
             read_SFRD            --> [bool] If you want to also read in sfr data
             verbose              --> [bool] If you want to print statements while reading in 
 
         Returns:
             DCO                        --> [astropy table] contains all your double compact object
-            DCO_mask                   --> [array of bool] reduces your DCO table to your systems of interest (DCO_type)
+            DCO_mask                   --> [array of bool] reduces your DCO table to your systems of interest (determined in CI)
             rate_mask                  --> [array of bool] reduces intrinsic_rate_density to systems (flavour) of interest
             redshifts                  --> [array of floats] list of redshifts where you calculated the merger rate
             Average_SF_mass_needed     --> [float]    Msun SF needed to produce the binaries in this simulation
@@ -80,41 +79,53 @@ def read_data(loc = '/output/COMPAS_Output_wWeights.h5', rate_key = 'Rates_mu00.
     SYS_DCO_seeds_bool           = np.in1d(File[syskey]['SEED'][()], DCO['SEED']) #Bool to point SYS to DCO
     DCO['Stellar_Type@ZAMS(1)']  = File[syskey]['Stellar_Type@ZAMS(1)'][SYS_DCO_seeds_bool]
     DCO['Stellar_Type@ZAMS(2)']  = File[syskey]['Stellar_Type@ZAMS(2)'][SYS_DCO_seeds_bool]
-
-    ################################################
-    ## Read merger rate related data
-    rateDCO_mask              = File[rate_key][dcomask][()] # Mask from DCO to merging systems 
-    print('sum(rateDCO_mask)', sum(rateDCO_mask))
-    redshifts                 = File[rate_key]['redshifts'][()]
-    Average_SF_mass_needed    = File[rate_key]['Average_SF_mass_needed'][()]
-    intrinsic_rate_density    = File[rate_key]['merger_rate'][()]
-    intrinsic_rate_density_z0 = File[rate_key]['merger_rate_z0'][()] #Rate density at z=0 for the smallest z bin
-    print('len(DCO[rateDCO_mask])', len(DCO[rateDCO_mask]),'np.shape(intrinsic_rate_density)',np.shape(intrinsic_rate_density) )
-
-    ############################
-    def get_bools(table):
-        # Make a custom DCO mask
-        pessimistic_CE = table['Optimistic_CE'] == False
-        immediateRLOF  = table['Immediate_RLOF>CE'] == False
-        notCHE         = np.logical_and(table['Stellar_Type@ZAMS(1)'] != 16, table['Stellar_Type@ZAMS(2)'] != 16) #Remove CHE systems
-
-        BBH_bool  = np.logical_and(table['Stellar_Type(1)'] == 14, table['Stellar_Type(2)'] == 14)
-        NSNS_bool = np.logical_and(table['Stellar_Type(1)'] == 13, table['Stellar_Type(2)'] == 13)
-        BHNS_bool = np.logical_or(np.logical_and(table['Stellar_Type(1)'] == 13, table['Stellar_Type(2)'] == 14),
-                                  np.logical_and(table['Stellar_Type(1)'] == 14, table['Stellar_Type(2)'] == 13))
-        return pessimistic_CE, immediateRLOF, notCHE, BBH_bool, NSNS_bool, BHNS_bool
-    
-    pessimistic_CE, immediateRLOF, notCHE, BBH_bool, NSNS_bool, BHNS_bool = get_bools(DCO)
-    R_pessimistic_CE, R_immediateRLOF, R_notCHE, R_BBH_bool, R_NSNS_bool, R_BHNS_bool = get_bools(DCO[rateDCO_mask])
-    
-    # we're only looking at BBH
-    DCO_mask  = BBH_bool * pessimistic_CE * immediateRLOF * notCHE * rateDCO_mask
-    rate_mask = R_BBH_bool * R_pessimistic_CE * R_immediateRLOF * R_notCHE
     
     File.close()
     
-    return DCO, rateDCO_mask, DCO_mask, rate_mask, redshifts, Average_SF_mass_needed, intrinsic_rate_density, intrinsic_rate_density_z0 
+    return DCO
 
+
+
+
+#########################################
+# Read data
+#########################################
+def read_rate_data(loc = '/output/COMPAS_Output_wWeights.h5', rate_key = 'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned', verbose = True):
+    """
+        Read DCO, SYS and merger rate data, necesarry to make the plots in this 
+        
+        Args:
+            loc                  --> [string] Location of data
+            rate_key             --> [string] group key name of COMPAS HDF5 data that contains your merger rate
+
+        Returns:
+            DCO_mask                   --> [array of bool] reduces your DCO table to your systems of interest (BBH by default)
+            redshifts                  --> [array of floats] list of redshifts where you calculated the merger rate
+            Average_SF_mass_needed     --> [float]    Msun SF needed to produce the binaries in this simulation
+            intrinsic_rate_density     --> [2D array] merger rate in N/Gpc^3/yr
+            intrinsic_rate_density_z0  --> [2D array] merger rate in N/Gpc^3/yr at finest/lowest redshift bin calculated
+
+    """
+    ################################################
+    ## Read merger rate related data
+    if verbose: print('Reading ',loc)
+    ################################################
+    ## Open hdf5 file
+    File        = h5.File(loc ,'r')
+    redshifts                 = File['redshifts'][()]
+    
+    # Different per rate key:
+    DCO_mask                  = File[rate_key][dcomask][()] # Mask from DCO to merging systems  
+    #(contains filter for RLOF>CE and optimistic CE)
+    if verbose: print('sum(DCO_mask)', sum(DCO_mask))
+    intrinsic_rate_density    = File[rate_key]['merger_rate'][()]
+    intrinsic_rate_density_z0 = File[rate_key]['merger_rate_z0'][()] #Rate density at z=0 for the smallest z bin
+    
+    print('np.shape(intrinsic_rate_density)',np.shape(intrinsic_rate_density) )
+    
+    File.close()
+    
+    return DCO_mask, redshifts, intrinsic_rate_density, intrinsic_rate_density_z0 
 
 
 
