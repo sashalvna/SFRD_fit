@@ -1,7 +1,6 @@
 
 import h5py as h5
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import astropy.units as u
@@ -16,7 +15,7 @@ from astropy.cosmology import WMAP9, z_at_value
 from astropy.cosmology import Planck18  as cosmo# Planck 2018
 from astropy.cosmology import z_at_value
 
-from astropy.table import Table, Column
+# from astropy.table import Table, Column
 import os
 
 import paths

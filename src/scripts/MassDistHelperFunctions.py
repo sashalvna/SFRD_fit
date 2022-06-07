@@ -4,7 +4,7 @@ import numpy as np
 import h5py as h5
 import os
 
-from astropy.table import vstack, Table, Column
+from astropy.table import Table
 import astropy.units as u
 from astropy import constants as const
 

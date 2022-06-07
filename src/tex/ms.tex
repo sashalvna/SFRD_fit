@@ -332,7 +332,7 @@ We combine equations \ref{eq: z log skew} and \ref{eq: sfr1} to form a full meta
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %
-The task we have at hand here is not a standard textbook fitting problem given the specific aims and requirements that we have that are driven by the astrophysical applications we have in mind. Qualitatively, our aims are the following.  Our main aim is to find solution for the free parameters, for which the expression reproduces the overall behavior that is observed in the cosmological simulations. For the purposes we have in mind, it will be more important to prioritize fitting the large scale trends, while we are not so interested in smaller scale fluctuations. We further prioritize getting the bulk of the cosmic star formation right and are less interested in capturing the behavior in metallicity and redshift bins where the cosmic starformation rate is very low and thus insignificant for the overall picture. Finally, we are especially interested in capturing the asymmetry of the metallicity distribution. 
+The task we have at hand here is not a standard textbook fitting problem given the specific aims and requirements that we have that are driven by the astrophysical applications we have in mind. Qualitatively, our aims are the following.  Our main aim is to find solution for the free parameters, for which the expression reproduces the overall behaviour that is observed in the cosmological simulations. For the purposes we have in mind, it will be more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations. We further prioritise getting the bulk of the cosmic star formation right and are less interested in capturing the behaviour in metallicity and redshift bins where the cosmic starformation rate is very low and thus insignificant for the overall picture. Finally, we are especially interested in capturing the asymmetry of the metallicity distribution. 
 
 There is not one unique procedure that will full fill these criteria.  After experimenting with different criteria we have adopted the procedure below, which we believe works well for the aims we have in mind.  
 
@@ -342,7 +342,7 @@ We fit our function to the metallicity distribution of the starforming gas in th
 
 We consider bins in redshifts between $z=0$ and $z=10$, with a step size of $dz=0.05$, where $z_j$ refers to the centers of the bins. 
 
-\subsection{Optimization function}
+\subsection{Optimisation function}
 
 To find a solution we use a method based on the sum of the quadratic differences between the simulations and our fit function. Using a vanilla $\chi$-squared approach does not serve our purposes very well as it does a poor job in fitting regions where the starformation is very low.  Using a $\chi$-squared approach on the logarithm of the function instead places far too much weight on trying to fit the starformation rate in regions where the rate is very low or not even significant.  After experimenting, we find that the following approach gives us satisfactory results. 
 
@@ -358,7 +358,7 @@ We first consider a given redshift $z_j$.  For this redshift we compute the sum 
 %
 Here, the variable $Z_i$ runs over all redshift bins, but excludes bins where the starformation rate density is lower $10^{-10} \Msun \yr \Mpc^{-3}$ per bin. 
 
-Subsequently we sum the $\chi^2 (z_j)$ for all redshift bins $z_j$. To ensure that our fit procedure gives sufficient weight to the behavior at all redshifts, we find that we need to introduce a penalization factor to somewhat reduce the contribution of redshifts where the peak of cosmic starformation occurs, while increasing the weight where at redshifts where the overal cosmic starformation rate is lower.  To achive this we divide $\chi^2 (z_j)$ by the starformation $\sum_{Z_i} \mathcal{S}(Z_i,z_j)$ per redshift bin before adding the contribution of all redshifts.  Our final expression for the cost function reads
+Subsequently we sum the $\chi^2 (z_j)$ for all redshift bins $z_j$. To ensure that our fit procedure gives sufficient weight to the behaviour at all redshifts, we find that we need to introduce a penalisation factor to somewhat reduce the contribution of redshifts where the peak of cosmic starformation occurs, while increasing the weight where at redshifts where the overal cosmic starformation rate is lower.  To achieve this we divide $\chi^2 (z_j)$ by the starformation $\sum_{Z_i} \mathcal{S}(Z_i,z_j)$ per redshift bin before adding the contribution of all redshifts.  Our final expression for the cost function reads
 
 \begin{equation}
 \label{eq: chisquare}
@@ -400,6 +400,20 @@ $\sigma_z$ &  0.048 &   \\
 % muz =-0.048244647721407255, mu0 =0.024667742078400792, sigma_0 =1.1253850972905333, sigma_z =0.048072863682492945, alpha=-1.7671626767422142
 \end{deluxetable}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Effect on the local mass distribution of BBH mergers}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+\script{Plot_Mass_distributions.py}
+\includegraphics[width=\textwidth]{figures/SFRD_variations_combined.pdf}
+\caption{The effects of several variations in the SFRD  \label{fig: mass dists}}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
