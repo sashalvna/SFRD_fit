@@ -11,7 +11,7 @@ from scipy import interpolate
 from scipy.optimize import minimize
 from scipy.optimize import curve_fit
 
-from astropy.cosmology import WMAP9, z_at_value
+# from astropy.cosmology import WMAP9, z_at_value
 from astropy.cosmology import Planck18  as cosmo# Planck 2018
 from astropy.cosmology import z_at_value
 
@@ -58,15 +58,35 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 
 
 
-def Residuals_Zz_plane(obs_lookback = [], obs_metal = [], obs_SFRD = [],
-                       model_t = None, model_redshift=None, model_y = None, model_SFRD = None,
-                       chi_square_matrix = None, tmin = 0.0, tmax = 13.7, 
-                       scatter_residuals = True, add_TNG = True, plot_dPdZcontours = True, 
-                       neijssel_fit = True, dPdZ_text = None, SFR_text = None,
-                       boundkleur = 'orange',COMPASkleur = 'Oranges', TNGkleur = 'YlGnBu', 
-                       scatterKleur = 'RdYlGn_r', BBH_kleur = 'magma', savestr ='Residuals',
-                       min_logZ_COMPAS = np.log(1e-4),max_logZ_COMPAS = np.log(0.03)
-                      ):
+
+#####################################
+#####################################
+mu0_best     = 0.025
+muz_best     = -0.049
+sigma0_best  = 1.129
+sigmaz_best  = 0.048
+alpha0_best  = -1.778
+alphaz_best  = 0.0
+
+#####################################
+#####################################
+sf_a_best     = 0.017
+sf_b_best     = 1.481
+sf_c_best     = 4.452
+sf_d_best     = 5.913
+
+
+
+
+######################################
+# SFRD comparison plot
+######################################
+def three_panel_SFRD_plot(obs_SFRD = [], mu0=0.025, muz=-0.49,alpha = -1.77, sigma_0=1.129, sigma_z =0.048,
+                    a=0.017, b=1.481, c=4.452,  d=5.913,
+                    min_logZ  = -12.0, max_logZ  =0.0, step_logZ = 0.01,
+                    tmin = 0.0, tmax = 13.7, add_TNG = True, 
+                   plot_dPdZcontours = True, neijssel_fit = True,
+                   FITkleur="crest", dPdZ_text = '', SFR_text = ''):
     '''
     x, y, z             ---------------> redshift/lookback time, metallicities, dP/dZ
     tmin,tmax           ---------------> min and max time in Gyr to show as xlim 
@@ -83,23 +103,35 @@ def Residuals_Zz_plane(obs_lookback = [], obs_metal = [], obs_SFRD = [],
     gs = gridspec.GridSpec(10, 8)
     gs.update(wspace=0.0, hspace=0.5)
     ax        = plt.subplot(gs[0:4, 1:7])
-#     ax.set_facecolor('lightgrey')
     ax_metals = plt.subplot(gs[5:, :3])
     ax_redsh  = plt.subplot(gs[5:, 5:8])
+
     ######################################
     
-    
+    fit_values_string = r'$\mathrm{log-skew-normal}$'+'\n'+\
+                    r'$\mu_0=%s,$'%(np.round(mu0_best,3)) +'\n'+\
+                    r'$\mu_z=%s,$'%(np.round(muz_best,3)) +'\n'+\
+                    r'$\sigma_0=%s,$'%(np.round(sigma0_best,3)) +'\n'\
+                    r'$\sigma_z=%s,$'%(np.round(sigmaz_best,3)) +'\n'\
+                    r'$a_0=%s$'%(np.round(alpha0_best,3))
+
+    SFR_fit_string = r'$\mathrm{Star \ formation \ rate}$'+'\n'+\
+                     '$a=%s,$'%(np.round(sf_a_best,3)) +'\n'+\
+                     '$b=%s,$'%(np.round(sf_b_best,3)) +'\n'+\
+                     '$c=%s,$'%(np.round(sf_c_best,3)) +'\n'\
+                     '$d=%s,$'%(np.round(sf_d_best,3))
+
+
+
     ##############################################################################
     # Load TNG data (either original or interpolated)
     if len(obs_SFRD) == 0:
         print('Using original TNG')
         with h5.File(TNGlocation+"SFRMetallicityFromGasTNG100.hdf5", "r") as f:
-            MetalBins     = f["MetalBins"][:]
+            MetalBins         = f["MetalBins"][:]
             Obs_Lookbacktimes = f["Lookbacktimes"][:]
-            BoxSfr        = f["Sfr"][:]
-
-        # Take the centers of the metallicity bins
-        Obs_center_Zbin = (MetalBins[:-1] + MetalBins[1:])/2. 
+            # Obs_Lookbacktimes = Obs_Lookbacktimes[::-1]
+            BoxSfr            = f["Sfr"][:]
 
         # Convert SFR from sfr/box to sfr Mpc-3
         littleh = 0.6774
@@ -111,12 +143,11 @@ def Residuals_Zz_plane(obs_lookback = [], obs_metal = [], obs_SFRD = [],
         ##########################################
         # "observed" TNG metallicities that we use for our calculations
         ##########################################
-        center_Zbin = (MetalBins[:-1] + MetalBins[1:])/2.
+        Obs_center_Zbin = (MetalBins[:-1] + MetalBins[1:])/2.
         # Let's not use ALL metallicities in the TNG.. (they go waay too low!)
-        low_bound_Z_ind = np.where(center_Zbin > 1e-5)[0]# index of center_Zbin, where Z > 1e-5
-        # Let's not use ALL metallicities in the TNG.. (they go waay too low!)
-        bound_Z_ind = np.where(np.logical_and(center_Zbin > 1e-5, center_Zbin < 50*0.014))[0]# index of center_Zbin, where Z < 50 Zsun
-        tofit_TNG_metals = center_Zbin[bound_Z_ind]   
+        low_bound_Z_ind = np.where(Obs_center_Zbin > 1e-5)[0]# index of Obs_center_Zbin, where Z > 1e-5
+        bound_Z_ind = np.where(np.logical_and(Obs_center_Zbin > 1e-5, Obs_center_Zbin < 50*0.014))[0]# index of Obs_center_Zbin, where Z < 50 Zsun
+        tofit_TNG_metals = Obs_center_Zbin[bound_Z_ind]   
 
 
     else:
@@ -125,54 +156,101 @@ def Residuals_Zz_plane(obs_lookback = [], obs_metal = [], obs_SFRD = [],
         Obs_center_Zbin   = obs_metal
         Obs_cosmic_SFR    = obs_SFRD
         
-    # Convert observed lookback times to observed redshifts
-    Obs_redshifts     = [z_at_value(cosmo.lookback_time,t*u.Gyr) for t in obs_lookback[1:]] 
-    Obs_redshifts.insert(0,0) # put redshift zero at the start
+    # Convert observed lookback times to observed redshifts (lookback times are decreasing, so also obs_redshift is decreasing)
+    Obs_redshifts     = [z_at_value(cosmo.lookback_time,t*u.Gyr) for t in Obs_Lookbacktimes[:-1]] 
+    Obs_redshifts.insert(len(Obs_redshifts),0) # put redshift zero at the end 
+    # Obs_redshifts.insert(0,0) # put redshift zero at the end 
+    Obs_redshifts = np.array(Obs_redshifts)
     
+    ##################################################################################
+    ##                                                                              ##
+    ##                          Top panel: SFRD                                     ##
+    ##                                                                              ##
+    ##################################################################################
+
+    # The new Z-dep SFRD and Neijssel + 2019 can both be plotted at an arbitrarily 
+    # high resolution in both redshift and metallicity. We'll use the following:
+    high_res_metals    = np.logspace(-5., -0.5, 100)
+    high_res_redshifts = np.arange(0, 10.1, 0.05)
+    #Convert redshift to lookback time
+    high_res_t         = cosmo.lookback_time(high_res_redshifts)
+
+    # PLot the following contours for both models:
+    levels = [1e-7,1e-6, 1e-5, 1e-4,1e-3,1e-2,5e-1]
+
     ##############################################################################
-    # Top panel: SFRD
+    #  Contours of TNG SFRD
     ##############################################################################
-    ######################################
-    # plot TNG
     if add_TNG:   
         ######################################
         # now actually plot it
-        tng_color_map = sns.light_palette("#fe875d", as_cmap=True) # construct smooth cmap from one colour
-        tng_colors   = tng_color_map(np.linspace(0.,1.0, 7) )      # Pick 7 colours from this smooth colourmap
-        tng_color     = ListedColormap(tng_colors)                 # Turn it back into a cmap
-
+        tng_color = sns.light_palette("#fe875d", as_cmap=True, n_colors = 7) # construct smooth cmap from one colour
         TNG = ax.pcolormesh(Obs_Lookbacktimes, Obs_center_Zbin, Obs_cosmic_SFR, 
                             rasterized=True, norm=matplotlib.colors.LogNorm(vmin=1e-8,vmax=1e-1), 
                             cmap=tng_color, alpha=0.95 ) #matplotlib.cm.YlGnBu
         cbaxes1 = fig.add_axes([0.925, 0.1, 0.03, 0.8]) #[left, bottom, width, height]
         cb = plt.colorbar(TNG, cax = cbaxes1, label= r"$\mathrm{TNG \ SFRD \ [M_{\odot} yr^{-1} Mpc^{-3}]}$")  
 
-
         
     ##############################################################################
     # YOUR dP/dZ MODEL
     ##############################################################################
     if plot_dPdZcontours:
-        # Plot the contours of the metallicity density
-        levels = [1e-7,1e-6, 1e-5, 1e-4,1e-3,1e-2,5e-1]#np.logspace(2, 10., 10+1)
-        COMPAS_cmap = sns.color_palette(COMPASkleur, as_cmap=True)
+
+        #####################################
+        # Get data for your model 
+        #####################################
+        # Get dPdZ 
+        dPdlogZ, redshifts, metallicities, step_logZ, p_draw_metallicity = \
+                        Z_SFRD.skew_metallicity_distribution(mu0=mu0_best, muz=muz_best,alpha = alpha0_best, 
+                                                      sigma_0=sigma0_best, sigma_z =sigmaz_best, min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01,
+                                                      metals = high_res_metals, redsh = high_res_redshifts)
+        # Get the SFR
+        sfr        = Z_SFRD.Madau_Dickinson2014(redshifts, a=sf_a_best, b=sf_b_best, c=sf_c_best,  d=sf_d_best) # Msun year-1 Mpc-3 
+        # Combine it into a SFRD
+        model_SFRD = (sfr*dPdlogZ.T).value
+
+        #####################################
+        # Plot the contours of your Z-dep SFRD
+        #####################################
+        COMPAS_cmap = sns.color_palette(FITkleur, as_cmap=True)
         
-        cs = ax.contour(model_t, model_y, model_SFRD, levels, linewidths=4, cmap=COMPAS_cmap,
+        cs = ax.contour(high_res_t, high_res_metals, model_SFRD, levels, linewidths=4, cmap=COMPAS_cmap,
                          locator=ticker.LogLocator(), alpha = 0.95, zorder=0)
         ax.clabel(cs,inline=1,fontsize=20, levels = levels, use_clabeltext=True, fmt = '%.0e')
 
-        ###################
-        # print all fit values
+        #####################################
+        # print all fit values on side of plot
+        #####################################
         ax.text(0.82, 0.88, '$\mathrm{Fit \ parameters:}$',  fontsize=22, transform=plt.gcf().transFigure)
         # dPdZ
-        ax.text(0.82, 0.75, dPdZ_text, fontsize=20, transform=plt.gcf().transFigure,
+        ax.text(0.82, 0.75, fit_values_string, fontsize=20, transform=plt.gcf().transFigure,
                bbox=dict(facecolor='none', edgecolor='grey', boxstyle='round,pad=0.5'))
         # SFR
-        ax.text(0.82, 0.63, SFR_text, fontsize=20, transform=plt.gcf().transFigure,
+        ax.text(0.82, 0.63, SFR_fit_string, fontsize=20, transform=plt.gcf().transFigure,
                bbox=dict(facecolor='none', edgecolor='grey', boxstyle='round,pad=0.5'))
     
-    ###################
-    #Plotvalues
+    ##############################################################################
+    # Neijssel 2019
+    ##############################################################################
+    if neijssel_fit:
+        #####################################
+        # Get the data for Z-dep SFRD
+        #####################################
+        # Get dPdZ   #         neijssel_metals = np.logspace(-5., -0.5, 50)
+        neijssel_dPdlogZ, neijssel_redshifts, neijssel_metallicities, step_logZ, p_draw_metallicity = \
+                        Z_SFRD.skew_metallicity_distribution(mu0=0.035, muz=-0.23, alpha = 0, sigma_0=0.39, sigma_z =0, 
+                            min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01, metals=high_res_metals, redsh = high_res_redshifts)
+        # Get the SFR Neijssel et al 2019:
+        neijssel_sfr = Z_SFRD.Madau_Dickinson2014(neijssel_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
+        Neijssel_SFRDzZ = (neijssel_sfr*neijssel_dPdlogZ.T).value
+        
+        cs_N = ax.contour(high_res_t, high_res_metals, Neijssel_SFRDzZ, levels, linewidths=4,linestyles =':', alpha = 0.95, zorder=0,
+                          cmap=sns.color_palette('Greys', as_cmap=True),locator=ticker.LogLocator())
+        
+    ##############################################################################
+    # Plotvalues for top panel
+    ######################################
     ax.xaxis.grid(5) # vertical lines
     ax.set_yscale('log')
     ax.set_xlabel('$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 25)
@@ -196,71 +274,75 @@ def Residuals_Zz_plane(obs_lookback = [], obs_metal = [], obs_SFRD = [],
     ax2.set_xlim(tmin, tmax)
     
     ax.set_ylim(1e-5, 1e0)
-    
-    ##############################################################################
-    # COMPA fiducial
-    ##############################################################################
-    if neijssel_fit:
-        # We don't have that many metallicities in TNG, which is ugly. 
-        # to solve this I'm making a new list of metallicities that contains the TNG fit metallicities
-        n_increase = 2
-        log_tofitmetals = np.log10(tofit_TNG_metals) # TNG data is equally spaced in log
-        dlog_fit_metal = np.diff(log_tofitmetals)[0]/n_increase # we divide the step size by n_increase
-        neijssel_metallicities = 10**np.arange(min(log_tofitmetals), max(log_tofitmetals)+dlog_fit_metal, dlog_fit_metal )
 
 
-        # Some check for closeness to original?
-        print(np.diff(np.log10(tofit_TNG_metals)) )
-        log_tofitmetals = np.log10(tofit_TNG_metals)
-        dlog_fit_metal = np.diff(log_tofitmetals)[0]/2
-        new_array = 10**np.arange(min(log_tofitmetals), max(log_tofitmetals)+dlog_fit_metal, dlog_fit_metal )
-        print(tofit_TNG_metals, new_array)
 
-        print(tofit_TNG_metals-new_array[::2] < 1e-10 )
+    ##################################################################################
+    ##################################################################################
 
-        if (tofit_TNG_metals-new_array[::n_increase] > 1e-10 ).any():
-            raise ValueError('your new metal array does not contain the old values')
-        
-        # Get dPdZ   #         neijssel_metals = np.logspace(-5., -0.5, 50)
-        neijssel_dPdlogZ, neijssel_redshifts, neijssel_metallicities, step_logZ, p_draw_metallicity = \
-                        Z_SFRD.skew_metallicity_distribution(mu0=0.035, muz=-0.23,
-                                                      alpha_0 = 0, alpha_z = 0, 
-                                                      sigma_0=0.39, sigma_z =0, 
-                                                      min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01,
-                                                      metals=neijssel_metallicities, redsh = model_redshift)
-        #Convert redshift to lookback time
-        t_lookback = cosmo.lookback_time(neijssel_redshifts)
-        #####################################
-        # Get the SFR Neijssel et al 2019:
-        neijssel_sfr = Z_SFRD.Madau_Dickinson2014(neijssel_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
-        Neijssel_SFRDzZ = neijssel_sfr*neijssel_dPdlogZ.T
-        Neijssel_SFRDzZ = Neijssel_SFRDzZ.value
-        
-        cs_N = ax.contour(t_lookback, neijssel_metallicities, Neijssel_SFRDzZ, levels, linewidths=4,linestyles =':', alpha = 0.95, zorder=0,
-                          cmap=sns.color_palette('Greys', as_cmap=True),locator=ticker.LogLocator())
-        
-    ##############################################################################
-    # LEFT BOTTOM: SFRDz with metals on x-axis
-    ##############################################################################
-    redsfift_indces = [0,5,10,20, 40, 60,120,160]#[0,8,15,32, 50, 100, 150, 170]#
-    colors     = plt.cm.coolwarm(np.linspace(0.,1.0, len(redsfift_indces))) #3rd num is the number of colours
+    ##############################################################
+    #                                                            #
+    #       For the bottom two pannels we need the Z-dep SFRD    #
+    #       at the same resolution as the TNG simulations        #
+    #                                                            #
+    ##############################################################
+    # New SFRD
+    #############
+    low_res_dPdlogZ, low_res_redshifts, low_res_metallicities, step_logZ, p_draw_metallicity = \
+                    Z_SFRD.skew_metallicity_distribution(mu0=mu0, muz=muz,alpha = alpha, 
+                                                  sigma_0=sigma_0, sigma_z =sigma_z, min_logZ  =min_logZ, max_logZ  =max_logZ, step_logZ = step_logZ,
+                                                  metals = Obs_center_Zbin, redsh = Obs_redshifts)
+    #  SFR
+    low_res_sfr        = Z_SFRD.Madau_Dickinson2014(Obs_redshifts, a=sf_a_best, b=sf_b_best, c=sf_c_best,  d=sf_d_best) # Msun year-1 Mpc-3 
+    # Combine it into a SFRD
+    low_res_model_SFRD = (low_res_sfr*low_res_dPdlogZ.T).value
+
+
+    #############
+    # Neijssel +2019
+    #############
+    #  dPdZ   
+    low_res_neijssel_dPdlogZ, low_res_neijssel_redshifts, low_res_neijssel_metallicities, step_logZ, p_draw_metallicity = \
+                    Z_SFRD.skew_metallicity_distribution(mu0=0.035, muz=-0.23, alpha = 0, sigma_0=0.39, sigma_z =0, 
+                        min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01, metals=Obs_center_Zbin, redsh = Obs_redshifts)
+    #  SFR Neijssel et al 2019:
+    low_res_neijssel_sfr = Z_SFRD.Madau_Dickinson2014(Obs_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
+    low_res_Neijssel_SFRDzZ = (low_res_neijssel_sfr*low_res_neijssel_dPdlogZ.T).value
+
+
+    ##################################################################################
+    ##################################################################################
+
+
+    ##################################################################################
+    ##                                                                              ##
+    ##               LEFT BOTTOM: SFRDz with metals on x-axis                       ##
+    ##                                                                              ##
+    ##################################################################################
+    print('!!!! Obs_redshifts', np.round(Obs_redshifts,2) )
+    redshifts_to_plot = [0,0.2, 0.5, 1, 2.01, 3.52, 5.3, 8.68]
+    # redsfift_indces = [0,5,10,20, 40, 60,120,160]#[0,8,15,32, 50, 100, 150, 170]#
+    redshift_indces   = [np.where(np.round(Obs_redshifts,2) == x)[0][0] for x in redshifts_to_plot]
+    print('redshift_indces', redshift_indces)
+
+    colors     = plt.cm.coolwarm(np.linspace(0.,1.0, len(redshift_indces))) #3rd num is the number of colours
     LAB = 'TNG'
     plot_lines = []
     
     # Plot a set of redshifts with offset
-    for i, redshift_i in enumerate(redsfift_indces):
+    for i, redshift_i in enumerate(redshift_indces):
         if i != 0:
             LAB = None
-        shift_step = (len(redsfift_indces)-1)*0.01 - 0.01*i
+        # The offset on the y-axis 
+        shift_step = (len(redshift_indces)-1)*0.01 - 0.01*i 
         ######################################
         # Observed: TNG data
-        # print("!! error", "np.log10(Obs_center_Zbin)", np.log10(Obs_center_Zbin), "np.shape(Obs_cosmic_SFR)", np.shape(Obs_cosmic_SFR))
-        # ax_metals.plot(np.log10(Obs_center_Zbin), Obs_cosmic_SFR[:,redshift_i] + shift_step,
-                             # lw = 9, c = 'darkgrey', label = LAB)  
+        ax_metals.plot(np.log10(Obs_center_Zbin), Obs_cosmic_SFR[:,redshift_i] + shift_step,
+                             lw = 9, c = 'darkgrey', label = LAB)  
 
         ######################################
         # Model: new SFRD
-        l = ax_metals.plot(np.log10(model_y), model_SFRD[:,redshift_i] + shift_step,
+        l = ax_metals.plot(np.log10(low_res_metallicities), low_res_model_SFRD[:,redshift_i] + shift_step,
                        lw = 4, ls = '--', c = colors[i], label = "$z=%s$"%(np.round(Obs_redshifts[redshift_i], 3)) )    
         plot_lines.append([l])
         
@@ -268,11 +350,12 @@ def Residuals_Zz_plane(obs_lookback = [], obs_metal = [], obs_SFRD = [],
         # Model: OLD (Neijssel et al. 2019)       
         if neijssel_fit:
             #print('Redshift used in Neijssel: ', np.round(neijssel_redshifts[redshift_i],3))
-            ax_metals.plot(np.log10(neijssel_metallicities), Neijssel_SFRDzZ[:,redshift_i] + shift_step,
+            ax_metals.plot(np.log10(low_res_metallicities), low_res_Neijssel_SFRDzZ[:,redshift_i] + shift_step,
                              lw = 3, c = 'slategrey', ls = ':', zorder=0, alpha = 0.5)         
         
+    ##############################################################################
+    # Plotvalues for bottom left panel
     ######################################
-    # Plot values
     lines = ax_metals.get_lines()
     legend1 = ax_metals.legend(lines[0:1], ['TNG','TNG'],
                      bbox_to_anchor=(0.0, 1.0), loc='lower left')
@@ -282,21 +365,29 @@ def Residuals_Zz_plane(obs_lookback = [], obs_metal = [], obs_SFRD = [],
                      bbox_to_anchor=(0.4, 1.0), loc='lower left')
     ax_metals.add_artist(legend2)
     
-    legend3 = ax_metals.legend(lines[1::3], ["$%s$"%(np.round(Obs_redshifts[redshift_i], 3)) for redshift_i in redsfift_indces],
-                     ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title='$\mathrm{redshift}$')
+    legend3 = ax_metals.legend(lines[1::3], ["$%s$"%(np.round(Obs_redshifts[redshift_i], 3)) for redshift_i in redshift_indces],
+                     ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title=r'$\mathrm{redshift}$')
     
-    ax_metals.set_xlabel('$\log_{10}(Z)$', size =25)
-    ax_metals.set_ylabel('$\mathrm{SFRD [yr^{-1}\ Mpc^{-3}}$]', size =25)
+    ax_metals.set_xlabel(r'$\log_{10}(Z)$', size =25)
+    ax_metals.set_ylabel(r'$\mathrm{SFRD [yr^{-1}\ Mpc^{-3}}$]', size =25)
 
-    ax_metals.set_ylim(-0.005, 0.08)
+    ax_metals.set_ylim(-0.005, 0.075)
     ax_metals.set_xlim(-4, -0.5)
     
     
-    ##############################################################################
-    # Right BOTTOM: SFRDz with redshift on x-axis
-    ##############################################################################
-    metal_indices = [0,8,12,15,17,20,21,24]
+    ##################################################################################
+    ##                                                                              ##
+    ##               BOTTOM RIGHT: SFRDz with redshift on x-axi                     ##
+    ##                                                                              ##
+    ##################################################################################
+    print('!!!! Obs_center_Zbin', np.round(np.log10(Obs_center_Zbin),2) )
+    logmetals_to_plot = [-0.58, -1.08, -2.08, -2.41, -2.74, -3.08, -3.58, -4.08]
+    metal_indices   = [np.where(np.round(np.log10(Obs_center_Zbin),2) == x)[0][0] for x in logmetals_to_plot]
+    print('metal_indices', metal_indices)
+    # metal_indices = [0,8,12,15,17,20,21,24]
+
     colors     = plt.cm.PiYG(np.linspace(0.,1.0, len(metal_indices))) #3rd num is the number of colours
+
     LAB = 'TNG'
     plot_lines = []
     
@@ -306,21 +397,20 @@ def Residuals_Zz_plane(obs_lookback = [], obs_metal = [], obs_SFRD = [],
             LAB = None
         shift_step = (len(metal_indices)-1)*0.01 - 0.01*j 
         ######################################
-        # Observed: TNG data
-        # ax_redsh.plot(Obs_redshifts, Obs_cosmic_SFR[metal_i,:] + shift_step,
-                             # lw = 9, c = 'darkgrey', label = LAB)  
+        #Observed: TNG data
+        ax_redsh.plot(Obs_redshifts, Obs_cosmic_SFR[metal_i,:] + shift_step,
+                             lw = 9, c = 'darkgrey', label = LAB)  
 
         ######################################
         # Model: NEW SFRD
-        l = ax_redsh.plot(model_redshift, model_SFRD[metal_i,:] + shift_step,
+        l = ax_redsh.plot(Obs_redshifts, low_res_model_SFRD[metal_i,:] + shift_step,
                        lw = 4, ls = '--', c = colors[j] )    
         plot_lines.append([l])
         
         ######################################
         # Model: OLD (Neijssel et al. 2019)       
         if neijssel_fit:
-            #print('Metal used in Neijssel: ', np.log10(neijssel_metallicities[metal_i*n_increase]) )
-            ax_redsh.plot(neijssel_redshifts, Neijssel_SFRDzZ[metal_i*n_increase,:] + shift_step,
+            ax_redsh.plot(Obs_redshifts, low_res_Neijssel_SFRDzZ[metal_i,:] + shift_step,
                              lw = 3, c = 'slategrey', ls = ':', zorder=0, alpha = 0.5)      
         
     ######################################
@@ -335,86 +425,34 @@ def Residuals_Zz_plane(obs_lookback = [], obs_metal = [], obs_SFRD = [],
     ax_redsh.add_artist(legend2)
     
     legend3 = ax_redsh.legend(lines[1::3], ["$%s$"%(np.round(np.log10(Obs_center_Zbin[metal_i]), 1)) for metal_i in metal_indices],
-                     ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title='$\log_{10}Z$')
+                     ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title=r'$\log_{10}Z$')
     
-    ax_redsh.set_xlabel('$\mathrm{redshift}$', size =25)
-    ax_redsh.set_ylabel('$\mathrm{SFRD [yr^{-1}\ Mpc^{-3}}$]', size =25)
+    ax_redsh.set_xlabel(r'$\mathrm{redshift}$', size =25)
+    ax_redsh.set_ylabel(r'$\mathrm{SFRD [yr^{-1}\ Mpc^{-3}}$]', size =25)
     
+    ax_redsh.set_xlim(0, 10)
     ax_redsh.set_ylim(-0.005, 0.075)
     
     
     ##############################################################################
     print('saving here', paths.figures / 'SFRD_FIT_evaluation_compare.pdf')
     fig.savefig(paths.figures / 'SFRD_FIT_evaluation_compare.pdf',  bbox_inches='tight', dpi=300)
-    # plt.savefig(save_loc + 'SFRD_FIT_evaluation_compare_1.pdf',  bbox_inches='tight')
     
     # plt.show()
 
 
 
 
-#####################################
-#####################################
-mu0_best     = 0.025
-muz_best     = -0.049
-sigma0_best  = 1.129
-sigmaz_best  = 0.048
-alpha0_best  = -1.778
-alphaz_best  = 0.0
+#################################################################################################
+#                                                                                               #
+#       Call plot                                                                              #   
+#                                                                                               #
+#################################################################################################
+three_panel_SFRD_plot(mu0=mu0_best, muz=muz_best,alpha = alpha0_best, sigma_0=sigma0_best, sigma_z =sigmaz_best,
+                    a=sf_a_best, b=sf_b_best, c=sf_c_best,  d=sf_d_best,
+                    min_logZ  = -12.0, max_logZ  =0.0, step_logZ = 0.01,
+                    add_TNG = False, plot_dPdZcontours = True, neijssel_fit = True,
+                   FITkleur="crest", dPdZ_text = '', SFR_text = '')
 
-
-# lets interpolate at regular redshift intervals
-z_new    = np.arange(0, 10.1, 0.05)                       # new redshifts
-xnew     = [cosmo.lookback_time(z).value for z in z_new]  # corresp lookback times
-ynew     = np.logspace(-5., -0.5, 100) # new metals
-
-#####################################
-#####################################
-
-#####################################
-# Get dPdZ 
-# Make sure to calculate it at the same redshifts/metals as used in your fit
-dPdlogZ, redshifts, metallicities, step_logZ, p_draw_metallicity = \
-                Z_SFRD.skew_metallicity_distribution(mu0=mu0_best, muz=muz_best,alpha_0 = alpha0_best, alpha_z = alphaz_best, 
-                                              sigma_0=sigma0_best, sigma_z =sigmaz_best, min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01,
-                                              metals=ynew, redsh = z_new)
-#Convert redshift to lookback time
-t_lookback = cosmo.lookback_time(redshifts)
-
-
-#####################################
-#####################################
-sf_a_best     = 0.017
-sf_b_best     = 1.481
-sf_c_best     = 4.452
-sf_d_best     = 5.913
-
-#####################################
-#####################################
-
-# Get the SFR
-sfr = Z_SFRD.Madau_Dickinson2014(redshifts, a=sf_a_best, b=sf_b_best, c=sf_c_best,  d=sf_d_best) # Msun year-1 Mpc-3 
-MSSFR = sfr*dPdlogZ.T
-#####################################
-
-fit_values_string = '$\mathrm{log-skew-normal}$'+'\n'+\
-                    '$\mu_0=%s,$'%(np.round(mu0_best,3)) +'\n'+\
-                    '$\mu_z=%s,$'%(np.round(muz_best,3)) +'\n'+\
-                    '$\sigma_0=%s,$'%(np.round(sigma0_best,3)) +'\n'\
-                    '$\sigma_z=%s,$'%(np.round(sigmaz_best,3)) +'\n'\
-                    '$a_0=%s$'%(np.round(alpha0_best,3))
-
-SFR_fit_string = '$\mathrm{Star \ formation \ rate}$'+'\n'+\
-                 '$a=%s,$'%(np.round(sf_a_best,3)) +'\n'+\
-                 '$b=%s,$'%(np.round(sf_b_best,3)) +'\n'+\
-                 '$c=%s,$'%(np.round(sf_c_best,3)) +'\n'\
-                 '$d=%s,$'%(np.round(sf_d_best,3))
-
-Residuals_Zz_plane(obs_lookback = xnew, obs_metal = ynew, obs_SFRD = [],
-                   model_t = t_lookback.value, model_redshift=redshifts, model_y = metallicities, model_SFRD =MSSFR.value,
-                   #chi_square_matrix = chi_square_zZ,
-                   scatter_residuals = False, add_TNG = False, 
-                   plot_dPdZcontours = True, neijssel_fit = True,
-                   COMPASkleur="crest", dPdZ_text = fit_values_string, SFR_text = SFR_fit_string)#light:k#404040 fe1100
 
 

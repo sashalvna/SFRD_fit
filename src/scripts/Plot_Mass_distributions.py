@@ -2,10 +2,7 @@
 
 # Plotting the BH mass distribution for several SFRD Z-distribution variations
 
-
-
 """
-
 
 import sys
 import numpy as np
@@ -14,7 +11,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
 
-import h5py
+import h5py as h5 
 from astropy.table import Table
 import astropy.units as u
 from astropy import constants as const
@@ -51,9 +48,9 @@ rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 rc('text', usetex=True)
 fsize, SMALL_SIZE, MEDIUM_SIZE, BIGGER_SIZE = 30,25,25,30
 for obj in ['axes','xtick','ytick']:
-    plt.rc(obj, labelsize=MEDIUM_SIZE)          # controls default text sizes
+	plt.rc(obj, labelsize=MEDIUM_SIZE)          # controls default text sizes
 for obj in ['figure','axes']:
-    plt.rc(obj, titlesize=BIGGER_SIZE)    # fontsize of the tick labels
+	plt.rc(obj, titlesize=BIGGER_SIZE)    # fontsize of the tick labels
 plt.rc('font', size=MEDIUM_SIZE)          # controls default text sizes
 plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 
@@ -64,208 +61,207 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 # Distribution plot function
 ######################################
 def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma0%s_sigmaz0.05_zBinned'%(x) for x in [0.8, 1.125, 1.4]],
-                           bins = np.arange(0.,55,2.5), z_bin_edges = [0,0.5], 
-                           plot_LIGO = False, show_hist = False, show_KDE = True, kde_width = 0.1,  
-                           bootstrap = False, bootstraps = 10, x_lim=(0.,50),  y_lim = (1e-2,50), 
-                           colors = ['#488496', '#73bdb3', '#e388b0'], linestyles = ['--','-', ':'], 
-                           labels = ['$\mathrm{CE \ channel = \ }$', '$\mathrm{stable \ RLOF \ channel = \ }$', '$\mathrm{All = \ }$'],
-                           xlabel = r'$M_{\mathrm{BH, 1}} \ \rm [M_{\odot}]$', ylabel = r'$\frac{d\mathcal{R}}{dM_{BH, 1}} \ \mathrm{[Gpc^{-3}yr^{-1}M^{-1}_{\odot}]}$',
-                           leg_args = {'loc':'upper right', 'fontsize':'20', 'title':''},leg1_args = {'loc':'upper left', 'fontsize':18},
-                           save_plot=False, save_name = 'Fiducial.png', multipanel = False, subplot = None):
-    """
-        Read DCO, SYS and merger rate data, necesarry to make the plots in this 
-        
-        Args:
-            sim_dir              --> [string] Location of data
+                   bins = np.arange(0.,55,2.5), z_bin_edges = [0,0.5], 
+                   plot_LIGO = False, show_hist = False, show_KDE = True, kde_width = 0.1,  
+                   bootstrap = False, bootstraps = 10, x_lim=(0.,50),  y_lim = (1e-2,50), 
+                   Color = '#e388b0', linestyles = ['--','-', ':'], titletext = '',
+                   labels = [r'$\mathrm{CE \ channel = \ }$', r'$\mathrm{stable \ RLOF \ channel = \ }$', r'$\mathrm{All = \ }$'],
+                   xlabel = r'$M_{\mathrm{BH, 1}} \ \rm [M_{\odot}]$', ylabel = r'$\frac{d\mathcal{R}}{dM_{\mathrm{BH, 1} }} \ \mathrm{[Gpc^{-3}yr^{-1}M^{-1}_{\odot}]}$',
+                   leg_args = {'loc':'lower left',  'bbox_to_anchor':[0.1, 0.], 'fontsize':20, 'title':''}, leg1_args = {'loc':'upper left', 'fontsize':18},
+                   save_plot=False, save_name = 'Fiducial.png', multipanel = False, subplot = None):
+	"""
+	Read DCO, SYS and merger rate data, necesarry to make the plots in this 
 
-        Returns:
-         plot
+	Args:
+	    sim_dir              --> [string] Location of data
 
-    """
-   
-    #########################################
-    mass_binw = np.diff(bins)[0]
+	Returns:
+	 plot
 
-    plot_lines = []
-    leg_labels = []
+	"""
 
-    #########################################
-    # Start plotting
-    if not multipanel: #(otherwise you define the Fig outside of this fucntion)
-        fig, ax = plt.subplots(figsize = (12, 10))
-    else:
-        ax = subplot
-    
-    ################################################
-    # GWTC-3 Powerlaw + Peak Mass distribution
-    ################################################ 
-    if plot_LIGO:
-        LIGO_data_dir = '/Volumes/StorageSpac/CompasOutput//output/'#'/n/home04/lvanson/LowMBH_peak/output/'
-        ##############################
-        # Load LIGO Utils
-#         sys.path.insert(0,LIGO_data_dir+'utils/')
-        #################################################
-        ## prep to grab Powerlaw + Peak data from O3
-        #################################################
-        input_fname = LIGO_data_dir+'/GWTC-3-population-data/analyses/PowerLawPeak/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5'
-        output_fname = './plots'
-        cli_parser = argparse.ArgumentParser()
-        cli_parser.add_argument("input_fname")
-        cli_parser.add_argument("output_fname")
-        cli_args = cli_parser.parse_args( (input_fname + ' ' + output_fname).split() )
-        O3_only_PPD = cli_args.input_fname
-        O3_only_result = O3_only_PPD.replace("_mass_data.h5", "_result.json")
+	#########################################
+	mass_binw = np.diff(bins)[0]
 
-        with open(O3_only_result, "r") as jfile:
-            plpeak_jf = json.load(jfile)
+	plot_lines = []
+	leg_labels = []
 
-        ##############################
-        # Calculate relevant values
-        mass_1 = np.linspace(2, 100, 1000)
-        mass_ratio = np.linspace(0.1, 1, 500)
-        color_plpeak = 'grey'#'#1f78b4'
-        
-        with h5py.File(O3_only_PPD, "r") as f:
-            mass_ppd = f["ppd"]
-            mass_lines = f["lines"]
-            mass_1_ppd = np.trapz(mass_ppd, mass_ratio, axis=0)
-            mass_1_lower = np.percentile(mass_lines["mass_1"], 5, axis=0)
-            mass_1_upper = np.percentile(mass_lines["mass_1"], 95, axis=0)
+	#########################################
+	# Start plotting
+	if not multipanel: #(otherwise you define the Fig outside of this fucntion)
+		fig, ax = plt.subplots(figsize = (12, 10))
+	else:
+		ax = subplot
 
-        ##############################
-        # plot the max posterior and the 95th percentile
-        ax.plot(mass_1, mass_1_ppd, lw=1.8, color=color_plpeak, zorder=1, label="$\mathrm{GWTC-3}$")
-        ax.fill_between(mass_1, mass_1_lower, mass_1_upper, alpha=0.14,color=color_plpeak,zorder=0)
+	################################################
+	# GWTC-3 Powerlaw + Peak Mass distribution
+	################################################ 
+	if plot_LIGO:
+		LIGO_data_dir = '/Volumes/StorageSpac/CompasOutput//output/'#'/n/home04/lvanson/LowMBH_peak/output/'
+		#################################################
+		## prep to grab Powerlaw + Peak data from O3
+		#################################################
+		input_fname = LIGO_data_dir+'/GWTC-3-population-data/analyses/PowerLawPeak/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5'
+		output_fname = './plots'
+		cli_parser = argparse.ArgumentParser()
+		cli_parser.add_argument("input_fname")
+		cli_parser.add_argument("output_fname")
+		cli_args = cli_parser.parse_args( (input_fname + ' ' + output_fname).split() )
+		O3_only_PPD = cli_args.input_fname
+		O3_only_result = O3_only_PPD.replace("_mass_data.h5", "_result.json")
 
-        legend1 = plt.legend(**leg1_args)
+		with open(O3_only_result, "r") as jfile:
+			plpeak_jf = json.load(jfile)
 
-    nplot = 0
-    
-    ################################################
-    # My Simulations
-    ################################################
-    DCO = mfunc.read_data(loc = sim_dir +'/COMPAS_Output_wWeights.h5')
+		##############################
+		# Calculate relevant values
+		mass_1 = np.linspace(2, 100, 1000)
+		mass_ratio = np.linspace(0.1, 1, 500)
+		color_plpeak = 'grey'#'#1f78b4'
 
-    
-    print('nplot', nplot, '\n')
-    ####################################################
-    ### Loop over SFRD
-    for i, rate_key in enumerate(rate_keys):
-        print('rate_key', rate_key)
-        ### ## Reading Rate data ##
-        try:
-            DCO_mask, redshifts, intrinsic_rate_density, intrinsic_rate_density_z0  = mfunc.read_rate_data(loc = sim_dir + '/Rate_info.hdf5', rate_key = rate_key)
-        except:
-            print('\n error reading', rate_key)
-            continue
-        
-        # # # # # # # # # # # # # # # # # # 
-        #first bring it to the same shape as the rate table
-        merging_BBH    = DCO[DCO_mask]
-        #then apply the additional mask based on your prefs
-        merging_BBH         = merging_BBH[(merging_BBH['Stellar_Type@ZAMS(1)'] != 16)]
-        Red_intr_rate_dens  = intrinsic_rate_density[(DCO['Stellar_Type@ZAMS(1)'][DCO_mask] != 16), :]
+		with h5.File(O3_only_PPD, "r") as f:
+			mass_ppd = f["ppd"]
+			mass_lines = f["lines"]
+			mass_1_ppd = np.trapz(mass_ppd, mass_ratio, axis=0)
+			mass_1_lower = np.percentile(mass_lines["mass_1"], 5, axis=0)
+			mass_1_upper = np.percentile(mass_lines["mass_1"], 95, axis=0)
 
-        # # # # # # # # # # # # # # # # # # 
-        ## Calculate average rate density per z-bin
-        crude_rate_density = mfunc.get_crude_rate_density(Red_intr_rate_dens[:,:], redshifts, z_bin_edges)
-        #########################################
-        # X value and weight
-        x_vals                = merging_BBH[x_key]
-        Weights = crude_rate_density[:,0]
+		##############################
+		# plot the max posterior and the 95th percentile
+		ax.plot(mass_1, mass_1_ppd, lw=1.8, color=color_plpeak, zorder=1, label="$\mathrm{GWTC-3}$")
+		ax.fill_between(mass_1, mass_1_lower, mass_1_upper, alpha=0.14,color=color_plpeak,zorder=0)
 
-        print(labels[i], ' len(table)=', len(merging_BBH) , ' Rate = ', np.sum(Weights), ' Gpc-3 yr-1')
+		legend1 = plt.legend(**leg1_args)
 
-        ########################
-        # Get the Hist    
-        hist, bin_edge = np.histogram(x_vals, weights = Weights, bins=bins)
-        y_vals = hist/mass_binw
+		nplot = 0
+	    
+		################################################
+		# My Simulations
+		################################################
+		DCO = mfunc.read_data(loc = sim_dir +'/COMPAS_Output_wWeights.h5')
 
-        center_bins = (bin_edge[:-1] + bin_edge[1:])/2.
 
-        # And the KDE
-        kernel = stats.gaussian_kde(x_vals, bw_method=kde_width, weights=Weights)
-        binwidth = np.diff(bin_edge)
+	print('nplot', nplot, '\n')
+	####################################################
+	### Loop over SFRD
+	for i, rate_key in enumerate(rate_keys):
+		print('rate_key', rate_key)
 
-        ########################
-        # Plot the Hist 
-        if show_hist:
-            plot_lines.append(ax.step(center_bins, y_vals,  where='mid',label = None,#labels[i]+'$%s \mathrm{ \ Gpc^{-3} yr^{-1}}$'%(np.round(np.sum(Weights),1)) , 
-                                      alpha=1.0, lw = 3.5, zorder = i, color= colors[nplot], 
-                                      marker = 'o', markersize = 15) ) #edgecolor=colors[i],
-            # to prevent overflowing
-            min_xkde = min(center_bins[y_vals>5e-4])
+		# ### ## Reading Rate data ##
+		# try:
+		#     DCO_mask, redshifts, intrinsic_rate_density, intrinsic_rate_density_z0  = mfunc.read_rate_data(loc = sim_dir + '/Rate_info.hdf5', rate_key = rate_key)
+		## Open hdf5 file
+		with h5.File(sim_dir + '/Rate_info.hdf5' ,'r') as File:
+			redshifts                 = File['redshifts'][()]
+			# Different per rate key:
+			DCO_mask                  = File[rate_key]['DCOmask'][()] # Mask from DCO to merging systems  
+			#(contains filter for RLOF>CE and optimistic CE)
+			intrinsic_rate_density    = File[rate_key]['merger_rate'][()]
 
-        ########################
-        # Add KDE
-        if show_KDE:
-            min_xkde    = 0.1
-            x_KDE = np.arange(min_xkde,50.,0.1)
-            KDEy_vals =  kernel(x_KDE)*sum(hist) #re-normalize the KDE
-            leg_labels.append(labels[nplot]+'$%s$'%(np.round(np.sum(Weights),1)))
-    
-            print(nplot, len(colors), len(linestyles))
-            if not show_hist:
-                plot_lines.append(ax.plot(x_KDE, KDEy_vals, label = '', color=colors[nplot], lw= 5,  zorder =i+1,ls = linestyles[nplot]))
+		# except:
+			# print('\n error reading', rate_key)
+			# continue
+	    
+		# # # # # # # # # # # # # # # # # # 
+		#first bring it to the same shape as the rate table
+		merging_BBH    = DCO[DCO_mask]
+		#then apply the additional mask based on your prefs
+		merging_BBH         = merging_BBH[(merging_BBH['Stellar_Type@ZAMS(1)'] != 16)]
+		Red_intr_rate_dens  = intrinsic_rate_density[(DCO['Stellar_Type@ZAMS(1)'][DCO_mask] != 16), :]
 
-            ########################
-            # Bootstrap   
-            if bootstrap:
-                indices = np.arange(len(x_vals))
-                hist_vals = np.zeros((bootstraps, len(x_KDE)))  #center_bins
-                for b in progressbar( range(len(hist_vals)), "Bootstrapping "+ labels[i] + ":"):
-                    boot_index = np.random.choice(indices, size=len(indices), replace=True)
-                    kernel         = stats.gaussian_kde(x_vals[boot_index], bw_method=kde_width, weights=Weights[boot_index])
-                    Hist, _        = np.histogram(x_vals[boot_index], bins=bins, weights=Weights[boot_index],density=False)
-                    hist_vals[b]   = kernel(x_KDE)*sum(Hist)
+		# # # # # # # # # # # # # # # # # # 
+		## Calculate average rate density per z-bin
+		crude_rate_density  = mfunc.get_crude_rate_density(Red_intr_rate_dens[:,:], redshifts, z_bin_edges)
+		#########################################
+		# X value and weight
+		x_vals              = merging_BBH[x_key]
+		Weights             = crude_rate_density[:,0]
 
-                # calculate 1- and 2- sigma percentiles
-                y_vals = hist_vals#/mass_binw
+		print(labels[i], ' len(table)=', len(merging_BBH) , ' Rate = ', np.sum(Weights), ' Gpc-3 yr-1')
 
-                percentiles = np.percentile(y_vals, [10., 90.], axis=0)
-                print('nplot',nplot, 'np.shape(percentiles)', np.shape(percentiles))
-                ax.fill_between(x_KDE, percentiles[0],percentiles[1], alpha=0.4, color=colors[nplot], zorder = 11) # 1-sigma
+		########################
+		# Get the Hist    
+		hist, bin_edge = np.histogram(x_vals, weights = Weights, bins=bins)
+		y_vals = hist/mass_binw
+		center_bins = (bin_edge[:-1] + bin_edge[1:])/2.
 
-#             leg_labels.append(labels[nplot]+'$%s$'%(np.round(0.0,1)))
+		# And the KDE
+		kernel = stats.gaussian_kde(x_vals, bw_method=kde_width, weights=Weights)
+		binwidth = np.diff(bin_edge)
 
-#             plot_lines.append(ax.plot(np.arange(0,1,0.1),np.arange(0,1,0.1)) )
+		########################
+		# Plot the Hist 
+		if show_hist:
+		    plot_lines.append(ax.step(center_bins, y_vals,  where='mid',label = None,#labels[i]+'$%s \mathrm{ \ Gpc^{-3} yr^{-1}}$'%(np.round(np.sum(Weights),1)) , 
+		                              alpha=1.0, lw = 3.5, zorder = i, color= Color, 
+		                              marker = 'o', markersize = 15) ) #edgecolor=color[i],
+		    # to prevent overflowing
+		    min_xkde = min(center_bins[y_vals>5e-4])
 
-            nplot += 1
+		########################
+		# Add KDE
+		if show_KDE:
+		    x_KDE = np.arange(0.1,50.,0.1)
+		    KDEy_vals =  kernel(x_KDE)*sum(hist) #re-normalize the KDE
+		    leg_labels.append(labels[nplot]+'$%s$'%(np.round(np.sum(Weights),1)))
 
-    #########################################
-    # plot values
-    ax.grid(True, dashes=(1, 3))
-    ax.set_xlim(x_lim)
-    ax.set_ylim(y_lim)
-    
-    #####
-    # add legend for simulations
-    leg = ax.legend(**leg_args)
-    leg = plt.legend([l[0] for l in plot_lines], [l for l in leg_labels ],  **leg_args)
-    leg.set_zorder(102)
-    leg._legend_box.align = "right"
+		    if not show_hist:
+		        plot_lines.append(ax.plot(x_KDE, KDEy_vals, label = '', color=Color, lw= 5,  zorder =i+1,ls = linestyles[nplot]))
 
-    # Legend for GWTC-3
-    if plot_LIGO:
-        plt.gca().add_artist(legend1)
+		#     ########################
+		#     # Bootstrap   
+		#     if bootstrap:
+		#         indices = np.arange(len(x_vals))
+		#         hist_vals = np.zeros((bootstraps, len(x_KDE)))  #center_bins
+		#         for b in progressbar( range(len(hist_vals)), "Bootstrapping "+ labels[i] + ":"):
+		#             boot_index = np.random.choice(indices, size=len(indices), replace=True)
+		#             kernel         = stats.gaussian_kde(x_vals[boot_index], bw_method=kde_width, weights=Weights[boot_index])
+		#             Hist, _        = np.histogram(x_vals[boot_index], bins=bins, weights=Weights[boot_index],density=False)
+		#             hist_vals[b]   = kernel(x_KDE)*sum(Hist)
 
-    s = ['$[%s \leq z < %s]$'%(z_bin_edges[a],z_bin_edges[a+1]) for a in range(0,len(z_bin_edges)-1)]   
-    
-    ax.set_xlabel(xlabel, fontsize = 30)
-    ax.set_ylabel(ylabel, fontsize = 30)
+		#         # calculate 1- and 2- sigma percentiles
+		#         y_vals = hist_vals#/mass_binw
 
-    ax.set_yscale('log')
-      
-    if not multipanel:
-        if save_plot:
-            plt.savefig(save_loc+'/'+save_name , bbox_inches='tight')
+		#         percentiles = np.percentile(y_vals, [10., 90.], axis=0)
+		#         print('nplot',nplot, 'np.shape(percentiles)', np.shape(percentiles))
+		#         ax.fill_between(x_KDE, percentiles[0],percentiles[1], alpha=0.4, color=Color, zorder = 11) # 1-sigma
 
-        plt.show()
-        # clear memory
-        gc.collect()
-    else:
-        return ax
+		nplot += 1
 
+	#########################################
+	# plot values
+	plt.text(0.90, 0.90, titletext, ha = 'right', transform=ax.transAxes, size = 25)
+
+	ax.set_xlim(x_lim)
+	ax.set_ylim(y_lim)
+
+	#####
+	# add legend for simulations
+	leg = ax.legend(**leg_args)
+	leg = plt.legend([l[0] for l in plot_lines], [l for l in leg_labels ],  **leg_args)
+	leg.set_zorder(102)
+	leg._legend_box.align = "right"
+
+	# Legend for GWTC-3
+	if plot_LIGO:
+		plt.gca().add_artist(legend1)
+
+	s = ['$[%s \leq z < %s]$'%(z_bin_edges[a],z_bin_edges[a+1]) for a in range(0,len(z_bin_edges)-1)]   
+
+	ax.set_xlabel(xlabel, fontsize = 30)
+	ax.set_ylabel(ylabel, fontsize = 30)
+
+	ax.set_yscale('log')
+
+	if not multipanel:
+		if save_plot:
+		    plt.savefig(save_loc+'/'+save_name , bbox_inches='tight')
+
+		plt.show()
+		# clear memory
+		gc.collect()
+	else:
+		return ax
 
 
 
@@ -277,6 +273,20 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
 
 fig = plt.figure( figsize = (24, 30))
 
+####################################################
+# Mean metallicity at z=0
+####################################################
+#add third subplot in layout that has 3 rows and 2 columns
+subplot3 = fig.add_subplot(323)
+
+ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned'%(x) for x in [0.015, 0.025, 0.035]],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#e1131d', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = 'Mean metallicity z=0.',
+                       labels = [r'$\mathrm{low \ <Z_0> : \ } \phantom{i} (\mu_0r = 0.015) \ \mathcal{R}_{0} = \ $',
+                       			 r'$\mathrm{Fiducial : \ } \phantom{xxxxx} (\mu_0r = 0.025) \ \mathcal{R}_{0} = \ $',
+                                 r'$\mathrm{high \ <Z_0> : \ } \phantom{i} (\mu_0 = 0.035) \ \mathcal{R}_{0} = \ $'],
+                        multipanel = True, subplot = subplot3)
+
 
 ####################################################
 # width of SFRD at z=0
@@ -285,12 +295,12 @@ fig = plt.figure( figsize = (24, 30))
 subplot1 = fig.add_subplot(321)
 
 ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma0%s_sigmaz0.05_zBinned'%(x) for x in [0.8, 1.125, 1.4]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = False, linestyles = [':','-', '--'], colors = ['navy',  'navy', 'navy'], 
-                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', save_plot=False, 
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color =  'navy', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = 'Width of metallicity  dist.',
                        xlabel = r'$M_{\mathrm{BH, mm}} \ \rm [M_{\odot}]$', 
-                       labels = ['$\mathrm{Narrow: \ } \phantom{0} (\sigma_0 = 0.800) \  \mathcal{R}_{0} = \ $',
-                                 '$\mathrm{Fiducial: \ } (\sigma_0 = 1.125) \ \mathcal{R}_{0}= \ $', 
-                                 '$\mathrm{Wide \ SFRD: \ } \phantom{xx} (\sigma_0 = 1.400) \  \mathcal{R}_{0} = \ $'],
+                       labels = [r'$\mathrm{Narrow: \ } \phantom{xx} (\sigma_0 = 0.800) \  \mathcal{R}_{0} = \ $',
+                                 r'$\mathrm{Fiducial: \ } \phantom{xx} (\sigma_0 = 1.125) \ \mathcal{R}_{0}= \ $', 
+                                 r'$\mathrm{Wide \ SFRD: \ }  (\sigma_0 = 1.400) \  \mathcal{R}_{0} = \ $'],
                       multipanel = True, subplot = subplot1)
 
 
@@ -301,27 +311,14 @@ ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 subplot2 = fig.add_subplot(322)
 
 ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz%s_zBinned'%(x) for x in [0.025, 0.05, 0.1]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = False, linestyles = [':','-', '--'], colors = ['#00a6a0',  '#00a6a0', '#00a6a0'], 
-                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf', save_plot=True, 
-                       labels = ['$\mathrm{Flat \ width: \ } \phantom{i} (\sigma_z = 0.025) \ \mathcal{R}_{0} = \ $',
-                                 '$\mathrm{Fiducial: \ } \phantom{xxi} (\sigma_z = 0.050) \ \mathcal{R}_{0}= \ $', 
-                                 '$\mathrm{Steep \ width: \ } (\sigma_z = 0.100) \\mathcal{R}_{0} = \ $'],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#00a6a0', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = 'z-evol  of  metallicity  width',
+                       labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\sigma_z = 0.025) \ \mathcal{R}_{0} = \ $',
+                                 r'$\mathrm{Fiducial: \ } \phantom{xxi} (\sigma_z = 0.050) \ \mathcal{R}_{0}= \ $', 
+                                 r'$\mathrm{Steep \ width: \ } (\sigma_z = 0.100) \mathcal{R}_{0} = \ $'],
                         multipanel = True, subplot = subplot2)
 
 
-####################################################
-# Mean metallicity at z=0
-####################################################
-#add third subplot in layout that has 3 rows and 2 columns
-subplot3 = fig.add_subplot(323)
-
-ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned'%(x) for x in [0.015, 0.025, 0.035]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = False, linestyles = [':','-', '--'], colors = ['#e1131d',  '#e1131d', '#e1131d'], 
-                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf', save_plot=True, 
-                       labels = ['$\mathrm{low \ <Z_0> : \ } \phantom{i} (\mu_0 = 0.015) \ \mathcal{R}_{0} = \ $',
-                                 '$\mathrm{Fiducial: \ } (\mu_0 = 0.025) \ \mathcal{R}_{0} = \ $', 
-                                 '$\mathrm{high \ <Z_0> : \ } \phantom{i} (\mu_0 = 0.035) \ \mathcal{R}_{0} = \ $'],
-                        multipanel = True, subplot = subplot3)
 
 ####################################################
 # Redshift evolution of mean metallicity
@@ -330,11 +327,11 @@ ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 subplot4 = fig.add_subplot(324)
 
 ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.77_sigma01.125_sigmaz0.05_zBinned'%(x) for x in [-0.01, -0.05, -0.25]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = False, linestyles = [':','-', '--'], colors = ['#ff717b',  '#ff717b', '#ff717b'], 
-                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', save_plot=True, 
-                       labels = ['$\mathrm{Flat: \ } \phantom{xx} (\mu_z = -0.01) \ \mathcal{R}_{0} = \ $',
-                                 '$\mathrm{Fiducial: \ } (\mu_z = -0.05) \ \mathcal{R}_{0}= \ $', 
-                                 '$\mathrm{Steep: \ } \phantom{xx} (\mu_z = -0.25) \ \mathcal{R}_{0} = \ $'],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#ff717b', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', titletext = 'z-evol of mean metallicity', 
+                       labels = [r'$\mathrm{Flat: \ } \phantom{xxi} (\mu_z = -0.01) \ \mathcal{R}_{0} = \ $',
+                                 r'$\mathrm{Fiducial: \ } (\mu_z = -0.05) \ \mathcal{R}_{0}= \ $', 
+                                 r'$\mathrm{Steep: \ } \phantom{xx} (\mu_z = -0.25) \ \mathcal{R}_{0} = \ $'],
                         multipanel = True, subplot = subplot4)
 
 
@@ -345,11 +342,11 @@ ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 subplot5 = fig.add_subplot(325)
 
 ax5 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.05_alpha%s_sigma01.125_sigmaz0.05_zBinned'%(x) for x in [-0.9, -1.77, -3.5]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = False, linestyles = [':','-', '--'], colors = ['#acbf00',  '#acbf00', '#acbf00'], 
-                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', save_plot=True, 
-                       labels = ['$\mathrm{Symmetric: \ } $'+r'$(\alpha = -0.9) $'+'$ \ \mathcal{R}_{0} = \ $',
-                                 '$\mathrm{Fiducial: \ } $'+r'$(\alpha = -1.77) $'+'$\ \mathcal{R}_{0}= \ $', 
-                                 '$\mathrm{Skewed: \ }  $'+r'$(\alpha = -3.5) $'+'$\ \mathcal{R}_{0} = \ $'],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#acbf00', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = 'Skewness of metallicity dist', 
+                       labels = [r'$\mathrm{Symmetric: \ } $'+r'$(\alpha = -0.9) $'+r'$ \ \mathcal{R}_{0} = \ $',
+                                 r'$\mathrm{Fiducial: \ } $'+r'$(\alpha = -1.77) $'+r'$\ \mathcal{R}_{0}= \ $', 
+                                 r'$\mathrm{Skewed: \ }  $'+r'$(\alpha = -3.5) $'+r'$\ \mathcal{R}_{0} = \ $'],
                         multipanel = True, subplot = subplot5)
 
 
@@ -364,17 +361,17 @@ ax6 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',
                        rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_a0.01_b2.6_c3.2_d6.2_zBinned',
                                     'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned',
                                     'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_a0.01_b2.77_c2.9_d4.7_zBinned'],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = False, linestyles = [':','-', '--'], colors = ['#ecb05b',  '#ecb05b', '#ecb05b'], 
-                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', save_plot=True, 
-                       labels = ['$\mathrm{Madau \ \& \ Fragos \ 2017: } \ \mathcal{R}_{0} = \ $',
-                                 '$\mathrm{Fiducial: \ } \phantom{xxxxxxx} \ \mathcal{R}_{0}= \ $', 
-                                 '$\mathrm{Neijssel \ et \ al. \ 2019:  }  \ \mathcal{R}_{0} = \ $'],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#ecb05b', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = 'Magnitude of SFR(z)', 
+                       labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \ \mathcal{R}_{0}= \ $', 
+                                 r'$\mathrm{Fiducial: \ } \phantom{xxxxxxx} \ \mathcal{R}_{0}= \ $', 
+                                 r'$\mathrm{Neijssel \ et \ al. \ 2019:  }  \ \mathcal{R}_{0} = \ $'],
                         multipanel = True, subplot = subplot6)
 
 
 ####################################################
 # Final plot properties
-plt.savefig(save_loc+'/SFRD_variations_combined.pdf' , bbox_inches='tight')
+fig.savefig(save_loc+'/SFRD_variations_combined.pdf' , bbox_inches='tight')
 # plt.show()
 
 
