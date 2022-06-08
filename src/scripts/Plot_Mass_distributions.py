@@ -317,9 +317,9 @@ subplot2 = fig.add_subplot(322)
 ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz%s_zBinned'%(x) for x in [0.025, 0.05, 0.1]],
                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#00a6a0', 
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = 'z-evol  of  metallicity  width',
-                       labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\sigma_z = 0.025) \ \mathcal{R}_{0} = \ $',
-                                 r'$\mathrm{Fiducial: \ } \phantom{xxi} (\sigma_z = 0.050) \ \mathcal{R}_{0}= \ $', 
-                                 r'$\mathrm{Steep \ width: \ } (\sigma_z = 0.100) \mathcal{R}_{0} = \ $'],
+                       labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\omega_z = 0.025) \ \mathcal{R}_{0} = \ $',
+                                 r'$\mathrm{Fiducial: \ } \phantom{xxi} (\omega_z = 0.050) \ \mathcal{R}_{0}= \ $', 
+                                 r'$\mathrm{Steep \ width: \ } (\omega_z = 0.100) \mathcal{R}_{0} = \ $'],
                         multipanel = True, subplot = subplot2)
 
 
