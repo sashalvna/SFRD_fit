@@ -146,20 +146,8 @@ In this work, we take an approach similar to \citet{Mapelli2017} and \cite{Briel
 By adopting an analytical, parametrized form for \SFRDzZ, the large uncertainties in \SFRDzZ can be systematically explored through smoothly varying the parameters that control its shape (cf.~\citealt{Briel+2021}). 
 
 
-
-
 Different cosmological simulations produce varying \SFRDzZ which lead to different redshift evolution of the BBH merger rate with redshift. \cite{Briel+2021} find that the EAGLE and TNG simulation provide the best \SFRDzZ based on the predicted cosmic rates for electromagnetic and gravitational-wave transients. 
 Although we only consider our fit to describe the IllustrisTNG100 simulation and the phenomenological fit from \cite{Neijssel+2019}, our prescription can be easily be updated to fit other observational or simulated data of the metallicity dependent star formation rate density.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Illustris-TNG Cosmological simulations}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The IllustrisTNG-project considers galaxy formation and evolution through large-scale cosmological hydrodynamical simulations.
-
-\SdM{Insert a description of enrichment and gas recycling. }
-
-They have been shown to reproduce many of the global properties of galaxies and their scaling relations for a representative portion of the Universe \citep[e.g.][]{FirstResTNG_Naiman2018,Torrey+2021,Genel+2018,Hemler+2021}.These simulations are publicly available\footnote{ \url{https://www.tng-project.org/}} \citep{FirstResTNG_Springel2018,FirstResTNG_Marinacci2018, FirstResTNG_Nelson2018,FirstResTNG_Pillepich2018, FirstResTNG_Naiman2018}.
 
 
 
@@ -319,7 +307,22 @@ in units of $\left[ \Msun \,yr^{-1} \,cMpc^{-3} \right]$. This introduces four p
 We combine equations \ref{eq: z log skew} and \ref{eq: sfr1} to form a full metallicity specific starformation rate density (\SFRDzZ). We fit for the following nine free parameters $\alpha, \mu_0, \mu_z, \omega_0, \omega_z$, which govern the metallicity dependence and $a,b, c$ and $d$, which set the overall starformation rate.
 
 
-\section{Analytical fit against Cosmological simulation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Result: Analytical fit against Cosmological simulation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Illustris-TNG Cosmological simulations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The IllustrisTNG-project considers galaxy formation and evolution through large-scale cosmological hydrodynamical simulations.
+
+\SdM{Insert a description of enrichment and gas recycling. }
+
+They have been shown to reproduce many of the global properties of galaxies and their scaling relations for a representative portion of the Universe \citep[e.g.][]{FirstResTNG_Naiman2018,Torrey+2021,Genel+2018,Hemler+2021}.These simulations are publicly available\footnote{ \url{https://www.tng-project.org/}} \citep{FirstResTNG_Springel2018,FirstResTNG_Marinacci2018, FirstResTNG_Nelson2018,FirstResTNG_Pillepich2018, FirstResTNG_Naiman2018}.
 
 
 
@@ -331,8 +334,9 @@ We combine equations \ref{eq: z log skew} and \ref{eq: sfr1} to form a full meta
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 %
-The task we have at hand here is not a standard textbook fitting problem given the specific aims and requirements that we have that are driven by the astrophysical applications we have in mind. Qualitatively, our aims are the following.  Our main aim is to find solution for the free parameters, for which the expression reproduces the overall behaviour that is observed in the cosmological simulations. For the purposes we have in mind, it will be more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations. We further prioritise getting the bulk of the cosmic star formation right and are less interested in capturing the behaviour in metallicity and redshift bins where the cosmic starformation rate is very low and thus insignificant for the overall picture. Finally, we are especially interested in capturing the asymmetry of the metallicity distribution. 
+The task we have at hand here is not a standard textbook fitting problem given the specific aims and requirements that we have that are driven by the astrophysical applications we have in mind. Qualitatively, our aims are the following. Our main aim is to find solution for the free parameters, for which the expression reproduces the overall behaviour that is observed in the cosmological simulations. For the purposes we have in mind, it will be more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations. We further prioritise getting the bulk of the cosmic star formation right and are less interested in capturing the behaviour in metallicity and redshift bins where the cosmic starformation rate is very low and thus insignificant for the overall picture. Finally, we are especially interested in capturing the asymmetry of the metallicity distribution. 
 
 There is not one unique procedure that will full fill these criteria.  After experimenting with different criteria we have adopted the procedure below, which we believe works well for the aims we have in mind.  
 
@@ -361,7 +365,7 @@ Here, the variable $Z_i$ runs over all redshift bins, but excludes bins where th
 Subsequently we sum the $\chi^2 (z_j)$ for all redshift bins $z_j$. To ensure that our fit procedure gives sufficient weight to the behaviour at all redshifts, we find that we need to introduce a penalisation factor to somewhat reduce the contribution of redshifts where the peak of cosmic starformation occurs, while increasing the weight where at redshifts where the overal cosmic starformation rate is lower.  To achieve this we divide $\chi^2 (z_j)$ by the starformation $\sum_{Z_i} \mathcal{S}(Z_i,z_j)$ per redshift bin before adding the contribution of all redshifts.  Our final expression for the cost function reads
 
 \begin{equation}
-\label{eq: chisquare}
+\label{eq: cost function}
     \chi  = \sum_{z_j} \frac{ \chi^2 (z_j) } 
         {\sum_{Z_i} \mathcal{S}(Z_i,z_j)}
     %chi_square = ((obs - model )**2)/np.sum(model) 
@@ -405,7 +409,7 @@ $\omega_z$ &  0.048 &   \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Effect on the local mass distribution of BBH mergers}
 
-Testing if this works: I now changed something in the overleaf!
+We investigate the effect of the shape of the cosmic metallicity distribution on the local mass distribution of BBH mergers by systemically varying each of the variables that make up \dpdZ (first column of Table \ref{tab: fit params} and eq. \ref{eq: z log skew}). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}
