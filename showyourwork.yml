@@ -1,2 +1,13 @@
 version: 0.3.0.dev8
 verbose: true
+
+overleaf:
+    id: 62a0c20fae14a6458d579921
+    push:
+        - src/tex/figures
+        - src/tex/output
+    pull:
+        - src/tex/ms.tex
+        - src/tex/bib.bib
+
+

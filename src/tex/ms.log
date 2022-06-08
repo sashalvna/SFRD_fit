@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  7 JUN 2022 15:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  8 JUN 2022 11:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -641,173 +641,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Class revtex4-1 Warning: Assuming \noaffiliation for authors.
 
 
-Package natbib Warning: Citation `Neijssel+2019' on page 1 undefined on input l
-ine 128.
-
-
 Package natbib Warning: Citation `Chruslinska2019' on page 1 undefined on input
  line 128.
 
-
-Package natbib Warning: Citation `Boco2020' on page 1 undefined on input line 1
-28.
-
-
-Package natbib Warning: Citation `Broekgaarden+2021a' on page 1 undefined on in
-put line 128.
-
-
-Package natbib Warning: Citation `BelczynskiVink2010' on page 1 undefined on in
-put line 132.
-
-
-Package natbib Warning: Citation `Stevenson+2017' on page 1 undefined on input 
-line 132.
-
-
-Package natbib Warning: Citation `Mapelli2017' on page 1 undefined on input lin
-e 132.
-
-
-Package natbib Warning: Citation `Chruslinska2019_effectCO' on page 1 undefined
- on input line 132.
-
-
-Package natbib Warning: Citation `Chruslinska2019' on page 1 undefined on input
- line 132.
-
-
-Package natbib Warning: Citation `Chruslinska2019_effectCO' on page 1 undefined
- on input line 132.
-
-
-Package natbib Warning: Citation `Neijssel2019' on page 1 undefined on input li
-ne 132.
-
-
-Package natbib Warning: Citation `Broekgaarden+2021a' on page 1 undefined on in
-put line 132.
-
-
-Package natbib Warning: Citation `Chruslinska2019' on page 1 undefined on input
- line 134.
-
-
-Package natbib Warning: Citation `Chruslinska+2018' on page 1 undefined on inpu
-t line 134.
-
-
-Package natbib Warning: Citation `Chruslinska2019_effectCO' on page 1 undefined
- on input line 134.
-
-
-Package natbib Warning: Citation `Broekgaarden+2021a' on page 1 undefined on in
-put line 134.
-
-
-Package natbib Warning: Citation `Mapelli2017' on page 1 undefined on input lin
-e 135.
-
-
-Package natbib Warning: Citation `Schneider+2017' on page 1 undefined on input 
-line 135.
-
-
-Package natbib Warning: Citation `MadauDickinson2014' on page 1 undefined on in
-put line 136.
-
-
-Package natbib Warning: Citation `Madau+2017' on page 1 undefined on input line
- 136.
-
-
-Package natbib Warning: Citation `Neijssel+2019' on page 1 undefined on input l
-ine 136.
-
-
-Package natbib Warning: Citation `Mapelli+2017' on page 1 undefined on input li
-ne 137.
-
-
-Package natbib Warning: Citation `Schneider+2017' on page 1 undefined on input 
-line 137.
-
-
-Package natbib Warning: Citation `Pillepich2018' on page 1 undefined on input l
-ine 138.
-
-
-Package natbib Warning: Citation `Weinberger2017' on page 1 undefined on input 
-line 138.
-
-
-Package natbib Warning: Citation `Chruslinska2019' on page 1 undefined on input
- line 140.
-
-
-Package natbib Warning: Citation `Boco2021' on page 1 undefined on input line 1
-40.
-
-
-Package natbib Warning: Citation `Chruslinska+2021' on page 1 undefined on inpu
-t line 140.
-
-
-Package natbib Warning: Citation `Chruslinska+2018' on page 1 undefined on inpu
-t line 142.
-
-
-Package natbib Warning: Citation `Chruslinska2019' on page 1 undefined on input
- line 142.
-
-
-Package natbib Warning: Citation `Broekgaarden+2021b' on page 1 undefined on in
-put line 142.
-
-
-Package natbib Warning: Citation `Mapelli2017' on page 1 undefined on input lin
-e 142.
-
-
-Package natbib Warning: Citation `Briel+2021' on page 1 undefined on input line
- 142.
-
 [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-Package natbib Warning: Citation `Mapelli2017' on page 2 undefined on input lin
-e 144.
-
-
-Package natbib Warning: Citation `Briel+2021' on page 2 undefined on input line
- 144.
-
-
-Package natbib Warning: Citation `Briel+2021' on page 2 undefined on input line
- 146.
-
-
-Package natbib Warning: Citation `Briel+2021' on page 2 undefined on input line
- 151.
-
-
-Package natbib Warning: Citation `Neijssel+2019' on page 2 undefined on input l
-ine 152.
-
-
-Package natbib Warning: Citation `FirstResTNG_Naiman2018' on page 2 undefined o
-n input line 162.
-
-
-Package natbib Warning: Citation `Torrey+2021' on page 2 undefined on input lin
-e 162.
-
-
-Package natbib Warning: Citation `Genel+2018' on page 2 undefined on input line
- 162.
-
-
-Package natbib Warning: Citation `Hemler+2021' on page 2 undefined on input lin
-e 162.
+Package natbib Warning: Citation `Chruslinska2019' on page 2 undefined on input
+ line 142.
 
 
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 162--162
@@ -815,67 +655,18 @@ Overfull \hbox (10.88353pt too wide) in paragraph at lines 162--162
  []
 
 
-Package natbib Warning: Citation `FirstResTNG_Springel2018' on page 2 undefined
- on input line 162.
-
-
-Package natbib Warning: Citation `FirstResTNG_Marinacci2018' on page 2 undefine
-d on input line 162.
-
-
-Package natbib Warning: Citation `FirstResTNG_Nelson2018' on page 2 undefined o
-n input line 162.
-
-
-Package natbib Warning: Citation `FirstResTNG_Pillepich2018' on page 2 undefine
-d on input line 162.
-
-
-Package natbib Warning: Citation `FirstResTNG_Naiman2018' on page 2 undefined o
-n input line 162.
-
-
-Underfull \hbox (badness 1430) in paragraph at lines 162--163
-\OT1/cmr/m/n/10 tions for a rep-re-sen-ta-tive por-tion of the Uni-verse
- []
-
-
-Package natbib Warning: Citation `Langer2006' on page 2 undefined on input line
- 171.
-
-
 Underfull \hbox (badness 1163) in paragraph at lines 176--178
 \OT1/cmr/m/n/10 The first term is the star for-ma-tion rate den-sity,
  []
 
-
-Package natbib Warning: Citation `Neijssel+2019' on page 2 undefined on input l
-ine 186.
-
-
-Package natbib Warning: Citation `Ohagan+1976' on page 2 undefined on input lin
-e 186.
-
 [2]
-
-Package natbib Warning: Citation `Neijssel+2019' on page 3 undefined on input l
-ine 257.
-
-
-Package natbib Warning: Citation `Langer2006' on page 3 undefined on input line
- 257.
-
-
-Package natbib Warning: Citation `MadauDickinson2014' on page 3 undefined on in
-put line 309.
-
-<figures/SFRD_FIT_evaluation_compare.pdf, id=93, 1053.12146pt x 949.13078pt>
+<figures/SFRD_FIT_evaluation_compare.pdf, id=231, 1053.12146pt x 949.13078pt>
 File: figures/SFRD_FIT_evaluation_compare.pdf Graphic file (type pdf)
 <use figures/SFRD_FIT_evaluation_compare.pdf>
 Package pdftex.def Info: figures/SFRD_FIT_evaluation_compare.pdf  used on input
  line 329.
 (pdftex.def)             Requested size: 513.11743pt x 462.4713pt.
-[3] [4 <./figures/SFRD_FIT_evaluation_compare.pdf>]
+ [3] [4 <./figures/SFRD_FIT_evaluation_compare.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 371--373
 []\OT1/cmr/m/n/10 We use the \OT1/cmtt/m/n/10 scipy.optimize.minimize \OT1/cmr/
 m/n/10 from
@@ -887,17 +678,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 371--373
 
  []
 
-<figures/SFRD_variations_combined.pdf, id=142, 1468.55756pt x 1749.12578pt>
+<figures/SFRD_variations_combined.pdf, id=286, 1468.55756pt x 1749.12578pt>
 File: figures/SFRD_variations_combined.pdf Graphic file (type pdf)
 <use figures/SFRD_variations_combined.pdf>
 Package pdftex.def Info: figures/SFRD_variations_combined.pdf  used on input li
 ne 413.
 (pdftex.def)             Requested size: 513.11743pt x 611.16232pt.
-No file ms.bbl.
+(./ms.bbl [5] [6 <./figures/SFRD_variations_combined.pdf>]) [7]
 
 Package natbib Warning: There were undefined citations.
 
-[5] [6 <./figures/SFRD_variations_combined.pdf>] (./ms.aux)
+(./ms.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -905,13 +696,13 @@ Package rerunfilecheck Info: File `ms.out' has not changed.
 (rerunfilecheck)             Checksum: 331BE37FFFE6D7B86C4E1FCC32A3DD5E;2617.
  ) 
 Here is how much of TeX's memory you used:
- 12746 strings out of 478994
- 177954 string characters out of 5858185
- 547417 words of memory out of 5000000
- 30000 multiletter control sequences out of 15000+600000
+ 12882 strings out of 478994
+ 180840 string characters out of 5858185
+ 554118 words of memory out of 5000000
+ 30103 multiletter control sequences out of 15000+600000
  414352 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,16n,88p,933b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,16n,88p,933b,538s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><
 /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></u
@@ -941,10 +732,10 @@ e1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/ur
 w/helvetic/uhvr8a.pfb>
-Output written on ms.pdf (6 pages, 638794 bytes).
+Output written on ms.pdf (7 pages, 709858 bytes).
 PDF statistics:
- 271 PDF objects out of 1000 (max. 8388607)
- 229 compressed objects within 3 object streams
- 40 named destinations out of 1000 (max. 500000)
+ 457 PDF objects out of 1000 (max. 8388607)
+ 412 compressed objects within 5 object streams
+ 71 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -111,8 +111,8 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu0=0.025, muz=-0.49,alpha = -1.77, sig
     fit_values_string = r'$\mathrm{log-skew-normal}$'+'\n'+\
                     r'$\mu_0=%s,$'%(np.round(mu0_best,3)) +'\n'+\
                     r'$\mu_z=%s,$'%(np.round(muz_best,3)) +'\n'+\
-                    r'$\sigma_0=%s,$'%(np.round(sigma0_best,3)) +'\n'\
-                    r'$\sigma_z=%s,$'%(np.round(sigmaz_best,3)) +'\n'\
+                    r'$\omega_0=%s,$'%(np.round(sigma0_best,3)) +'\n'\
+                    r'$\omega_z=%s,$'%(np.round(sigmaz_best,3)) +'\n'\
                     r'$a_0=%s$'%(np.round(alpha0_best,3))
 
     SFR_fit_string = r'$\mathrm{Star \ formation \ rate}$'+'\n'+\
@@ -321,7 +321,6 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu0=0.025, muz=-0.49,alpha = -1.77, sig
     ##################################################################################
     print('!!!! Obs_redshifts', np.round(Obs_redshifts,2) )
     redshifts_to_plot = [0,0.2, 0.5, 1, 2.01, 3.52, 5.3, 8.68]
-    # redsfift_indces = [0,5,10,20, 40, 60,120,160]#[0,8,15,32, 50, 100, 150, 170]#
     redshift_indces   = [np.where(np.round(Obs_redshifts,2) == x)[0][0] for x in redshifts_to_plot]
     print('redshift_indces', redshift_indces)
 
@@ -343,7 +342,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu0=0.025, muz=-0.49,alpha = -1.77, sig
         ######################################
         # Model: new SFRD
         l = ax_metals.plot(np.log10(low_res_metallicities), low_res_model_SFRD[:,redshift_i] + shift_step,
-                       lw = 4, ls = '--', c = colors[i], label = "$z=%s$"%(np.round(Obs_redshifts[redshift_i], 3)) )    
+                       lw = 4, ls = '--', c = colors[i], label = "$z=%s$"%(np.round(Obs_redshifts[redshift_i], 1)) )    
         plot_lines.append([l])
         
         ######################################
