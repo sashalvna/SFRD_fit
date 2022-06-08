@@ -364,7 +364,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu0=0.025, muz=-0.49,alpha = -1.77, sig
                      bbox_to_anchor=(0.4, 1.0), loc='lower left')
     ax_metals.add_artist(legend2)
     
-    legend3 = ax_metals.legend(lines[1::3], ["$%s$"%(np.round(Obs_redshifts[redshift_i], 3)) for redshift_i in redshift_indces],
+    legend3 = ax_metals.legend(lines[1::3], ["$%s$"%(np.round(Obs_redshifts[redshift_i], 1)) for redshift_i in redshift_indces],
                      ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title=r'$\mathrm{redshift}$')
     
     ax_metals.set_xlabel(r'$\log_{10}(Z)$', size =25)
