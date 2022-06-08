@@ -108,7 +108,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu0=0.025, muz=-0.49,alpha = -1.77, sig
 
     ######################################
     
-    fit_values_string = r'$\mathrm{log-skew-normal}$'+'\n'+\
+    fit_values_string = r'$\mathrm{Cosmic \ metallicity \ dist.}$'+'\n'+\
                     r'$\mu_0=%s,$'%(np.round(mu0_best,3)) +'\n'+\
                     r'$\mu_z=%s,$'%(np.round(muz_best,3)) +'\n'+\
                     r'$\omega_0=%s,$'%(np.round(sigma0_best,3)) +'\n'\
