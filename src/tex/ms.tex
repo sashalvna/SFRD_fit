@@ -388,7 +388,7 @@ from SciPy v1.6.3 implementation of the optimized quasi-Newton method of Broyden
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Resulting \SFRDzZ}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Our best fitting parameters are listed in Table \ref{tab: fit params}. With these fit parameters, $\chi^2(z_j)$ is smaller than $2\cdot 10^{-4}$ at any given redshift.
+Our best fitting parameters are listed in Table \ref{tab: fit params}. With these fit parameters, $\chi^2(z_j)$ is smaller than $2\cdot 10^{-4}$ at any given redshift. From now on, we will refer to the \SFRDzZ with the parameters listed in Table \ref{tab: fit params} as our fiducial \SFRDzZ model. 
 % With the fit parameters as mentioned above, we find a maximum residual between the model and the TNG100 data of $2.3\cdot 10^{-3} \Msun \yr^{-1} \Mpc^{-3}$ at any given redshift.
 
 \begin{deluxetable}{cccc}
@@ -409,8 +409,28 @@ $\omega_z$ &  0.048 &   \\
 % muz =-0.048244647721407255, mu0 =0.024667742078400792, sigma_0 =1.1253850972905333, sigma_z =0.048072863682492945, alpha=-1.7671626767422142
 \end{deluxetable}
 
-In Figure \ref{fig: fit SFRD} we this \SFRDzZ for different redshifts and metallicities. 
+In Figure \ref{fig: fit SFRD} we show our fiducial \SFRDzZ model at different redshifts and metallicities. 
 In the top panel we show the general trend of the \SFRDzZ linear in lookback time. 
+
+Main results:
+
+1) We did a pretty good job at fitting the data. 
+In general, the skewed-log normal metallicity distribution does a good job at capturing the metallicity dependent star formation in TNG. 
+We did miss some features like the almoast dubble peak at redshift 2, 
+
+Adopting a skewed-lognormal distribution furthermore allows for a tail of low metallicity star formation
+
+0) the starformation rate peaks at metallicities above $10^{-2}$ for all redshifts out to at least $z=6$
+most star formation happens at metallicities above $Z \gtr 10^{-2}$
+
+
+
+
+
+
+% Things to say about this plot: 
+We recognise some of the features discussed in \cite{Pakmor+2022}
+We make a comparison to Neijssel fiducial: their model is extremely narrow, while the metallicity in the TNG is more broad
 
 
 
