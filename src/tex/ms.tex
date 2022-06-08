@@ -286,7 +286,9 @@ We have considered variations where the ``skewness'' $\alpha$ varies with redshi
 In summary, Equation~\ref{eq: pure log skew} becomes:
 \begin{equation}
 \label{eq: z log skew}
-\mathrm{\frac{dP}{dZ}}(Z,z) = \frac{2}{Z} \times \phi \left(\frac{\ln Z - \xi(z)}{\omega(z)}\right) \Phi\left(\alpha \frac{\ln Z - \xi(z)}{\omega(z)} \right),
+\boxed{
+    \dPdZ = \frac{2}{Z} \times \phi \left(\frac{\ln Z - \xi(z)}{\omega(z)}\right) \Phi\left(\alpha \frac{\ln Z - \xi(z)}{\omega(z)} \right)
+    } \ , 
 \end{equation}
 
 \noindent where $\xi(z)$ and $\omega(z)$ are defined in Equations~\ref{eq mu z} and \ref{eq: sigma z} respectively and we have assumed $\alpha$ to be constant.
@@ -297,21 +299,43 @@ In summary, Equation~\ref{eq: pure log skew} becomes:
 For the star formation rate density, we assume the analytical form proposed by \cite{MadauDickinson2014},
 \begin{eqnarray}
 \label{eq: sfr1}
+\boxed{
     \SFRDz  = 
     \frac{d^2 M_{\rm SFR}}{dt dV_c} (z)= 
-    a \frac{\left(1 + z\right)^b}{1 + \left[ (1 + z)/c \right]^d} \,
+    a \frac{\left(1 + z\right)^b}{1 + \left[ (1 + z)/c \right]^d} 
+    }\,
 \end{eqnarray}
 in units of $\left[ \Msun \,yr^{-1} \,cMpc^{-3} \right]$. This introduces four parameters, $a$ which sets the overal normalisation and which has the same units as \SFRDz and $b,c$ and $d$ which are unitless and which govern the shape of the overal cosmic starformation rate density with redshift.   
 
 \subsection{Combined function}
-We combine equations \ref{eq: z log skew} and \ref{eq: sfr1} to form a full metallicity specific starformation rate density (\SFRDzZ). We fit for the following nine free parameters $\alpha, \mu_0, \mu_z, \omega_0, \omega_z$, which govern the metallicity dependence and $a,b, c$ and $d$, which set the overall starformation rate.
+We combine equations \ref{eq: z log skew} and \ref{eq: sfr1} to form a full metallicity specific starformation rate density 
+\begin{equation}
+\label{eq: total sfrd}
+\boxed{
+    \SFRDzZ = \dPdZ \times \SFRDz
+    } \ , 
+\end{equation}
+
+\noindent We fit for the following nine free parameters $\alpha, \mu_0, \mu_z, \omega_0, \omega_z$, which govern the metallicity dependence and $a,b, c$ and $d$, which set the overall starformation rate.
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Result: Analytical fit against Cosmological simulation}
+\section{Analytical fit against Cosmological simulation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+\script{FitComparison_3panelPlot.py}
+\includegraphics[width=\textwidth]{figures/SFRD_FIT_evaluation_compare.pdf}
+\caption{Fit for SFRD shown against TNG and Neijssel.  \label{fig: fit SFRD}}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We fit our newly defined functional form of \SFRDzZ as defined in the previous section to the Illustris-TNG cosmological simulations. Below we briefly summarise relevant physics behind the Illustris-TNG simulations, and we elaborate on our choices made during the fitting procedure.
+
+% %
+% The task we have at hand here is not a standard textbook fitting problem given the specific aims and requirements that we have that are driven by the astrophysical applications we have in mind. Qualitatively, our aims are the following. Our main aim is to find solution for the free parameters, for which the expression reproduces the overall behaviour that is observed in the cosmological simulations. For the purposes we have in mind, it will be more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations. We further prioritise getting the bulk of the cosmic star formation right and are less interested in capturing the behaviour in metallicity and redshift bins where the cosmic starformation rate is very low and thus insignificant for the overall picture. Finally, we are especially interested in capturing the asymmetry of the metallicity distribution. 
+% There is not one unique procedure that will full fill these criteria.  After experimenting with different criteria we have adopted the procedure below, which we believe works well for the aims we have in mind.  
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -321,33 +345,19 @@ We combine equations \ref{eq: z log skew} and \ref{eq: sfr1} to form a full meta
 The IllustrisTNG-project considers galaxy formation and evolution through large-scale cosmological hydrodynamical simulations.
 
 \SdM{Insert a description of enrichment and gas recycling. }
-
 They have been shown to reproduce many of the global properties of galaxies and their scaling relations for a representative portion of the Universe \citep[e.g.][]{FirstResTNG_Naiman2018,Torrey+2021,Genel+2018,Hemler+2021}.These simulations are publicly available\footnote{ \url{https://www.tng-project.org/}} \citep{FirstResTNG_Springel2018,FirstResTNG_Marinacci2018, FirstResTNG_Nelson2018,FirstResTNG_Pillepich2018, FirstResTNG_Naiman2018}.
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}
-\script{FitComparison_3panelPlot.py}
-\includegraphics[width=\textwidth]{figures/SFRD_FIT_evaluation_compare.pdf}
-\caption{Fit for SFRD shown against TNG and Neijssel.  \label{fig: fit SFRD}}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%
-The task we have at hand here is not a standard textbook fitting problem given the specific aims and requirements that we have that are driven by the astrophysical applications we have in mind. Qualitatively, our aims are the following. Our main aim is to find solution for the free parameters, for which the expression reproduces the overall behaviour that is observed in the cosmological simulations. For the purposes we have in mind, it will be more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations. We further prioritise getting the bulk of the cosmic star formation right and are less interested in capturing the behaviour in metallicity and redshift bins where the cosmic starformation rate is very low and thus insignificant for the overall picture. Finally, we are especially interested in capturing the asymmetry of the metallicity distribution. 
-
-There is not one unique procedure that will full fill these criteria.  After experimenting with different criteria we have adopted the procedure below, which we believe works well for the aims we have in mind.  
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Choices and binning of the data}
-
-We fit our function to the metallicity distribution of the starforming gas in the TNG100 simulation. For this we use a binned version of the TNG data $\SFRDzZ_{\rm sim}$. We consider metallicities between $Z= -5$ to $\log_{10} Z= 0$ in 30 bins, where we use $Z_i$ to refer to the logarithmic centers of the bins. We ignore star formation in metallicities $\log_{10} Z \le -5$ as this only accounts for less than 1\% of the total cosmic starformation rate in these simulations.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We fit equation \ref{eq: total sfrd} to the metallicity-dependent starformation rate of the starforming gas in the TNG100 simulation. For this we use a binned version of the TNG data $\SFRDzZ_{\rm sim}$. We consider metallicities between $Z= -5$ to $\log_{10} Z= 0$ in 30 bins, where we use $Z_i$ to refer to the logarithmic centers of the bins. We ignore star formation in metallicities $\log_{10} Z \le -5$ as this accounts for less than 1\% of the total cosmic starformation rate in these simulations.  
 
 We consider bins in redshifts between $z=0$ and $z=10$, with a step size of $dz=0.05$, where $z_j$ refers to the centers of the bins. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Optimisation function}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 To find a solution we use a method based on the sum of the quadratic differences between the simulations and our fit function. Using a vanilla $\chi$-squared approach does not serve our purposes very well as it does a poor job in fitting regions where the starformation is very low.  Using a $\chi$-squared approach on the logarithm of the function instead places far too much weight on trying to fit the starformation rate in regions where the rate is very low or not even significant.  After experimenting, we find that the following approach gives us satisfactory results. 
 
 We first consider a given redshift $z_j$.  For this redshift we compute the sum of the squared residuals between the cosmological simulation and our fit.  
@@ -371,19 +381,15 @@ Subsequently we sum the $\chi^2 (z_j)$ for all redshift bins $z_j$. To ensure th
     %chi_square = ((obs - model )**2)/np.sum(model) 
 \end{equation}
 
-
 We use the \texttt{scipy.optimize.minimize} 
-from SciPy v1.6.3 implementation of the optimized quasi-Newton method of Broyden, Fletcher, Goldfarb, and Shanno (BFGS) \url{http://www.apmath.spbu.ru/cnsa/pdf/monograf/Numerical_Optimization2006.pdf}
+from SciPy v1.6.3 implementation of the optimized quasi-Newton method of Broyden, Fletcher, Goldfarb, and Shanno (BFGS). \footnote{\url{http://www.apmath.spbu.ru/cnsa/pdf/monograf/Numerical_Optimization2006.pdf}}
 
 
-
-
-With the fit parameters as mentioned above, we find a maximum residual between the model and the TNG100 data of $2.3\cdot 10^{-3} \Msun \yr^{-1} \Mpc^{-3}$ at any given redshift.
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Resulting \SFRDzZ}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Our best fitting parameters are listed in Table \ref{tab: fit params}. With these fit parameters, $\chi^2(z_j)$ is smaller than $2\cdot 10^{-4}$ at any given redshift.
+% With the fit parameters as mentioned above, we find a maximum residual between the model and the TNG100 data of $2.3\cdot 10^{-3} \Msun \yr^{-1} \Mpc^{-3}$ at any given redshift.
 
 \begin{deluxetable}{cccc}
 \label{tab: fit params}
@@ -399,17 +405,17 @@ $\omega_z$ &  0.048 &   \\
 \enddata
 %sf_a_best, sf_b_best, sf_c_best,  sf_d_best = 0.02, 1.48, 4.45, 5.90
 % sf_a =0.01687063881834458, sf_b =1.4834054063851878, sf_c =4.448574027958166, sf_d =5.903964702985274
-
 %muz =-0.048, mu0 =0.025, sigma_0 =1.125, sigma_z =0.048, alpha=-1.767
 % muz =-0.048244647721407255, mu0 =0.024667742078400792, sigma_0 =1.1253850972905333, sigma_z =0.048072863682492945, alpha=-1.7671626767422142
 \end{deluxetable}
 
+In Figure \ref{fig: fit SFRD} we show the shape of this \SFRDzZ in the plane of the 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Effect on the local mass distribution of BBH mergers}
-
-We investigate the effect of the shape of the cosmic metallicity distribution on the local mass distribution of BBH mergers by systemically varying each of the variables that make up \dpdZ (first column of Table \ref{tab: fit params} and eq. \ref{eq: z log skew}). 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}
@@ -419,8 +425,32 @@ We investigate the effect of the shape of the cosmic metallicity distribution on
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+We investigate the effect of the shape of the cosmic metallicity distribution on the local mass distribution of BBH mergers by systemically varying each of the variables that make up \dpdZ (first column of Table \ref{tab: fit params} and eq. \ref{eq: z log skew}). 
 
 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary and conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We present a flexible analytic expression for the metallicity-dependent starformation rate.
+Such an analytical expression allows 
+we find the low mass end of the mass distribution is least affected the change in the \SFRDzZ. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{acknowledgments}
+% Grant Acknowledgements
+The authors acknowledge partial financial support from the  National Science Foundation under Grant No. (NSF grant number 2009131  and PHY-1748958).”
+, the Netherlands Organisation for Scientific Research (NWO) as part of the Vidi research program BinWaves with project number 639.042.728 and the European Union’s Horizon 2020 research and innovation program from the European Research Council (ERC, Grant agreement No. 715063). 
+\end{acknowledgments}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{my_bib,main_bib}
 
 
