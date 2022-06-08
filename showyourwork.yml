@@ -9,5 +9,8 @@ overleaf:
     pull:
         - src/tex/ms.tex
         - src/tex/bib.bib
+        - src/tex/my_bib.bib
+        - src/tex/main_bib.bib
+
 
 
