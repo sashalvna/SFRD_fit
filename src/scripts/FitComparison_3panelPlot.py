@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import astropy.units as u
 from astropy import constants as const
+
+from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
 from scipy import interpolate
@@ -244,13 +246,16 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu0=0.025, muz=-0.49,alpha = -1.77, sig
         # Get the SFR Neijssel et al 2019:
         neijssel_sfr = Z_SFRD.Madau_Dickinson2014(neijssel_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
         Neijssel_SFRDzZ = (neijssel_sfr*neijssel_dPdlogZ.T).value
-        
+
+        greys = cm.get_cmap('Greys')
+        greys = greys(np.linspace(0.2,1,10)) # Don't start the cmap in white
         cs_N = ax.contour(high_res_t, high_res_metals, Neijssel_SFRDzZ, levels, linewidths=4,linestyles =':', alpha = 0.95, zorder=0,
-                          cmap=sns.color_palette('Greys', as_cmap=True),locator=ticker.LogLocator())
+                          cmap=ListedColormap(greys),locator=ticker.LogLocator())
         
     ##############################################################################
     # Plotvalues for top panel
     ######################################
+    ax.text(0.05, 0.05, r"$ \mathcal{S}(Z,z) \ \mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$", transform=ax.transAxes)
     ax.xaxis.grid(5) # vertical lines
     ax.set_yscale('log')
     ax.set_xlabel('$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 25)
@@ -368,7 +373,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu0=0.025, muz=-0.49,alpha = -1.77, sig
                      ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title=r'$\mathrm{redshift}$')
     
     ax_metals.set_xlabel(r'$\log_{10}(Z)$', size =25)
-    ax_metals.set_ylabel(r'$\mathrm{SFRD [yr^{-1}\ Mpc^{-3}}$]', size =25)
+    ax_metals.set_ylabel(r"$ \mathcal{S}(Z,z) \ \mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$", size =25)
 
     ax_metals.set_ylim(-0.005, 0.075)
     ax_metals.set_xlim(-4, -0.5)
@@ -427,7 +432,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu0=0.025, muz=-0.49,alpha = -1.77, sig
                      ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title=r'$\log_{10}Z$')
     
     ax_redsh.set_xlabel(r'$\mathrm{redshift}$', size =25)
-    ax_redsh.set_ylabel(r'$\mathrm{SFRD [yr^{-1}\ Mpc^{-3}}$]', size =25)
+    ax_redsh.set_ylabel(r"$ \mathcal{S}(Z,z) \ \mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$", size =25)
     
     ax_redsh.set_xlim(0, 10)
     ax_redsh.set_ylim(-0.005, 0.075)

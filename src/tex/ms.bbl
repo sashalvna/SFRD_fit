@@ -1,0 +1,170 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\href{#1}{#1}}
+\providecommand{\dodoi}[1]{doi:~\href{http://doi.org/#1}{\nolinkurl{#1}}}
+\providecommand{\doeprint}[1]{\href{http://ascl.net/#1}{\nolinkurl{http://ascl.net/#1}}}
+\providecommand{\doarXiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{https://arxiv.org/abs/#1}}}
+
+\bibitem[{{Belczynski} {et~al.}(2010){Belczynski}, {Bulik}, {Fryer}, {Ruiter},
+  {Valsecchi}, {Vink}, \& {Hurley}}]{BelczynskiVink2010}
+{Belczynski}, K., {Bulik}, T., {Fryer}, C.~L., {et~al.} 2010, \apj, 714, 1217,
+  \dodoi{10.1088/0004-637X/714/2/1217}
+
+\bibitem[{{Boco} {et~al.}(2020){Boco}, {Lapi}, {Chruslinska}, {Donevski},
+  {Sicilia}, \& {Danese}}]{Boco2020}
+{Boco}, L., {Lapi}, A., {Chruslinska}, M., {et~al.} 2020, arXiv e-prints,
+  arXiv:2012.02800.
+\newblock \doarXiv{2012.02800}
+
+\bibitem[{{Boco} {et~al.}(2021){Boco}, {Lapi}, {Chru{\'s}li{\'n}ska},
+  {Donevski}, {Sicilia}, \& {Danese}}]{Boco2021}
+{Boco}, L., {Lapi}, A., {Chru{\'s}li{\'n}ska}, M., {et~al.} 2021, \apj, 907,
+  110, \dodoi{10.3847/1538-4357/abd3a0}
+
+\bibitem[{{Briel} {et~al.}(2021){Briel}, {Eldridge}, {Stanway}, {Stevance}, \&
+  {Chrimes}}]{Briel+2021}
+{Briel}, M.~M., {Eldridge}, J.~J., {Stanway}, E.~R., {Stevance}, H.~F., \&
+  {Chrimes}, A.~A. 2021, arXiv e-prints, arXiv:2111.08124.
+\newblock \doarXiv{2111.08124}
+
+\bibitem[{{Broekgaarden} {et~al.}(2021{\natexlab{a}}){Broekgaarden}, {Berger},
+  {Neijssel}, {Vigna-G{\'o}mez}, {Chattopadhyay}, {Stevenson},
+  {Chru{\'s}li{\'n}ska}, {Justham}, {de Mink}, \&
+  {Mandel}}]{Broekgaarden+2021a}
+{Broekgaarden}, F.~S., {Berger}, E., {Neijssel}, C.~J., {et~al.}
+  2021{\natexlab{a}}, arXiv e-prints, arXiv:2103.02608.
+\newblock \doarXiv{2103.02608}
+
+\bibitem[{{Broekgaarden} {et~al.}(2021{\natexlab{b}}){Broekgaarden}, {Berger},
+  {Stevenson}, {Justham}, {Mandel}, {Chru{\'s}li{\'n}ska}, {van Son}, {Wagg},
+  {Vigna-G{\'o}mez}, {de Mink}, {Chattopadhyay}, \&
+  {Neijssel}}]{Broekgaarden+2021b}
+{Broekgaarden}, F.~S., {Berger}, E., {Stevenson}, S., {et~al.}
+  2021{\natexlab{b}}, arXiv e-prints, arXiv:2112.05763.
+\newblock \doarXiv{2112.05763}
+
+\bibitem[{{Chruslinska} {et~al.}(2018){Chruslinska}, {Belczynski}, {Klencki},
+  \& {Benacquista}}]{Chruslinska+2018}
+{Chruslinska}, M., {Belczynski}, K., {Klencki}, J., \& {Benacquista}, M. 2018,
+  \mnras, 474, 2937, \dodoi{10.1093/mnras/stx2923}
+
+\bibitem[{{Chru{\'s}li{\'n}ska} \& {Nelemans}(2019)}]{Chruslinska2019_obs}
+{Chru{\'s}li{\'n}ska}, M., \& {Nelemans}, G. 2019, \mnras, 488, 5300,
+  \dodoi{10.1093/mnras/stz2057}
+
+\bibitem[{{Chru{\'s}li{\'n}ska} {et~al.}(2019){Chru{\'s}li{\'n}ska},
+  {Nelemans}, \& {Belczynski}}]{Chruslinska2019_effectCO}
+{Chru{\'s}li{\'n}ska}, M., {Nelemans}, G., \& {Belczynski}, K. 2019, \mnras,
+  482, 5012, \dodoi{10.1093/mnras/sty3087}
+
+\bibitem[{{Chru{\'s}li{\'n}ska} {et~al.}(2021){Chru{\'s}li{\'n}ska},
+  {Nelemans}, {Boco}, \& {Lapi}}]{Chruslinska+2021}
+{Chru{\'s}li{\'n}ska}, M., {Nelemans}, G., {Boco}, L., \& {Lapi}, A. 2021,
+  \mnras, 508, 4994, \dodoi{10.1093/mnras/stab2690}
+
+\bibitem[{{Genel} {et~al.}(2018){Genel}, {Nelson}, {Pillepich}, {Springel},
+  {Pakmor}, {Weinberger}, {Hernquist}, {Naiman}, {Vogelsberger}, {Marinacci},
+  \& {Torrey}}]{Genel+2018}
+{Genel}, S., {Nelson}, D., {Pillepich}, A., {et~al.} 2018, \mnras, 474, 3976,
+  \dodoi{10.1093/mnras/stx3078}
+
+\bibitem[{{Hemler} {et~al.}(2021){Hemler}, {Torrey}, {Qi}, {Hernquist},
+  {Vogelsberger}, {Ma}, {Kewley}, {Nelson}, {Pillepich}, {Pakmor}, \&
+  {Marinacci}}]{Hemler+2021}
+{Hemler}, Z.~S., {Torrey}, P., {Qi}, J., {et~al.} 2021, \mnras, 506, 3024,
+  \dodoi{10.1093/mnras/stab1803}
+
+\bibitem[{{Langer} \& {Norman}(2006)}]{Langer2006}
+{Langer}, N., \& {Norman}, C.~A. 2006, \apjl, 638, L63, \dodoi{10.1086/500363}
+
+\bibitem[{{Madau} \& {Dickinson}(2014)}]{MadauDickinson2014}
+{Madau}, P., \& {Dickinson}, M. 2014, \araa, 52, 415,
+  \dodoi{10.1146/annurev-astro-081811-125615}
+
+\bibitem[{{Madau} \& {Fragos}(2017)}]{Madau+2017}
+{Madau}, P., \& {Fragos}, T. 2017, \apj, 840, 39,
+  \dodoi{10.3847/1538-4357/aa6af9}
+
+\bibitem[{{Mapelli} {et~al.}(2017{\natexlab{a}}){Mapelli}, {Giacobbo},
+  {Ripamonti}, \& {Spera}}]{Mapelli2017}
+{Mapelli}, M., {Giacobbo}, N., {Ripamonti}, E., \& {Spera}, M.
+  2017{\natexlab{a}}, \mnras, 472, 2422, \dodoi{10.1093/mnras/stx2123}
+
+\bibitem[{{Mapelli} {et~al.}(2017{\natexlab{b}}){Mapelli}, {Giacobbo},
+  {Ripamonti}, \& {Spera}}]{Mapelli+2017}
+---. 2017{\natexlab{b}}, \mnras, 472, 2422, \dodoi{10.1093/mnras/stx2123}
+
+\bibitem[{{Marinacci} {et~al.}(2018){Marinacci}, {Vogelsberger}, {Pakmor},
+  {Torrey}, {Springel}, {Hernquist}, {Nelson}, {Weinberger}, {Pillepich},
+  {Naiman}, \& {Genel}}]{FirstResTNG_Marinacci2018}
+{Marinacci}, F., {Vogelsberger}, M., {Pakmor}, R., {et~al.} 2018, \mnras, 480,
+  5113, \dodoi{10.1093/mnras/sty2206}
+
+\bibitem[{{Naiman} {et~al.}(2018){Naiman}, {Pillepich}, {Springel},
+  {Ramirez-Ruiz}, {Torrey}, {Vogelsberger}, {Pakmor}, {Nelson}, {Marinacci},
+  {Hernquist}, {Weinberger}, \& {Genel}}]{FirstResTNG_Naiman2018}
+{Naiman}, J.~P., {Pillepich}, A., {Springel}, V., {et~al.} 2018, \mnras, 477,
+  1206, \dodoi{10.1093/mnras/sty618}
+
+\bibitem[{{Neijssel} {et~al.}(2019{\natexlab{a}}){Neijssel}, {Vigna-G{\'o}mez},
+  {Stevenson}, {Barrett}, {Gaebel}, {Broekgaarden}, {de Mink}, {Sz{\'e}csi},
+  {Vinciguerra}, \& {Mandel}}]{Neijssel+2019}
+{Neijssel}, C.~J., {Vigna-G{\'o}mez}, A., {Stevenson}, S., {et~al.}
+  2019{\natexlab{a}}, \mnras, 2457, \dodoi{10.1093/mnras/stz2840}
+
+\bibitem[{{Neijssel} {et~al.}(2019{\natexlab{b}}){Neijssel}, {Vigna-G{\'o}mez},
+  {Stevenson}, {Barrett}, {Gaebel}, {Broekgaarden}, {de Mink}, {Sz{\'e}csi},
+  {Vinciguerra}, \& {Mandel}}]{Neijssel2019}
+---. 2019{\natexlab{b}}, \mnras, 490, 3740, \dodoi{10.1093/mnras/stz2840}
+
+\bibitem[{{Nelson} {et~al.}(2018){Nelson}, {Pillepich}, {Springel},
+  {Weinberger}, {Hernquist}, {Pakmor}, {Genel}, {Torrey}, {Vogelsberger},
+  {Kauffmann}, {Marinacci}, \& {Naiman}}]{FirstResTNG_Nelson2018}
+{Nelson}, D., {Pillepich}, A., {Springel}, V., {et~al.} 2018, \mnras, 475, 624,
+  \dodoi{10.1093/mnras/stx3040}
+
+\bibitem[{O'Hagan \& Leonard(1976)}]{Ohagan+1976}
+O'Hagan, A., \& Leonard, T. 1976, Biometrika, 63, 201,
+  \dodoi{10.1093/biomet/63.1.201}
+
+\bibitem[{{Pillepich} {et~al.}(2018{\natexlab{a}}){Pillepich}, {Springel},
+  {Nelson}, {Genel}, {Naiman}, {Pakmor}, {Hernquist}, {Torrey}, {Vogelsberger},
+  {Weinberger}, \& {Marinacci}}]{Pillepich2018}
+{Pillepich}, A., {Springel}, V., {Nelson}, D., {et~al.} 2018{\natexlab{a}},
+  \mnras, 473, 4077, \dodoi{10.1093/mnras/stx2656}
+
+\bibitem[{{Pillepich} {et~al.}(2018{\natexlab{b}}){Pillepich}, {Nelson},
+  {Hernquist}, {Springel}, {Pakmor}, {Torrey}, {Weinberger}, {Genel}, {Naiman},
+  {Marinacci}, \& {Vogelsberger}}]{FirstResTNG_Pillepich2018}
+{Pillepich}, A., {Nelson}, D., {Hernquist}, L., {et~al.} 2018{\natexlab{b}},
+  \mnras, 475, 648, \dodoi{10.1093/mnras/stx3112}
+
+\bibitem[{{Schneider} {et~al.}(2017){Schneider}, {Castro}, {Fossati}, {Langer},
+  \& {de Koter}}]{Schneider+2017}
+{Schneider}, F.~R.~N., {Castro}, N., {Fossati}, L., {Langer}, N., \& {de
+  Koter}, A. 2017, \aap, 598, A60, \dodoi{10.1051/0004-6361/201628409}
+
+\bibitem[{{Springel} {et~al.}(2018){Springel}, {Pakmor}, {Pillepich},
+  {Weinberger}, {Nelson}, {Hernquist}, {Vogelsberger}, {Genel}, {Torrey},
+  {Marinacci}, \& {Naiman}}]{FirstResTNG_Springel2018}
+{Springel}, V., {Pakmor}, R., {Pillepich}, A., {et~al.} 2018, \mnras, 475, 676,
+  \dodoi{10.1093/mnras/stx3304}
+
+\bibitem[{{Stevenson} {et~al.}(2017){Stevenson}, {Vigna-G{\'o}mez}, {Mandel},
+  {Barrett}, {Neijssel}, {Perkins}, \& {de Mink}}]{Stevenson+2017}
+{Stevenson}, S., {Vigna-G{\'o}mez}, A., {Mandel}, I., {et~al.} 2017, Nature
+  Communications, 8, 14906, \dodoi{10.1038/ncomms14906}
+
+\bibitem[{{Torrey} {et~al.}(2019){Torrey}, {Vogelsberger}, {Marinacci},
+  {Pakmor}, {Springel}, {Nelson}, {Naiman}, {Pillepich}, {Genel}, {Weinberger},
+  \& {Hernquist}}]{Torrey+2021}
+{Torrey}, P., {Vogelsberger}, M., {Marinacci}, F., {et~al.} 2019, \mnras, 484,
+  5587, \dodoi{10.1093/mnras/stz243}
+
+\bibitem[{{Weinberger} {et~al.}(2017){Weinberger}, {Springel}, {Hernquist},
+  {Pillepich}, {Marinacci}, {Pakmor}, {Nelson}, {Genel}, {Vogelsberger},
+  {Naiman}, \& {Torrey}}]{Weinberger2017}
+{Weinberger}, R., {Springel}, V., {Hernquist}, L., {et~al.} 2017, \mnras, 465,
+  3291, \dodoi{10.1093/mnras/stw2944}
+
+\end{thebibliography}
