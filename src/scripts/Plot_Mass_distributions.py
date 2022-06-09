@@ -177,9 +177,10 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
 		#########################################
 		# X value and weight
 		x_vals              = merging_BBH[x_key]
-		i_redshift = np.where(redshifts == 4)[0]
+		i_redshift = np.where(redshifts == 0.2)[0][0]
+		print('i_redshift', i_redshift)
 		Weights             = Red_intr_rate_dens[:, i_redshift]#crude_rate_density[:,0]
-
+		print('!X!X!X!', np.shape(Weights), np.shape(x_vals) )
 		print(labels[i], ' len(table)=', len(merging_BBH) , ' Rate = ', np.sum(Weights), ' Gpc-3 yr-1')
 
 		########################
