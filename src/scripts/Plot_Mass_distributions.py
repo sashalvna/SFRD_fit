@@ -61,7 +61,7 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 # Distribution plot function
 ######################################
 def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma0%s_sigmaz0.05_zBinned'%(x) for x in [0.8, 1.125, 1.4]],
-                   bins = np.arange(0.,55,2.5), z_bin_edges = [0,0.5], 
+                   bins = np.arange(0.,55,2.5), z_bin_edges = [0,0.25], 
                    plot_LIGO = False, show_hist = False, show_KDE = True, kde_width = 0.1,  
                    bootstrap = False, bootstraps = 10, x_lim=(0.,50),  y_lim = (1e-2,50), 
                    Color = '#e388b0', linestyles = ['--','-', ':'], titletext = '',
@@ -173,11 +173,12 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
 
 		# # # # # # # # # # # # # # # # # # 
 		## Calculate average rate density per z-bin
-		crude_rate_density  = mfunc.get_crude_rate_density(Red_intr_rate_dens[:,:], redshifts, z_bin_edges)
+		# crude_rate_density  = mfunc.get_crude_rate_density(Red_intr_rate_dens[:,:], redshifts, z_bin_edges)
 		#########################################
 		# X value and weight
 		x_vals              = merging_BBH[x_key]
-		Weights             = crude_rate_density[:,0]
+		i_redshift = np.where(redshifts == 4)[0]
+		Weights             = Red_intr_rate_dens[:, i_redshift]#crude_rate_density[:,0]
 
 		print(labels[i], ' len(table)=', len(merging_BBH) , ' Rate = ', np.sum(Weights), ' Gpc-3 yr-1')
 
@@ -300,7 +301,7 @@ subplot1 = fig.add_subplot(321)
 
 ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma0%s_sigmaz0.05_zBinned'%(x) for x in [0.8, 1.125, 1.4]],
                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color =  'navy', 
-                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = 'Width of metallicity  dist.',
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = 'Width of metallicity  dist. z=0',
                        labels = [r'$\mathrm{Narrow: \ } \phantom{xxx} (\omega_0 = 0.800) \  \mathcal{R}_{0} = \ $',
                                  r'$\mathrm{Fiducial: \ } \phantom{xxi} (\omega_0 = 1.125) \ \mathcal{R}_{0}= \ $', 
                                  r'$\mathrm{Wide \ SFRD: \ }  (\omega_0 = 1.400) \  \mathcal{R}_{0} = \ $'],
@@ -330,7 +331,7 @@ subplot3 = fig.add_subplot(323)
 
 ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned'%(x) for x in [0.015, 0.025, 0.035]],
                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#e1131d', 
-                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = 'Mean metallicity z=0.',
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = 'Mean metallicity z=0',
                        labels = [r'$\mathrm{low \ <Z_0> : \ } \phantom{x} (\mu_0 = 0.015) \ \mathcal{R}_{0} = \ $',
                        			 r'$\mathrm{Fiducial : \ } \phantom{xxxi} (\mu_0 = 0.025) \ \mathcal{R}_{0} = \ $',
                                  r'$\mathrm{high \ <Z_0> : \ } \phantom{i} (\mu_0 = 0.035) \ \mathcal{R}_{0} = \ $'],
@@ -360,7 +361,7 @@ subplot5 = fig.add_subplot(325)
 
 ax5 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.05_alpha%s_sigma01.125_sigmaz0.05_zBinned'%(x) for x in [-0.9, -1.77, -3.5]],
                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#acbf00', 
-                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = 'Skewness of metallicity dist', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = 'Skewness of metallicity dist.', 
                        labels = [r'$\mathrm{Symmetric: \ } (\alpha = -0.9)   \ \mathcal{R}_{0} = \ $',
                                  r'$\mathrm{Fiducial: \  } \phantom{xx} (\alpha = -1.77)  \ \mathcal{R}_{0}= \ $', 
                                  r'$\mathrm{Skewed: \    } \phantom{xxi} (\alpha = -3.5)  \ \mathcal{R}_{0} = \ $'],
