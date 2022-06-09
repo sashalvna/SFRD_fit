@@ -332,7 +332,7 @@ We combine equations \ref{eq: z log skew} and \ref{eq: sfr1} to form a full meta
 \includegraphics[width=\textwidth]{figures/SFRD_FIT_evaluation_compare.pdf}
 \caption{Our fiducial \SFRDzZ model, adopting the best fitting parameters (listed on the top right) to fit the TNG100 simulations.
 The top panel shows the full two dimensional \SFRDzZ linear in time. The bottom left (right) panel shows slices of the distribution in redshift (metallicity). Each slice is displaced by 0.01$\Msun \yr^{-1}\Mpc^{-3}$. We show the TNG100 simulation data with thick gray lines. 
-For comparison, we also show the phenomenological model from \protect\cite{Neijssel+2019} in each panel with grey dotted lines. For the latter, the contours in the top panel range from $10^{-7} - 10^{-2} \Msun \yr^{-1}\Mpc^{-3}$.
+For comparison, we also show the phenomenological model from \protect\cite{Neijssel+2019} in each panel with grey dotted lines. For the latter, the contours in the top panel range from $10^{-7} - 10^{-2} \Msun \yr^{-1}\Mpc^{-3}$. This shows that our analytical model adequately captures the \SFRDzZ of the TNG100 simulations.
  \label{fig: fit SFRD}}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -403,7 +403,7 @@ Our best fitting parameters are listed in Table \ref{tab: fit params}. With thes
 \startdata
 $\mu_0$ &  0.025 &  $a$ &  0.02 \\
 $\mu_z$ &  -0.048 &  $b$ &  1.48 \\
-$\alpha_0$ &  -1.767 &  $c$ &  4.45 \\
+$\alpha$ &  -1.767 &  $c$ &  4.45 \\
 $\omega_0$  & 1.125       &  $d$ &  5.90 \\
 $\omega_z$ &  0.048 &   \\
 \enddata
@@ -429,20 +429,32 @@ The \SFRDzZ from \cite{Neijssel+2019} was optimised to match the local rate of d
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}
+\centering
 \script{Plot_Mass_distributions.py}
-\includegraphics[width=\textwidth]{figures/SFRD_variations_combined.pdf}
-\caption{The effects of several variations in the SFRD  \label{fig: mass dists}}
+\includegraphics[width=0.95\textwidth]{figures/SFRD_variations_combined.pdf}
+\caption{The primary mass distribution of merging BBH systems from isolated binary evolution for several variations in \SFRDzZ. 
+The first five panels show variations of the cosmic metallicity distribution  \dpdZ (eq. \ref{eq: z log skew}, parameters listed in the first two columns of Table \ref{tab: fit params}). The bottom right panel shows variations in the magnitude of the star formation rate with redshift, i.e. \SFRDz. For the latter we vary the four fiducial parameters of \SFRDz simultaneously (last two columns of Table \ref{tab: fit params}). All panels are shown at a reference redshift of $z=0.2$, with the corresponding predicted BBH merger rate annotated in the legend. We show the power-law + peak model from \protect\cite{GWTC3_popPaper2021} in grey. Lastly we annotate the relative change in the rate at three reference masses: $10\Msun$, $25\Msun$ and $40\Msun$. Variations in \SFRDzZ have the largest impact on the high mass end of the distribution, while around $\Mbheen=10$, variations are smaller than a factor of 3.  
+  \label{fig: mass dists}}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We will now demonstrate the flexibility of our analytical model by systematically varying each of the parameters in our fiducial \SFRDzZ model, and investigate their effect on the local mass distribution of BBH mergers originating from isolated binaries.   
-To this end we use the publicly available rapid binary population synthesis simulations as presented in \cite{vanson+2022}. These simulations were run using version v02.19.04 of the open source \COMPAS suite \citep{COMPAS_method} \footnote{\url{https://github.com/TeamCOMPAS/COMPAS}}. \COMPAS is based on algorithms that model the evolution of massive binary stars following \citet{Hurley+2000, Hurley+2002}, based on detailed evolutionary models by \citet{Pols+1998}. We use the framework described in \cite{vanson+2022} to compute local merger rates of BBH systems.
-
-% that is part of the \COMPAS suite 
-% We investigate the effect of the shape of the cosmic metallicity distribution on the local mass distribution of BBH mergers by systemically varying each of the variables that make up \dpdZ (first column of Table \ref{tab: fit params} and eq. \ref{eq: z log skew}).
+We will now demonstrate the flexibility of our analytical model by systematically varying the parameters in our fiducial \SFRDzZ model, and investigate their effect on the local mass distribution of BBH mergers originating from isolated binaries. 
+%
+To this end we use the publicly available rapid binary population synthesis simulations as presented in \cite{vanson+2022}. These simulations were run using version v02.19.04 of the open source \COMPAS suite \citep{COMPAS_method} \footnote{\url{https://github.com/TeamCOMPAS/COMPAS}}. \COMPAS is based on algorithms that model the evolution of massive binary stars following \citet{Hurley+2000, Hurley+2002}, based on detailed evolutionary models by \citet{Pols+1998}. The framework used to compute local merger rates of BBH systems is described in \cite{vanson+2022}. We refer the reader to their methods section for a detailed description of our adopted physics parameters and assumptions.
 
 
+In Figure \ref{fig: mass dists} we show the mass distribution of the more massive BH from BBH mergers. We will refer to the more (less) massive component as the primary (secondary) from hereon. 
+In general we note that the main features in the primary mass distribution remain distinguishable throughout all \SFRDzZ variations. 
+We annotate the relative change between models at three reference masses: $10\Msun$, $25\Msun$ and $40\Msun$. 
+This shows that changes in \SFRDzZ have the largest impact on the high mass end of the primary mass distribution, while at $\Mbheen=10\Msun$, we find at most a factor 3 between the differen \SFRDzZ models. 
 
+We find that parameter variations that affect shape of \SFRDzZ at low redshift primarily change the normalisation of the mass distribution. These include the width of the cosmic metallicity distribution at $z=0$, $\omega_0$, the mean metallicity of the cosmic metallicity distribution at $z=0$, $\mu_0$, and the skewness of the cosmic metallicity distribution, $\alpha$ (left column of Figure \ref{fig: mass dists}).
+Model variations that increase the amount of star formation at low metallicity (i.e. for a low mean metallicity $\mu_0=0.015$ and a wide metallicity distribution $\omega_0 = 1.4$ ) increase the predicted BBH merger rate.
+ This is consistent with other work \todo{copy ref from wind paper.}
+
+On the other hand, parameters that change the evolution of the metallicity distribution \dpdZ with redshift, such as $\omega_z$ and $\mu_z$ (top right and centre right panel), primarily affect the slope of the high mass end of the BBH mass distribution.
+Changing the \SFRDz has a surprisingly small effect. 
+\todo{describe difference between 3 papers}.
 
 
 
