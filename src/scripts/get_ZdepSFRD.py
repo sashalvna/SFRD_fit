@@ -37,17 +37,17 @@ def Madau_Dickinson2014(z, a=0.015, b=2.77, c=2.9, d=5.6):
 ##  The mettalicity distribution dP/dZ(z)
 ########################################################
 def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
-                                  mu0=0.025, muz=-0.048, sigma_0=1.125, sigma_z=0.048,
-                                  alpha = -1.767, 
+                                  mu_0=0.025, mu_z=-0.048, sigma_0=1.125, sigma_z=0.048,
+                                  alpha_0 = -1.767, alpha_z = 0,
                                   min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01,
                                   metals = [], redsh = [],
                                   min_logZ_COMPAS = np.log(1e-4),max_logZ_COMPAS = np.log(0.03)):
-    #                                mu_0=0.025, muz=-0.048, sigma_0=1.125, sigma_z=0.048,alpha = -1.767,                               
+    #                                mu_0=0.025, mu_z=-0.048, sigma_0=1.125, sigma_z=0.048,alpha = -1.767,                               
     """
     Calculate the distribution of metallicities at different redshifts using a log skew normal distribution
     the log-normal distribution is a special case of this log skew normal distribution distribution, and is retrieved by setting 
     the skewness to zero (alpha = 0). 
-    Based on the method in Neijssel+19. Default values of mu0=0.035, muz=-0.23, sigma_0=0.39, sigma_z=0.0, alpha =0.0, 
+    Based on the method in Neijssel+19. Default values of mu0=0.035, mu_z=-0.23, sigma_0=0.39, sigma_z=0.0, alpha =0.0, 
     retrieve the dP/dZ distribution used in Neijssel+19
 
     NOTE: This assumes that metallicities in COMPAS are drawn from a flat in log distribution!
@@ -58,8 +58,8 @@ def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
         min_logZ_COMPAS    --> [float]          Minimum logZ value that COMPAS samples
         max_logZ_COMPAS    --> [float]          Maximum logZ value that COMPAS samples
         
-        mu0    = 0.025    --> [float]           location (mean in normal) at redshift 0
-        muz    = -0.05    --> [float]           redshift scaling/evolution of the location
+        mu_0    = 0.025    --> [float]           location (mean in normal) at redshift 0
+        mu_z    = -0.05    --> [float]           redshift scaling/evolution of the location
         sigma_0 = 1.25     --> [float]          Scale (variance in normal) at redshift 0
         sigma_z = 0.05     --> [float]          redshift scaling of the scale (variance in normal)
         alpha   = -1.77    --> [float]          shape (skewness, alpha = 0 retrieves normal dist)
@@ -96,9 +96,12 @@ def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
     # LOG-LINEAR
     sigma = sigma_0*10**(sigma_z*redshifts)
     
+    # LOG-LINEAR (better)
+    alpha = alpha_0*10**(alpha_z*redshifts)
+    
     ##################################
     # Follow Langer & Norman 2007? in assuming that mean metallicities evolve in z as:
-    mean_metallicities = mu0 * 10**(muz * redshifts) 
+    mean_metallicities = mu_0 * 10**(mu_z * redshifts) 
     #print('np.shape(mean_metallicities)', np.shape(mean_metallicities))
         
     # Now we re-write the expected value of ou log-skew-normal to retrieve mu
@@ -116,12 +119,12 @@ def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
         metallicities     = metals
         log_metallicities = np.log(metallicities)
         step_logZ         = np.diff(log_metallicities)
-        step_logZ         = step_logZ[0]
-        #print('step_logZ', step_logZ)
+#         step_logZ         = step_logZ[0]
+        print('step_logZ', step_logZ)
         
     ##################################
     # probabilities of log-skew-normal (without the factor of 1/Z since this is dp/dlogZ not dp/dZ)
-    dPdlogZ = 2./(sigma[:,np.newaxis]) * normal_PDF((log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis]) * normal_CDF(alpha * (log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis] )
+    dPdlogZ = 2./(sigma[:,np.newaxis]) * normal_PDF((log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis]) * normal_CDF(alpha[:,np.newaxis] * (log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis] )
 
     ##################################
     # normalise the distribution over al metallicities
