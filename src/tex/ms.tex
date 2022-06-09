@@ -65,8 +65,6 @@
 
 
 
-
-
 % Begin!
 \begin{document}
 
@@ -74,7 +72,6 @@
 \title{ A convenient, flexible and intuitive analytic expression for the metallicity-dependent cosmic star formation rate  }
 
 % Author list
-
 \correspondingauthor{L.~van Son}
 \email{lieke.van.son@cfa.harvard.edu}
 
@@ -92,18 +89,23 @@
 
  \author[0000-0003-3308-2420]{R. Pakmor}
  \affiliation{Max Planck Institute for Astrophysics, Karl-Schwarzschild-Str. 1, 85748 Garching, Germany}
-
+ 
 \author{et al?}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Abstract with filler text
 \begin{abstract}
 New observational facilities are probing star formation and stellar transients and gravitational wave sources at ever increasing redshifts. Comparing these observations with predictions from model for stellar populations or the channels for the formation of gravitational wave sources require assumptions for the cosmic starformation rate density and, in particular, how this depends on metallicity.  Various approaches exist ranging from fully empirical prescriptions to prescriptions that are based on cosmological simulations. Both these approaches come with advantages and disadvantages and inherent uncertainties. 
 
 To make it easier to produce model predictions we propose a simple analytical prescription that captures the main behavior of the advanced simulations. At the same time, the prescription comes with parameters that allow for variations in the overall shape and which can be easily interpreted. Our hope is that this expression provides a useful starting point for making predictions and comparison with observations. 
 \end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Main body with filler text
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction \label{sec: intro}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %opening from Chruslinska & Nelemans. Crucially needed are simple prescriptions
 % 2 ways in which we can tackle this: observationally or theoretically
@@ -153,9 +155,8 @@ Although we only consider our fit to describe the IllustrisTNG100 simulation and
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A convenient analytic expression for the metallicity-dependent star formation rate density}
-\label{sec: SFRD}
+\label{sec: model for sfrd(zZ)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{s: fitting SFRD}
 We assume that the metallicity dependent star formation rate density can be separated into two independent functions \citep[e.g.\ ][]{Langer2006},
 
 \begin{equation}
@@ -321,16 +322,17 @@ We combine equations \ref{eq: z log skew} and \ref{eq: sfr1} to form a full meta
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Analytical fit against Cosmological simulation}
+\section{Analytical fit against Cosmological simulation \label{sec: fit against tng}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}
 \script{FitComparison_3panelPlot.py}
 \includegraphics[width=\textwidth]{figures/SFRD_FIT_evaluation_compare.pdf}
-\caption{Our fiducial \SFRDzZ model, adopting the best fitting parameters (listed on the top right) to fit the TNG100 simulation. 
-The contours in the top panel range from $10^{-7} - 10^{-2} \Msun \yr^{-1}\Mpc^{-3}$. 
-Fit for SFRD shown against TNG and Neijssel.  \label{fig: fit SFRD}}
+\caption{Our fiducial \SFRDzZ model, adopting the best fitting parameters (listed on the top right) to fit the TNG100 simulations.
+The top panel shows the full two dimensional \SFRDzZ linear in time. The bottom left (right) panel shows slices of the distribution in redshift (metallicity). Each slice is displaced by 0.01$\Msun \yr^{-1}\Mpc^{-3}$. We show the TNG100 simulation data with thick gray lines. 
+For comparison, we also show the phenomenological model from \protect\cite{Neijssel+2019} in each panel with grey dotted lines. For the latter, the contours in the top panel range from $10^{-7} - 10^{-2} \Msun \yr^{-1}\Mpc^{-3}$.
+ \label{fig: fit SFRD}}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We fit our newly defined functional form of \SFRDzZ as defined in the previous section to the Illustris-TNG cosmological simulations. Below we briefly summarise relevant physics behind the Illustris-TNG simulations, and we elaborate on our choices made during the fitting procedure.
@@ -390,14 +392,13 @@ from SciPy v1.6.3 implementation of the optimized quasi-Newton method of Broyden
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Resulting \SFRDzZ}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Our best fitting parameters are listed in Table \ref{tab: fit params}. With these fit parameters, $\chi^2(z_j)$ is smaller than $2\cdot 10^{-4}$ at any given redshift. From now on, we will refer to the \SFRDzZ with the parameters listed in Table \ref{tab: fit params} as our fiducial \SFRDzZ model. 
+Our best fitting parameters are listed in Table \ref{tab: fit params}. With these fit parameters, $\chi^2(z_j)$ is smaller than $2\cdot 10^{-4}$ at any given redshift. We will refer to the \SFRDzZ with the parameters listed in Table \ref{tab: fit params} as our fiducial \SFRDzZ model. 
 % With the fit parameters as mentioned above, we find a maximum residual between the model and the TNG100 data of $2.3\cdot 10^{-3} \Msun \yr^{-1} \Mpc^{-3}$ at any given redshift.
 
 \begin{deluxetable}{cccc}
 \label{tab: fit params}
 \tablecaption{Best fitting parameters for our \SFRDzZ fit to TNG100 data.}
 \tablehead{\colhead{dP/dZ param.} & \colhead{best fit} & \colhead{SFRD(z) param.} & \colhead{best fit} } 
-%% All data must appear between the \startdata and \enddata commands
 \startdata
 $\mu_0$ &  0.025 &  $a$ &  0.02 \\
 $\mu_z$ &  -0.048 &  $b$ &  1.48 \\
@@ -405,35 +406,19 @@ $\alpha_0$ &  -1.767 &  $c$ &  4.45 \\
 $\omega_0$  & 1.125       &  $d$ &  5.90 \\
 $\omega_z$ &  0.048 &   \\
 \enddata
-%sf_a_best, sf_b_best, sf_c_best,  sf_d_best = 0.02, 1.48, 4.45, 5.90
-% sf_a =0.01687063881834458, sf_b =1.4834054063851878, sf_c =4.448574027958166, sf_d =5.903964702985274
-%muz =-0.048, mu0 =0.025, sigma_0 =1.125, sigma_z =0.048, alpha=-1.767
-% muz =-0.048244647721407255, mu0 =0.024667742078400792, sigma_0 =1.1253850972905333, sigma_z =0.048072863682492945, alpha=-1.7671626767422142
 \end{deluxetable}
 
-In Figure \ref{fig: fit SFRD} we show our fiducial \SFRDzZ model at different redshifts and metallicities. 
-In the top panel we show the general trend of the \SFRDzZ linear in lookback time. 
+In Figure \ref{fig: fit SFRD} we show our fiducial \SFRDzZ model at different redshifts and metallicities.
+In general, our analytical model captures the metallicity dependent star formation in the TNG100 simulations well (bottom panels). 
+The skewed-log normal metallicity distribution is able to reproduce the overall behaviour that is observed in TNG100 \citep[bottom left panel, but cf. ][for an in-depth discussion of low metallicity star formation in the TNG50 simulation]{Pakmor+2022}
+Only minor features like the additional bump just above $\log_{10}(Z) = -2$ at redshift 2 are missed. 
+However, for our purposes, it is more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations.
 
-Main results:
-
-1) We did a pretty good job at fitting the data. 
-In general, the skewed-log normal metallicity distribution does a good job at capturing the metallicity dependent star formation in TNG. 
-We did miss some features like the almoast dubble peak at redshift 2, 
-
-Adopting a skewed-lognormal distribution furthermore allows for a tail of low metallicity star formation. To clarify, we compare to the phenomenological model from \cite{Neijssel+2019} in dotted grey. 
-
-
-0) the starformation rate peaks at metallicities above $10^{-2}$ for all redshifts out to at least $z=6$
-most star formation happens at metallicities above $Z \geq 10^{-2}$
+Adopting a skewed-lognormal metallicity distribution allows for a tail of low metallicity star formation out to low redshifts. To emphasise the difference between a skewed-lognormal and a symmetric lognormal distribution, we show the phenomenological model from \cite{Neijssel+2019} in dotted grey. Their model falls within the family of functions that is encompassed by our model described in Section \ref{sec: model for sfrd(zZ)}. \footnote{The phenomenological model from \cite{Neijssel+2019} is recovered by adopting $\mu_0= 0.035$, $\mu_z=-0.23$, $\omega_0=0.39 $, $\omega_z = 0$, $\alpha = 0$, $a=0.01$, $b=2.77$, $c=2.9$ and $d=4.7$. }
+The \SFRDzZ from \cite{Neijssel+2019} was optimised to match the local rate of double compact object mergers as presented in the second gravitational-wave catalogue. However, the resulting symmetric distribution cuts-off virtually all low-metallicity ($Z\leq 10^{-2.5}$) star formation which is inconsistent with \todo{other observations}.
+% For both \SFRDzZ distributions, most star formation happens at metallicities above $Z \geq 10^{-2}$ (top panel).
 
 
-
-
-
-
-% Things to say about this plot: 
-We recognise some of the features discussed in \cite{Pakmor+2022}
-We make a comparison to Neijssel fiducial: their model is extremely narrow, while the metallicity in the TNG is more broad
 
 
 
