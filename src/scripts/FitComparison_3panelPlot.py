@@ -145,10 +145,11 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
         # "observed" TNG metallicities that we use for our calculations
         ##########################################
         Obs_center_Zbin = (MetalBins[:-1] + MetalBins[1:])/2.
-        # Let's not use ALL metallicities in the TNG.. (they go waay too low!)
-        low_bound_Z_ind = np.where(Obs_center_Zbin > 1e-5)[0]# index of Obs_center_Zbin, where Z > 1e-5
-        bound_Z_ind = np.where(np.logical_and(Obs_center_Zbin > 1e-5, Obs_center_Zbin < 50*0.014))[0]# index of Obs_center_Zbin, where Z < 50 Zsun
-        tofit_TNG_metals = Obs_center_Zbin[bound_Z_ind]   
+        log_obs_metallicities = np.log10(MetalBins)
+        step_obs_logZ         = np.diff(log_obs_metallicities)[0]
+        
+        print('step_obs_logZ',step_obs_logZ)
+        print('np.amax(Obs_cosmic_SFR/dlogZ)', np.amax(Obs_cosmic_SFR/step_obs_logZ))
 
 
     else:
@@ -168,16 +169,15 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
     ##                          Top panel: SFRD                                     ##
     ##                                                                              ##
     ##################################################################################
-
     # The new Z-dep SFRD and Neijssel + 2019 can both be plotted at an arbitrarily 
     # high resolution in both redshift and metallicity. We'll use the following:
-    high_res_metals    = tofit_TNG_metals #np.logspace(-5., -0.5, 100) #
+    high_res_metals    = Obs_center_Zbin 
     high_res_redshifts = np.arange(0, 10.1, 0.05)
     #Convert redshift to lookback time
     high_res_t         = cosmo.lookback_time(high_res_redshifts)
 
     # PLot the following contours for both models:
-    levels = [1e-7,1e-6, 1e-5, 1e-4,1e-3,1e-2,5e-1]
+    levels = [1e-7,1e-6, 1e-5, 1e-4,1e-3,1e-2,5e-2,1e-1]
 
     ##############################################################################
     #  Contours of TNG SFRD
@@ -186,11 +186,11 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
         ######################################
         # now actually plot it
         tng_color = sns.light_palette("#fe875d", as_cmap=True, n_colors = 7) # construct smooth cmap from one colour
-        TNG = ax.pcolormesh(Obs_Lookbacktimes, Obs_center_Zbin, Obs_cosmic_SFR, 
+        TNG = ax.pcolormesh(Obs_Lookbacktimes, Obs_center_Zbin, Obs_cosmic_SFR/step_obs_logZ, 
                             rasterized=True, norm=matplotlib.colors.LogNorm(vmin=1e-8,vmax=1e-1), 
                             cmap=tng_color, alpha=0.95 ) #matplotlib.cm.YlGnBu
         cbaxes1 = fig.add_axes([0.925, 0.1, 0.03, 0.8]) #[left, bottom, width, height]
-        cb = plt.colorbar(TNG, cax = cbaxes1, label= r"$\mathrm{TNG \ SFRD \ [M_{\odot} yr^{-1} Mpc^{-3}]}$")  
+        cb = plt.colorbar(TNG, cax = cbaxes1, label= r"$\mathrm{TNG \ SFRD/\Deta Z \ [M_{\odot} yr^{-1} Mpc^{-3}]}$")  
 
         
     ##############################################################################
@@ -204,19 +204,19 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
         # Get dPdZ 
         dPdlogZ, redshifts, metallicities, step_logZ, p_draw_metallicity = \
                         Z_SFRD.skew_metallicity_distribution(mu_0=mu_0, mu_z=mu_z,alpha = alpha, 
-                                                      sigma_0=sigma_0, sigma_z =sigma_z, min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01,
+                                                      sigma_0=sigma_0, sigma_z =sigma_z, 
                                                       metals = high_res_metals, redsh = high_res_redshifts)
         # Get the SFR
         sfr        = Z_SFRD.Madau_Dickinson2014(redshifts, a=a, b=b, c=c,  d=d) # Msun year-1 Mpc-3 
         # Combine it into a SFRD
-        model_SFRD = (sfr* (dPdlogZ*step_logZ).T).value
+        model_SFRD = (sfr* dPdlogZ.T).value
 
         #####################################
         # Plot the contours of your Z-dep SFRD
         #####################################
         COMPAS_cmap = sns.color_palette(FITkleur, as_cmap=True)
         
-        cs = ax.contour(high_res_t, high_res_metals, model_SFRD, levels, linewidths=4, cmap=COMPAS_cmap,
+        cs = ax.contour(high_res_t, high_res_metals, model_SFRD/step_logZ, levels, linewidths=4, cmap=COMPAS_cmap,
                          locator=ticker.LogLocator(), alpha = 0.95, zorder=0)
         ax.clabel(cs,inline=1,fontsize=20, levels = levels, use_clabeltext=True, fmt = '%.0e')
 
@@ -244,7 +244,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
                             min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01, metals=high_res_metals, redsh = high_res_redshifts)
         # Get the SFR Neijssel et al 2019:
         neijssel_sfr = Z_SFRD.Madau_Dickinson2014(neijssel_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
-        Neijssel_SFRDzZ = (neijssel_sfr* (neijssel_step_logZ*neijssel_dPdlogZ).T).value
+        Neijssel_SFRDzZ = (neijssel_sfr* neijssel_dPdlogZ.T).value
 
         greys = cm.get_cmap('Greys')
         greys = greys(np.linspace(0.2,1,10)) # Don't start the cmap in white
@@ -254,7 +254,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
     ##############################################################################
     # Plotvalues for top panel
     ######################################
-    ax.text(0.05, 0.05, r"$ \mathcal{S}(Z,z) \ \mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$", transform=ax.transAxes)
+    ax.text(0.05, 0.05, r"$ \mathcal{S}(Z,z)/ \Delta Z \ \mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$", transform=ax.transAxes)
     ax.xaxis.grid(5) # vertical lines
     ax.set_yscale('log')
     ax.set_xlabel('$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 25)
@@ -299,7 +299,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
     #  SFR
     low_res_sfr        = Z_SFRD.Madau_Dickinson2014(Obs_redshifts, a=sf_a_best, b=sf_b_best, c=sf_c_best,  d=sf_d_best) # Msun year-1 Mpc-3 
     # Combine it into a SFRD
-    low_res_model_SFRD = (low_res_sfr*(low_res_dPdlogZ *step_logZ).T).value
+    low_res_model_SFRD = (low_res_sfr* (low_res_dPdlogZ * step_logZ ).T).value
 
 
     #############
@@ -310,7 +310,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
                     Z_SFRD.skew_metallicity_distribution(mu_0=0.035, mu_z=-0.23, alpha = 0, sigma_0=0.39, sigma_z =0, 
                         min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01, metals=Obs_center_Zbin, redsh = Obs_redshifts)
     #  SFR Neijssel et al 2019:
-    low_res_neijssel_sfr = Z_SFRD.Madau_Dickinson2014(Obs_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
+    low_res_neijssel_sfr    = Z_SFRD.Madau_Dickinson2014(Obs_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
     low_res_Neijssel_SFRDzZ = (low_res_neijssel_sfr*(low_res_neijssel_dPdlogZ*neijssel_step_logZ).T).value
 
 
