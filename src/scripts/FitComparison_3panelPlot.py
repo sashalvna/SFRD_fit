@@ -115,7 +115,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
                     r'$\mu_z=%s,$'%(np.round(mu_z,3)) +'\n'+\
                     r'$\omega_0=%s,$'%(np.round(sigma_0,3)) +'\n'\
                     r'$\omega_z=%s,$'%(np.round(sigma_z,3)) +'\n'\
-                    r'$a_0=%s$'%(np.round(alpha_0,3))
+                    r'$a_0=%s$'%(np.round(alpha,3))
 
     SFR_fit_string = r'$\mathrm{Star \ formation \ rate}$'+'\n'+\
                      '$a=%s,$'%(np.round(a,3)) +'\n'+\
@@ -172,7 +172,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
 
     # The new Z-dep SFRD and Neijssel + 2019 can both be plotted at an arbitrarily 
     # high resolution in both redshift and metallicity. We'll use the following:
-    high_res_metals    = np.logspace(-5., -0.5, 100)
+    high_res_metals    = tofit_TNG_metals#np.logspace(-5., -0.5, 100)
     high_res_redshifts = np.arange(0, 10.1, 0.05)
     #Convert redshift to lookback time
     high_res_t         = cosmo.lookback_time(high_res_redshifts)

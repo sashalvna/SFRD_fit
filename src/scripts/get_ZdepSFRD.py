@@ -38,7 +38,7 @@ def Madau_Dickinson2014(z, a=0.015, b=2.77, c=2.9, d=5.6):
 ########################################################
 def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
                                   mu_0=0.025, mu_z=-0.048, sigma_0=1.125, sigma_z=0.048,
-                                  alpha_0 = -1.767, alpha_z = 0,
+                                  alpha = -1.767, 
                                   min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01,
                                   metals = [], redsh = [],
                                   min_logZ_COMPAS = np.log(1e-4),max_logZ_COMPAS = np.log(0.03)):
@@ -96,9 +96,6 @@ def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
     # LOG-LINEAR
     sigma = sigma_0*10**(sigma_z*redshifts)
     
-    # LOG-LINEAR (better)
-    alpha = alpha_0*10**(alpha_z*redshifts)
-    
     ##################################
     # Follow Langer & Norman 2007? in assuming that mean metallicities evolve in z as:
     mean_metallicities = mu_0 * 10**(mu_z * redshifts) 
@@ -118,17 +115,17 @@ def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
         #use a pre-determined array of metals
         metallicities     = metals
         log_metallicities = np.log(metallicities)
-        step_logZ         = np.diff(log_metallicities)
+        step_logZ         = np.diff(log_metallicities)[0]
 #         step_logZ         = step_logZ[0]
         print('step_logZ', step_logZ)
         
     ##################################
     # probabilities of log-skew-normal (without the factor of 1/Z since this is dp/dlogZ not dp/dZ)
-    dPdlogZ = 2./(sigma[:,np.newaxis]) * normal_PDF((log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis]) * normal_CDF(alpha[:,np.newaxis] * (log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis] )
+    dPdlogZ = 2./(sigma[:,np.newaxis]) * normal_PDF((log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis]) * normal_CDF(alpha * (log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis] )
 
     ##################################
     # normalise the distribution over al metallicities
-    norm = dPdlogZ.sum(axis=-1) #* step_logZ << Fit does not converge if you multiply by step_logZ
+    norm = dPdlogZ.sum(axis=-1) * step_logZ #<< Fit does not converge if you multiply by step_logZ
     dPdlogZ = dPdlogZ /norm[:,np.newaxis]
 
     ##################################
