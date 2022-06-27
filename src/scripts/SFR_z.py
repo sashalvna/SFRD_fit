@@ -27,7 +27,7 @@ matplotlib.rcParams['font.family'] = 'STIXGeneral'
 rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 plt.rc('font', family='serif')
 rc('text', usetex=True)
-fsize, SMALL_SIZE, MEDIUM_SIZE, BIGGER_SIZE = 30,30,20,30
+fsize, SMALL_SIZE, MEDIUM_SIZE, BIGGER_SIZE = 30,20,20,30
 for obj in ['axes','xtick','ytick']:
     plt.rc(obj, labelsize=MEDIUM_SIZE)          # controls default text sizes
 for obj in ['figure','axes']:
@@ -65,7 +65,7 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     #default Coen
     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=0.01, b=2.77, c=2.9, d=4.7), 
              label = 'Neijssel et al 2019\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.77,2.9,4.7)
-             , c = '#aacfdd', lw=5, ls = '--')
+             , c = 'grey', lw=5, ls = ':')#aacfdd
 
 
     # BEST FIT
@@ -135,19 +135,19 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     if x_redshift:
         ###################
         #Plotvalues
-        ax.set_xlabel('$\mathrm{redshift}$', fontsize = 35)
+        ax.set_xlabel('$\mathrm{redshift}$', fontsize = 30)
 
         # Find loockback location for each of our redshifts
-        redshift_tick_list = [0, 0.5, 2, 3, 6, 10, 12]#[0, 0.5, 1.0, 1.5, 2, 3, 6, 10, 12]
+        redshift_tick_list = [0, 1.0, 2, 3, 6, 10, 12]#[0, 0.5, 1.0, 1.5, 2, 3, 6, 10, 12]
         # And annotate the tick labels :)
         ax2.set_xticks([z for z in redshift_tick_list])
-        ax2.set_xticklabels(['${:.1f}$'.format(cosmo.lookback_time(z).value) for z in redshift_tick_list])
+        ax2.set_xticklabels(['${:.1f}$'.format(cosmo.lookback_time(z).value) for z in redshift_tick_list], size = 25)
         ax2.set_xlabel('$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 35)
 
     else:
         ###################
         #Plotvalues
-        ax.set_xlabel(r'$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 35)
+        ax.set_xlabel(r'$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 30)
         
         redshift_tick_list = [0,0.1, 0.25, 0.5, 0.75, 1.0,1.5, 2, 3, 6, ]
         # Find loockback location for each of our ages
@@ -155,8 +155,8 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
 
         # And annotate the tick labels :)
         ax2.set_xticks([cosmo.lookback_time(z).value for z in redshift_tick_list])
-        ax2.set_xticklabels(['${:g}$'.format(z) for z in redshift_tick_list])
-        ax2.set_xlabel('$\mathrm{redshift}$', fontsize = 30)
+        ax2.set_xticklabels(['${:g}$'.format(z) for z in redshift_tick_list], size = 25)
+        ax2.set_xlabel('$\mathrm{redshift}$', fontsize = 35)
 
 
     ##########################################################################
@@ -169,6 +169,8 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
         plt.yscale('log')
     ax.set_ylabel(r'$\frac{dM}{dt dV_c}$ $\mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$', fontsize = 35)
     ax.set_ylim(1e-3, 0.2)
+    ax.tick_params(axis='both', which='minor', labelsize=25) 
+    ax.tick_params(axis='both', which='major', labelsize=25) 
     ax.legend()
     if x_redshift:
         print('saving here', save_loc + 'SFR_redshift'+'.pdf')
@@ -178,7 +180,7 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
         plt.savefig(save_loc + 'SFR_tlookback'+'.pdf',  bbox_inches='tight')
     
     #plt.show()
-
+    return
     
 
 # redshift axis
