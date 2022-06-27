@@ -127,7 +127,8 @@ To make it easier to produce model predictions we propose a simple analytical pr
 
 A myriad of astrophysical phenomena depend critically on the rate of star formation throughout the cosmic history of the Universe. 
 Transient phenomena, including core collapse supernovae, (pulsational) pair-instability supernovae, long gamma-ray bursts and gravitational wave (GW) events are particularly sensitive to the metallicity at which star formation occurs at different epochs throughout the Universe.
-The field of transient astronomy has seen explosive growth in the past few decades due to increased observational capabilities. But in order to correctly model and interpret these observations, it is fundamental to know rate of star formation at different metallicities throughout cosmic history (i.e. the metallicity-dependent star formation rate density, \SFRDzZ).
+In particular, the field of gravitational astronomy has seen explosive growth in the past decade \citep[][]{GWTC1,GWTC2,GWTC3}. In order to correctly model and interpret these observations, it is fundamental to know rate of star formation at different metallicities throughout cosmic history, i.e. the metallicity-dependent star formation rate density \SFRDzZ \citep[see also the recent review by][]{chruslinska2022_review}.
+
 
 
 It is difficult to observationally constrain the shape of \SFRDzZ (see \cite{Chruslinska2019_obs} for an extensive overview and discussion of relevant observational caveats). Even at low redshifts, the low metallicity part of the distribution is poorly constrained \citep{Chruslinska+2021}.
@@ -400,14 +401,14 @@ $\omega_z$ & scale $z$ evol.            & 0.048 &   \\
 \enddata
 \end{deluxetable}
 
-In Figure \ref{fig: fit SFRD} we show our fiducial \SFRDzZ model at different redshifts and metallicities.
+In Figure \ref{fig: fit SFRD} we show our fiducial \SFRDzZ model at different redshifts and metallicities. For clarity, 
 In general, our analytical model captures the metallicity dependent star formation in the TNG100 simulations well (bottom panels). 
 The skewed-log normal metallicity distribution is able to reproduce the overall behaviour that is observed in TNG100 \citep[bottom left panel, but cf. ][for an in-depth discussion of low metallicity star formation in the TNG50 simulation]{Pakmor+2022}
 Only minor features like the additional bump just above $\log_{10}(Z) = -2$ at redshift 2 are missed. 
 However, for our purposes, it is more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations.
 
 Adopting a skewed-lognormal metallicity distribution allows for a tail of low metallicity star formation out to low redshifts. To emphasise the difference between a skewed-lognormal and a symmetric lognormal distribution, we show the phenomenological model from \cite{Neijssel+2019} in dotted grey. Their model falls within the family of functions that is encompassed by our model described in Section \ref{sec: model for sfrd(zZ)}. \footnote{The phenomenological model from \cite{Neijssel+2019} is recovered by adopting $\mu_0= 0.035$, $\mu_z=-0.23$, $\omega_0=0.39 $, $\omega_z = 0$, $\alpha = 0$, $a=0.01$, $b=2.77$, $c=2.9$ and $d=4.7$. }
-The \SFRDzZ from \cite{Neijssel+2019} was optimised to match the local rate of double compact object mergers as presented in the second gravitational-wave catalogue. However, the resulting symmetric distribution cuts-off virtually all low-metallicity ($Z\leq 10^{-2.5}$) star formation which is inconsistent with \todo{other observations}.
+The \SFRDzZ from \cite{Neijssel+2019} was optimised to match the local rate of double compact object mergers as presented in the second gravitational-wave catalogue. However, the resulting symmetric distribution cuts-off virtually all low-metallicity ($Z\leq 10^{-2.5}$) star formation.
 % For both \SFRDzZ distributions, most star formation happens at metallicities above $Z \geq 10^{-2}$ (top panel).
 
 
@@ -487,9 +488,9 @@ The \SFRDz from \cite{Madau+2017} and \cite{Neijssel+2019} both peak at approxim
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discussion and summary \label{sec: summary}}
+\section{Summary \label{sec: summary}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We present a flexible analytic expression for the metallicity-dependent starformation rate, \SFRDzZ (equations \ref{eq: total sfrd}, \ref{eq: z log skew} and \ref{eq: sfr1}). Such a flexible model can capture the large uncertainties that remain in the shape and normalisation of the star formation rate density throughout the Universe. Moreover, an analytical expression allows for controlled experiments of the effect of \SFRDzZ on dependent rates, such as the rate and mass distribution of merging BBHs. 
+We present a flexible analytic expression for the metallicity-dependent starformation rate, \SFRDzZ (equations \ref{eq: total sfrd}, \ref{eq: z log skew} and \ref{eq: sfr1}). An analytical expression allows for controlled experiments of the effect of \SFRDzZ on dependent rates, such as the rate and mass distribution of merging BBHs. 
 The novelty of the model presented in this work is that it adopts a skewed-lognormal for the distribution of metallicities at every redshift (\dpdZ). 
 
 We fit our analytical expression for \SFRDzZ to the starforming-gas in the TNG100 simulation, and provide the best fit parameters in Table \ref{tab: fit params}. We show that our model captures the shape and general behaviour of the cosmological simulations well (Figure \ref{fig: fit SFRD}). 
@@ -505,7 +506,9 @@ On the other hand, parameters that influence the \textit{redshift evolution} of 
 %
 Lastly, changing the \SFRDz has a relatively small effect.
 
-Star formation is really uncertiain, 
+The flexibility of the model presented in this work can capture the large uncertainties that remain in the shape and normalisation of the metallicity dependent cosmic star formation history. As such, we anticipate that it will be a helpful tool in other works that present \SFRDzZ dependent rates. 
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
