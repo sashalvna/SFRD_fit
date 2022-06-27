@@ -3,7 +3,6 @@
 \usepackage{showyourwork}
 
 
-
 \newcommand\aastex{AAS\TeX}
 \newcommand\latex{La\TeX}
 
@@ -419,6 +418,21 @@ The \SFRDzZ from \cite{Neijssel+2019} was optimised to match the local rate of d
 % For both \SFRDzZ distributions, most star formation happens at metallicities above $Z \geq 10^{-2}$ (top panel).
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\centering
+\script{SFR_z.py}
+\includegraphics[width=\textwidth]{figures/SFR_redshift.pdf}
+\caption{Comparison of different \SFRDz
+ \label{fig: SFR(z)}}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -463,7 +477,8 @@ At $\Mbheen=10\Msun$, we find that the rate changes by at most a factor 3 for th
 % The normalization at z=0 changes the overal rate / normalization
 We find that parameter variations that affect shape of \SFRDzZ at low redshift primarily change the normalisation of the mass distribution (see also  $\mathcal{R}_{0.2}$, the total BBH merger rate at redshift 0.2, annotated in the legends of Figure \ref{fig: mass dists}). 
 These variations include the width of the cosmic metallicity distribution at $z=0$, $\omega_0$, the mean metallicity of the cosmic metallicity distribution at $z=0$, $\mu_0$, and the skewness of the cosmic metallicity distribution, $\alpha$ (left column of Figure \ref{fig: mass dists}).
-Model variations that increase the amount of star formation at low metallicity (i.e. for a low mean metallicity $\mu_0=0.015$ and a wide metallicity distribution $\omega_0 = 1.4$ ) increase the predicted BBH merger rate. This is consistent with other work \todo{copy ref from wind paper.}
+Model variations that increase the amount of star formation at low metallicity (i.e. for a low mean metallicity $\mu_0=0.015$ and a wide metallicity distribution $\omega_0 = 1.4$ ) increase the predicted BBH merger rate. This is consistent with other work that finds merging BBHs form more efficiently at low metallicities \citep[e.g.][]{BelczynskiVink2010, Stevenson+2017,Mapelli2017,Chruslinska2019_effectCO,Broekgaarden+2021b}.
+
 Although a skewed distribution allows the metallicity distribution to extend to lower values, it simultaniously pushes the expected value of the metallicity distribution to higher values. Hence, the local rate of BBH mergers is lower for the skewed distribution ($\alpha = -3.5$) with respect to the more symmetric variation ($\alpha = -0.9$). However, the total rate of BBH mergers is only changed by about a factor of 2. 
 
 
@@ -486,9 +501,10 @@ The \SFRDz from \cite{Madau+2017} and \cite{Neijssel+2019} both peak at approxim
 \section{Discussion and summary \label{sec: summary}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We present a flexible analytic expression for the metallicity-dependent starformation rate.
-Large uncertainties remain in the shape and normalisation of the star formation rate density throughout the Universe. 
+We present a flexible analytic expression for the metallicity-dependent starformation rate, \SFRDzZ (equations \ref{eq: z log skew}, \ref{eq: sfr1} and \ref{eq: total sfrd}). A flexible model captures the large uncertainties that remain in the shape and normalisation of the star formation rate density throughout the Universe. 
+The novelty of the model presented in this work is that it adopts a skewed-lognormal for the distribution of metallicities at every redshift (\dpdZ). The advantage of an analytical expression is that it allows for controlled experiments of the effect of \SFRDzZ on dependent rates, such as the rate and mass distribution of merging BBHs. 
 
+We fit our analytical expression for \SFRDzZ to the starforming-gas in the TNG100 simulation, and provide the best fit parameters in Table \ref{tab: fit params}. We show that our model captures the shape and general behaviour of the cosmological simulations well (see Figure \ref{fig: fit SFRD}). 
 
 As an example, we apply our model to calculate the local rate and mass distribution of the more massive components from merging BBHs in Figure \ref{fig: mass dists}). 
 We systematically vary all parameters that shape the cosmic metallicity distribution (\dpdZ), and explore three variations of \SFRDz. 
