@@ -97,7 +97,7 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
 	# GWTC-3 Powerlaw + Peak Mass distribution
 	################################################ 
 	if plot_LIGO:
-		LIGO_data_dir = '/Volumes/StorageSpac/CompasOutput//output/'#'/n/home04/lvanson/LowMBH_peak/output/'
+		LIGO_data_dir = '/Volumes/StorageSpac/CompasOutput/output/'#'/n/home04/lvanson/LowMBH_peak/output/'
 		#################################################
 		## prep to grab Powerlaw + Peak data from O3
 		#################################################
@@ -389,7 +389,7 @@ ax6 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',
 
 ####################################################
 # Final plot properties
-fig.savefig(save_loc+'/SFRD_variations_combined.pdf' , bbox_inches='tight')
+fig.savefig(save_loc+'/Mass_distributions_all_SFRD_variations.pdf' , bbox_inches='tight')
 # plt.show()
 
 
