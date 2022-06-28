@@ -15,15 +15,15 @@ tar_name  = data_dir + 'COMPAS_Output_wRates.tar.gz'
 
 # check if file exists, if not, extract it
 if not os.path.isfile(out_fname):
-    print('file %s does not exist, extract', out_fname)
+	print('file %s does not exist, extract'%(out_fname))
 	# open file
 	file = tarfile.open(tar_name)
-	 
+
 	# extracting file
 	file.extractall(data_dir)
 	file.close()
 else:
-    print('file %s exists, nothing to do', out_fname)
+	print('file %s exists, nothing to do'%(out_fname))
 
 
 print('!!! Je bent nu in deze file!!!!')
