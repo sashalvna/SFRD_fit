@@ -8,24 +8,20 @@ save_loc    =  '/Users/lieke/surfdrive/Documents'+'/SFRD_fit/src/tex/figures/' #
 data_dir = 'src/data/vanSon21/'
 
 
+# importing the "tarfile" module
+import tarfile
+  
+# open file
+file = tarfile.open(data_dir + 'COMPAS_Output_wRates.tar.gz')
+  
+# extracting file
+file.extractall(data_dir)
+print('extracting data to',data_dir)
+file.close()
 
 
-# import tarfile
 
-# tar = tarfile.open(data_dir + 'COMPAS_Output_wRates.tar.gz', "r:gz")
-
-# for tarinfo in tar:
-#     print(tarinfo.name, "is", tarinfo.size, "bytes in size and is")
-#     if tarinfo.isreg():
-#         print("a regular file.")
-#     elif tarinfo.isdir():
-#         print("a directory.")
-#     else:
-#         print("something else.")
-# tar.close()
-
-
-data = h5.File(data_dir + 'COMPAS_Output_wRates.tar.gz', 'r')#'COMPAS_Output_wWeights.h5', 'r')
+data = h5.File(data_dir + 'COMPAS_Output_wWeights.h5', 'r')#'COMPAS_Output_wWeights.h5', 'r')
 
 print(data.keys())
 
