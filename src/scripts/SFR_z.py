@@ -16,8 +16,8 @@ import get_ZdepSFRD as Z_SFRD
 
 ######################################
 ## locations
-save_loc    =  '/Users/lieke/surfdrive/Documents'+'/SFRD_fit/src/tex/figures/' #/n/home04/lvanson/
-TNGlocation = '/Users/lieke/surfdrive/Documents/CompareCOMPAS/'
+save_loc    =  'src/tex/figures/' #/n/home04/lvanson/ '/Users/lieke/surfdrive/Documents'+SFRD_fit
+TNGlocation = 'src/data/' #'/Users/lieke/surfdrive/Documents/CompareCOMPAS/'
 
 
 ############################

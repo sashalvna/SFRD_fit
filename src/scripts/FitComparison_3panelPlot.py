@@ -31,9 +31,9 @@ def Mchirp(m1, m2):
     chirp_mass = np.divide(np.power(np.multiply(m1, m2), 3./5.), np.power(np.add(m1, m2), 1./5.))
     return chirp_mass    
    
-base_dir    = '/Users/lieke/surfdrive/Documents/RateMassRedshiftEvolution/'
-save_loc    =  base_dir+'/plots/'
-TNGlocation = '/Users/lieke/surfdrive/Documents/CompareCOMPAS/'
+# base_dir    = '/Users/lieke/surfdrive/Documents/RateMassRedshiftEvolution/'
+# save_loc    =  base_dir+'/plots/'
+TNGlocation = 'src/data/'#'/Users/lieke/surfdrive/Documents/CompareCOMPAS/'
 
 ############################
 # Custom scripts
