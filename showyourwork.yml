@@ -19,8 +19,8 @@ datasets:
     contents:
         COMPAS_Output_wRates.tar.gz:     # remote tarballs behave like folders w/ same name
 
-#dependencies:
-#  src/scripts/TestZenodoData.py:
-#      - src/data/vanSon21/
+dependencies:
+ src/scripts/TestZenodoData.py:
+     - src/data/vanSon21/COMPAS_Output_wRates.tar.gz
 #      - src/data/vanSon21/COMPAS_Output_wWeights.h5
-      
+     
