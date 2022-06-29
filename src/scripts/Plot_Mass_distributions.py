@@ -103,7 +103,7 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
         ## grab Powerlaw + Peak data from O3
         #################################################  
         #'/Volumes/StorageSpac/CompasOutput/output/'#'/n/home04/lvanson/LowMBH_peak/output/GWTC-3-population-data/analyses/PowerLawPeak/'
-        input_fname = LIGO_data_dir+'o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5'
+        input_fname = data_dir+'o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5'
         mass_1 = np.linspace(2, 100, 1000)
         mass_ratio = np.linspace(0.1, 1, 500)
         with h5.File(input_fname, "r") as f:
@@ -139,18 +139,18 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
         print('rate_key', rate_key)
 
         # ### ## Reading Rate data ##
-        try:
+#         try:
             #     DCO_mask, redshifts, intrinsic_rate_density, intrinsic_rate_density_z0  = mfunc.read_rate_data(loc = sim_dir + '/Rate_info.hdf5', rate_key = rate_key)
-            with h5.File(sim_dir + '/Rate_info.hdf5' ,'r') as File:
-                redshifts                 = File['redshifts'][()]
-                # Different per rate key:
-                DCO_mask                  = File[rate_key]['DCOmask'][()] # Mask from DCO to merging systems  
-                #(contains filter for RLOF>CE and optimistic CE)
-                intrinsic_rate_density    = File[rate_key]['merger_rate'][()]
+        with h5.File(sim_dir + '/Rate_info.hdf5' ,'r') as File:
+            redshifts                 = File[rate_key]['redshifts'][()]
+            # Different per rate key:
+            DCO_mask                  = File[rate_key]['DCOmask'][()] # Mask from DCO to merging systems  
+            #(contains filter for RLOF>CE and optimistic CE)
+            intrinsic_rate_density    = File[rate_key]['merger_rate'][()]
 
-        except:
-            print('\n error reading', rate_key)
-            continue
+#         except:
+#             print('\n error reading', rate_key)
+#             continue
             
         # # # # # # # # # # # # # # # # # # 
         #first bring it to the same shape as the rate table
@@ -225,16 +225,16 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
         nplot += 1
 
 
-#     #########################################
-#     # Show the variation in SFR at 3 different masses
-#     reference_masses = [10, 25, 40]
-#     for m, mpoint in enumerate([m10, m25, m40]):
-#         print('m', np.median(mpoint), max(mpoint), min(mpoint))
-#         print()
-#         ax.vlines(x=reference_masses[m], ymin=min(mpoint), ymax=max(mpoint), colors='k', lw=3, zorder = 20)
-#         ax.hlines(y=[min(mpoint), max(mpoint)], xmin=reference_masses[m]-0.5, xmax=reference_masses[m]+0.5, linewidth=3, color='k', zorder = 20)
-#         ax.text(reference_masses[m] - 0.7, (max(mpoint)+min(mpoint))/2 , r'%s $\times $'%(np.round( (max(mpoint)/min(mpoint))[0] , 1)) ,
-#             bbox=dict(facecolor='white', edgecolor='none', boxstyle='round,pad=0.1', alpha = 0.5), ha = 'right', size = 25, zorder = 20)
+    #########################################
+    # Show the variation in SFR at 3 different masses
+    reference_masses = [10, 25, 40]
+    for m, mpoint in enumerate([m10, m25, m40]):
+        print('m', np.median(mpoint), max(mpoint), min(mpoint))
+        print()
+        ax.vlines(x=reference_masses[m], ymin=min(mpoint), ymax=max(mpoint), colors='k', lw=3, zorder = 20)
+        ax.hlines(y=[min(mpoint), max(mpoint)], xmin=reference_masses[m]-0.5, xmax=reference_masses[m]+0.5, linewidth=3, color='k', zorder = 20)
+        ax.text(reference_masses[m] - 0.7, (max(mpoint)+min(mpoint))/2 , r'%s $\times $'%(np.round( (max(mpoint)/min(mpoint))[0] , 1)) ,
+            bbox=dict(facecolor='white', edgecolor='none', boxstyle='round,pad=0.1', alpha = 0.5), ha = 'right', size = 25, zorder = 20)
 
     #########################################
     # plot values
@@ -283,12 +283,46 @@ fig = plt.figure( figsize = (24, 28))
 
 
 ####################################################
+# Star formation norm
+####################################################
+#add 6th subplot in layout that has 3 rows and 2 columns
+subplot6 = fig.add_subplot(326)
+
+
+ax6 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  
+                       rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.77_c2.9_d4.7',
+                                   'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913', 
+                                   'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.6_c3.2_d6.2'],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#ecb05b', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = 'SFR(z)'+"\n"+"(magnitude of SFR)", 
+                       labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \ \mathcal{R}_{0.2}= \ $', 
+                                 r'$\mathrm{Fiducial: \ } \phantom{xxxxxxxxx} \ \mathcal{R}_{0.2}= \ $', 
+                                 r'$\mathrm{Neijssel \ et \ al. \ 2019:  \phantom{xi}  }  \ \mathcal{R}_{0.2} = \ $'],
+                        multipanel = True, subplot = subplot6)
+
+
+####################################################
+# Skewness
+####################################################
+#add 5th subplot in layout that has 3 rows and 2 columns
+subplot5 = fig.add_subplot(325)
+
+ax5 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [-0.9, -1.77, -3.5]],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#acbf00', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = r"$\alpha$, shape"+"\n"+"(skewness of metallicity dist.)", 
+                       labels = [r'$\mathrm{Symmetric: \ } (\alpha = -0.9)   \ \mathcal{R}_{0.2} = \ $',
+                                 r'$\mathrm{Fiducial: \  } \phantom{xx} (\alpha = -1.77)  \ \mathcal{R}_{0.2}= \ $', 
+                                 r'$\mathrm{Skewed: \    } \phantom{xxi} (\alpha = -3.5)  \ \mathcal{R}_{0.2} = \ $'],
+                        multipanel = True, subplot = subplot5)
+
+
+####################################################
 # width of SFRD at z=0
 ####################################################
 #add first subplot in layout that has 3 rows and 2 columns
 subplot1 = fig.add_subplot(321)
 
-ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys  = [],#['Rates_mu00.025_muz-0.05_alpha-1.77_sigma0%s_sigmaz0.05_zBinned'%(x) for x in [0.8, 1.125, 1.4]],
+ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys  = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma0%s_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.8, 1.129, 1.4]],
                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color =  'navy', 
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = r"$\omega_0$, scale $z=0$"+"\n"+"(width of metallicity  dist. $z=0$)",
                        labels = [r'$\mathrm{Narrow: \ }  (\omega_0 = 0.800) \  \mathcal{R}_{0.2} = \ $',
@@ -296,89 +330,63 @@ ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
                                  r'$\mathrm{Wide: \ } \phantom{xx} (\omega_0 = 1.400) \  \mathcal{R}_{0.2} = \ $'],
                       multipanel = True, subplot = subplot1)
 
+# 'Rates_mu00.025_muz-0.049_alpha-3.5_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913
+# Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913
 
-# ####################################################
-# # Redshift evolution of the width
-# ####################################################
-# #add Second subplot in layout that has 3 rows and 2 columns
-# subplot2 = fig.add_subplot(322)
+####################################################
+# Redshift evolution of the width
+####################################################
+#add Second subplot in layout that has 3 rows and 2 columns
+subplot2 = fig.add_subplot(322)
 
-# ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz%s_zBinned'%(x) for x in [0.025, 0.05, 0.1]],
-#                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#00a6a0', 
-#                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = r"$\omega_z$, scale z evol."+"\n"+"(width of metallicity, z evol.)",
-#                        labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\omega_z = 0.025) \ \mathcal{R}_{0.2} = \ $',
-#                                  r'$\mathrm{Fiducial: \ } \phantom{xxi} (\omega_z = 0.050) \ \mathcal{R}_{0.2}= \ $', 
-#                                  r'$\mathrm{Steep \ width: \ } (\omega_z = 0.100) \ \mathcal{R}_{0.2} = \ $'],
-#                         multipanel = True, subplot = subplot2)
-
-
-# ####################################################
-# # Mean metallicity at z=0
-# ####################################################
-# #add third subplot in layout that has 3 rows and 2 columns
-# subplot3 = fig.add_subplot(323)
-
-# ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned'%(x) for x in [0.015, 0.025, 0.035]],
-#                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#e1131d', 
-#                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = r"$\mu_0$"+"\n"+'(mean metallicity $z=0$)',
-#                        labels = [r'$\mathrm{low \ <Z_0> : \ } \phantom{x} (\mu_0 = 0.015) \ \mathcal{R}_{0.2} = \ $',
-#                        			 r'$\mathrm{Fiducial : \ } \phantom{xxxi} (\mu_0 = 0.025) \ \mathcal{R}_{0.2} = \ $',
-#                                  r'$\mathrm{high \ <Z_0> : \ } \phantom{i} (\mu_0 = 0.035) \ \mathcal{R}_{0.2} = \ $'],
-#                         multipanel = True, subplot = subplot3)
+ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz%s_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.025, 0.048, 0.1]],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#00a6a0', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = r"$\omega_z$, scale z evol."+"\n"+"(width of metallicity, z evol.)",
+                       labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\omega_z = 0.025) \ \mathcal{R}_{0.2} = \ $',
+                                 r'$\mathrm{Fiducial: \ } \phantom{xxi} (\omega_z = 0.050) \ \mathcal{R}_{0.2}= \ $', 
+                                 r'$\mathrm{Steep \ width: \ } (\omega_z = 0.100) \ \mathcal{R}_{0.2} = \ $'],
+                        multipanel = True, subplot = subplot2)
 
 
-# ####################################################
-# # Redshift evolution of mean metallicity
-# ####################################################
-# #add 4th subplot in layout that has 3 rows and 2 columns
-# subplot4 = fig.add_subplot(324)
+####################################################
+# Mean metallicity at z=0
+####################################################
+#add third subplot in layout that has 3 rows and 2 columns
+subplot3 = fig.add_subplot(323)
 
-# ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.77_sigma01.125_sigmaz0.05_zBinned'%(x) for x in [-0.01, -0.05, -0.25]],
-#                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#ff717b', 
-#                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', titletext = r"$\mu_z$"+"\n"+'(mean metallicity z evol.)', 
-#                        labels = [r'$\mathrm{Flat: \ } \phantom{xxi} (\mu_z = -0.01) \ \mathcal{R}_{0.2} = \ $',
-#                                  r'$\mathrm{Fiducial: \ } (\mu_z = -0.05) \ \mathcal{R}_{0.2}= \ $', 
-#                                  r'$\mathrm{Steep: \ } \phantom{xx} (\mu_z = -0.25) \ \mathcal{R}_{0.2} = \ $'],
-#                         multipanel = True, subplot = subplot4)
+ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.015, 0.025, 0.035]],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#e1131d', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = r"$\mu_0$"+"\n"+'(mean metallicity $z=0$)',
+                       labels = [r'$\mathrm{low \ <Z_0> : \ } \phantom{x} (\mu_0 = 0.015) \ \mathcal{R}_{0.2} = \ $',
+                                 r'$\mathrm{Fiducial : \ } \phantom{xxxi} (\mu_0 = 0.025) \ \mathcal{R}_{0.2} = \ $',
+                                 r'$\mathrm{high \ <Z_0> : \ } \phantom{i} (\mu_0 = 0.035) \ \mathcal{R}_{0.2} = \ $'],
+                        multipanel = True, subplot = subplot3)
 
+####################################################
+# Redshift evolution of mean metallicity
+####################################################
+#add 4th subplot in layout that has 3 rows and 2 columns
+subplot4 = fig.add_subplot(324)
 
-# ####################################################
-# # Skewness
-# ####################################################
-# #add 5th subplot in layout that has 3 rows and 2 columns
-# subplot5 = fig.add_subplot(325)
-
-# ax5 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.05_alpha%s_sigma01.125_sigmaz0.05_zBinned'%(x) for x in [-0.9, -1.77, -3.5]],
-#                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#acbf00', 
-#                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = r"$\alpha$, shape"+"\n"+"(skewness of metallicity dist.)", 
-#                        labels = [r'$\mathrm{Symmetric: \ } (\alpha = -0.9)   \ \mathcal{R}_{0.2} = \ $',
-#                                  r'$\mathrm{Fiducial: \  } \phantom{xx} (\alpha = -1.77)  \ \mathcal{R}_{0.2}= \ $', 
-#                                  r'$\mathrm{Skewed: \    } \phantom{xxi} (\alpha = -3.5)  \ \mathcal{R}_{0.2} = \ $'],
-#                         multipanel = True, subplot = subplot5)
-
-
-# ####################################################
-# # Star formation norm
-# ####################################################
-# #add 6th subplot in layout that has 3 rows and 2 columns
-# subplot6 = fig.add_subplot(326)
+ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [-0.01, -0.049, -0.25]],
+                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#ff717b', 
+                       bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', titletext = r"$\mu_z$"+"\n"+'(mean metallicity z evol.)', 
+                       labels = [r'$\mathrm{Flat: \ } \phantom{xxi} (\mu_z = -0.01) \ \mathcal{R}_{0.2} = \ $',
+                                 r'$\mathrm{Fiducial: \ } (\mu_z = -0.05) \ \mathcal{R}_{0.2}= \ $', 
+                                 r'$\mathrm{Steep: \ } \phantom{xx} (\mu_z = -0.25) \ \mathcal{R}_{0.2} = \ $'],
+                        multipanel = True, subplot = subplot4)
 
 
-# ax6 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  
-#                        rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_a0.01_b2.6_c3.2_d6.2_zBinned',
-#                                     'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned',
-#                                     'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_a0.01_b2.77_c2.9_d4.7_zBinned'],
-#                        show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#ecb05b', 
-#                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = 'SFR(z)'+"\n"+"(magnitude of SFR)", 
-#                        labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \ \mathcal{R}_{0.2}= \ $', 
-#                                  r'$\mathrm{Fiducial: \ } \phantom{xxxxxxxxx} \ \mathcal{R}_{0.2}= \ $', 
-#                                  r'$\mathrm{Neijssel \ et \ al. \ 2019:  \phantom{xi}  }  \ \mathcal{R}_{0.2} = \ $'],
-#                         multipanel = True, subplot = subplot6)
+
 
 
 ####################################################
 # Final plot properties
 fig.savefig(save_loc+'/Mass_distributions_all_SFRD_variations.pdf' , bbox_inches='tight')
 # plt.show()
+
+# 'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_a0.01_b2.6_c3.2_d6.2_zBinned',
+#                                     'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned',
+#                                     'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_a0.01_b2.77_c2.9_d4.7_zBinned',
 
 
