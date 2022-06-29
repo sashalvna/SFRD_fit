@@ -34,7 +34,8 @@ import gc
 ######################################
 ## locations
 save_loc    =  'src/tex/figures/'#'/Users/lieke/surfdrive/Documents'+'/SFRD_fit/src/tex/figures/' #/n/home04/lvanson/
-data_dir    = '/Volumes/StorageSpac'+'/CompasOutput/v02.19.04/SFRD_fit_data/fWR1.0coolWind1.0/output/' # '/n/holystore01/LABS/hernquist_lab/Users/lvanson/'
+data_dir    =  'src/data/'
+# '/Volumes/StorageSpac'+'/CompasOutput/v02.19.04/SFRD_fit_data/fWR1.0coolWind1.0/output/' # '/n/holystore01/LABS/hernquist_lab/Users/lvanson/'
 
 
 ######################################
@@ -97,14 +98,12 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
     # GWTC-3 Powerlaw + Peak Mass distribution
     ################################################ 
     if plot_LIGO:
-        LIGO_data_dir = 'src/data/' #'/Volumes/StorageSpac/CompasOutput/output/'#'/n/home04/lvanson/LowMBH_peak/output/GWTC-3-population-data/analyses/PowerLawPeak/'
         color_plpeak = 'grey'#'#1f78b4'
         #################################################
         ## grab Powerlaw + Peak data from O3
-        #################################################
+        #################################################  
+        #'/Volumes/StorageSpac/CompasOutput/output/'#'/n/home04/lvanson/LowMBH_peak/output/GWTC-3-population-data/analyses/PowerLawPeak/'
         input_fname = LIGO_data_dir+'o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5'
-        ##############################
-        # Calculate relevant values
         mass_1 = np.linspace(2, 100, 1000)
         mass_ratio = np.linspace(0.1, 1, 500)
         with h5.File(input_fname, "r") as f:
