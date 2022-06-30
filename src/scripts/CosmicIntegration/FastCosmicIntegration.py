@@ -577,17 +577,11 @@ def append_rates(path, filename, outfilename, detection_rate, formation_rate, me
             fine_shell_volumes = np.diff(fine_volumes)
             fine_shell_volumes = np.append(fine_shell_volumes, fine_shell_volumes[-1])
 
-
             # Use digitize to assign the redshifts to a bin (detection list is shorter)
             # digitized     = np.digitize(redshifts, redshift_bins)
             digitized_det = np.digitize(redshifts[:n_redshifts_detection], redshift_bins)
 
-            # create bools of redshifts 
-            # Bool_list = [np.logical_and(redshifts > redshift_bins[a], redshifts < redshift_bins[a+1]) for a in range(0,len(redshift_bins)-1) ]
-
             # Convert your merger_rate back to 1/yr by multiplying by the fine_shell_volumes
-            # N_dco_in_crude_bin      = (merger_rate[:,digitized == i+1] * fine_shell_volumes[digitized == i+1])
-            # N_dco_in_crude_bin      = (merger_rate[:,Bool_list[i]] * fine_shell_volumes[Bool_list[i]])
             N_dco_in_z_bin      = (merger_rate[:,:] * fine_shell_volumes[:])
             print('fine_shell_volumes', fine_shell_volumes)
 
@@ -635,10 +629,10 @@ def append_rates(path, filename, outfilename, detection_rate, formation_rate, me
         # Write the rates as a seperate dataset
         # re-arrange your list of rate parameters
         DCO_to_rate_mask     = COMPAS.DCOmask #save this bool for easy conversion between BSE_Double_Compact_Objects, and CI weights
-        rate_data_list       = [DCO['SEED'][DCO_to_rate_mask], DCO_to_rate_mask , save_redshifts]
-        #,  save_merger_rate, merger_rate[:,0], save_detection_rate, Average_SF_mass_needed]
-        rate_list_names      = ['SEED', 'DCOmask', 'redshifts']
-        #,  'merger_rate','merger_rate_z0', 'detection_rate'+sensitivity, 'Average_SF_mass_needed']
+        rate_data_list       = [DCO['SEED'][DCO_to_rate_mask], DCO_to_rate_mask , save_redshifts,  save_merger_rate]
+        #, merger_rate[:,0], save_detection_rate, Average_SF_mass_needed]
+        rate_list_names      = ['SEED', 'DCOmask', 'redshifts', 'merger_rate']
+        #,'merger_rate_z0', 'detection_rate'+sensitivity, 'Average_SF_mass_needed']
         for i, data in enumerate(rate_data_list):
             print('Adding rate info {} of shape {}'.format(rate_list_names[i], np.shape(data)) )
             # Check if dataset exists, if so, just delete it
