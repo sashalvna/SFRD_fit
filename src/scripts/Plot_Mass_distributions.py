@@ -382,7 +382,7 @@ ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 
 ####################################################
 # Final plot properties
-fig.savefig(save_loc+'/Mass_distributions_all_SFRD_variations.pdf' , bbox_inches='tight')
+fig.savefig(paths.figures / 'Mass_distributions_all_SFRD_variations.pdf' , bbox_inches='tight')
 # plt.show()
 
 # 'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_a0.01_b2.6_c3.2_d6.2_zBinned',

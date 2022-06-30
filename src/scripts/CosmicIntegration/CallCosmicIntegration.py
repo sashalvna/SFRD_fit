@@ -6,6 +6,8 @@ import os
 from subprocess import Popen, PIPE, call
 import subprocess
 import sys
+sys.path.insert(0,'../')
+import paths
 
 
 #####################################
@@ -32,8 +34,8 @@ sf_d_best     = 5.913
 ##
 #################################################################
 #################################################################
-root_dir     = '/n/home04/lvanson/SFRD_fit/'
-root_out_dir = root_dir+'src/data/'
+# root_dir     = '/n/home04/lvanson/SFRD_fit/'
+root_out_dir = str(paths.data) + '/' #root_dir+'src/data/'
 # "/n/holystore01/LABS/hernquist_lab/Users/lvanson/CompasOutput/v02.19.04/SFRD_fit_data/"
 
 COMPASfilename  = 'COMPAS_Output_wWeights.h5'
@@ -160,7 +162,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name,
         sbatchFile.close()
   
         # Submit the job to sbatch! 
-        CIjob_id = RunSlurmBatch(run_dir = root_dir+'/src/scripts/CosmicIntegration/', job_name = job_name ,\
+        CIjob_id = RunSlurmBatch(run_dir = str(paths.scripts) +'/CosmicIntegration/', job_name = job_name ,\
         dependency = DEPEND, dependent_ID = append_job_id)
 
         n_CI += 1
@@ -171,8 +173,32 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name,
     
     
 print(fid_dpdZ_parameters, fid_sfr_parameters )
-##################################################################
-# fiducial
+
+#################################################################
+# All at once
+#################################################################
+Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, 
+                        ZdepSFRD_param_sets =[[fid_dpdZ_parameters, fid_sfr_parameters],
+                                              [[0.015, muz_best, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters], # mu0_variations
+                                             [[0.035, muz_best, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],
+                                              [[mu0_best, -0.01, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],# muz_variations
+                                             [[mu0_best, -0.25, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],
+                                              [[mu0_best, muz_best, 0.8, sigmaz_best, alpha0_best], fid_sfr_parameters],# omega0_variations
+                                             [[mu0_best, muz_best, 1.4, sigmaz_best, alpha0_best], fid_sfr_parameters],
+                                              [[mu0_best, muz_best, sigma0_best, 0.025, alpha0_best], fid_sfr_parameters],# omegaz_variations
+                                             [[mu0_best, muz_best, sigma0_best, 0.1, alpha0_best], fid_sfr_parameters],
+                                              [[mu0_best, muz_best, sigma0_best, sigmaz_best, -0.9], fid_sfr_parameters],# alpha_variations
+                                             [[mu0_best, muz_best, sigma0_best, sigmaz_best, -3.5], fid_sfr_parameters],
+                                              [fid_dpdZ_parameters, [0.01, 2.60, 3.20, 6.20]],# SFR(z) variations
+                                              [fid_dpdZ_parameters, [0.01, 2.77, 2.90, 4.70]] ],
+                        partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
+
+
+
+
+
+# #################################################################
+# # fiducial
 # Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, 
 #                         ZdepSFRD_param_sets =[[fid_dpdZ_parameters, fid_sfr_parameters]],
 #                         partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
@@ -206,12 +232,12 @@ print(fid_dpdZ_parameters, fid_sfr_parameters )
 #                                              [[mu0_best, muz_best, sigma0_best, 0.1, alpha0_best], fid_sfr_parameters]],
 #                         partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
 
-##################################################################
-# alpha variations
-Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, 
-                        ZdepSFRD_param_sets =[[[mu0_best, muz_best, sigma0_best, sigmaz_best, -0.9], fid_sfr_parameters],
-                                             [[mu0_best, muz_best, sigma0_best, sigmaz_best, -3.5], fid_sfr_parameters]],
-                        partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
+# #################################################################
+# # alpha variations
+# Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, 
+#                         ZdepSFRD_param_sets =[[[mu0_best, muz_best, sigma0_best, sigmaz_best, -0.9], fid_sfr_parameters],
+#                                              [[mu0_best, muz_best, sigma0_best, sigmaz_best, -3.5], fid_sfr_parameters]],
+#                         partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
     
 # ##################################################################
 
