@@ -6,6 +6,8 @@ import os
 from subprocess import Popen, PIPE, call
 import subprocess
 import sys
+sys.path.insert(0,'../')
+import paths
 
 
 #####################################
@@ -32,8 +34,8 @@ sf_d_best     = 5.913
 ##
 #################################################################
 #################################################################
-root_dir     = '/n/home04/lvanson/SFRD_fit/'
-root_out_dir = root_dir+'src/data/'
+# root_dir     = '/n/home04/lvanson/SFRD_fit/'
+root_out_dir = str(paths.data) + '/' #root_dir+'src/data/'
 # "/n/holystore01/LABS/hernquist_lab/Users/lvanson/CompasOutput/v02.19.04/SFRD_fit_data/"
 
 COMPASfilename  = 'COMPAS_Output_wWeights.h5'
@@ -160,7 +162,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name,
         sbatchFile.close()
   
         # Submit the job to sbatch! 
-        CIjob_id = RunSlurmBatch(run_dir = root_dir+'/src/scripts/CosmicIntegration/', job_name = job_name ,\
+        CIjob_id = RunSlurmBatch(run_dir = str(paths.scripts) +'/CosmicIntegration/', job_name = job_name ,\
         dependency = DEPEND, dependent_ID = append_job_id)
 
         n_CI += 1
