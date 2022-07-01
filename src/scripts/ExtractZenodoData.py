@@ -6,10 +6,10 @@ import os
 import tarfile
 import paths
 
-data_dir = paths.data 
+data_dir = str(paths.data)
 
-out_fname = data_dir +'COMPAS_Output_wWeights.h5'
-tar_name  = data_dir + 'COMPAS_Output_wRates.tar.gz'
+out_fname = data_dir +'/COMPAS_Output_wWeights.h5'
+tar_name  = data_dir + '/COMPAS_Output_wRates.tar.gz'
 
 
 # check if file exists, if not, extract it

@@ -1,4 +1,5 @@
 version: 0.3.0.dev8
+
 verbose: true
 
 overleaf:
@@ -15,17 +16,15 @@ overleaf:
 datasets:
   10.5281/zenodo.5544170:
     destination: src/data/      # default folder to extract files to
-    
     contents:
         COMPAS_Output_wRates.tar.gz:     # remote tarballs behave like folders w/ same name
 
-# dependencies:
-#  src/scripts/ExtractZenodoData.py:
-#      - src/data/COMPAS_Output_wRates.tar.gz
-#  src/scripts/CosmicIntegration/CallCosmicIntegration.py
-#      - src/data/COMPAS_Output_wWeights.h5
-#  src/scripts/Plot_Mass_distributions.py:
-#      - src/data/COMPAS_Output_wWeights.h5
-#      - src/data/Rate_info.hdf5
-#      
+dependencies:
+  src/scripts/TestZenodoData.py:
+    - src/data/COMPAS_Output_wRates.tar.gz
+  src/scripts/CosmicIntegration/CallCosmicIntegration.py:
+    - src/data/COMPAS_Output_wWeights.h5
+  src/scripts/Plot_Mass_distributions.py:
+    - src/data/COMPAS_Output_wWeights.h5
+    - src/data/Rate_info.hdf5
 
