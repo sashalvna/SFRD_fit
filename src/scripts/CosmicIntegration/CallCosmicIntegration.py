@@ -9,6 +9,10 @@ import sys
 import paths
 
 
+# there is an extra /src in the paths. due to the import location (remove it)
+data_dir   = str(paths.data)[0:-8] + 'data/'
+script_dir = str(paths.scripts)[0:-11] + 'scripts/'
+
 #####################################
 # dpdZ_parameters = [mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best]
 #####################################
@@ -33,7 +37,7 @@ sf_d_best     = 5.913
 ##
 #################################################################
 #################################################################
-root_out_dir = str(paths.data) + '/' 
+root_out_dir = data_dir + '/' 
 
 COMPASfilename  = 'COMPAS_Output_wWeights.h5'
 rate_file_name  = 'Rate_info.hdf5'
@@ -159,7 +163,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name,
         sbatchFile.close()
   
         # Submit the job to sbatch! 
-        CIjob_id = RunSlurmBatch(run_dir = str(paths.scripts) +'/CosmicIntegration/', job_name = job_name ,\
+        CIjob_id = RunSlurmBatch(run_dir = script_dir +'/CosmicIntegration/', job_name = job_name ,\
         dependency = DEPEND, dependent_ID = append_job_id)
 
         n_CI += 1
