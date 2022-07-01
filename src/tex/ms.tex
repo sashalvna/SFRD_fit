@@ -138,10 +138,16 @@ In particular, the field of gravitational astronomy has seen explosive growth in
 
 It is difficult to observationally constrain the shape of \SFRDzZ (see \cite{Chruslinska2019_obs} for an extensive overview and discussion of relevant observational caveats). Even at low redshifts, the low metallicity part of the distribution is poorly constrained \citep{Chruslinska+2021}.
 Traditionally the metallicity density distribution is estimated by combining a mass-metallicity relation (MZ-relation) and a galaxy stellar mass function (GSMF) \citep[see also][]{Chruslinska+2018, Chruslinska2019_effectCO, Broekgaarden+2021a}.
-Another way is to extract the metallicity density fraction from cosmological simulations \citep[e.g.]{Mapelli2017, Schneider+2017}
+Another way is to extract the metallicity density fraction from cosmological simulations \citep[e.g.]{Mapelli2017, Briel+2021}. % A third option is extract this information from cosmological simulations \citep[e.g.][]{Mapelli+2017,Schneider+2017}.
 Alternatively, one can combine an observed star formation rate, \SFRDz, like from \cite{MadauDickinson2014} or \cite{Madau+2017}, and convolve this with some belief about the shape of the metallicity density distribution, such as was was done in \cite{Neijssel+2019}.
-A third option is extract this information from cosmological simulations \citep[e.g.][]{Mapelli+2017,Schneider+2017}.
+
+%Arguments: cosmological simulations work at high z,  but are they real? observations 
 In this work we provide an analytical model which we fit to the \SFRDzZ based on the TNG 100 simulation \citep{Pillepich2018, Weinberger2017}.
+% %
+\todo{add motivation for this shape and paper (use some of the text below) .}
+The task we have at hand here is not a standard textbook fitting problem given the specific aims and requirements that we have that are driven by the astrophysical applications we have in mind. Qualitatively, our aims are the following. Our main aim is to find solution for the free parameters, for which the expression reproduces the overall behaviour that is observed in the cosmological simulations. For the purposes we have in mind, it will be more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations. We further prioritise getting the bulk of the cosmic star formation right and are less interested in capturing the behaviour in metallicity and redshift bins where the cosmic star formation rate is very low and thus insignificant for the overall picture. Finally, we are especially interested in capturing the asymmetry of the metallicity distribution. 
+There is not one unique procedure that will full fill these criteria.  After experimenting with different criteria we have adopted the procedure below, which we believe works well for the aims we have in mind.  
+%%
 
 % Large uncertainties exist in the shape and redshift evolution of both \SFRDz, and the cosmic distribution of metallicities \dpdZ (see e.g. \citealt{Chruslinska2019_obs}, \citealt{Boco2021} and \citealt{Chruslinska+2021} for an extended discussion on the metallicity dependent star formation rate density, in light of empirical data).
 
@@ -334,9 +340,7 @@ We fit for the following nine free parameters $\alpha, \mu_0, \mu_z, \omega_0, \
 
 Below we briefly discuss the Illustris-TNG simulations, and elaborate on our fitting procedure.
 
-% %
-% The task we have at hand here is not a standard textbook fitting problem given the specific aims and requirements that we have that are driven by the astrophysical applications we have in mind. Qualitatively, our aims are the following. Our main aim is to find solution for the free parameters, for which the expression reproduces the overall behaviour that is observed in the cosmological simulations. For the purposes we have in mind, it will be more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations. We further prioritise getting the bulk of the cosmic star formation right and are less interested in capturing the behaviour in metallicity and redshift bins where the cosmic star formation rate is very low and thus insignificant for the overall picture. Finally, we are especially interested in capturing the asymmetry of the metallicity distribution. 
-% There is not one unique procedure that will full fill these criteria.  After experimenting with different criteria we have adopted the procedure below, which we believe works well for the aims we have in mind.  
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -346,8 +350,14 @@ The IllustrisTNG-project \citep[or TNG in short][]{FirstResTNG_Springel2018,Firs
 Such simulations provide the tools to study parts of the Universe that are not easily accessible by observations. In particular of interest for this work, they simulate the high redshift enrichment of galaxies and the tail of low metallicity star formation at low redshift.
 
 Different cosmological simulations produce varying \SFRDzZ, depending on the adopted assumptions about the creation and distribution of metals. For a detailed discussion of the processes that govern the creation, distribution and mixing of metals in in the TNG simulations we refer to \cite{Pakmor+2022}.
-We have chosen to fit of our analytical model to the illustris simulations because I) they have been shown to reproduce many of the global properties of galaxies and their scaling relations for a representative portion of the Universe \citep[e.g.][]{FirstResTNG_Naiman2018,Torrey+2021,Genel+2018,Hemler+2021}. 
-II) \cite{Briel+2021} find that the \SFRDzZ from the EAGLE \citep{Schaye+2015,Crain+2015} and TNG simulations provide the best agreement between observed and predicted cosmic rates for electromagnetic and gravitational-wave transients. And III) the simulation output is publicly available.\footnote{ \url{https://www.tng-project.org/}} 
+We have chosen to fit of our analytical model to the publicly available illustris simulations\footnote{ \url{https://www.tng-project.org/}}  because I) they have been shown to reproduce many of the \todo{geef concrete list (appendix other paper) } 
+% The simulations were originally calibrated against the observed total cosmic star formation rate density and the stellar mass function of galaxies \citep{Pillepich2018}. They reproduce the evolution of the sizes of galaxies with redshift \citep{Genel+2018} and with observational constraints on the mass-metallicity relation of
+% galaxies up to z = 2 \citep{Torrey+2019} as well as iron abundances \citep{FirstResTNG_Naiman2018} and
+% the metallicity gradients within galaxies at low redshift \citep{Hemler+2021}. These simulations have also already been used to make predictions for gravitational wave sources through pairing with  predictions for the outcomes of binary evaluation obtained with the BPASS code \citet{Briel+2021}.
+global properties of galaxies and their scaling relations for a representative portion of the Universe \citep[e.g.][]{FirstResTNG_Naiman2018,Torrey+2021,Genel+2018,Hemler+2021}. 
+II) \cite{Briel+2021} find that the \SFRDzZ from the EAGLE \citep{Schaye+2015,Crain+2015} and TNG simulations provide the best agreement between observed and predicted cosmic rates for electromagnetic and gravitational-wave transients. 
+% And III) the simulation output is publicly available.\footnote{ \url{https://www.tng-project.org/}} 
+%
 Although in this work, we only fit our model to the IllustrisTNG100 simulation, our prescription can be easily be used to fit other observational or simulated data of the metallicity dependent star formation rate density.
 
 
@@ -439,7 +449,7 @@ The \SFRDzZ from \cite{Neijssel+2019} was optimised to match the local rate of d
 \script{Plot_Mass_distributions.py}
 \includegraphics[width=0.8\textwidth]{figures/Mass_distributions_all_SFRD_variations.pdf}
 \caption{The primary mass distribution of merging BBH systems from isolated binary evolution for several variations in \SFRDzZ. 
-The first five panels show variations of the cosmic metallicity distribution  \dpdZ (eq. \ref{eq: z log skew}, parameters listed in the first two columns of Table \ref{tab: fit params}). The bottom right panel shows variations in the magnitude of the star formation rate with redshift, i.e. \SFRDz. For the latter we vary the four fiducial parameters of \SFRDz simultaneously (last two columns of Table \ref{tab: fit params}). All panels are shown at a reference redshift of $z=0.2$, with the corresponding predicted BBH merger rate annotated in the legend. We show the power-law + peak model from \protect\cite{GWTC3_popPaper2021} in grey. Lastly we annotate the relative change in the rate at three reference masses: $10\Msun$, $25\Msun$ and $40\Msun$. Variations in \SFRDzZ have the largest impact on the high mass end of the distribution, while around $\Mbheen=10$, variations are smaller than a factor of 3.  
+The first five panels show variations of the cosmic metallicity distribution  \dpdZ (eq. \ref{eq: z log skew}, parameters listed in the first three columns of Table \ref{tab: fit params}). The bottom right panel shows variations in the magnitude of the star formation rate with redshift, i.e. \SFRDz. For the latter we vary the four fiducial parameters of \SFRDz simultaneously (last two columns of Table \ref{tab: fit params}). All panels are shown at a reference redshift of $z=0.2$, with the corresponding predicted BBH merger rate annotated in the legend. We show the power-law + peak model from \protect\cite{GWTC3_popPaper2021} in grey. Lastly we annotate the relative change in the rate at three reference masses: $10\Msun$, $25\Msun$ and $40\Msun$. Variations in \SFRDzZ have the largest impact on the high mass end of the distribution, while around $\Mbheen=10$, variations are smaller than a factor of 3.  
   \label{fig: mass dists}}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -490,6 +500,7 @@ The \SFRDz from \cite{Madau+2017} and \cite{Neijssel+2019} both peak at approxim
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary \label{sec: summary}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\todo{bullet point met one liners : paragraaf }
 We present a flexible analytic expression for the metallicity-dependent star formation rate, \SFRDzZ (equations \ref{eq: total sfrd}, \ref{eq: z log skew} and \ref{eq: sfr1}). An analytical expression allows for controlled experiments of the effect of \SFRDzZ on dependent rates, such as the rate and mass distribution of merging BBHs. 
 The novelty of the model presented in this work is that it adopts a skewed-lognormal for the distribution of metallicities at every redshift (\dpdZ). 
 
