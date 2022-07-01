@@ -41,8 +41,8 @@ import paths
 save_loc    =  str(paths.figures) + '/'
 data_dir    =  str(paths.data) + '/'
 
-rate_file       = '/Rate_info.hdf5'#'small_Rate_info.hdf5' #
-simulation_data = '/COMPAS_Output_wWeights.h5'#'/small_COMPAS_Output_wWeights.h5' 
+rate_file       = 'small_Rate_info.hdf5' #'/Rate_info.hdf5'#
+simulation_data = '/small_COMPAS_Output_wWeights.h5' #'/COMPAS_Output_wWeights.h5'#
 
 only_stable = True 
 only_CE = True
@@ -176,15 +176,14 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
 
         #apply the additional mask based on your prefs
         if np.logical_and(only_stable, only_CE):
-            raise ValueError("Both only_stable and only_CE, I assume you just want both")
+            print("Both only_stable and only_CE, I assume you just want both")
             channel_bool = np.full(len(merging_BBH), True)
         elif only_stable:
             channel_bool = merging_BBH['CE_Event_Count'] == 0
         elif only_CE:
             channel_bool = merging_BBH['CE_Event_Count'] > 0
         else:
-            #Apparently you don't want to plot anything
-            channel_bool = np.full(len(merging_BBH), False)
+            raise ValueError("Both only_stable =%s and only_CE=%s, set at least one to true"%(only_stable,only_CE))
 
         # we exclude CHE systems
         not_CHE = merging_BBH['Stellar_Type@ZAMS(1)'] != 16
