@@ -71,6 +71,8 @@ echo $SLURM_ARRAY_TASK_ID
 #Set variables
 export QT_QPA_PLATFORM=offscreen # To avoid the X Display error
 #
+cd %s
+#
 # Run your job
 %s
 """
@@ -149,21 +151,23 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name,
         " --weight "+"mixture_weight"+ " --zstep "+"0.01"+" --sens "+"O3"+ " --m1min "+"10."+ " --dco_type BBH"+\
         " --redshiftBinSize "+"0.05" + ' --maxzdet ' + "0.5" #+ " --BinAppend "
 
+        run_dir = script_dir +'/CosmicIntegration/'
+
         # Make and safe a slurm command
-        job_line = "python FastCosmicIntegration.py "+Flags+" > ../../data/slurm_out/"+job_name+".log"
+        job_line = "python FastCosmicIntegration.py "+Flags+" > "+ data_dir + "/slurm_out/"+job_name+".log"
 
         # Make slurm script string
         interface_job_string = SlurmJobString % (job_name, number_of_nodes, number_of_cores, \
-        '../../data/slurm_out/'+job_name+'.out', '../../data/slurm_out/'+job_name+'.err', Wtime, mem, partitions, user_email, job_line)
+        data_dir+'/slurm_out/'+job_name+'.out', data_dir+'/slurm_out/'+job_name+'.err', Wtime, mem, partitions, user_email, run_dir, job_line)
         
         # Write your bash file
-        sbatchFile = open('./'+job_name+'.sbatch','w')
-        print('writing ', './'+job_name+'.sbatch')
+        sbatchFile = open(run_dir+job_name+'.sbatch','w')
+        print('writing ', run_dir+job_name+'.sbatch')
         sbatchFile.write(interface_job_string)
         sbatchFile.close()
   
         # Submit the job to sbatch! 
-        CIjob_id = RunSlurmBatch(run_dir = script_dir +'/CosmicIntegration/', job_name = job_name ,\
+        CIjob_id = RunSlurmBatch(run_dir = run_dir, job_name = job_name ,\
         dependency = DEPEND, dependent_ID = append_job_id)
 
         n_CI += 1
