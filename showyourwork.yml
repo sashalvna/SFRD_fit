@@ -19,7 +19,15 @@ datasets:
     contents:
         COMPAS_Output_wRates.tar.gz:     # remote tarballs behave like folders w/ same name
 
-# dependencies:
-#  src/scripts/TestZenodoData.py:
-#      - src/data/vanSon21/COMPAS_Output_wRates.tar.gz
+ dependencies:
+  src/scripts/ExtractZenodoData.py:
+      - src/data/COMPAS_Output_wRates.tar.gz
      
+  src/scripts/CosmicIntegration/CallCosmicIntegration.py
+      - src/data/COMPAS_Output_wWeights.h5
+      
+  src/scripts/Plot_Mass_distributions.py:
+      - src/data/COMPAS_Output_wWeights.h5
+      - src/data/Rate_info.hdf5
+      
+

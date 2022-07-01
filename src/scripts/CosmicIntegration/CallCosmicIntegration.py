@@ -6,7 +6,6 @@ import os
 from subprocess import Popen, PIPE, call
 import subprocess
 import sys
-sys.path.insert(0,'../')
 import paths
 
 
@@ -34,9 +33,7 @@ sf_d_best     = 5.913
 ##
 #################################################################
 #################################################################
-# root_dir     = '/n/home04/lvanson/SFRD_fit/'
-root_out_dir = str(paths.data) + '/' #root_dir+'src/data/'
-# "/n/holystore01/LABS/hernquist_lab/Users/lvanson/CompasOutput/v02.19.04/SFRD_fit_data/"
+root_out_dir = str(paths.data) + '/' 
 
 COMPASfilename  = 'COMPAS_Output_wWeights.h5'
 rate_file_name  = 'Rate_info.hdf5'
