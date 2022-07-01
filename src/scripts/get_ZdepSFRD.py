@@ -116,8 +116,6 @@ def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
         metallicities     = metals
         log_metallicities = np.log(metallicities)
         step_logZ         = np.diff(log_metallicities)[0]
-#         step_logZ         = step_logZ[0]
-        print('step_logZ', step_logZ)
         
     ##################################
     # probabilities of log-skew-normal (without the factor of 1/Z since this is dp/dlogZ not dp/dZ)
