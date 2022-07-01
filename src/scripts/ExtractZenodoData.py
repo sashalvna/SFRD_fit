@@ -4,10 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import tarfile
+import paths
 
-save_loc    =  '/Users/lieke/surfdrive/Documents'+'/SFRD_fit/src/tex/figures/' #/n/home04/lvanson/
-data_dir = 'src/data/vanSon21/'
-
+data_dir = paths.data 
 
 out_fname = data_dir +'COMPAS_Output_wWeights.h5'
 tar_name  = data_dir + 'COMPAS_Output_wRates.tar.gz'
@@ -32,7 +31,5 @@ print(data.keys())
 
 data.close
 
-fix,ax = plt.subplots()
-ax.plot(np.linspace(0,1,10),np.linspace(0,1,10))
-plt.savefig(save_loc + 'testdata.jpg')
+
 

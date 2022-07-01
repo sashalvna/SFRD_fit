@@ -14,7 +14,7 @@ overleaf:
 
 datasets:
   10.5281/zenodo.5544170:
-    destination: src/data/vanSon21/      # default folder to extract files to
+    destination: src/data/      # default folder to extract files to
     
     contents:
         COMPAS_Output_wRates.tar.gz:     # remote tarballs behave like folders w/ same name
