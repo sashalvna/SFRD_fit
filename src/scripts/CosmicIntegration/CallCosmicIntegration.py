@@ -38,30 +38,31 @@ def init():
     # This is the slurm script youre using
     #SBATCH --partition=%s              # Partition to submit to
     ##################################################################
-    SlurmJobString="""#!/bin/bash
-    #SBATCH --job-name=%s          #job name
-    #SBATCH --nodes=%s             # Number of nodes
-    #SBATCH --ntasks=%s            # Number of cores
-    #SBATCH --output=%s            # output storage file
-    #SBATCH --error=%s             # error storage file
-    #SBATCH --time=%s              # Runtime in minutes
-    #SBATCH --mem=%s               # Memory per cpu in MB (see also --mem-per-cpu)
-    #SBATCH -p %s
-    #SBATCH --mail-user=%s         # Send email to user
-    #SBATCH --mail-type=FAIL       #
-    #
-    #Print some stuff on screen
-    echo $SLURM_JOB_ID
-    echo $SLURM_JOB_NAME
-    echo $SLURM_ARRAY_TASK_ID
-    #
-    #Set variables
-    export QT_QPA_PLATFORM=offscreen # To avoid the X Display error
-    #
-    cd %s
-    #
-    # Run your job
-    %s
+    SlurmJobString="""
+#!/bin/bash
+#SBATCH --job-name=%s          #job name
+#SBATCH --nodes=%s             # Number of nodes
+#SBATCH --ntasks=%s            # Number of cores
+#SBATCH --output=%s            # output storage file
+#SBATCH --error=%s             # error storage file
+#SBATCH --time=%s              # Runtime in minutes
+#SBATCH --mem=%s               # Memory per cpu in MB (see also --mem-per-cpu)
+#SBATCH -p %s
+#SBATCH --mail-user=%s         # Send email to user
+#SBATCH --mail-type=FAIL       #
+#
+#Print some stuff on screen
+echo $SLURM_JOB_ID
+echo $SLURM_JOB_NAME
+echo $SLURM_ARRAY_TASK_ID
+#
+#Set variables
+export QT_QPA_PLATFORM=offscreen # To avoid the X Display error
+#
+cd %s
+#
+# Run your job
+%s
     """
 
 ###############################################
