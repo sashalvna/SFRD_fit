@@ -38,8 +38,7 @@ def init():
     # This is the slurm script youre using
     #SBATCH --partition=%s              # Partition to submit to
     ##################################################################
-    SlurmJobString="""
-#!/bin/bash
+    SlurmJobString="""#!/bin/bash
 #SBATCH --job-name=%s          #job name
 #SBATCH --nodes=%s             # Number of nodes
 #SBATCH --ntasks=%s            # Number of cores
