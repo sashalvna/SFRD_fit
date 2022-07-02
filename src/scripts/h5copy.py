@@ -415,6 +415,7 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
 
                                         try:
                                             if srcDatasetName == 'merger_rate':
+                                              print('srcDataset[:,:]', srcDataset[:,:])
                                               destDataset = srcDataset[:,:]
                                             else:
                                               srcStart      = 0                                                       # source start position for copy
@@ -438,7 +439,6 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                                   destDataset.resize((destEnd,))                                      # resize the destination dataset appropriately
                                                   destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source chunk to destination chunk
 
-                                                  print('DEST: ', destDataset[destStart : destEnd], ' SOURCE: ',  srcDataset[srcStart : srcEnd])
 
                                             ok = True                                                               # all good
 
