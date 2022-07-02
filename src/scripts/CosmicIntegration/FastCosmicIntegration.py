@@ -518,17 +518,16 @@ def append_rates(path, filename, outfilename, detection_rate, formation_rate, me
     with h5.File(path +'/'+ filename, 'r') as f_COMPAS:
         
         # Would you like to write your rates to a different file? 
-        if filename != outfilename:
-            #'you want to save your output to a different file!'
-            if os.path.exists(path + '/'+ outfilename):
-                print('file', outfilename, 'exists, appending to it')
-                h_new = h5.File(path+ '/'+ outfilename, 'r+')
-            else:
-                print('file', outfilename, 'does not exist, make new one')
-                h_new = h5.File(path + '/'+ outfilename, 'w')
+        if filename == outfilename:
+            raise ValueError('you cant append directly to the input data, will change outfilename to %s'%(outfilename))
 
-        else: # just make a copy of your already opened file
-            h_new = f_COMPAS 
+        #'you want to save your output to a different file!'
+        if os.path.exists(path + '/'+ outfilename):
+            print('file', outfilename, 'exists!! You will remove it')
+            os.remove(path + '/'+ outfilename)
+            
+        print('writing to ', path+'/'+outfilename)
+        h_new = h5.File(path + '/'+ outfilename, 'w')
 
         # The rate info is shaped as BSE_Double_Compact_Objects[COMPAS.DCOmask] , len(redshifts)
         try: 
