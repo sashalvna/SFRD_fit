@@ -362,6 +362,7 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                     srcGroup = srcFile[srcGroupName]                                                                        # source group
 
                     try:
+
                         destGroup = outFile.require_group(srcGroupName)                                                     # open group in output file - create it if necessary
 
                         srcDatasetNames  = list(srcGroup.keys())                                                            # list of datasets in srcGroup in input file
@@ -407,12 +408,16 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                         thisBufferSize *= thisChunkSize                                                     # convert to number of entries
 
                                         srcDataset_attrs = list(srcDataset.attrs.items())                                   # list of dataset attributes
+                                        print('creating dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname)
+                                        print(srcDataset.attrs, destDataset, srcDataset.attrs.items(), srcDataset.attrs.keys())                                   # list of dataset attributes
 
+                                        print('srcDataset_attrs', srcDataset_attrs)# = list(srcDataset.attrs.items())                                   # list of dataset attributes
                                         for srcAttr in srcDataset_attrs:
                                             try:
                                                 destDataset.attrs[srcAttr[0]] = srcAttr[1]                                  # set dataset attributes in destDataset - overwrites existing
 
                                                 try:
+                                                    print('YOU ARE HERE!') 
 
                                                     srcStart      = 0                                                       # source start position for copy
                                                     srcEnd        = srcStart + thisBufferSize                               # source end position for copy

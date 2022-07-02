@@ -26,5 +26,5 @@ dependencies:
     - src/data/COMPAS_Output_wWeights.h5
   src/scripts/Plot_Mass_distributions.py:
     - src/data/small_COMPAS_Output_wWeights.h5
-    - src/data/small_Rate_info.hdf5
+    - src/data/small_Rate_info.h5
 

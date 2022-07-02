@@ -41,7 +41,7 @@ import paths
 save_loc    =  str(paths.figures) + '/'
 data_dir    =  str(paths.data) + '/'
 
-rate_file       = '/small_Rate_info.hdf5'#'small_Rate_info.hdf5' #'/Rate_info.hdf5'#
+rate_file       = '/small_Rate_info.h5'#'small_Rate_info.h5' #'/Rate_info.h5'#
 simulation_data = '//small_COMPAS_Output_wWeights.h5'#'/small_COMPAS_Output_wWeights.h5' #'/COMPAS_Output_wWeights.h5'#
 
 only_stable = True 
