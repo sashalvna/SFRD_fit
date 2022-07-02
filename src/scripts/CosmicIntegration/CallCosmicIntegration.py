@@ -7,6 +7,7 @@ from subprocess import Popen, PIPE, call
 import subprocess
 import sys
 import paths
+import time
 
 
 #################################################################
@@ -23,8 +24,8 @@ def init():
     data_dir   = str(paths.data)[0:-8] + 'data/'
     script_dir = str(paths.scripts)[0:-11] + 'scripts/'
 
-    COMPASfilename  = 'COMPAS_Output_wWeights.h5'
-    rate_file_name  = 'Rate_info.hdf5'
+    COMPASfilename  = small_COMPAS_Output_wWeights.h5#'COMPAS_Output_wWeights.h5'
+    rate_file_name  = small_Rate_info.hdf5#'Rate_info.hdf5'
     user_email      = "aac.van.son@gmail.com"
 
 
@@ -161,6 +162,36 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         n_CI += 1
         DEPEND, append_job_id = False, CIjob_id # no need for it to be dependent
             
+
+    ###########################
+    # Now wait for your (last) job to be done
+    done = False
+    while not done:
+        # First check the status of your job with sacct
+        command = "sacct  -j %s --format State "%(CIjob_id)
+        p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        nline = 0
+        while True:
+            line = p.stdout.readline()
+            nline +=1
+            #print(line)
+            if not line:
+                break
+            if nline == 3:
+                break
+
+        result = str(line)
+        print('result = ', result)
+        if b"COMPLETE" in line:
+            print('YAY your job finished!')
+            done = True
+        elif b"FAILED" in line:
+            print('Job failed :( %s')%CIjob_id
+            done = True
+        elif np.logical_or(b"RUNNING" in line, b"PENDING" in line):
+            print('darn, still running, check back in 10 sec')
+            time.sleep(150) # Sleep 2.5 min and then check back
+
 
     print(10* "*" + " You are all done with this job! " + 10* "*")
     
