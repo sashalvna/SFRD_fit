@@ -10,14 +10,15 @@ import sys
 import paths
 
 import CallCosmicIntegration as CI
-from CallCosmicIntegration import init
 
+if __name__ == "__main__": 
+   CI.init()
 
-#################################################################
-# fiducial
-CI.Call_Cosmic_Integration(init.data_dir, init.COMPASfilename, init.rate_file_name, jname = 'fid',
-                        ZdepSFRD_param_sets =[[init.fid_dpdZ_parameters, init.fid_sfr_parameters]],
-                        partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
+   #################################################################
+   # fiducial
+   CI.Call_Cosmic_Integration(CI.data_dir, CI.COMPASfilename, CI.rate_file_name, jname = 'fid',
+                           ZdepSFRD_param_sets =[[CI.fid_dpdZ_parameters, CI.fid_sfr_parameters]],
+                           partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
                                                
 import time
 time.sleep(3000) # Sleep until the coscmic integration slurms should be done
