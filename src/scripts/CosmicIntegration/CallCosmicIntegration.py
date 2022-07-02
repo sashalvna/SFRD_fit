@@ -25,7 +25,7 @@ def init():
     script_dir = str(paths.scripts)[0:-11] + 'scripts/'
 
     COMPASfilename  = 'small_COMPAS_Output_wWeights.h5'#'COMPAS_Output_wWeights.h5'
-    rate_file_name  = 'small_Rate_info.h5'#'Rate_info.hdf5'
+    rate_file_name  = 'small_Rate_info.h5'#'Rate_info.h5'
     user_email      = "aac.van.son@gmail.com"
 
 
@@ -159,13 +159,16 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         CIjob_id = RunSlurmBatch(run_dir = run_dir, job_name = job_name ,\
         dependency = DEPEND, dependent_ID = append_job_id)
 
+        if n_CI == 3:
+            check_job_completionID = CIjob_id
         n_CI += 1
         DEPEND, append_job_id = False, CIjob_id # no need for it to be dependent
-            
+    
+        
 
     ###########################
     # Now wait for your (last) job to be done
-    command = "sacct  -j %s --format State "%(CIjob_id.decode("utf-8"))
+    command = "sacct  -j %s --format State "%(check_job_completionID.decode("utf-8"))
     print(command)
     done = False
     while not done:
@@ -188,18 +191,22 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
             print('YAY your job finished!')
             done = True
         elif b"FAILED" in line:
-            print('Job failed :( %s'%(CIjob_id.decode("utf-8")))
+            print('Job failed :( %s'%(check_job_completionID.decode("utf-8")))
             done = True
         elif np.logical_or(b"RUNNING" in line, b"PENDING" in line):
             print('darn, still running, check back in 2 min')
             time.sleep(120) # Sleep 2 min and then check back
 
+    # Wait a little longer to make sure all jobs finished
+    time.sleep(300)
     print(10* "*" + " You are all done with this job! " + 10* "*")
-    
-    os.system('python h5copy.py  %s -r 2 -o %s > %s'%(data_dir, data_dir+'/'+rate_file_name, data_dir+"/slurm_out/combineh5.log" ))
+
+    print('Now run h5copy.py to combine the rate files into one')
+    # filter for files with rate_file_name, but remove the extension .h5
+    os.system('python %s/h5copy.py  %s -r 2 -o %s --filter %s  > %s'%(script_dir, data_dir, data_dir+'/'+rate_file_name, rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" ))
 
     # wait 2 min for h5copy to finish
-    time.sleep(120)
+    time.sleep(300)
 
 init()
 
