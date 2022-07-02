@@ -24,8 +24,8 @@ def init():
     data_dir   = str(paths.data)[0:-8] + 'data/'
     script_dir = str(paths.scripts)[0:-11] + 'scripts/'
 
-    COMPASfilename  = small_COMPAS_Output_wWeights.h5#'COMPAS_Output_wWeights.h5'
-    rate_file_name  = small_Rate_info.hdf5#'Rate_info.hdf5'
+    COMPASfilename  = 'small_COMPAS_Output_wWeights.h5'#'COMPAS_Output_wWeights.h5'
+    rate_file_name  = 'small_Rate_info.hdf5'#'Rate_info.hdf5'
     user_email      = "aac.van.son@gmail.com"
 
 
