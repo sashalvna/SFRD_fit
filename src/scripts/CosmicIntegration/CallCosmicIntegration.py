@@ -17,7 +17,7 @@ import paths
 #################################################################
 def init():
     # define initial settings
-    global data_dir, script_dir, COMPASfilename, rate_file_name, user_email, fid_dpdZ_parameters, fid_sfr_parameters
+    global data_dir, script_dir, COMPASfilename, rate_file_name, user_email, fid_dpdZ_parameters, fid_sfr_parameters, SlurmJobString
     # there is an extra /src in the paths. due to the import location (remove it)
     data_dir   = str(paths.data)[0:-8] + 'data/'
     script_dir = str(paths.scripts)[0:-11] + 'scripts/'
