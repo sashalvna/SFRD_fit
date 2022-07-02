@@ -91,7 +91,7 @@ def RunSlurmBatch(run_dir = None, job_name = "stroopwafel_interface", dependency
 # Assuming you have The COMPAS simulation data output
 # Make a slurm job to call 
 def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname = 'CI',
-                            ZdepSFRD_param_sets = [[fid_dpdZ_parameters, fid_sfr_parameters]],
+                            ZdepSFRD_param_sets = [[],[]], #[[fid_dpdZ_parameters, fid_sfr_parameters]],
                            partitions = 'demink,conroy,hernquist,shared', Wtime = "5:00:00", mem = "150000",
                            number_of_nodes = 1, number_of_cores = 1):
     """
