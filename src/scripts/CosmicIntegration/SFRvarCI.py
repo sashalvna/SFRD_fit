@@ -15,13 +15,12 @@ if __name__ == "__main__":
 	# Initialize values
 	CI.init()
 	                                         
-	#################################################################
-	# alpha variations
-	Call_Cosmic_Integration(CI.data_dir, CI.COMPASfilename, rCI.ate_file_name, 
-	                        ZdepSFRD_param_sets =[[[CI.mu0_best, CI.muz_best, CI.sigma0_best, CI.sigmaz_best, -0.9], CI.fid_sfr_parameters],
-	                                             [[CI.mu0_best, CI.muz_best, CI.sigma0_best, CI.sigmaz_best, -3.5], CI.fid_sfr_parameters]],
+	##################################################################
+	#SFR(z) variations
+	Call_Cosmic_Integration(CI.root_out_dir, CI.COMPASfilename, CI.rate_file_name, 
+	                        ZdepSFRD_param_sets = [[CI.fid_dpdZ_parameters, [0.01, 2.60, 3.20, 6.20]],
+	                                              [CI.fid_dpdZ_parameters, [0.01, 2.77, 2.90, 4.70]]],
 	                        partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
-
-
+	    
 
 

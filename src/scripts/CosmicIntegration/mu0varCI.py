@@ -11,15 +11,14 @@ import paths
 
 import CallCosmicIntegration as CI
 
-#initialize values
-CI.init()
+if __name__ == "__main__": 
+   # Initialize values
+   CI.init()
                                              
-##################################################################
-# mu0 variations
-Call_Cosmic_Integration(CI.data_dir, CI.COMPASfilename, CI.rate_file_name, jname = 'mu0',
-                        ZdepSFRD_param_sets =[[[0.015, CI.muz_best, CI.sigma0_best, CI.sigmaz_best, CI.alpha0_best], CI.fid_sfr_parameters],
-                                             [[0.035, CI.muz_best, CI.sigma0_best, CI.sigmaz_best, CI.alpha0_best], CI.fid_sfr_parameters]],
-                        partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
+   ##################################################################
+   # mu0 variations
+   Call_Cosmic_Integration(CI.data_dir, CI.COMPASfilename, CI.rate_file_name, jname = 'mu0',
+                           ZdepSFRD_param_sets =[[[0.015, CI.muz_best, CI.sigma0_best, CI.sigmaz_best, CI.alpha0_best], CI.fid_sfr_parameters],
+                                                [[0.035, CI.muz_best, CI.sigma0_best, CI.sigmaz_best, CI.alpha0_best], CI.fid_sfr_parameters]],
+                           partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
 
-import time
-time.sleep(3000) # Sleep until the coscmic integration slurms should be done

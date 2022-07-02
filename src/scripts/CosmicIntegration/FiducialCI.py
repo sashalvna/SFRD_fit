@@ -21,8 +21,4 @@ if __name__ == "__main__":
                            ZdepSFRD_param_sets =[[CI.fid_dpdZ_parameters, CI.fid_sfr_parameters]],
                            partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
                                                
-   import time
-   time.sleep(3000) # Sleep until the coscmic integration slurms should be done
-
-
 

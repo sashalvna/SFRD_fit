@@ -22,6 +22,3 @@ if __name__ == "__main__":
                                                 [[CI.mu0_best, -0.25, CI.sigma0_best, CI.sigmaz_best, CI.alpha0_best], CI.fid_sfr_parameters]],
                            partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
 
-   import time
-   time.sleep(3000) # Sleep until the coscmic integration slurms should be done
-
