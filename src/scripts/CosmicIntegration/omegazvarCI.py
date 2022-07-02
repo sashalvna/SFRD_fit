@@ -15,14 +15,16 @@ if __name__ == "__main__":
    # Initialize values
    CI.init()
 
-   #################################################################
-   # fiducial
-   CI.Call_Cosmic_Integration(CI.data_dir, CI.COMPASfilename, CI.rate_file_name, jname = 'fid',
-                           ZdepSFRD_param_sets =[[CI.fid_dpdZ_parameters, CI.fid_sfr_parameters]],
+   ##################################################################
+    # omegaz variations
+   Call_Cosmic_Integration(CI.data_dir, CI.COMPASfilename, rCI.ate_file_name, jname = 'omegz',
+                           ZdepSFRD_param_sets =[[[CI.mu0_best, CI.muz_best, CI.sigma0_best, 0.025, CI.alpha0_best], CI.fid_sfr_parameters],
+                                                [[CI.mu0_best, CI.muz_best, CI.sigma0_best, 0.1, CI.alpha0_best], CI.fid_sfr_parameters]],
                            partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
-                                               
+
    import time
    time.sleep(3000) # Sleep until the coscmic integration slurms should be done
+
 
 
 

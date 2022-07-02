@@ -18,6 +18,7 @@ import paths
 def init():
     # define initial settings
     global data_dir, script_dir, COMPASfilename, rate_file_name, user_email, fid_dpdZ_parameters, fid_sfr_parameters, SlurmJobString
+    global mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best
     # there is an extra /src in the paths. due to the import location (remove it)
     data_dir   = str(paths.data)[0:-8] + 'data/'
     script_dir = str(paths.scripts)[0:-11] + 'scripts/'
@@ -131,7 +132,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         DEPEND, append_job_id = False, 0
 
         # Flag to pass to FasCosmicIntegrator
-        Flags = " --path "+data_dir + " --filename "+COMPASfilename+" --outfname " +rate_file_name+\
+        Flags = " --path "+root_out_dir + " --filename "+COMPASfilename+" --outfname " +rate_file_name+\
         " --mu0 " +str(mu0)+" --muz "+str(muz)+" --sigma0 "+str(sigma0)+" --sigmaz "+str(sigmaz)+" --alpha "+str(alpha0)+\
         " --aSF " +str(sf_a)+" --bSF "+str(sf_b)+" --cSF "+str(sf_c)+" --dSF "+str(sf_d)+\
         " --weight "+"mixture_weight"+ " --zstep "+"0.01"+" --sens "+"O3"+ " --m1min "+"10."+ " --dco_type BBH"+\
@@ -140,11 +141,11 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         run_dir = script_dir +'/CosmicIntegration/'
 
         # Make and safe a slurm command
-        job_line = "python FastCosmicIntegration.py "+Flags+" > "+ data_dir + "/slurm_out/"+job_name+".log"
+        job_line = "python FastCosmicIntegration.py "+Flags+" > "+ root_out_dir + "/slurm_out/"+job_name+".log"
 
         # Make slurm script string
         interface_job_string = SlurmJobString % (job_name, number_of_nodes, number_of_cores, \
-        data_dir+'/slurm_out/'+job_name+'.out', data_dir+'/slurm_out/'+job_name+'.err', Wtime, mem, partitions, user_email, run_dir, job_line)
+        root_out_dir+'/slurm_out/'+job_name+'.out', root_out_dir+'/slurm_out/'+job_name+'.err', Wtime, mem, partitions, user_email, run_dir, job_line)
         
         # Write your bash file
         sbatchFile = open(run_dir+job_name+'.sbatch','w')
