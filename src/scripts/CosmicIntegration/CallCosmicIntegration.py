@@ -194,7 +194,6 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
             print('darn, still running, check back in 2 min')
             time.sleep(120) # Sleep 2 min and then check back
 
-
     print(10* "*" + " You are all done with this job! " + 10* "*")
     
     
@@ -219,4 +218,5 @@ Call_Cosmic_Integration(data_dir, COMPASfilename, rate_file_name,
                                              [fid_dpdZ_parameters, [0.01, 2.60, 3.20, 6.20]],# SFR(z) variations
                                              [fid_dpdZ_parameters, [0.01, 2.77, 2.90, 4.70]] ],
                        partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
+
 

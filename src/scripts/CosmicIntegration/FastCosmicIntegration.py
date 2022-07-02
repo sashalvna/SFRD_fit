@@ -515,7 +515,7 @@ def append_rates(path, filename, outfilename, detection_rate, formation_rate, me
     #################################################
     #Open hdf5 file that we will read from
     print('filename', filename)
-    with h5.File(path +'/'+ filename, 'r+') as f_COMPAS:
+    with h5.File(path +'/'+ filename, 'r') as f_COMPAS:
         
         # Would you like to write your rates to a different file? 
         if filename != outfilename:
