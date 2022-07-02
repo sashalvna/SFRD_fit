@@ -165,7 +165,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
 
     ###########################
     # Now wait for your (last) job to be done
-    command = "sacct  -j %s --format State "%(CIjob_id)
+    command = "sacct  -j %s --format State "%(CIjob_id.decode("utf-8"))
     print(command)
     done = False
     while not done:
