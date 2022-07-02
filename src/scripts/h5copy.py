@@ -409,15 +409,11 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
 
                                         srcDataset_attrs = list(srcDataset.attrs.items())                                   # list of dataset attributes
                                         print('creating dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname)
-                                        print(srcDataset.attrs, destDataset, srcDataset.attrs.items(), srcDataset.attrs.keys())                                   # list of dataset attributes
-                                        print('srcDataset_attrs', srcDataset_attrs)# = list(srcDataset.attrs.items())                                   # list of dataset attributes
                                         # for srcAttr in srcDataset_attrs:
                                             # try:
                                                 # destDataset.attrs[srcAttr[0]] = srcAttr[1]                                  # set dataset attributes in destDataset - overwrites existing
 
                                         try:
-                                            print('YOU ARE HERE!') 
-
                                             srcStart      = 0                                                       # source start position for copy
                                             srcEnd        = srcStart + thisBufferSize                               # source end position for copy
                                             destStart     = destDatasetLen                                          # destination start position for copy
@@ -438,6 +434,8 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                                 destEnd = destStart + srcEnd - srcStart                             # set destination end position for copy appropriately
                                                 destDataset.resize((destEnd,))                                      # resize the destination dataset appropriately
                                                 destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source chunk to destination chunk
+
+                                                print('DEST: ', destDataset[destStart : destEnd], ' SOURCE: ',  srcDataset[srcStart : srcEnd])
 
                                             ok = True                                                               # all good
 
