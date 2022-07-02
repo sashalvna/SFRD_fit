@@ -416,7 +416,7 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                         try:
                                             if srcDatasetName == 'merger_rate':
                                               print('srcDataset[:,:]', srcDataset[:,:])
-                                              destDataset[:,:] = srcDataset[:,:]
+                                              destDataset = srcDataset.copy()
                                               print('destDataset', destDataset)
 
                                             else:
