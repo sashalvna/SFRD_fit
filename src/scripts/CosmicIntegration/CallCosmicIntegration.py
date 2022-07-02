@@ -199,6 +199,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
     
     
 
+init()
 
 ################################################################
 # All at once
