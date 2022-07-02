@@ -414,29 +414,31 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                                 # destDataset.attrs[srcAttr[0]] = srcAttr[1]                                  # set dataset attributes in destDataset - overwrites existing
 
                                         try:
-                                            destDataset = srcDataset
-                                            # srcStart      = 0                                                       # source start position for copy
-                                            # srcEnd        = srcStart + thisBufferSize                               # source end position for copy
-                                            # destStart     = destDatasetLen                                          # destination start position for copy
-                                            # destEnd       = destStart + thisBufferSize                              # destination end position for copy
+                                            if srcDatasetName == 'merger_rate':
+                                              destDataset = srcDataset[:,:]
+                                            else:
+                                              srcStart      = 0                                                       # source start position for copy
+                                              srcEnd        = srcStart + thisBufferSize                               # source end position for copy
+                                              destStart     = destDatasetLen                                          # destination start position for copy
+                                              destEnd       = destStart + thisBufferSize                              # destination end position for copy
 
-                                            # while srcEnd <= srcDatasetLen:                                          # while source copy end position is inside source dataset
-                                            #     destDataset.resize((destStart + thisBufferSize,))                   # resize the destination dataset appropriately
-                                            #     destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source block to destination block
+                                              while srcEnd <= srcDatasetLen:                                          # while source copy end position is inside source dataset
+                                                  destDataset.resize((destStart + thisBufferSize,))                   # resize the destination dataset appropriately
+                                                  destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source block to destination block
 
-                                            #     srcStart  = srcEnd                                                  # advance source start position for copy
-                                            #     srcEnd   += thisBufferSize                                          # advance source end position for copy
-                                            #     destStart = destEnd                                                 # advance destination start position for copy
-                                            #     destEnd  += thisBufferSize                                          # advance destination end position for copy
+                                                  srcStart  = srcEnd                                                  # advance source start position for copy
+                                                  srcEnd   += thisBufferSize                                          # advance source end position for copy
+                                                  destStart = destEnd                                                 # advance destination start position for copy
+                                                  destEnd  += thisBufferSize                                          # advance destination end position for copy
 
-                                            # if srcEnd > srcDatasetLen:                                              # source copy end position at or beyond end of source dataset?
-                                            #                                                                         # yes - last chunk (partial)
-                                            #     srcEnd  = srcDatasetLen                                             # set source end position for copy to end of dataset
-                                            #     destEnd = destStart + srcEnd - srcStart                             # set destination end position for copy appropriately
-                                            #     destDataset.resize((destEnd,))                                      # resize the destination dataset appropriately
-                                            #     destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source chunk to destination chunk
+                                              if srcEnd > srcDatasetLen:                                              # source copy end position at or beyond end of source dataset?
+                                                                                                                      # yes - last chunk (partial)
+                                                  srcEnd  = srcDatasetLen                                             # set source end position for copy to end of dataset
+                                                  destEnd = destStart + srcEnd - srcStart                             # set destination end position for copy appropriately
+                                                  destDataset.resize((destEnd,))                                      # resize the destination dataset appropriately
+                                                  destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source chunk to destination chunk
 
-                                            #     print('DEST: ', destDataset[destStart : destEnd], ' SOURCE: ',  srcDataset[srcStart : srcEnd])
+                                                  print('DEST: ', destDataset[destStart : destEnd], ' SOURCE: ',  srcDataset[srcStart : srcEnd])
 
                                             ok = True                                                               # all good
 
