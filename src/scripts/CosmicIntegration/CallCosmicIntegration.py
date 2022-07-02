@@ -161,7 +161,6 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
     print(10* "*" + " You are all done with this job! " + 10* "*")
     
     
-print(fid_dpdZ_parameters, fid_sfr_parameters )
 
 
 #################################################################
