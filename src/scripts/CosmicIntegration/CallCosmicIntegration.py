@@ -165,10 +165,11 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
 
     ###########################
     # Now wait for your (last) job to be done
+    command = "sacct  -j %s --format State "%(CIjob_id)
+    print(command)
     done = False
     while not done:
         # First check the status of your job with sacct
-        command = "sacct  -j %s --format State "%(CIjob_id)
         p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         nline = 0
         while True:
@@ -179,6 +180,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
                 break
             if nline == 3:
                 break
+
 
         result = str(line)
         print('result = ', result)
