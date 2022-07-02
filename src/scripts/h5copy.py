@@ -417,6 +417,8 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                             if srcDatasetName == 'merger_rate':
                                               print('srcDataset[:,:]', srcDataset[:,:])
                                               destDataset = srcDataset[:,:]
+                                              print('destDataset', destDataset)
+
                                             else:
                                               srcStart      = 0                                                       # source start position for copy
                                               srcEnd        = srcStart + thisBufferSize                               # source end position for copy
@@ -441,6 +443,8 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
 
 
                                             ok = True                                                               # all good
+                                            print('destDataset', destDataset)
+
 
                                         except Exception as e:                                                      # error occurred while writing to dataset
                                             print('Error writing to dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))
