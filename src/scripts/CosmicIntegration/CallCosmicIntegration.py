@@ -191,8 +191,8 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
             print('Job failed :( %s')%CIjob_id
             done = True
         elif np.logical_or(b"RUNNING" in line, b"PENDING" in line):
-            print('darn, still running, check back in 10 sec')
-            time.sleep(150) # Sleep 2.5 min and then check back
+            print('darn, still running, check back in 2 min')
+            time.sleep(120) # Sleep 2 min and then check back
 
 
     print(10* "*" + " You are all done with this job! " + 10* "*")
@@ -200,22 +200,22 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
     
 
 
-#################################################################
-# All at once
-#################################################################
-#Call_Cosmic_Integration(data_dir, COMPASfilename, rate_file_name, 
-#                        ZdepSFRD_param_sets =[[fid_dpdZ_parameters, fid_sfr_parameters],
-#                                              [[0.015, muz_best, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters], # mu0_variations
-#                                             [[0.035, muz_best, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],
-#                                              [[mu0_best, -0.01, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],# muz_variations
-#                                             [[mu0_best, -0.25, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],
-#                                              [[mu0_best, muz_best, 0.8, sigmaz_best, alpha0_best], fid_sfr_parameters],# omega0_variations
-#                                             [[mu0_best, muz_best, 1.4, sigmaz_best, alpha0_best], fid_sfr_parameters],
-#                                              [[mu0_best, muz_best, sigma0_best, 0.025, alpha0_best], fid_sfr_parameters],# omegaz_variations
-#                                             [[mu0_best, muz_best, sigma0_best, 0.1, alpha0_best], fid_sfr_parameters],
-#                                              [[mu0_best, muz_best, sigma0_best, sigmaz_best, -0.9], fid_sfr_parameters],# alpha_variations
-#                                             [[mu0_best, muz_best, sigma0_best, sigmaz_best, -3.5], fid_sfr_parameters],
-#                                              [fid_dpdZ_parameters, [0.01, 2.60, 3.20, 6.20]],# SFR(z) variations
-#                                              [fid_dpdZ_parameters, [0.01, 2.77, 2.90, 4.70]] ],
-#                        partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
+################################################################
+All at once
+################################################################
+Call_Cosmic_Integration(data_dir, COMPASfilename, rate_file_name, 
+                       ZdepSFRD_param_sets =[[fid_dpdZ_parameters, fid_sfr_parameters],
+                                             [[0.015, muz_best, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters], # mu0_variations
+                                            [[0.035, muz_best, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],
+                                             [[mu0_best, -0.01, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],# muz_variations
+                                            [[mu0_best, -0.25, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],
+                                             [[mu0_best, muz_best, 0.8, sigmaz_best, alpha0_best], fid_sfr_parameters],# omega0_variations
+                                            [[mu0_best, muz_best, 1.4, sigmaz_best, alpha0_best], fid_sfr_parameters],
+                                             [[mu0_best, muz_best, sigma0_best, 0.025, alpha0_best], fid_sfr_parameters],# omegaz_variations
+                                            [[mu0_best, muz_best, sigma0_best, 0.1, alpha0_best], fid_sfr_parameters],
+                                             [[mu0_best, muz_best, sigma0_best, sigmaz_best, -0.9], fid_sfr_parameters],# alpha_variations
+                                            [[mu0_best, muz_best, sigma0_best, sigmaz_best, -3.5], fid_sfr_parameters],
+                                             [fid_dpdZ_parameters, [0.01, 2.60, 3.20, 6.20]],# SFR(z) variations
+                                             [fid_dpdZ_parameters, [0.01, 2.77, 2.90, 4.70]] ],
+                       partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
 
