@@ -328,7 +328,7 @@ import gettext
 from fnmatch import fnmatch
 
 
-CHUNK_SIZE     = 100000         # HDF5 dataset chunk size (number of entries), minimum 1
+CHUNK_SIZE     = 1000000         # HDF5 dataset chunk size (number of entries), minimum 1
 IO_BUFFER_SIZE = 10             # number of HDF5 chunks, minimum 1
 
 
