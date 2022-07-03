@@ -397,7 +397,11 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
 
                                         #create the dataset (with chunking enabled)
                                         try:
-                                            destDataset    = destGroup.create_dataset(srcDatasetName, (0,), maxshape=(None,), chunks = (thisChunkSize,), dtype = srcDataset_dtype)
+                                            if srcDatasetName == 'merger_rate':
+                                              # Just make the thing without chuncking
+                                              destDataset = destGroup.create_dataset(srcDatasetName, data=srcDataset[:,:], dtype = srcDataset_dtype)
+                                            else:
+                                              destDataset    = destGroup.create_dataset(srcDatasetName, (0,), maxshape=(None,), chunks = (thisChunkSize,), dtype = srcDataset_dtype)
                                             destDatasetLen = destDataset.size                                               # destination dataset length
                                             datasetOpen    = True                                                           # newly created dataset is now open
                                         except:
@@ -415,8 +419,7 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
 
                                         try:
                                             if srcDatasetName == 'merger_rate':
-                                              print('srcDataset[:,:]', srcDataset[:,:])
-                                              destDataset = destGroup.create_dataset(srcDatasetName, data=srcDataset[:,:], dtype = srcDataset_dtype)
+                                              print('already done srcDataset[:,:]', srcDataset[:,:])
                                               print('destDataset[:,:]', destDataset[:,:])
 
                                             else:
