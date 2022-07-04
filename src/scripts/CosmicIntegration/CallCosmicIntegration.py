@@ -119,6 +119,10 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         maxzdet                   --> [float] max z for detection rate, will be used as maxz: Maximum redshhift up to where we would like to store the data
 
     """
+    if not os.path.isdir(root_out_dir+'/RateData/'):
+        print('make output dir for rate data: ', root_out_dir+'/RateData/')
+        os.mkdir(root_out_dir+'/RateData/')
+
     # Index to name your job
     n_CI = 1 
 
