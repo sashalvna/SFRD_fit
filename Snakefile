@@ -13,6 +13,14 @@ rule CosmicIntegration:
     script:
         "src/scripts/CosmicIntegration/CallCosmicIntegration.py"
 
+rule LinkHdf5Files:
+    output:
+        "src/data/RateData/small_Rate_info.h5"
+    cache:
+        True
+    script:
+        "src/scripts/CosmicIntegration/LinkHdf5Files.py"
+
         # "src/data/1_small_Rate_info.h5"
         # "src/data/2_small_Rate_info.h5"
         # "src/data/3_small_Rate_info.h5"
