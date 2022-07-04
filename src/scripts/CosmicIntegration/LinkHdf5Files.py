@@ -21,12 +21,12 @@ if __name__ == "__main__":
 	###############################
 	###############################
 	print('Now link all rate files in one final file')
-	if os.path.isfile(CI.root_out_dir+'/RateData/'+CI.rate_file_name):
-		dest_file = h5py.File(CI.root_out_dir+'/RateData/'+CI.rate_file_name,'r+')                                                                         # Open the final file that will contain all the links
+	if os.path.isfile(CI.data_dir+'/RateData/'+CI.rate_file_name):
+		dest_file = h5py.File(CI.data_dir+'/RateData/'+CI.rate_file_name,'r+')                                                                         # Open the final file that will contain all the links
 	else:
-		dest_file = h5py.File(CI.root_out_dir+'/RateData/'+CI.rate_file_name,'w')                                                                         # Create a new final file that will contain all the links
+		dest_file = h5py.File(CI.data_dir+'/RateData/'+CI.rate_file_name,'w')                                                                         # Create a new final file that will contain all the links
 
-	for dirpath, dirnames, filenames in os.walk(CI.root_out_dir+'/RateData/'):                                                                          # walk directory
+	for dirpath, dirnames, filenames in os.walk(CI.data_dir+'/RateData/'):                                                                          # walk directory
 		absDirpath = os.path.abspath(dirpath)                                                                                       # absolute path
 		print('Processing directory', absDirpath)                                                                                   # announce directory being processed
 		#
