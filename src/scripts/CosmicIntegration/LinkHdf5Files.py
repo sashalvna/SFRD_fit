@@ -19,7 +19,6 @@ if __name__ == "__main__":
 	CI.init()
 
 	###############################
-	###############################
 	print('Now link all rate files in one final file')
 	if os.path.isfile(CI.data_dir+'/RateData/'+CI.rate_file_name):
 		dest_file = h5py.File(CI.data_dir+'/RateData/'+CI.rate_file_name,'r+')                                                                         # Open the final file that will contain all the links
@@ -52,6 +51,5 @@ if __name__ == "__main__":
 	# h5_copy_string = 'python %s/h5copy.py  %s -r 2 -o %s --filter *%s  > %s'%(script_dir, data_dir, data_dir+'/'+CI.rate_file_name, CI.rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" )
 	# filter for files with rate_file_name, but remove the extension .h5
 	# os.system(h5_copy_string)
-
 	# wait 1 min for h5copy to finish
 	# time.sleep(60)

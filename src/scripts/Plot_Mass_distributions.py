@@ -166,6 +166,7 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
             #(contains filter for RLOF>CE and optimistic CE)
             intrinsic_rate_density    = File[rate_key]['merger_rate'][()]
 
+
 #         except:
 #             print('\n error reading', rate_key)
 #             continue
