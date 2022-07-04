@@ -135,7 +135,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         DEPEND, append_job_id = False, 0
 
         # Flag to pass to FasCosmicIntegrator
-        Flags = " --path "+root_out_dir + " --filename "+COMPASfilename+" --outfname " + str(n_CI)+'_'+rate_file_name+\
+        Flags = " --path "+root_out_dir + " --filename "+COMPASfilename+" --outfname " + '/RateData/'+str(n_CI)+'_'+rate_file_name+\
         " --mu0 " +str(mu0)+" --muz "+str(muz)+" --sigma0 "+str(sigma0)+" --sigmaz "+str(sigmaz)+" --alpha "+str(alpha0)+\
         " --aSF " +str(sf_a)+" --bSF "+str(sf_b)+" --cSF "+str(sf_c)+" --dSF "+str(sf_d)+\
         " --weight "+"mixture_weight"+ " --zstep "+"0.01"+" --sens "+"O3"+ " --m1min "+"10."+ " --dco_type BBH"+\
@@ -206,9 +206,9 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
     ###############################
     ###############################
     print('Now link all rate files in one final file')
-    dest_file = h5py.File(data_dir+'/'+rate_file_name,'r+')                                                                         # Open the final file that will contain all the links
+    dest_file = h5py.File(root_out_dir+'/RateData/'+rate_file_name,'r+')                                                                         # Open the final file that will contain all the links
 
-    for dirpath, dirnames, filenames in os.walk(data_dir):                                                                          # walk directory
+    for dirpath, dirnames, filenames in os.walk(root_out_dir+'/RateData/'):                                                                          # walk directory
         absDirpath = os.path.abspath(dirpath)                                                                                       # absolute path
         print('Processing directory', absDirpath)                                                                                   # announce directory being processed
         #
