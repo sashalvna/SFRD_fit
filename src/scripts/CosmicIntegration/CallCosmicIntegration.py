@@ -210,7 +210,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
     ###############################
     ###############################
     print('Now link all rate files in one final file')
-    if os.path.isfile(root_out_dir+'/RateData/'+rate_file_name) 
+    if os.path.isfile(root_out_dir+'/RateData/'+rate_file_name):
         dest_file = h5py.File(root_out_dir+'/RateData/'+rate_file_name,'r+')                                                                         # Open the final file that will contain all the links
     else:
         dest_file = h5py.File(root_out_dir+'/RateData/'+rate_file_name,'w')                                                                         # Create a new final file that will contain all the links
