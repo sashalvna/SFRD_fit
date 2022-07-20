@@ -410,9 +410,9 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                         ## Start addition Lieke
                                         # get units - not for run details file
                                         try:
-                                            units = h5file[column].attrs['units'].decode('utf-8')
+                                            units =srcDataset.attrs['units'].decode('utf-8')
                                         except AttributeError:
-                                            units = h5file[column].attrs['units']
+                                            units = srcDataset.attrs['units']
 
                                         srcDataset_attrs = list(srcDataset.attrs.items())                                   # list of dataset attributes
 
