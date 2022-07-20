@@ -20,8 +20,8 @@ datasets:
         COMPAS_Output_wRates.tar.gz:     # remote tarballs behave like folders w/ same name
   10.5072/zenodo.1077539
     contents:
-        src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5:
-        src/data/SFRMetallicityFromGasTNG100.hdf5:
+        o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5: src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5
+        SFRMetallicityFromGasTNG100.hdf5: src/data/SFRMetallicityFromGasTNG100.hdf5
 
       
 dependencies:
