@@ -202,12 +202,12 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
             time.sleep(120) # Sleep 2 min and then check back
 
     # Wait a little longer to make sure all jobs finished
-    time.sleep(300)
+    time.sleep(30)
     print(10* "*" + " You are all done with this job! " + 10* "*")
 
 
     # Copy your files into one filter for files with rate_file_name, but remove the extension .h5
-    h5_copy_string = 'python %s/h5copy.py  %s -r 2 -o %s --filter *%s  > %s'%(script_dir, data_dir, data_dir+'/'+rate_file_name, rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" )
+    h5_copy_string = 'python %s/h5copy.py  %s -r 2 -o %s --filter *%s  > %s'%(script_dir, data_dir, data_dir+'/RateData/'+rate_file_name, rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" )
     
     os.system(h5_copy_string)
     # wait 1 min for h5copy to finish
