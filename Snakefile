@@ -7,7 +7,7 @@ rule extract:
 
 rule CosmicIntegration:
     output:
-        "src/data/RateData/small_Rate_info.h5"
+        "src/data/RateData/Rate_info.h5"
     cache:
         True
     script:
