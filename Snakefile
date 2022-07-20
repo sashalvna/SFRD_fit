@@ -7,17 +7,18 @@ rule extract:
 
 rule CosmicIntegration:
     output:
-        "src/data/RateData/"
+        "src/data/RateData/small_Rate_info.h5"
     cache:
         True
     script:
         "src/scripts/CosmicIntegration/CallCosmicIntegration.py"
 
-rule LinkHdf5Files:
-    output:
-        "src/data/RateData/Rate_info.h5"
-    cache:
-        True
-    script:
-        "src/scripts/CosmicIntegration/LinkHdf5Files.py"
+# rule LinkHdf5Files:
+#     output:
+        # "src/data/RateData/"
+#         "src/data/RateData/Rate_info.h5"
+#     cache:
+#         True
+#     script:
+#         "src/scripts/CosmicIntegration/LinkHdf5Files.py"
 

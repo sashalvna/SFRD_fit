@@ -418,13 +418,6 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                         if thisBufferSize < 1: thisBufferSize = 1                                           # yes - clamp io minimum block size to 1 chunk
                                         thisBufferSize *= thisChunkSize                                                     # convert to number of entries
 
-                                        ## Start addition Lieke
-                                        # srcDataset_attrs =list(['']) #list(srcDataset.attrs.items())                                   # list of dataset attribute
-                                        # for srcAttr in srcDataset_attrs:
-                                        # try:
-                                        #destDataset.attrs[srcAttr[0]] = srcAttr[1]                                  # set dataset attributes in destDataset - overwrites existing
-                                        # print('this is where you would do the units, but im not doing them')
-
                                         try:
                                             srcStart      = 0                                                       # source start position for copy
                                             srcEnd        = srcStart + thisBufferSize                               # source end position for copy
@@ -457,16 +450,12 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                                 elif srcDataset.ndim == 2:
                                                     destDataset.resize((destEnd,srcDataset.shape[1]))               # resize the destination dataset appropriately
 
-                                                print(np.shape(destDataset[destStart : destEnd]), np.shape(srcDataset[srcStart : srcEnd] ) )   # copy source chunk to destination chunk
                                                 destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source chunk to destination chunk
 
                                             ok = True                                                               # all good
 
                                         except Exception as e:                                                      # error occurred while writing to dataset
                                             print('Error writing to dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))
-
-                                        # except Exception as e:                                                          # error occurred while accessing the dataset attributes
-                                        #     print('Error accessing attribute', srcAttr[0], 'in dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))
 
                                 except Exception as e:                                                                      # error occurred while accessing the dataset
                                     print('Error accessing dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))

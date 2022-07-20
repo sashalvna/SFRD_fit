@@ -24,9 +24,12 @@ dependencies:
     - src/data/COMPAS_Output_wRates.tar.gz
   src/scripts/CosmicIntegration/CallCosmicIntegration.py:
     - src/data/COMPAS_Output_wWeights.h5
-  src/scripts/LinkHdf5Files.py:
-    - src/scripts/CosmicIntegration/CallCosmicIntegration.py
   src/scripts/Plot_Mass_distributions.py:
     - src/data/COMPAS_Output_wWeights.h5
-    - src/data/RateData/Rate_info.h5
+    - src/data/RateData/small_Rate_info.h5
     - src/scripts/CosmicIntegration/CallCosmicIntegration.py
+    
+#  src/scripts/LinkHdf5Files.py:
+#    - src/scripts/CosmicIntegration/CallCosmicIntegration.py
+    
+
