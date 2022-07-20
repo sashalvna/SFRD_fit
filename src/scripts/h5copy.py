@@ -380,10 +380,11 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
 
                                 srcDataset       = srcGroup[srcDatasetName]                                                 # source dataset
                                 srcDataset_dtype = srcDataset.dtype                                                         # source dataset data type
+                                # Determine the size of your source data (is dependent on the dimension)
                                 if srcDataset.ndim == 1:
-                                    srcDatasetLen    = srcDataset.size                                                          # source dataset length (only makes sense for one D arrays)
+                                    srcDatasetLen    = srcDataset.size                                                      # source dataset length (only makes sense for one D arrays)
                                 elif srcDataset.ndim == 2:
-                                    srcDatasetLen    = srcDataset.shape[0]                                                      # source dataset length
+                                    srcDatasetLen    = srcDataset.shape[0]                                                  # source dataset length of first dimension
 
 
                                 try:
@@ -400,14 +401,15 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
 
                                         #create the dataset (with chunking enabled)
                                         try:
-                                        # Make sure you account for the dimension of your data
+                                            # Make sure you account for the dimension of your data
                                             if srcDataset.ndim == 1:
                                                 destDataset    = destGroup.create_dataset(srcDatasetName, (0,), maxshape=(None,), chunks = (thisChunkSize,), dtype = srcDataset_dtype)
-                                                destDatasetLen = destDataset.size                                               # destination dataset length (size only makes sense for 1D)
+                                                destDatasetLen = destDataset.size                                           # destination dataset length (size only makes sense for 1D)
+
                                             elif srcDataset.ndim == 2:
                                                 destDataset    = destGroup.create_dataset(srcDatasetName, (0,0), maxshape=(None,None), chunks = (thisChunkSize,srcDataset.shape[1]), dtype = srcDataset_dtype)
-                                                print('TWO DIMENSIONAL')
-                                                destDatasetLen = destDataset.shape[0]                                               # destination dataset length (of 0th dim) 
+                                                destDatasetLen = destDataset.shape[0]                                       # destination dataset length (of 0th dim for 2d datasets) 
+
                                             datasetOpen    = True                                                           # newly created dataset is now open
                                         except:
                                             print('Error creating dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))
@@ -416,65 +418,55 @@ def copyHDF5File(path, outFile, chunkSize = CHUNK_SIZE, bufferSize = IO_BUFFER_S
                                         if thisBufferSize < 1: thisBufferSize = 1                                           # yes - clamp io minimum block size to 1 chunk
                                         thisBufferSize *= thisChunkSize                                                     # convert to number of entries
 
-
                                         ## Start addition Lieke
-                                        print(np.shape(srcDataset), srcDatasetName)
-                                        srcDataset_attrs =list(['']) #list(srcDataset.attrs.items())                                   # list of dataset attribute
+                                        # srcDataset_attrs =list(['']) #list(srcDataset.attrs.items())                                   # list of dataset attribute
+                                        # for srcAttr in srcDataset_attrs:
+                                        # try:
+                                        #destDataset.attrs[srcAttr[0]] = srcAttr[1]                                  # set dataset attributes in destDataset - overwrites existing
+                                        # print('this is where you would do the units, but im not doing them')
+
+                                        try:
+                                            srcStart      = 0                                                       # source start position for copy
+                                            srcEnd        = srcStart + thisBufferSize                               # source end position for copy
+                                            destStart     = destDatasetLen                                          # destination start position for copy
+                                            destEnd       = destStart + thisBufferSize                              # destination end position for copy
+
+                                            while srcEnd <= srcDatasetLen:                                          # while source copy end position is inside source dataset
+
+                                                # Make sure you account for the dimension of your data while resizing and then writing
+                                                if srcDataset.ndim == 1:
+                                                    destDataset.resize((destStart + thisBufferSize,))                        # resize the destination dataset appropriately
+                                                    destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source block to destination block
+
+                                                elif srcDataset.ndim == 2:
+                                                    destDataset.resize((destStart + thisBufferSize, srcDataset.shape[1]  ))  # resize the destination dataset appropriately
+                                                    destDataset[destStart : destEnd, :] = srcDataset[srcStart : srcEnd,:]    # copy source block to destination block
 
 
-                                        for srcAttr in srcDataset_attrs:
-                                            try:
-                                                #destDataset.attrs[srcAttr[0]] = srcAttr[1]                                  # set dataset attributes in destDataset - overwrites existing
-                                                print('this is where you would do the units, but im not doing them')
+                                                srcStart  = srcEnd                                                  # advance source start position for copy
+                                                srcEnd   += thisBufferSize                                          # advance source end position for copy
+                                                destStart = destEnd                                                 # advance destination start position for copy
+                                                destEnd  += thisBufferSize                                          # advance destination end position for copy
 
-                                                try:
-                                                    srcStart      = 0                                                       # source start position for copy
-                                                    srcEnd        = srcStart + thisBufferSize                               # source end position for copy
-                                                    destStart     = destDatasetLen                                          # destination start position for copy
-                                                    print('destDatasetLen', destDatasetLen)                                          # destination start position for copy
-                                                    destEnd       = destStart + thisBufferSize                              # destination end position for copy
+                                            if srcEnd > srcDatasetLen:                                              # source copy end position at or beyond end of source dataset?
+                                                                                                                    # yes - last chunk (partial)
+                                                srcEnd  = srcDatasetLen                                             # set source end position for copy to end of dataset
+                                                destEnd = destStart + srcEnd - srcStart                             # set destination end position for copy appropriately
+                                                if srcDataset.ndim == 1:
+                                                    destDataset.resize((destEnd,))                                  # resize the destination dataset appropriately
+                                                elif srcDataset.ndim == 2:
+                                                    destDataset.resize((destEnd,srcDataset.shape[1]))               # resize the destination dataset appropriately
 
-                                                    while srcEnd <= srcDatasetLen:                                          # while source copy end position is inside source dataset
-                                                        print('shape srcDataset', srcDataset.shape, srcDataset.ndim )
+                                                print(np.shape(destDataset[destStart : destEnd]), np.shape(srcDataset[srcStart : srcEnd] ) )   # copy source chunk to destination chunk
+                                                destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source chunk to destination chunk
 
-                                                        if srcDataset.ndim == 1:
-                                                            destDataset.resize((destStart + thisBufferSize,))                        # resize the destination dataset appropriately
-                                                            destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source block to destination block
-                                                        elif srcDataset.ndim == 2:
-                                                            print( 'your dataset is 2d',  srcDataset.shape[1]  )                     # resize the destination dataset appropriately
-                                                            destDataset.resize((destStart + thisBufferSize, srcDataset.shape[1]  ))  # resize the destination dataset appropriately
-                                                            destDataset[destStart : destEnd, :] = srcDataset[srcStart : srcEnd,:]    # copy source block to destination block
-                                                            print( 'made it past', destDataset.shape  )                              # resize the destination dataset appropriately
+                                            ok = True                                                               # all good
 
-                                                        print('shape destDataset', destDataset.shape, destDataset.ndim )
+                                        except Exception as e:                                                      # error occurred while writing to dataset
+                                            print('Error writing to dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))
 
-                                                        print(np.shape(destDataset[destStart : destEnd]), np.shape(srcDataset[srcStart : srcEnd] ) )   # copy source chunk to destination chunk
-                                                        #destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source block to destination block
-
-                                                        srcStart  = srcEnd                                                  # advance source start position for copy
-                                                        srcEnd   += thisBufferSize                                          # advance source end position for copy
-                                                        destStart = destEnd                                                 # advance destination start position for copy
-                                                        destEnd  += thisBufferSize                                          # advance destination end position for copy
-
-                                                    if srcEnd > srcDatasetLen:                                              # source copy end position at or beyond end of source dataset?
-                                                                                                                            # yes - last chunk (partial)
-                                                        srcEnd  = srcDatasetLen                                             # set source end position for copy to end of dataset
-                                                        destEnd = destStart + srcEnd - srcStart                             # set destination end position for copy appropriately
-                                                        if srcDataset.ndim == 1:
-                                                            destDataset.resize((destEnd,))                                  # resize the destination dataset appropriately
-                                                        elif srcDataset.ndim == 2:
-                                                            destDataset.resize((destEnd,srcDataset.shape[1]))               # resize the destination dataset appropriately
-
-                                                        print(np.shape(destDataset[destStart : destEnd]), np.shape(srcDataset[srcStart : srcEnd] ) )   # copy source chunk to destination chunk
-                                                        destDataset[destStart : destEnd] = srcDataset[srcStart : srcEnd]    # copy source chunk to destination chunk
-
-                                                    ok = True                                                               # all good
-
-                                                except Exception as e:                                                      # error occurred while writing to dataset
-                                                    print('Error writing to dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))
-
-                                            except Exception as e:                                                          # error occurred while accessing the dataset attributes
-                                                print('Error accessing attribute', srcAttr[0], 'in dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))
+                                        # except Exception as e:                                                          # error occurred while accessing the dataset attributes
+                                        #     print('Error accessing attribute', srcAttr[0], 'in dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))
 
                                 except Exception as e:                                                                      # error occurred while accessing the dataset
                                     print('Error accessing dataset', srcDatasetName, 'in group', srcGroupName, 'in file', outFname, ':', str(e))
