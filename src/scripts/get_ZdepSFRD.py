@@ -1,7 +1,9 @@
 import numpy as np
 import astropy.units as u
 import scipy
+from scipy.stats import norm as NormDist
 
+import warnings
 
 ########################################################
 ## Chrip mass
@@ -32,22 +34,20 @@ def Madau_Dickinson2014(z, a=0.015, b=2.77, c=2.9, d=5.6):
     dm_dtdMpc = a * (1 + z)**b/( 1 + ( (1+z)/c )**d ) *u.Msun *u.yr**-1 *u.Mpc**-3
     return dm_dtdMpc # Msun year-1 Mpc-3 
 
+
     
 ########################################################
 ##  The mettalicity distribution dP/dZ(z)
 ########################################################
-def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
-                                  mu_0=0.025, mu_z=-0.048, sigma_0=1.125, sigma_z=0.048,
-                                  alpha = -1.767, 
-                                  min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01,
-                                  metals = [], redsh = [],
-                                  min_logZ_COMPAS = np.log(1e-4),max_logZ_COMPAS = np.log(0.03)):
-    #                                mu_0=0.025, mu_z=-0.048, sigma_0=1.125, sigma_z=0.048,alpha = -1.767,                               
+def skew_metallicity_distribution(redshifts, min_logZ_COMPAS = np.log(1e-4), max_logZ_COMPAS = np.log(0.03),
+                                  mu_0=0.025, mu_z=-0.048, omega_0=1.125, omega_z=0.048, alpha =-1.767,
+                                  min_logZ=-12.0, max_logZ=0.0, step_logZ =0.01):
+                                 
     """
     Calculate the distribution of metallicities at different redshifts using a log skew normal distribution
     the log-normal distribution is a special case of this log skew normal distribution distribution, and is retrieved by setting 
     the skewness to zero (alpha = 0). 
-    Based on the method in Neijssel+19. Default values of mu0=0.035, mu_z=-0.23, sigma_0=0.39, sigma_z=0.0, alpha =0.0, 
+    Based on the method in Neijssel+19. Default values of mu_0=0.035, mu_z=-0.23, omega_0=0.39, omega_z=0.0, alpha =0.0, 
     retrieve the dP/dZ distribution used in Neijssel+19
 
     NOTE: This assumes that metallicities in COMPAS are drawn from a flat in log distribution!
@@ -58,11 +58,11 @@ def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
         min_logZ_COMPAS    --> [float]          Minimum logZ value that COMPAS samples
         max_logZ_COMPAS    --> [float]          Maximum logZ value that COMPAS samples
         
-        mu_0    = 0.025    --> [float]           location (mean in normal) at redshift 0
-        mu_z    = -0.05    --> [float]           redshift scaling/evolution of the location
-        sigma_0 = 1.25     --> [float]          Scale (variance in normal) at redshift 0
-        sigma_z = 0.05     --> [float]          redshift scaling of the scale (variance in normal)
-        alpha   = -1.77    --> [float]          shape (skewness, alpha = 0 retrieves normal dist)
+        mu_0    =  0.035    --> [float]           location (mean in normal) at redshift 0
+        mu_z    = -0.25    --> [float]           redshift scaling/evolution of the location
+        omega_0 = 0.39     --> [float]          Scale (variance in normal) at redshift 0
+        omega_z = 0.00     --> [float]          redshift scaling of the scale (variance in normal)
+        alpha   = 0.00    --> [float]          shape (skewness, alpha = 0 retrieves normal dist)
 
         min_logZ           --> [float]          Minimum logZ at which to calculate dPdlogZ (influences normalization)
         max_logZ           --> [float]          Maximum logZ at which to calculate dPdlogZ (influences normalization)
@@ -72,64 +72,49 @@ def skew_metallicity_distribution(max_redshift = 10.0,redshift_step = 0.01,
         dPdlogZ            --> [2D float array] Probability of getting a particular logZ at a certain redshift
         metallicities      --> [list of floats] Metallicities at which dPdlogZ is evaluated
         p_draw_metallicity --> float            Probability of drawing a certain metallicity in COMPAS (float because assuming uniform)
-    """
-
+    """ 
     ##################################
-    # the PDF of a standard normal distrtibution
-    def normal_PDF(x):
-        return 1./(np.sqrt(2* np.pi)) * np.exp(-(1./2) * (x)**2 )
-
-    ##################################
-    # the CDF of a standard normal distrtibution
-    def normal_CDF(x):
-        return 1./2. * (1 + scipy.special.erf(x/np.sqrt(2)) )
+    # Log-Linear redshift dependence of omega
+    omega = omega_0* 10**(omega_z*redshifts)
     
     ##################################
-    if len(redsh) == 0:
-        # Make redshifts
-        redshifts = np.arange(0, max_redshift + redshift_step, redshift_step)
-    else:
-        redshifts = redsh
-        
-    ##################################
-    # Experiment with redshift dependence sigma
-    # LOG-LINEAR
-    sigma = sigma_0*10**(sigma_z*redshifts)
-    
-    ##################################
-    # Follow Langer & Norman 2007? in assuming that mean metallicities evolve in z as:
+    # Follow Langer & Norman 2006 in assuming that mean metallicities evolve in z
+    # eq. 7 
     mean_metallicities = mu_0 * 10**(mu_z * redshifts) 
-    #print('np.shape(mean_metallicities)', np.shape(mean_metallicities))
-        
+    
+    ## The first moment (i.e. E[dP/dZ] is:
+    # eq. 8 here: https://www-sciencedirect-com.ezp-prod1.hul.harvard.edu/science/article/pii/S0021850219300400
+    # Using k = 1 for the first moment
     # Now we re-write the expected value of ou log-skew-normal to retrieve mu
     beta = alpha/(np.sqrt(1 + (alpha)**2))
-    PHI  = normal_CDF(beta * sigma) # phi is now sigma x alpha dimentional 
-    mu_metallicities = np.log(mean_metallicities/(2.*PHI) * 1./(np.exp(0.5*sigma**2) )  ) 
+    PHI  = NormDist.cdf(beta * omega) 
+    # eq. 8 in van Son 2022
+#     xi_metallicities = np.log(mean_metallicities/2. * 1./( np.exp(0.5*omega**2) * PHI )  ) 
+    xi_metallicities = np.log(mean_metallicities/(2.PHI)) - (omega**2)/2.
 
     ##################################
-    if len(metals) == 0:
-        # create a range of metallicities (thex-values, or raandom variables)
-        log_metallicities = np.arange(min_logZ, max_logZ + step_logZ, step_logZ)
-        metallicities = np.exp(log_metallicities)
-    else: 
-        #use a pre-determined array of metals
-        metallicities     = metals
-        log_metallicities = np.log(metallicities)
-        step_logZ         = np.diff(log_metallicities)[0]
-        
+    # create a range of metallicities (the x-values, or random variables)
+    log_metallicities = np.arange(min_logZ, max_logZ, step_logZ)
+    metallicities     = np.exp(log_metallicities)
+
     ##################################
     # probabilities of log-skew-normal (without the factor of 1/Z since this is dp/dlogZ not dp/dZ)
-    dPdlogZ = 2./(sigma[:,np.newaxis]) * normal_PDF((log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis]) * normal_CDF(alpha * (log_metallicities -  mu_metallicities[:,np.newaxis])/sigma[:,np.newaxis] )
+    ### eq.2) in van son +22 dP/dlogZ = 2/omega * phi((lnZ- xi)/ omega) * PHI(alpha (lnZ - xi)/omega)
+    dPdlogZ = 2./(omega[:,np.newaxis]) \
+    * NormDist.pdf((log_metallicities -  xi_metallicities[:,np.newaxis])/omega[:,np.newaxis]) \
+    * NormDist.cdf( alpha * (log_metallicities -  xi_metallicities[:,np.newaxis]) /omega[:,np.newaxis] )
+    #(see also eq.  1 here: https://www.emis.de/journals/RCE/V36/v36n1a03.pdf)
 
     ##################################
     # normalise the distribution over al metallicities
-    norm = dPdlogZ.sum(axis=-1) * step_logZ #<< Fit does not converge if you multiply by step_logZ
+    norm = dPdlogZ.sum(axis=-1) * step_logZ
     dPdlogZ = dPdlogZ /norm[:,np.newaxis]
 
     ##################################
     # assume a flat in log distribution in metallicity to find probability of drawing Z in COMPAS
     p_draw_metallicity = 1 / (max_logZ_COMPAS - min_logZ_COMPAS)
     
-    return dPdlogZ, redshifts, metallicities, step_logZ, p_draw_metallicity
+    return dPdlogZ, metallicities, step_logZ, p_draw_metallicity
+
 
 
