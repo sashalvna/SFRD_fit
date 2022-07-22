@@ -39,7 +39,7 @@ def Madau_Dickinson2014(z, a=0.015, b=2.77, c=2.9, d=5.6):
 ########################################################
 ##  The mettalicity distribution dP/dZ(z)
 ########################################################
-def skew_metallicity_distribution(redshifts, min_logZ_COMPAS = np.log(1e-4), max_logZ_COMPAS = np.log(0.03),
+def skew_metallicity_distribution(redshifts, metals = [], min_logZ_COMPAS = np.log(1e-4), max_logZ_COMPAS = np.log(0.03),
                                   mu_0=0.025, mu_z=-0.048, omega_0=1.125, omega_z=0.048, alpha =-1.767,
                                   min_logZ=-12.0, max_logZ=0.0, step_logZ =0.01):
                                  
@@ -82,21 +82,27 @@ def skew_metallicity_distribution(redshifts, min_logZ_COMPAS = np.log(1e-4), max
     # eq. 7 
     mean_metallicities = mu_0 * 10**(mu_z * redshifts) 
     
-    ## The first moment (i.e. E[dP/dZ] is:
+    ## The first moment of ou log-skew-normal (i.e. E[dP/dZ] is:
     # eq. 8 here: https://www-sciencedirect-com.ezp-prod1.hul.harvard.edu/science/article/pii/S0021850219300400
-    # Using k = 1 for the first moment
-    # Now we re-write the expected value of ou log-skew-normal to retrieve mu
     beta = alpha/(np.sqrt(1 + (alpha)**2))
-    PHI  = NormDist.cdf(beta * omega) 
+    PHI  = NormDist.cdf(beta * omega)  
+    PHI[PHI == 0] = 1e-310                                                    # Avoid division by zero
     # eq. 8 in van Son 2022
-#     xi_metallicities = np.log(mean_metallicities/2. * 1./( np.exp(0.5*omega**2) * PHI )  ) 
-    xi_metallicities = np.log(mean_metallicities/(2.PHI)) - (omega**2)/2.
+    xi_metallicities = np.log(mean_metallicities/(2 * PHI)) - (omega**2)/2.   # Now we re-write the expected value to retrieve xi
+
 
     ##################################
-    # create a range of metallicities (the x-values, or random variables)
-    log_metallicities = np.arange(min_logZ, max_logZ, step_logZ)
-    metallicities     = np.exp(log_metallicities)
-
+    if len(metals) == 0:
+        # create a range of metallicities (thex-values, or raandom variables)
+        log_metallicities = np.arange(min_logZ, max_logZ + step_logZ, step_logZ)
+        metallicities     = np.exp(log_metallicities)
+    else: 
+        #use a pre-determined array of metals
+        metallicities     = metals
+        log_metallicities = np.log(metallicities)
+        step_logZ         = np.diff(log_metallicities)[0]
+    
+    
     ##################################
     # probabilities of log-skew-normal (without the factor of 1/Z since this is dp/dlogZ not dp/dZ)
     ### eq.2) in van son +22 dP/dlogZ = 2/omega * phi((lnZ- xi)/ omega) * PHI(alpha (lnZ - xi)/omega)
