@@ -137,8 +137,8 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         sf_a, sf_b, sf_c, sf_d           = SFRD_zZ[1]
         DEPEND, append_job_id = False, 0
 
-        # Flag to pass to FasCosmicIntegrator
-        Flags = " --path "+root_out_dir + " --filename "+COMPASfilename+" --outfname " + '/RateData/'+str(n_CI)+'_'+rate_file_name+\
+        # Flag to pass to FasCosmicIntegrator   #'/RateData/'+str(n_CI)+'_'+rate_file_name+\
+        Flags = " --path "+root_out_dir + " --filename "+COMPASfilename+" --outfname " + '/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'+str(n_CI)+'_'+rate_file_name+\
         " --mu0 " +str(mu0)+" --muz "+str(muz)+" --sigma0 "+str(sigma0)+" --sigmaz "+str(sigmaz)+" --alpha "+str(alpha0)+\
         " --aSF " +str(sf_a)+" --bSF "+str(sf_b)+" --cSF "+str(sf_c)+" --dSF "+str(sf_d)+\
         " --weight "+"mixture_weight"+ " --zstep "+"0.01"+" --sens "+"O3"+ " --m1min "+"10."+ " --dco_type BBH"+\
@@ -207,7 +207,8 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
 
 
     # Copy your files into one filter for files with rate_file_name, but remove the extension .h5
-    h5_copy_string = 'python %s/h5copy.py  %s -r 2 -o %s --filter *%s  > %s'%(script_dir, data_dir, data_dir+'/RateData/'+rate_file_name, rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" )
+    input_Ratedata_dir = '/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'
+    h5_copy_string = 'python %s/h5copy.py  %s -r 2 -o %s --filter *%s  > %s'%(script_dir, input_Ratedata_dir, data_dir+'/RateData/'+rate_file_name, rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" )
     
     os.system(h5_copy_string)
     # wait 1 min for h5copy to finish
