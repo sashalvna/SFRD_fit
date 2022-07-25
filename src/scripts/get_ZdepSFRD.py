@@ -113,7 +113,7 @@ def skew_metallicity_distribution(redshifts, metals = [], min_logZ_COMPAS = np.l
 
     ##################################
     # normalise the distribution over al metallicities
-    norm = dPdlogZ.sum(axis=-1) * step_logZ
+    norm    = dPdlogZ.sum(axis=-1) * step_logZ
     dPdlogZ = dPdlogZ /norm[:,np.newaxis]
 
     ##################################
