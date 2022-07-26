@@ -11,16 +11,20 @@ import time
 from fnmatch import fnmatch
 import h5py
 
+import CallCosmicIntegration as CI
 
 
 
 
 if __name__ == "__main__": 
-    # MAIN
+
+    # Initialize values
+    CI.init()
+
 
     check_job_completionID = np.loadtxt(paths.data / 'RateData/CI_job_IDs.txt', delimiter=',')
     print('check_job_completionID', check_job_completionID)
-    
+
     ###########################
     # Now wait for your (last) job to be done
     for job_id in check_job_completionID:
