@@ -124,6 +124,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
 
     # Index to name your job
     n_CI = 1 
+    check_job_completionID = []
 
     # Run over each complete variation of the metallicity dependent SFRD
     for SFRD_zZ in ZdepSFRD_param_sets:  
@@ -163,8 +164,8 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         CIjob_id = RunSlurmBatch(run_dir = run_dir, job_name = job_name ,\
         dependency = DEPEND, dependent_ID = append_job_id)
 
-        if n_CI == 4:
-            check_job_completionID = CIjob_id
+        check_job_completionID.append(CIjob_id)
+        
         n_CI += 1
         DEPEND, append_job_id = False, CIjob_id # no need for it to be dependent
     
@@ -172,36 +173,38 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
 
     ###########################
     # Now wait for your (last) job to be done
-    command = "sacct  -j %s --format State "%(check_job_completionID.decode("utf-8"))
-    print(command)
-    done = False
-    while not done:
-        # First check the status of your job with sacct
-        p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        nline = 0
-        while True:
-            line = p.stdout.readline()
-            nline +=1
-            #print(line)
-            if not line:
-                break
-            if nline == 3:
-                break
+    for job_id in check_job_completionID:
+        command = "sacct  -j %s --format State "%(job_id.decode("utf-8"))
+        print(command)
+        done = False
+        while not done:
+            # First check the status of your job with sacct
+            p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+            nline = 0
+            while True:
+                line = p.stdout.readline()
+                nline +=1
+                #print(line)
+                if not line:
+                    break
+                if nline == 3:
+                    break
 
-        result = str(line)
-        print('result = ', result)
-        if b"COMPLETE" in line:
-            print('YAY your job finished!')
-            done = True
-        elif b"FAILED" in line:
-            print('Job failed :( %s'%(check_job_completionID.decode("utf-8")))
-            done = True
-        elif np.logical_or(b"RUNNING" in line, b"PENDING" in line):
-            print('darn, still running, check back in 2 min')
-            time.sleep(120) # Sleep 2 min and then check back
+
+            result = str(line)
+            print('result = ', result)
+            if b"COMPLETE" in line:
+                print('YAY your job finished!')
+                done = True
+            elif b"FAILED" in line:
+                print('Job failed :( %s'%(job_id.decode("utf-8")))
+                done = True
+            elif np.logical_or(b"RUNNING" in line, b"PENDING" in line):
+                print('darn, still running, check back in 2 min')
+                time.sleep(120) # Sleep 2 min and then check back
 
     # Wait a little longer to make sure all jobs finished
-    time.sleep(300)
+    time.sleep(30)
     print(10* "*" + " You are all done with this job! " + 10* "*")
 
 
