@@ -171,7 +171,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         DEPEND, append_job_id = False, CIjob_id # no need for it to be dependent
     
     
-    np.savetxt(paths.data / 'RateData/CI_job_IDs.txt', np.c_[check_job_completionID],header = "# job IDs ", delimiter=',', fmt="%s")
+    np.savetxt(root_out_dir+'/RateData/CI_job_IDs.txt', np.c_[check_job_completionID],header = "# job IDs ", delimiter=',', fmt="%s")
 
 
     # ###########################

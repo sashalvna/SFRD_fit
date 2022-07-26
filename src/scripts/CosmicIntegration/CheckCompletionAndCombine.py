@@ -6,7 +6,6 @@ import os
 from subprocess import Popen, PIPE, call
 import subprocess
 import sys
-import paths
 import time
 from fnmatch import fnmatch
 import h5py
@@ -22,14 +21,15 @@ if __name__ == "__main__":
     CI.init()
 
 
-    check_job_completionID = np.loadtxt(paths.data / 'RateData/CI_job_IDs.txt', delimiter=',')
+    check_job_completionID = np.loadtxt(CI.data_dir+ '/RateData/CI_job_IDs.txt', delimiter=',')
     print('check_job_completionID', check_job_completionID)
 
     ###########################
     # Now wait for your (last) job to be done
     for job_id in check_job_completionID:
+        job_id=int(job_id)
         print('job_id', job_id)
-        command = "sacct  -j %s --format State "%(job_id.decode("utf-8"))
+        command = "sacct  -j %s --format State "%(job_id)
         print(command)
         done = False
         while not done:
@@ -49,13 +49,13 @@ if __name__ == "__main__":
             result = str(line)
             print('result = ', result)
             if b"COMPLETE" in line:
-                print('YAY your job finished! ID = %s'%(job_id.decode("utf-8")) )
+                print('YAY your job finished! ID = %s'%(job_id) )
                 done = True
             elif b"FAILED" in line:
-                print('Job failed :(  ID=%s'%(job_id.decode("utf-8")))
+                print('Job failed :(  ID=%s'%(job_id) )
                 done = True
             elif b"CANCELLED" in line:
-                print('Job was CANCELLED  ID=%s'%(job_id.decode("utf-8")))
+                print('Job was CANCELLED  ID=%s'%(job_id) )
                 done = True
             elif np.logical_or(b"RUNNING" in line, b"PENDING" in line):
                 print('darn, still running, check back in 2 min')
@@ -66,8 +66,10 @@ if __name__ == "__main__":
 
     # Copy your files into one filter for files with rate_file_name, but remove the extension .h5
     input_Ratedata_dir = '/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'
-    h5_copy_string = 'python %s/h5copy.py  %s -o %s --filter *%s  > %s'%(script_dir, input_Ratedata_dir, data_dir+'/RateData/'+rate_file_name, rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" )
+    h5_copy_string = 'python %s/h5copy.py  %s -o %s --filter *%s  > %s'%(CI.script_dir, input_Ratedata_dir, CI.data_dir+'/RateData/'+CI.rate_file_name, CI.rate_file_name[:-3] , CI.data_dir+"/slurm_out/combineh5.log" )
     
+    print(h5_copy_string)
+
     os.system(h5_copy_string)
-    # wait 1 min for h5copy to finish
-    time.sleep(60)
+    # wait 2 min for h5copy to finish
+    time.sleep(120)
