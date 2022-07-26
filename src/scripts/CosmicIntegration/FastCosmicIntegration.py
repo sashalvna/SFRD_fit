@@ -472,7 +472,7 @@ def find_detection_rate(path, filename="COMPAS_Output.h5", dco_type="BBH", weigh
     return detection_rate, formation_rate, merger_rate, redshifts, COMPAS, Average_SF_mass_needed, shell_volumes
 
 
-def append_rates(path, filename, outfilename, detection_rate, formation_rate, merger_rate, redshifts, COMPAS, Average_SF_mass_needed, shell_volumes, n_redshifts_detection,
+def append_rates(path, outfilename, detection_rate, formation_rate, merger_rate, redshifts, COMPAS, Average_SF_mass_needed, shell_volumes, n_redshifts_detection,
     maxz=5., sensitivity="O1", dco_type="BHBH", mu0=0.035, muz=-0.23, sigma0=0.39, sigmaz=0., alpha=0., aSF = 0.01, bSF = 2.77, cSF = 2.90, dSF = 4.70,
     append_binned_by_z = False, redshift_binsize=0.1):
     """
@@ -480,7 +480,6 @@ def append_rates(path, filename, outfilename, detection_rate, formation_rate, me
 
         Args:
             path                   --> [string] Path to the COMPAS file that contains the output
-            filename               --> [string] Name of the COMPAS file
             outfilename            --> [string] Name of the hdf5 file that you want to write your rates to
             detection_rate         --> [2D float array] Detection rate for each binary at each redshift in 1/yr
             formation_rate         --> [2D float array] Formation rate for each binary at each redshift in 1/yr/Gpc^3
@@ -515,19 +514,20 @@ def append_rates(path, filename, outfilename, detection_rate, formation_rate, me
     #################################################
     #Open hdf5 file that we will read from
     print('filename', filename)
-    with h5.File(path +'/'+ filename, 'r') as f_COMPAS:
+    with h5.File(path , 'r') as f_COMPAS:
         
         # Would you like to write your rates to a different file? 
-        if filename == outfilename:
-            raise ValueError('you cant append directly to the input data, will change outfilename to %s'%(outfilename))
+        if path == outfilename:
+            raise ValueError('you cant append directly to the input data, will change outfilename to %s'%(outfilename)+'_1')
+            outfilename = outfilename+'_1'
 
         #'you want to save your output to a different file!'
-        if os.path.exists(path + '/'+ outfilename):
+        if os.path.exists(outfilename):
             print('file', outfilename, 'exists!! You will remove it')
-            os.remove(path + '/'+ outfilename)
+            os.remove(outfilename)
             
-        print('writing to ', path+'/'+outfilename)
-        h_new = h5.File(path + '/'+ outfilename, 'w')
+        print('writing to ', outfilename)
+        h_new = h5.File(outfilename, 'w')
 
         # The rate info is shaped as BSE_Double_Compact_Objects[COMPAS.DCOmask] , len(redshifts)
         try: 
@@ -642,7 +642,7 @@ def append_rates(path, filename, outfilename, detection_rate, formation_rate, me
 
     #Always close your files again ;)
     h_new.close()
-    print( ('Done with append_rates :) your new files are here: %s/%s'%(path,filename)).replace('//', '/') )
+    print( ('Done with append_rates :) your new files are here: %s'%(outfilename)).replace('//', '/') )
 
 
 
@@ -840,7 +840,7 @@ if __name__ == "__main__":
     start_append = time.time()
     if args.append_rates:
         n_redshifts_detection = int(args.max_redshift_detection / args.redshift_step)
-        append_rates(args.path, args.fname, args.outfname, detection_rate, formation_rate, merger_rate, redshifts, COMPAS, Average_SF_mass_needed, shell_volumes, n_redshifts_detection,
+        append_rates(args.path + args.fname, args.outfname, detection_rate, formation_rate, merger_rate, redshifts, COMPAS, Average_SF_mass_needed, shell_volumes, n_redshifts_detection,
             maxz=args.max_redshift_detection, sensitivity=args.sensitivity, dco_type=args.dco_type, mu0=args.mu0, muz=args.muz, sigma0=args.sigma0, sigmaz=args.sigmaz, alpha=args.alpha,
             aSF = args.aSF,  bSF = args.bSF , cSF = args.cSF , dSF = args.dSF ,
             append_binned_by_z = args.binned_rates, redshift_binsize=args.zBinSize)
