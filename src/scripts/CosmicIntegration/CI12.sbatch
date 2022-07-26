@@ -21,5 +21,5 @@ export QT_QPA_PLATFORM=offscreen # To avoid the X Display error
 cd /n/home04/lvanson/SFRD_fit/src/scripts//CosmicIntegration/
 #
 # Run your job
-python FastCosmicIntegration.py  --path /n/home04/lvanson/SFRD_fit/src/data/ --filename COMPAS_Output_wWeights.h5 --outfname /RateData/12_Rate_info.h5 --mu0 0.025 --muz -0.049 --sigma0 1.129 --sigmaz 0.048 --alpha -1.778 --aSF 0.01 --bSF 2.6 --cSF 3.2 --dSF 6.2 --weight mixture_weight --zstep 0.01 --sens O3 --m1min 10. --dco_type BBH --redshiftBinSize 0.05 --maxzdet 0.5 > /n/home04/lvanson/SFRD_fit/src/data//slurm_out/CI12.log
+python FastCosmicIntegration.py  --path /n/home04/lvanson/SFRD_fit/src/data/ --filename COMPAS_Output_wWeights.h5 --outfname /n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/12_Rate_info.h5 --mu0 0.025 --muz -0.049 --sigma0 1.129 --sigmaz 0.048 --alpha -1.778 --aSF 0.01 --bSF 2.6 --cSF 3.2 --dSF 6.2 --weight mixture_weight --zstep 0.01 --sens O3 --m1min 10. --dco_type BBH --redshiftBinSize 0.05 --maxzdet 0.5 > /n/home04/lvanson/SFRD_fit/src/data//slurm_out/CI12.log
     

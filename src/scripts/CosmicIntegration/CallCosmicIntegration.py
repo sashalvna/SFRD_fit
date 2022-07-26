@@ -138,7 +138,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         DEPEND, append_job_id = False, 0
 
         # Flag to pass to FasCosmicIntegrator   #'/RateData/'+str(n_CI)+'_'+rate_file_name+\
-        Flags = " --path "+root_out_dir + " --filename "+COMPASfilename+" --outfname " + '/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'+str(n_CI)+'_'+rate_file_name+\
+        Flags = " --path "+root_out_dir + " --filename "+COMPASfilename+" --outfname " +'/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'+str(n_CI)+'_'+rate_file_name+\
         " --mu0 " +str(mu0)+" --muz "+str(muz)+" --sigma0 "+str(sigma0)+" --sigmaz "+str(sigmaz)+" --alpha "+str(alpha0)+\
         " --aSF " +str(sf_a)+" --bSF "+str(sf_b)+" --cSF "+str(sf_c)+" --dSF "+str(sf_d)+\
         " --weight "+"mixture_weight"+ " --zstep "+"0.01"+" --sens "+"O3"+ " --m1min "+"10."+ " --dco_type BBH"+\
@@ -163,7 +163,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         CIjob_id = RunSlurmBatch(run_dir = run_dir, job_name = job_name ,\
         dependency = DEPEND, dependent_ID = append_job_id)
 
-        if n_CI == 3:
+        if n_CI == 4:
             check_job_completionID = CIjob_id
         n_CI += 1
         DEPEND, append_job_id = False, CIjob_id # no need for it to be dependent
@@ -188,7 +188,6 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
             if nline == 3:
                 break
 
-
         result = str(line)
         print('result = ', result)
         if b"COMPLETE" in line:
@@ -202,13 +201,13 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
             time.sleep(120) # Sleep 2 min and then check back
 
     # Wait a little longer to make sure all jobs finished
-    time.sleep(30)
+    time.sleep(300)
     print(10* "*" + " You are all done with this job! " + 10* "*")
 
 
     # Copy your files into one filter for files with rate_file_name, but remove the extension .h5
     input_Ratedata_dir = '/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'
-    h5_copy_string = 'python %s/h5copy.py  %s -r 2 -o %s --filter *%s  > %s'%(script_dir, input_Ratedata_dir, data_dir+'/RateData/'+rate_file_name, rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" )
+    h5_copy_string = 'python %s/h5copy.py  %s -o %s --filter *%s  > %s'%(script_dir, input_Ratedata_dir, data_dir+'/RateData/'+rate_file_name, rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" )
     
     os.system(h5_copy_string)
     # wait 1 min for h5copy to finish
