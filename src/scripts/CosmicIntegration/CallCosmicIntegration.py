@@ -165,7 +165,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         dependency = DEPEND, dependent_ID = append_job_id)
 
         check_job_completionID.append(CIjob_id)
-        
+
         n_CI += 1
         DEPEND, append_job_id = False, CIjob_id # no need for it to be dependent
     
@@ -198,6 +198,9 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
                 done = True
             elif b"FAILED" in line:
                 print('Job failed :( %s'%(job_id.decode("utf-8")))
+                done = True
+            elif b"CANCELLED" in line:
+                print('Job was CANCELLED  %s'%(job_id.decode("utf-8")))
                 done = True
             elif np.logical_or(b"RUNNING" in line, b"PENDING" in line):
                 print('darn, still running, check back in 2 min')
