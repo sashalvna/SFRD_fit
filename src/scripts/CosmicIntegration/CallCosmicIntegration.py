@@ -148,8 +148,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         run_dir = script_dir +'/CosmicIntegration/'
 
         # Make and safe a slurm command
-        # job_line = "python FastCosmicIntegration.py "+Flags+" > "+ root_out_dir + "/slurm_out/"+job_name+".log"
-        job_line = "python test.py "
+        job_line = "python FastCosmicIntegration.py "+Flags+" > "+ root_out_dir + "/slurm_out/"+job_name+".log"
 
         # Make slurm script string
         interface_job_string = SlurmJobString % (job_name, number_of_nodes, number_of_cores, \
