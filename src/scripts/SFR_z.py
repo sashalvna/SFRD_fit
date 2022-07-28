@@ -37,6 +37,7 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 
 
 
+
 ########################################################
 # plot different SFRs
 ########################################################
@@ -52,21 +53,27 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
         x1 = cosmo.lookback_time(redshift_list)
 
 
-    # M&D 14
-    #ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list), 
-    #         label = 'Madau $\&$ Dickinson 2014\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.015,2.77,2.9,5.6)
-    #         , c = 'royalblue', ls = '--',lw=2)
+#     #default M&D 14
+#     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list), 
+#              label = 'Madau $\&$ Dickinson 2014\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.015,2.77,2.9,5.6)
+#              , c = 'royalblue', ls = '--',lw=2)
 
     #default Madau & Fragos 17
     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=0.01, b=2.6, c=3.2, d=6.2), 
              label = 'Madau $\&$ Fragos 2017\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.6,3.2,6.2)
-             , c = '#356288', ls = '-',lw=6)
+             , c = '#356288', ls = ':',lw=6)
 
-    #default Coen
-    ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=0.01, b=2.77, c=2.9, d=4.7), 
-             label = 'Neijssel et al 2019\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.77,2.9,4.7)
-             , c = 'grey', lw=5, ls = ':')#aacfdd
+#     #default Coen
+#     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=0.01, b=2.77, c=2.9, d=4.7), 
+#              label = 'Neijssel et al 2019\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.77,2.9,4.7)
+#              , c = '#aacfdd', lw=5, ls = '--')
 
+    # Some kind of max SFRD
+    #Resembling thick brown line in Fig. 11 Chruslinska + 2021
+    a_max, b_max, c_max, d_max = 0.04,2.5,2.9,4.5 
+    ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=a_max, b=b_max, c=c_max, d=d_max), 
+             label = 'Maximum SFRD \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
+             , c = 'brown', lw=5, ls = '-')
 
     # BEST FIT
     try:
@@ -104,7 +111,7 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     else:
         xobs = Lookbacktimes
 
-    ax.plot(xobs, np.sum(TNG_SFRD,axis=1), label = 'TNG', c = '#fe875d', lw=6)
+    ax.plot(xobs, np.sum(TNG_SFRD,axis=1), label = 'TNG100', c = '#fe875d', lw=6)
 
     ##########################################
     # Checking normalization of what I will fit
@@ -112,17 +119,18 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     center_Zbin = (MetalBins[:-1] + MetalBins[1:])/2.
     sfr = Z_SFRD.Madau_Dickinson2014(redshifts_TNG_inc, a=0.01, b=2.6, c=3.2,  d=6.2) # Msun year-1 Mpc-3 
     # Get dPdZ 
-    dPdlogZ, redshifts, metallicities, step_logZ, p_draw_metallicity = \
-                    Z_SFRD.skew_metallicity_distribution(mu_z =-0.1, mu_0 =0.025,
-                                                  sigma_0=1.9,sigma_z=1.9, alpha =-1.7, 
-                                                  metals=center_Zbin, redsh = redshifts_TNG_inc)
+    dPdlogZ, metallicities, step_logZ, p_draw_metallicity = \
+                    Z_SFRD.skew_metallicity_distribution(redshifts_TNG_inc, mu_z =-0.1, mu_0 =0.025,
+                                                  omega_0=1.9,omega_z=1.9, alpha =-1.7, 
+                                                  metals=center_Zbin)
+
     if x_redshift:
-        x  = redshifts
+        x  = redshifts_TNG_inc
     else:
-        x = cosmo.lookback_time(redshifts)
+        x = cosmo.lookback_time(redshifts_TNG_inc)
 
     # For each redshift in the TNG data:
-    for redshift_i in range(len(redshifts)):
+    for redshift_i in range(len(redshifts_TNG_inc)):
         SFRD = sfr[redshift_i] *dPdlogZ[redshift_i,:]#* step_logZ
 #         plt.scatter(x[redshift_i], np.sum(SFRD), c = 'r')
         #
@@ -138,11 +146,11 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
         ax.set_xlabel('$\mathrm{redshift}$', fontsize = 30)
 
         # Find loockback location for each of our redshifts
-        redshift_tick_list = [0, 1.0, 2, 3, 6, 10, 12]#[0, 0.5, 1.0, 1.5, 2, 3, 6, 10, 12]
+        redshift_tick_list = [0, 0.5, 2, 3, 6, 10, 12]#[0, 0.5, 1.0, 1.5, 2, 3, 6, 10, 12]
         # And annotate the tick labels :)
         ax2.set_xticks([z for z in redshift_tick_list])
-        ax2.set_xticklabels(['${:.1f}$'.format(cosmo.lookback_time(z).value) for z in redshift_tick_list], size = 25)
-        ax2.set_xlabel('$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 35)
+        ax2.set_xticklabels(['${:.1f}$'.format(cosmo.lookback_time(z).value) for z in redshift_tick_list])
+        ax2.set_xlabel('$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 20)
 
     else:
         ###################
@@ -155,8 +163,8 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
 
         # And annotate the tick labels :)
         ax2.set_xticks([cosmo.lookback_time(z).value for z in redshift_tick_list])
-        ax2.set_xticklabels(['${:g}$'.format(z) for z in redshift_tick_list], size = 25)
-        ax2.set_xlabel('$\mathrm{redshift}$', fontsize = 35)
+        ax2.set_xticklabels(['${:g}$'.format(z) for z in redshift_tick_list])
+        ax2.set_xlabel('$\mathrm{redshift}$', fontsize = 30)
 
 
     ##########################################################################
@@ -167,10 +175,8 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     logy = True
     if logy:
         plt.yscale('log')
-    ax.set_ylabel(r'$\frac{dM}{dt dV_c}$ $\mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$', fontsize = 35)
-    ax.set_ylim(1e-3, 0.2)
-    ax.tick_params(axis='both', which='minor', labelsize=25) 
-    ax.tick_params(axis='both', which='major', labelsize=25) 
+    ax.set_ylabel(r'$\frac{dM}{dt dV_c}$ $\mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$', fontsize = 30)
+    ax.set_ylim(1e-3, 1.)
     ax.legend()
     if x_redshift:
         print('saving here', save_loc + 'SFR_redshift'+'.pdf')
@@ -178,7 +184,7 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     else:
         print('saving here', save_loc + 'SFR_tlookback'+'.pdf')
         plt.savefig(save_loc + 'SFR_tlookback'+'.pdf',  bbox_inches='tight')
-    
+
     #plt.show()
     return
     
