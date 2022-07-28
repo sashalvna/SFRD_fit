@@ -35,6 +35,7 @@ importlib.reload(mfunc)
 import gc
 import paths
 
+import time
 
 ######################################
 ## locations
@@ -421,5 +422,8 @@ ax6 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',
 # Final plot properties
 fig.savefig(save_loc + '/Mass_distributions_'+ channel_string+'_SFRD_variations.pdf' , bbox_inches='tight')
 # plt.show()
+
+time.sleep(30)
+
 
 
