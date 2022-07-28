@@ -321,7 +321,7 @@ fig = plt.figure( figsize = (24, 28))
 #add first subplot in layout that has 3 rows and 2 columns
 subplot1 = fig.add_subplot(321)
 
-ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys  = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma0%s_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.8, 1.129, 1.4]],
+ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys  = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma0%s_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.7, 1.129, 2.0]],
                        show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color =  'navy',
                        only_CE = only_CE, only_stable = only_stable, 
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = "Width of metallicity dist."+"\n"+r"$\omega_0$, (scale $z=0$)",
@@ -339,7 +339,7 @@ ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 #add Second subplot in layout that has 3 rows and 2 columns
 subplot2 = fig.add_subplot(322)
 
-ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz%s_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.025, 0.048, 0.1]],
+ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz%s_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, 0.048, 0.1]],
                        show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#00a6a0', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = "Redshift evol. width of metallicity dist." +"\n"+ r"$\omega_z$, (scale z evol.)",
@@ -355,7 +355,7 @@ ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 #add third subplot in layout that has 3 rows and 2 columns
 subplot3 = fig.add_subplot(323)
 
-ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.015, 0.025, 0.035]],
+ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.007, 0.025, 0.035]],
                        show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#e1131d', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = 'Mean metallicity'+"\n"+r"$\mu_0$",
@@ -370,7 +370,7 @@ ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 #add 4th subplot in layout that has 3 rows and 2 columns
 subplot4 = fig.add_subplot(324)
 
-ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [-0.01, -0.049, -0.25]],
+ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -0.049, -0.5]],
                        show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ff717b', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', titletext = "Redshift evol. of mean metallicity" +"\n"+ r"$\mu_z$", 
@@ -386,7 +386,7 @@ ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 #add 5th subplot in layout that has 3 rows and 2 columns
 subplot5 = fig.add_subplot(325)
 
-ax5 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [-0.9, -1.778, -3.5]],
+ax5 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -1.778, -6.0]],
                        show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#acbf00', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Skewness of metallicity dist." +"\n"+ r"$\alpha$, (shape)", 
@@ -404,9 +404,9 @@ subplot6 = fig.add_subplot(326)
 
 
 ax6 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  
-                       rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.77_c2.9_d4.7',
+                       rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.6_c3.2_d6.2',
                                    'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913', 
-                                   'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.6_c3.2_d6.2'],
+                                   'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.04_b2.5_c2.9_d4.5'],
                        show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ecb05b', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Overall SFR history"+"\n"+ r'$ \mathrm{SFRD(}z\rm{)} \ [a,b,c,d]$', 
