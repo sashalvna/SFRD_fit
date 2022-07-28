@@ -143,10 +143,7 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
     ################################################
     # My Simulations
     ################################################
-    try:
-        DCO = mfunc.read_data(loc = sim_dir + '/' + simulation_data)
-    except:
-        print('data not found')
+    DCO = mfunc.read_data(loc = sim_dir + '/' + simulation_data)
 
     # We'll show the change in rate between SFRD at several reference masses
     m10, m25, m40 = [], [], []
