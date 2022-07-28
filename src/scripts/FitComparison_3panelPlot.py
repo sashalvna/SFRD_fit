@@ -202,12 +202,12 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, o
         # Get data for your model 
         #####################################
         # Get dPdZ 
-        dPdlogZ, redshifts, metallicities, step_logZ, p_draw_metallicity = \
+        dPdlogZ, metallicities, step_logZ, p_draw_metallicity = \
                         Z_SFRD.skew_metallicity_distribution(high_res_redshifts, mu_0=mu_0, mu_z=mu_z,alpha = alpha, 
                                                       omega_0=omega_0, omega_z =omega_z, 
                                                       metals = high_res_metals)
         # Get the SFR
-        sfr        = Z_SFRD.Madau_Dickinson2014(redshifts, a=a, b=b, c=c,  d=d) # Msun year-1 Mpc-3 
+        sfr        = Z_SFRD.Madau_Dickinson2014(high_res_redshifts, a=a, b=b, c=c,  d=d) # Msun year-1 Mpc-3 
         # Combine it into a SFRD
         model_SFRD = (sfr* dPdlogZ.T).value
 
@@ -239,11 +239,11 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, o
         # Get the data for Z-dep SFRD
         #####################################
         # Get dPdZ   #         neijssel_metals = np.logspace(-5., -0.5, 50)
-        neijssel_dPdlogZ, neijssel_redshifts, neijssel_metallicities, neijssel_step_logZ, p_draw_metallicity = \
+        neijssel_dPdlogZ, neijssel_metallicities, neijssel_step_logZ, p_draw_metallicity = \
                         Z_SFRD.skew_metallicity_distribution(high_res_redshifts, mu_0=0.035, mu_z=-0.23, alpha = 0, omega_0=0.39, omega_z =0, 
                             min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01, metals=high_res_metals)
         # Get the SFR Neijssel et al 2019:
-        neijssel_sfr = Z_SFRD.Madau_Dickinson2014(neijssel_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
+        neijssel_sfr = Z_SFRD.Madau_Dickinson2014(high_res_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
         Neijssel_SFRDzZ = (neijssel_sfr* neijssel_dPdlogZ.T).value
 
         greys = cm.get_cmap('Greys')
@@ -292,7 +292,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, o
     ##############################################################
     # New SFRD
     #############
-    low_res_dPdlogZ, low_res_redshifts, low_res_metallicities, step_logZ, p_draw_metallicity = \
+    low_res_dPdlogZ, low_res_metallicities, step_logZ, p_draw_metallicity = \
                     Z_SFRD.skew_metallicity_distribution(Obs_redshifts, mu_0=mu_0, mu_z=mu_z,alpha = alpha, 
                                                   omega_0=omega_0, omega_z =omega_z, min_logZ  =min_logZ, max_logZ  =max_logZ, step_logZ = step_logZ,
                                                   metals = Obs_center_Zbin)
@@ -306,7 +306,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, o
     # Neijssel +2019
     #############
     #  dPdZ   
-    low_res_neijssel_dPdlogZ, low_res_neijssel_redshifts, low_res_neijssel_metallicities, neijssel_step_logZ, p_draw_metallicity = \
+    low_res_neijssel_dPdlogZ, low_res_neijssel_metallicities, neijssel_step_logZ, p_draw_metallicity = \
                     Z_SFRD.skew_metallicity_distribution(Obs_redshifts, mu_0=0.035, mu_z=-0.23, alpha = 0, omega_0=0.39, omega_z =0, 
                         min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01, metals=Obs_center_Zbin)
     #  SFR Neijssel et al 2019:
