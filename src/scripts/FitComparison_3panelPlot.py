@@ -65,8 +65,8 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 #####################################
 mu0_best     = 0.025
 muz_best     = -0.049
-sigma0_best  = 1.129
-sigmaz_best  = 0.048
+omega0_best  = 1.129
+omegaz_best  = 0.048
 alpha0_best  = -1.778
 
 #####################################
@@ -82,7 +82,7 @@ sf_d_best     = 5.913
 ######################################
 # SFRD comparison plot
 ######################################
-def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, sigma_0=1.129, sigma_z =0.048,
+def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, omega_0=1.129, omega_z =0.048,
                     a=0.017, b=1.481, c=4.452,  d=5.913,
                     min_logZ  = -12.0, max_logZ  =0.0, step_logZ = 0.01,
                     tmin = 0.0, tmax = 13.7, add_TNG = True, 
@@ -112,8 +112,8 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
     fit_values_string = r'$\mathrm{Cosmic \ metallicity \ dist.}$'+'\n'+\
                     r'$\mu_0=%s,$'%(np.round(mu_0,3)) +'\n'+\
                     r'$\mu_z=%s,$'%(np.round(mu_z,3)) +'\n'+\
-                    r'$\omega_0=%s,$'%(np.round(sigma_0,3)) +'\n'\
-                    r'$\omega_z=%s,$'%(np.round(sigma_z,3)) +'\n'\
+                    r'$\omega_0=%s,$'%(np.round(omega_0,3)) +'\n'\
+                    r'$\omega_z=%s,$'%(np.round(omega_z,3)) +'\n'\
                     r'$a_0=%s$'%(np.round(alpha,3))
 
     SFR_fit_string = r'$\mathrm{Star \ formation \ rate}$'+'\n'+\
@@ -204,7 +204,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
         # Get dPdZ 
         dPdlogZ, redshifts, metallicities, step_logZ, p_draw_metallicity = \
                         Z_SFRD.skew_metallicity_distribution(mu_0=mu_0, mu_z=mu_z,alpha = alpha, 
-                                                      sigma_0=sigma_0, sigma_z =sigma_z, 
+                                                      omega_0=omega_0, omega_z =omega_z, 
                                                       metals = high_res_metals, redsh = high_res_redshifts)
         # Get the SFR
         sfr        = Z_SFRD.Madau_Dickinson2014(redshifts, a=a, b=b, c=c,  d=d) # Msun year-1 Mpc-3 
@@ -240,7 +240,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
         #####################################
         # Get dPdZ   #         neijssel_metals = np.logspace(-5., -0.5, 50)
         neijssel_dPdlogZ, neijssel_redshifts, neijssel_metallicities, neijssel_step_logZ, p_draw_metallicity = \
-                        Z_SFRD.skew_metallicity_distribution(mu_0=0.035, mu_z=-0.23, alpha = 0, sigma_0=0.39, sigma_z =0, 
+                        Z_SFRD.skew_metallicity_distribution(mu_0=0.035, mu_z=-0.23, alpha = 0, omega_0=0.39, omega_z =0, 
                             min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01, metals=high_res_metals, redsh = high_res_redshifts)
         # Get the SFR Neijssel et al 2019:
         neijssel_sfr = Z_SFRD.Madau_Dickinson2014(neijssel_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
@@ -294,7 +294,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
     #############
     low_res_dPdlogZ, low_res_redshifts, low_res_metallicities, step_logZ, p_draw_metallicity = \
                     Z_SFRD.skew_metallicity_distribution(mu_0=mu_0, mu_z=mu_z,alpha = alpha, 
-                                                  sigma_0=sigma_0, sigma_z =sigma_z, min_logZ  =min_logZ, max_logZ  =max_logZ, step_logZ = step_logZ,
+                                                  omega_0=omega_0, omega_z =omega_z, min_logZ  =min_logZ, max_logZ  =max_logZ, step_logZ = step_logZ,
                                                   metals = Obs_center_Zbin, redsh = Obs_redshifts)
     #  SFR
     low_res_sfr        = Z_SFRD.Madau_Dickinson2014(Obs_redshifts, a=sf_a_best, b=sf_b_best, c=sf_c_best,  d=sf_d_best) # Msun year-1 Mpc-3 
@@ -307,7 +307,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
     #############
     #  dPdZ   
     low_res_neijssel_dPdlogZ, low_res_neijssel_redshifts, low_res_neijssel_metallicities, neijssel_step_logZ, p_draw_metallicity = \
-                    Z_SFRD.skew_metallicity_distribution(mu_0=0.035, mu_z=-0.23, alpha = 0, sigma_0=0.39, sigma_z =0, 
+                    Z_SFRD.skew_metallicity_distribution(mu_0=0.035, mu_z=-0.23, alpha = 0, omega_0=0.39, omega_z =0, 
                         min_logZ  =-12.0, max_logZ  =0.0, step_logZ = 0.01, metals=Obs_center_Zbin, redsh = Obs_redshifts)
     #  SFR Neijssel et al 2019:
     low_res_neijssel_sfr    = Z_SFRD.Madau_Dickinson2014(Obs_redshifts, a=0.01, b=2.77, c=2.9, d=4.7) # Msun year-1 Mpc-3 
@@ -451,7 +451,7 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, s
 #       Call plot                                                                              #   
 #                                                                                               #
 #################################################################################################
-three_panel_SFRD_plot(mu_0=mu0_best, mu_z=muz_best,alpha = alpha0_best, sigma_0=sigma0_best, sigma_z =sigmaz_best,
+three_panel_SFRD_plot(mu_0=mu0_best, mu_z=muz_best,alpha = alpha0_best, omega_0=omega0_best, omega_z =omegaz_best,
                     a=sf_a_best, b=sf_b_best, c=sf_c_best,  d=sf_d_best,
                     min_logZ  = -12.0, max_logZ  =0.0, step_logZ = 0.01,
                     add_TNG = False, plot_dPdZcontours = True, neijssel_fit = True,
