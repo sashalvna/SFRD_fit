@@ -180,15 +180,16 @@ The first term is the star formation rate density, \SFRDz, that is the amount of
 
 % $a=0.02$, $b=1.48$, $c=4.45$ and $d=5.9$ as best fitting parameters,
 \subsection{The metallicity probability density function}
-For the probability distribution of metallicities we draw inspiration from the approach by \citep[e.g.\ ][]{Neijssel+2019} who used a log-normal distribution. Unfortunately, this expression does not capture the asymmetry well that we see in the results of the cosmological simulations, which show an extended tail towards low metallicity combined with a very limited tail towards higher metallicity, when plotted as a function of $\log_{10} Z$. To capture this behavior we adopt a skewed-log-normal distribution instead. This is an extension of the normal distribution that introduces an additional shape parameter, $\alpha$, that regulates the skewness \citep{Ohagan+1976}. %This allows us to more accurately capture the asymmetry in the metallicity distribution at each redshift.
+For the probability distribution of metallicities we draw inspiration from the approach by \citep[e.g.\ ][]{Neijssel+2019} who used a log-normal distribution. Unfortunately, this expression does not capture the asymmetry well that we see in the results of the cosmological simulations, which show an extended tail towards low metallicity combined with a very limited tail towards higher metallicity, when plotted as a function of $\log_{10} Z$. To capture this behavior we adopt a skewed-log-normal distribution instead. This is an extension of the normal distribution that introduces an additional shape parameter, $\alpha$, that regulates the skewness \citep[first introduced by][]{Ohagan+1976}. %for a more clear derivation
+%This allows us to more accurately capture the asymmetry in the metallicity distribution at each redshift.
 
 The skewed-log-normal distribution of metallicities is defined as:
-
+% See eq. 1 here: https://www.emis.de/journals/RCE/V36/v36n1a03.pdf
 \begin{equation}
 \begin{aligned}
 \label{eq: pure log skew}
 \mathrm{\frac{dP}{dZ}}(Z) &= \frac{1}{Z} \times \frac{\rm dP}{{\rm d}\ln Z}  \\
-&= \frac{2}{Z} \times
+&= \frac{1}{Z} \times \frac{2}{\omega}
     \underbrace { \phi \left(\frac{\ln Z - \xi}{\omega}\right)
                  }_{(1)}
     \underbrace {
@@ -204,7 +205,7 @@ The skewed-log-normal distribution of metallicities is defined as:
 \label{eq: log normal and CDF}
  \phi \left(\frac{\ln Z - \xi}{\omega}\right) \equiv 
 % \underbrace{
-    \frac{1}{\omega \sqrt{2 \pi}} 
+    \frac{1}{\sqrt{2 \pi}} 
     \exp{
          \left\{
             -\frac{1}{2} \left(\frac{\ln Z - \xi}{\omega}\right)^2
@@ -218,17 +219,17 @@ and (2) is the new term that allows for asymmetry, which is equal to the cumulat
  \Phi\left(\alpha \frac{\ln Z - \xi}{\omega} \right) &\equiv 
 % \underbrace {
     \frac{1}{2} 
-    \left( 
+    \left[ 
         1 + {\rm erf}
             \left\{
 %                \frac{ \left(\alpha \frac{\ln(Z) - \xi}{\omega} \right)  }{\sqrt{2}} 
                 \alpha \frac{\ln Z - \xi}{\omega \sqrt{2}}
             \right\} 
-    \right) \\
+    \right] \\
     %}_{(2)}.
-  &=    \frac{1}{2} 
-       \int_{\infty}^{\alpha\left( \frac{\ln Z -\xi}{\omega}\right)}
-       \frac{1}{\sqrt{2\pi}}e^{-t^2/2}dt
+%   &=    %%% I dont think this belongs here: \frac{1}{2} 
+%       \int_{\infty}^{\alpha\left( \frac{\ln Z -\xi}{\omega}\right)}
+%       \frac{1}{\sqrt{2\pi}}e^{-t^2/2}dt
     \end{array}
 \end{equation}
 
@@ -237,11 +238,12 @@ and (2) is the new term that allows for asymmetry, which is equal to the cumulat
 
 \paragraph{The location and the mean of the metallicity distribution}
 To obtain a useful expression for the redshift dependence of the ``location'' $\xi(z)$ we first express the expectation value or mean metallicity at a given redshift
-
+% eq. 8 here: https://www-sciencedirect-com.ezp-prod1.hul.harvard.edu/science/article/pii/S0021850219300400
+% Using k = 1 for the first moment
 \begin{equation}
  \langle  Z \rangle 
  = 2 \exp
-        \left( \frac{\xi\,\omega^2}{2} \right)
+        \left(\xi +  \frac{\omega^2}{2} \right)
          \Phi\left(\beta\, \omega\right)
  \label{eqn:Zmean}
 \end{equation}
@@ -250,6 +252,8 @@ where $\beta$ is
 \label{eq: beta}
 \beta = \frac{\alpha}{\sqrt{1 + \alpha^2} }.
 \end{equation}
+
+For a more extended derivation of the moments of the skewed-log-normal, see e.g., \cite{WANG201995}.
 
 \noindent For the evolution of the mean metallicity with redshift we follow \cite{Langer2006} and \cite{Neijssel+2019} in assuming that the mean of the probability density function of metallicities evolves with redshift as:
 \begin{equation}
@@ -262,9 +266,14 @@ $ is the mean metallicity at redshift 0, and $\mu_z
 %= -0.048
 $ determines redshift evolution of the location. Equating this to Equation~\ref{eqn:Zmean}, we get an expression for $\xi(z)$,
 
+% \begin{equation}
+% \label{eq mu z}
+%     \xi(z) = -\frac{\omega^2}{2}\, \ln\left(\frac{  \mu_0 \cdot 10^{\mu_z \cdot z} }{2\, \Phi(\beta\, \omega)}  \right).
+% \end{equation}
+
 \begin{equation}
 \label{eq mu z}
-    \xi(z) = -\frac{\omega^2}{2}\, \ln\left(\frac{  \mu_0 \cdot 10^{\mu_z \cdot z} }{2\, \Phi(\beta\, \omega)}  \right).
+    \xi(z) = \ln\left(\frac{  \mu_0 \cdot 10^{\mu_z \cdot z} }{2\, \Phi(\beta\, \omega)}  \right) - \frac{\omega^2}{2}.
 \end{equation}
 
 \paragraph{The scale (and variance) of the metallicity distribution}
@@ -296,7 +305,7 @@ In summary, Equation~\ref{eq: pure log skew} becomes:
 \begin{equation}
 \label{eq: z log skew}
 \boxed{
-    \dPdZ = \frac{2}{Z} \times \phi \left(\frac{\ln Z - \xi(z)}{\omega(z)}\right) \Phi\left(\alpha \frac{\ln Z - \xi(z)}{\omega(z)} \right)
+    \dPdZ = \frac{2}{\omega(z) Z} \times \phi \left(\frac{\ln Z - \xi(z)}{\omega(z)}\right) \Phi\left(\alpha \frac{\ln Z - \xi(z)}{\omega(z)} \right)
     } \ , 
 \end{equation}
 
@@ -382,9 +391,10 @@ We first consider a given redshift $z_j$.  For this redshift we compute the sum 
     %chi_square = ((obs - model )**2)/np.sum(model) 
 \end{equation}
 %
-Here, the variable $Z_i$ runs over all redshift bins, but excludes bins where the star formation rate density is lower $10^{-10} \Msun \yr \Mpc^{-3}$ per bin. 
-
-Subsequently we sum the $\chi^2 (z_j)$ for all redshift bins $z_j$. To ensure that our fit procedure gives sufficient weight to the behaviour at all redshifts, we find that we need to introduce a penalisation factor to somewhat reduce the contribution of redshifts where the peak of cosmic star formation occurs, while increasing the weight where at redshifts where the overall cosmic star formation rate is lower.  To achieve this we divide $\chi^2 (z_j)$ by the star formation $\sum_{Z_i} \mathcal{S}(Z_i,z_j)$ per redshift bin before adding the contribution of all redshifts.  Our final expression for the cost function reads
+Here, the variable $Z_i$ runs over all redshift bins.
+%, but excludes bins where the star formation rate density is lower $10^{-10} \Msun \yr \Mpc^{-3}$ per bin. 
+% Subsequently we sum the $\chi^2 (z_j)$ for all redshift bins $z_j$. 
+We are particularly interested in properly fitting the low metallicity star formation at high redshifts. At high redshifts, the overall cosmic star formation rate is generally lower. To ensure that our fit procedure gives sufficient weight to the behaviour at all redshifts, we introduce a penalisation factor to somewhat reduce the contribution of redshifts where the peak of cosmic star formation occurs, while increasing the weight where at redshifts where the overall cosmic star formation rate is lower.  To achieve this we divide $\chi^2 (z_j)$ by the star formation $\sum_{Z_i} \mathcal{S}(Z_i,z_j)$ per redshift bin before adding the contribution of all redshifts.  Our final expression for the cost function reads
 
 \begin{equation}
 \label{eq: cost function}
@@ -448,7 +458,8 @@ Adopting a skewed-lognormal metallicity distribution allows for a tail of low me
 \begin{figure*}
 \centering
 \script{Plot_Mass_distributions.py}
-\includegraphics[width=0.8\textwidth]{figures/Mass_distributions_all_SFRD_variations.pdf}
+\includegraphics[width=0.8\textwidth]{figures/Mass_distributions_stable_SFRD_variations.pdf}
+% \includegraphics[width=0.8\textwidth]{figures/Mass_distributions_all_SFRD_variations.pdf}
 \caption{The primary mass distribution of merging BBH systems from isolated binary evolution for several variations in \SFRDzZ. 
 The first five panels show variations of the cosmic metallicity distribution  \dpdZ (eq. \ref{eq: z log skew}, parameters listed in the first three columns of Table \ref{tab: fit params}). The bottom right panel shows variations in the magnitude of the star formation rate with redshift, i.e. \SFRDz. For the latter we vary the four fiducial parameters of \SFRDz simultaneously (last two columns of Table \ref{tab: fit params}). All panels are shown at a reference redshift of $z=0.2$, with the corresponding predicted BBH merger rate annotated in the legend. We show the power-law + peak model from \protect\cite{GWTC3_popPaper2021} in grey. Lastly we annotate the relative change in the rate at three reference masses: $10\Msun$, $25\Msun$ and $40\Msun$. Variations in \SFRDzZ have the largest impact on the high mass end of the distribution, while around $\Mbheen=10$, variations are smaller than a factor of 3.  
   \label{fig: mass dists}}
@@ -496,13 +507,16 @@ By reducing the amount of low-metallicity star formation at high redshifts, form
 
 
 % Effect of the star formation 
-Lastly, changing the \SFRDz has a relatively small effect. We vary the \SFRDz to match the form described in \cite{Madau+2017} and \cite{Neijssel+2019} respectively. Both these variations peak at approximately redshift 2. Our fiducial model (that follows the \SFRDz from TNG) peaks at about redshift 2.8. The overall normalisation of \cite{Neijssel+2019} is higher than the normalisation of our fiducial model. Regardless of these differences, the rate of BBH mergers at $z=0.2$ changes no more than $20\%$, and the shape of the primary mass distribution remains almost constant. We understand this small effect as follows: our fiducial metallicity distribution \dpdZ is almost constant up to redshift $\sim3$. Hence shifting the location of the peak \SFRDz from 2.8 to 2 has a small effect. Furthermore, even though these models have varying peak values for \SFRDz, the integrated total stellar mass formed is similar between the models. %\todo{add value here}
-
+Lastly, changing the \SFRDz has a relatively small effect. 
+\todo{this is in line with findings from \citep{Tang+2020}.}
+We vary the \SFRDz to match the form described in \cite{Madau+2017} and \cite{Neijssel+2019} respectively. Both these variations peak at approximately redshift 2. Our fiducial model (that follows the \SFRDz from TNG) peaks at about redshift 2.8. The overall normalisation of \cite{Neijssel+2019} is higher than the normalisation of our fiducial model. Regardless of these differences, the rate of BBH mergers at $z=0.2$ changes no more than $20\%$, and the shape of the primary mass distribution remains almost constant. We understand this small effect as follows: our fiducial metallicity distribution \dpdZ is almost constant up to redshift $\sim3$. Hence shifting the location of the peak \SFRDz from 2.8 to 2 has a small effect. Furthermore, even though these models have varying peak values for \SFRDz, the integrated total stellar mass formed is similar between the models. %\todo{add value here}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Summary \label{sec: summary}}
+\section{Discussion \& ? Summary \label{sec: summary}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\todo{\cite{chruslinska2022_review} Fig. 5 actually shows that the \textit{shape} of the mass distribution is \textit{not at all} impacted that much by the SFRD!!}
+
 We present a flexible analytic expression for the metallicity-dependent star formation rate, \SFRDzZ (equations \ref{eq: total sfrd}, \ref{eq: z log skew} and \ref{eq: sfr1}). An analytical expression allows for controlled experiments of the effect of \SFRDzZ on dependent values, such as the rate and mass distribution of merging BBHs. The novelty of the model presented in this work is that it adopts a skewed-lognormal for the distribution of metallicities at every redshift (\dpdZ). 
 
 \paragraph{The model can capture the general behaviour of cosmological simulations, such as TNG100}
@@ -537,6 +551,24 @@ Our hope is that this expression will provide a useful starting point for making
 The authors acknowledge partial financial support from the  National Science Foundation under Grant No. (NSF grant number 2009131  and PHY-1748958).”
 , the Netherlands Organisation for Scientific Research (NWO) as part of the Vidi research program BinWaves with project number 639.042.728 and the European Union’s Horizon 2020 research and innovation program from the European Research Council (ERC, Grant agreement No. 715063). 
 \end{acknowledgments}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Yield per metallicity and mass \label{app: mass metal yield}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The yield of merging BBH with certain masses, per star forming mass per metallicity
+
+%%%%%%%%%%%%%%%%%%%%%
+% Rate - mass
+% \begin{figure}
+% \includegraphics[width=0.49\textwidth]{figures/yield_per_mass_and_metals.png} 
+% \caption{The yield of merging BBH with certain masses, per star forming mass per metallicity}
+% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
