@@ -45,7 +45,7 @@ rate_file       = '/RateData/Rate_info.h5'#'/RateData/small_Rate_info.h5' #
 simulation_data = '/COMPAS_Output_wWeights.h5'#'/small_COMPAS_Output_wWeights.h5' #
 
 only_stable = True 
-only_CE = True
+only_CE = False
  
 
 if np.logical_and(only_stable, only_CE):
@@ -322,7 +322,7 @@ fig = plt.figure( figsize = (24, 28))
 subplot1 = fig.add_subplot(321)
 
 ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys  = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma0%s_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.8, 1.129, 1.4]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color =  'navy',
+                       show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color =  'navy',
                        only_CE = only_CE, only_stable = only_stable, 
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = "Width of metallicity dist."+"\n"+r"$\omega_0$, (scale $z=0$)",
                        labels = [r'$\mathrm{Narrow: \ }  (\omega_0 = 0.800) \  \mathcal{R}_{0.2} = \ $',
@@ -340,7 +340,7 @@ ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 subplot2 = fig.add_subplot(322)
 
 ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz%s_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.025, 0.048, 0.1]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#00a6a0', 
+                       show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#00a6a0', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = "Redshift evol. width of metallicity dist." +"\n"+ r"$\omega_z$, (scale z evol.)",
                        labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\omega_z = 0.025) \ \mathcal{R}_{0.2} = \ $',
@@ -356,7 +356,7 @@ ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 subplot3 = fig.add_subplot(323)
 
 ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.015, 0.025, 0.035]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#e1131d', 
+                       show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#e1131d', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = 'Mean metallicity'+"\n"+r"$\mu_0$",
                        labels = [r'$\mathrm{low \ <Z_0> : \ } \phantom{x} (\mu_0 = 0.015) \ \mathcal{R}_{0.2} = \ $',
@@ -371,7 +371,7 @@ ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 subplot4 = fig.add_subplot(324)
 
 ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [-0.01, -0.049, -0.25]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#ff717b', 
+                       show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ff717b', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', titletext = "Redshift evol. of mean metallicity" +"\n"+ r"$\mu_z$", 
                        labels = [r'$\mathrm{Flat: \ } \phantom{xxi} (\mu_z = -0.01) \ \mathcal{R}_{0.2} = \ $',
@@ -387,7 +387,7 @@ ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_
 subplot5 = fig.add_subplot(325)
 
 ax5 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [-0.9, -1.778, -3.5]],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#acbf00', 
+                       show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#acbf00', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Skewness of metallicity dist." +"\n"+ r"$\alpha$, (shape)", 
                        labels = [r'$\mathrm{Symmetric: \ } (\alpha = -0.9)   \ \mathcal{R}_{0.2} = \ $',
@@ -407,12 +407,12 @@ ax6 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',
                        rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.77_c2.9_d4.7',
                                    'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913', 
                                    'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.6_c3.2_d6.2'],
-                       show_hist = False, show_KDE = True, kde_width = 0.07, plot_LIGO = True, Color = '#ecb05b', 
+                       show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ecb05b', 
                        only_CE = only_CE, only_stable = only_stable,
                        bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Overall SFR history"+"\n"+ r'$ \mathrm{SFRD(}z\rm{)} \ [a,b,c,d]$', 
-                       labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \ \mathcal{R}_{0.2}= \ $', 
+                       labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \phantom{xxx} \ \mathcal{R}_{0.2}= \ $', 
                                  r'$\mathrm{Fiducial: \ } \phantom{xxxxxxxxx} \ \mathcal{R}_{0.2}= \ $', 
-                                 r'$\mathrm{Neijssel \ et \ al. \ 2019:  \phantom{xi}  }  \ \mathcal{R}_{0.2} = \ $'],
+                                 r'$\mathrm{Max \ SB: \ B18/C17, \ Chruslinska \ et \ al. \ 2021:}  \ \mathcal{R}_{0.2} = \ $'],
                         multipanel = True, subplot = subplot6)
 
 
