@@ -339,9 +339,9 @@ for i in range(2):
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color =  'navy',
                            only_CE = only_CE, only_stable = only_stable, 
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = "Width of metallicity dist."+"\n"+r"$\omega_0$, (scale $z=0$)",
-                           labels = [r'$\mathrm{Narrow: \ }  (\omega_0 = 0.800) \  \mathcal{R}_{0.2} = \ $',
-                                     r'$\mathrm{Fiducial: \ } (\omega_0 = 1.125) \ \mathcal{R}_{0.2}= \ $', 
-                                     r'$\mathrm{Wide: \ } \phantom{xx} (\omega_0 = 1.400) \  \mathcal{R}_{0.2} = \ $'],
+                           labels = [r'$\mathrm{Narrow: \ }  (\omega_0 = 0.70) \  \mathcal{R}_{0.2} = \ $',
+                                     r'$\mathrm{Fiducial: \ } (\omega_0 = 1.13) \ \mathcal{R}_{0.2}= \ $', 
+                                     r'$\mathrm{Wide: \ } \phantom{xx} (\omega_0 = 2.00) \  \mathcal{R}_{0.2} = \ $'],
                           multipanel = True, subplot = subplot1)
 
     # 'Rates_mu00.025_muz-0.049_alpha-3.5_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913
@@ -357,9 +357,9 @@ for i in range(2):
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#00a6a0', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = "Redshift evol. width of metallicity dist." +"\n"+ r"$\omega_z$, (scale z evol.)",
-                           labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\omega_z = 0.025) \ \mathcal{R}_{0.2} = \ $',
-                                     r'$\mathrm{Fiducial: \ } \phantom{xxi} (\omega_z = 0.050) \ \mathcal{R}_{0.2}= \ $', 
-                                     r'$\mathrm{Steep \ width: \ } (\omega_z = 0.100) \ \mathcal{R}_{0.2} = \ $'],
+                           labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\omega_z = 0.00) \ \mathcal{R}_{0.2} = \ $',
+                                     r'$\mathrm{Fiducial: \ } \phantom{xxi} (\omega_z = 0.05) \ \mathcal{R}_{0.2}= \ $', 
+                                     r'$\mathrm{Steep \ width: \ } (\omega_z = 0.10) \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot2)
 
 
@@ -373,7 +373,7 @@ for i in range(2):
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#e1131d', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = 'Mean metallicity'+"\n"+r"$\mu_0$",
-                           labels = [r'$\mathrm{low \ <Z_0> : \ } \phantom{x} (\mu_0 = 0.015) \ \mathcal{R}_{0.2} = \ $',
+                           labels = [r'$\mathrm{low \ <Z_0> : \ } \phantom{x} (\mu_0 = 0.007) \ \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{Fiducial : \ } \phantom{xxxi} (\mu_0 = 0.025) \ \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{high \ <Z_0> : \ } \phantom{i} (\mu_0 = 0.035) \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot3)
@@ -388,9 +388,9 @@ for i in range(2):
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ff717b', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', titletext = "Redshift evol. of mean metallicity" +"\n"+ r"$\mu_z$", 
-                           labels = [r'$\mathrm{Flat: \ } \phantom{xxi} (\mu_z = -0.01) \ \mathcal{R}_{0.2} = \ $',
+                           labels = [r'$\mathrm{Flat: \ } \phantom{xxi} (\mu_z = 0.0) \ \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{Fiducial: \ } (\mu_z = -0.05) \ \mathcal{R}_{0.2}= \ $', 
-                                     r'$\mathrm{Steep: \ } \phantom{xx} (\mu_z = -0.25) \ \mathcal{R}_{0.2} = \ $'],
+                                     r'$\mathrm{Steep: \ } \phantom{xx} (\mu_z = -0.5) \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot4)
 
 
@@ -404,9 +404,9 @@ for i in range(2):
                            show_hist = False, show_KDE = True, kde_width = 0.15, plot_LIGO = True, Color = '#acbf00', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Skewness of metallicity dist." +"\n"+ r"$\alpha$, (shape)", 
-                           labels = [r'$\mathrm{Symmetric: \ } (\alpha = -0.9)   \ \mathcal{R}_{0.2} = \ $',
+                           labels = [r'$\mathrm{Symmetric: \ } (\alpha = 0.0)   \ \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{Fiducial: \  } \phantom{xx} (\alpha = -1.77)  \ \mathcal{R}_{0.2}= \ $', 
-                                     r'$\mathrm{Skewed: \    } \phantom{xxi} (\alpha = -3.5)  \ \mathcal{R}_{0.2} = \ $'],
+                                     r'$\mathrm{Skewed: \    } \phantom{xxi} (\alpha = -6)  \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot5)
 
 
