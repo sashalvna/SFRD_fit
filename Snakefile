@@ -13,6 +13,8 @@ rule CosmicIntegration:
         "src/scripts/CosmicIntegration/CallCosmicIntegration.py"
 
 rule combineFiles:
+    input: 
+        "src/data/RateData/CI_job_IDs.txt"
     output:
         "src/data/RateData/Rate_info.h5"
     cache:
