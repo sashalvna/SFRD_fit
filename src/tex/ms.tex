@@ -459,12 +459,22 @@ Adopting a skewed-lognormal metallicity distribution allows for a tail of low me
 \centering
 \script{Plot_Mass_distributions.py}
 \includegraphics[width=0.8\textwidth]{figures/Mass_distributions_stable_SFRD_variations.pdf}
-\includegraphics[width=0.8\textwidth]{figures/Mass_distributions_CE_SFRD_variations.pdf}
-% \includegraphics[width=0.8\textwidth]{figures/Mass_distributions_all_SFRD_variations.pdf}
-\caption{The primary mass distribution of merging BBH systems from isolated binary evolution for several variations in \SFRDzZ. 
+\caption{The primary mass distribution of merging BBH systems from the stable mass transfer channel for several variations in \SFRDzZ. 
 The first five panels show variations of the cosmic metallicity distribution  \dpdZ (eq. \ref{eq: z log skew}, parameters listed in the first three columns of Table \ref{tab: fit params}). The bottom right panel shows variations in the magnitude of the star formation rate with redshift, i.e. \SFRDz. For the latter we vary the four fiducial parameters of \SFRDz simultaneously (last two columns of Table \ref{tab: fit params}). All panels are shown at a reference redshift of $z=0.2$, with the corresponding predicted BBH merger rate annotated in the legend. We show the power-law + peak model from \protect\cite{GWTC3_popPaper2021} in grey. Lastly we annotate the relative change in the rate at three reference masses: $10\Msun$, $25\Msun$ and $40\Msun$. Variations in \SFRDzZ have the largest impact on the high mass end of the distribution, while around $\Mbheen=10$, variations are smaller than a factor of 3.  
   \label{fig: mass dists}}
 \end{figure*}
+
+\begin{figure*}
+\centering
+\script{Plot_Mass_distributions.py}
+\includegraphics[width=0.8\textwidth]{figures/Mass_distributions_CE_SFRD_variations.pdf}
+\caption{Same as Figure \ref{fig: mass dists}, but for the Common envelope channel. 
+   \label{fig: mass dists}
+  }
+\end{figure*}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We will now demonstrate the application of our analytical model by systematically varying the parameters in our fiducial \SFRDzZ model, and investigate their effect on the local mass distribution of BBH mergers originating from isolated binaries. 
@@ -557,6 +567,19 @@ The authors acknowledge partial financial support from the  National Science Fou
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
+
+\section{Determining reasonable variations of the \SFRDzZ}
+
+
+\begin{figure}
+\centering
+\script{LowHighZ_fraction.py}
+\includegraphics[width=0.8\textwidth]{figures/High_Low_metalFractionSFMass.pdf}
+\caption{Fraction of high vs low metallicity stellar mass.
+   \label{fig: low high Z fraction}
+  }
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Yield per metallicity and mass \label{app: mass metal yield}}

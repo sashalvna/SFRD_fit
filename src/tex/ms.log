@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  29 JUL 2022 00:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  29 JUL 2022 11:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -522,7 +522,14 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count336
 \l__pdf_internal_box=\box84
 )
-(./ms.aux)
+(./ms.aux
+
+LaTeX Warning: Label `fig: mass dists' multiply defined.
+
+
+LaTeX Warning: Label `fig: mass dists' multiply defined.
+
+)
 \openout1 = `ms.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
@@ -543,8 +550,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
 LaTeX Font Info:    ... okay on input line 68.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 68.
 LaTeX Font Info:    ... okay on input line 68.
-
-(/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count337
 \scratchdimen=\dimen176
@@ -639,20 +645,16 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Class revtex4-1 Warning: Assuming \noaffiliation for authors.
 
 
-Package natbib Warning: Citation `GWTC1' on page 1 undefined on input line 138.
+Package natbib Warning: Citation `Chruslinska+2018' on page 1 undefined on inpu
+t line 141.
 
 
-
-Package natbib Warning: Citation `GWTC2' on page 1 undefined on input line 138.
-
-
-
-Package natbib Warning: Citation `GWTC3' on page 1 undefined on input line 138.
+Package natbib Warning: Citation `Madau+2017' on page 1 undefined on input line
+ 143.
 
 
-
-Package natbib Warning: Citation `chruslinska2022_review' on page 1 undefined o
-n input line 138.
+Package natbib Warning: Citation `Neijssel+2019' on page 1 undefined on input l
+ine 143.
 
 [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 Underfull \hbox (badness 1163) in paragraph at lines 176--178
@@ -660,8 +662,12 @@ Underfull \hbox (badness 1163) in paragraph at lines 176--178
  []
 
 
-Package natbib Warning: Citation `WANG201995' on page 2 undefined on input line
- 256.
+Package natbib Warning: Citation `Neijssel+2019' on page 2 undefined on input l
+ine 183.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 2 undefined on input l
+ine 258.
 
 [2]
 Overfull \hbox (17.33469pt too wide) detected at line 310
@@ -673,64 +679,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 325--327
 
  []
 
-<figures/SFRD_FIT_evaluation_compare.pdf, id=155, 1053.12146pt x 949.13078pt>
+<figures/SFRD_FIT_evaluation_compare.pdf, id=158, 1053.12146pt x 949.13078pt>
 File: figures/SFRD_FIT_evaluation_compare.pdf Graphic file (type pdf)
 <use figures/SFRD_FIT_evaluation_compare.pdf>
 Package pdftex.def Info: figures/SFRD_FIT_evaluation_compare.pdf  used on input
  line 340.
 (pdftex.def)             Requested size: 461.80255pt x 416.19954pt.
 
+Package natbib Warning: Citation `Neijssel+2019' on page 3 undefined on input l
+ine 344.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 3 undefined on input l
+ine 344.
+
+
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 362--362
 [][]| [] [][][]| 
  []
-
-
-Package natbib Warning: Citation `Pakmor+2022' on page 3 undefined on input lin
-e 362.
-
-
-Package natbib Warning: Citation `Schmidt1959' on page 3 undefined on input lin
-e 362.
-
-
-Package natbib Warning: Citation `Kennicutt1989' on page 3 undefined on input l
-ine 362.
-
-
-Package natbib Warning: Citation `Torrey+2019' on page 3 undefined on input lin
-e 364.
-
-
-Package natbib Warning: Citation `Bavera+2022' on page 3 undefined on input lin
-e 365.
-
-
-Package natbib Warning: Citation `Schaye+2015' on page 3 undefined on input lin
-e 365.
-
-
-Package natbib Warning: Citation `Crain+2015' on page 3 undefined on input line
- 365.
-
-
-Package natbib Warning: Citation `Dray+2003' on page 3 undefined on input line 
-368.
-
-
-Package natbib Warning: Citation `Renzo+2020' on page 3 undefined on input line
- 368.
-
-
-Package natbib Warning: Citation `Farmer2021_carbonfootprint' on page 3 undefin
-ed on input line 368.
-
-
-Package natbib Warning: Citation `Gotberg+2020' on page 3 undefined on input li
-ne 368.
-
-
-Package natbib Warning: Citation `DoughtyFinlator2021' on page 3 undefined on i
-nput line 368.
 
 
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 370--370
@@ -738,11 +704,6 @@ Overfull \hbox (10.88353pt too wide) in paragraph at lines 370--370
  []
 
 [3] [4 <./figures/SFRD_FIT_evaluation_compare.pdf>]
-
-Package natbib Warning: Citation `NocedalWright_numerical_optimization' on page
- 5 undefined on input line 406.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 406--408
 []\OT1/cmr/m/n/10 To min-i-mize this cost funci-ton, we use
  []
@@ -753,20 +714,25 @@ Underfull \hbox (badness 1831) in paragraph at lines 406--408
  []
 
 
-Package natbib Warning: Citation `Pakmor+2022' on page 5 undefined on input lin
-e 430.
+Package natbib Warning: Citation `Neijssel+2019' on page 5 undefined on input l
+ine 434.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 5 undefined on input l
+ine 434.
 
 
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 434--434
 [][]| [] [][][]| 
  []
 
-<figures/SFR_redshift.pdf, id=248, 773.58432pt x 670.22417pt>
+<figures/SFR_redshift.pdf, id=284, 773.58432pt x 670.22417pt>
 File: figures/SFR_redshift.pdf Graphic file (type pdf)
 <use figures/SFR_redshift.pdf>
 Package pdftex.def Info: figures/SFR_redshift.pdf  used on input line 444.
 (pdftex.def)             Requested size: 241.16582pt x 208.94342pt.
-<figures/Mass_distributions_stable_SFRD_variations.pdf, id=249, 1468.55756pt x 
+[5 <./figures/SFR_redshift.pdf>]
+<figures/Mass_distributions_stable_SFRD_variations.pdf, id=314, 1468.55756pt x 
 1637.82997pt>
 File: figures/Mass_distributions_stable_SFRD_variations.pdf Graphic file (type 
 pdf)
@@ -774,110 +740,109 @@ pdf)
 Package pdftex.def Info: figures/Mass_distributions_stable_SFRD_variations.pdf 
  used on input line 461.
 (pdftex.def)             Requested size: 410.4955pt x 457.81454pt.
+<figures/Mass_distributions_CE_SFRD_variations.pdf, id=325, 1468.55756pt x 1637
+.82997pt>
+File: figures/Mass_distributions_CE_SFRD_variations.pdf Graphic file (type pdf)
 
-Package natbib Warning: Citation `GWTC3_popPaper2021' on page 5 undefined on in
-put line 465.
+<use figures/Mass_distributions_CE_SFRD_variations.pdf>
+Package pdftex.def Info: figures/Mass_distributions_CE_SFRD_variations.pdf  use
+d on input line 470.
+(pdftex.def)             Requested size: 410.4955pt x 457.81454pt.
 
-
-Package natbib Warning: Citation `GWTC3_popPaper2021' on page 5 undefined on in
-put line 465.
-
-[5 <./figures/SFR_redshift.pdf>]
-
-Package natbib Warning: Citation `vanson+2022' on page 6 undefined on input lin
-e 472.
-
-
-Package natbib Warning: Citation `COMPAS_method' on page 6 undefined on input l
-ine 473.
-
-
-Overfull \hbox (10.88353pt too wide) in paragraph at lines 473--473
+Overfull \hbox (10.88353pt too wide) in paragraph at lines 484--484
 [][]| [] [][][]| 
  []
 
 
 Package natbib Warning: Citation `Hurley+2000' on page 6 undefined on input lin
-e 473.
+e 484.
 
 
 Package natbib Warning: Citation `Hurley+2002' on page 6 undefined on input lin
-e 473.
+e 484.
 
 
 Package natbib Warning: Citation `Pols+1998' on page 6 undefined on input line 
-473.
+484.
 
 
-Package natbib Warning: Citation `vanson+2022' on page 6 undefined on input lin
-e 473.
+Package natbib Warning: Citation `Neijssel+2019' on page 6 undefined on input l
+ine 490.
 
 
-Package natbib Warning: Citation `Dominik2015' on page 6 undefined on input lin
-e 475.
+Package natbib Warning: Citation `Madau+2017' on page 6 undefined on input line
+ 492.
 
 
-Package natbib Warning: Citation `Kummer_thesis' on page 6 undefined on input l
-ine 475.
-
-[6 <./figures/Mass_distributions_stable_SFRD_variations.pdf>]
-
-Package natbib Warning: Citation `vanson+2022' on page 7 undefined on input lin
-e 479.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 481--482
+Underfull \hbox (badness 10000) in paragraph at lines 492--493
 
  []
 
 
-Package natbib Warning: Citation `GWTC3_popPaper2021' on page 7 undefined on in
-put line 495.
+Package natbib Warning: Citation `Stevenson+2017' on page 6 undefined on input 
+line 508.
 
 
-Package natbib Warning: Citation `vanson+2022' on page 7 undefined on input lin
-e 504.
+Package natbib Warning: Citation `Madau+2017' on page 6 undefined on input line
+ 523.
 
 
-Package natbib Warning: Citation `Tang+2020' on page 7 undefined on input line 
-511.
+Package natbib Warning: Citation `Neijssel+2019' on page 6 undefined on input l
+ine 523.
 
 
-Package natbib Warning: Citation `chruslinska2022_review' on page 7 undefined o
-n input line 518.
+Package natbib Warning: Citation `Neijssel+2019' on page 6 undefined on input l
+ine 523.
 
-
-Underfull \hbox (badness 3919) in paragraph at lines 520--521
+[6] [7 <./figures/Mass_distributions_stable_SFRD_variations.pdf>]
+Underfull \hbox (badness 3919) in paragraph at lines 531--532
 \OT1/cmr/m/n/10 metallicity-dependent star for-ma-tion rate, $\OMS/cmsy/m/n/10 
 S\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Z; z\OT1/cmr/m/n/10 )$
  []
 
-[7]
-Underfull \hbox (badness 5147) in paragraph at lines 537--538
+
+Package natbib Warning: Citation `Madau+2017' on page 8 undefined on input line
+ 538.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 8 undefined on input l
+ine 538.
+
+[8 <./figures/Mass_distributions_CE_SFRD_variations.pdf>]
+Underfull \hbox (badness 5147) in paragraph at lines 548--549
 []\OT1/cmr/m/n/10 Changing the over-all star-formation his-tory,
  []
 
 
-Underfull \hbox (badness 1275) in paragraph at lines 549--553
+Underfull \hbox (badness 1275) in paragraph at lines 560--564
 \OT1/cmr/m/n/10 the Na-tional Sci-ence Foun-da-tion un-der Grant No.
  []
 
-(./ms.bbl [8]) [9]
+<figures/High_Low_metalFractionSFMass.pdf, id=440, 1517.67pt x 505.89pt>
+File: figures/High_Low_metalFractionSFMass.pdf Graphic file (type pdf)
+<use figures/High_Low_metalFractionSFMass.pdf>
+Package pdftex.def Info: figures/High_Low_metalFractionSFMass.pdf  used on inpu
+t line 577.
+(pdftex.def)             Requested size: 410.4955pt x 136.8314pt.
+(./ms.bbl [9 <./figures/High_Low_metalFractionSFMass.pdf>]) [10]
 
 Package natbib Warning: There were undefined citations.
 
 (./ms.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `ms.out' has not changed.
-(rerunfilecheck)             Checksum: 802E6B9FD3E83B190D2A419D4B86F06A;3259.
+(rerunfilecheck)             Checksum: 60912E24111C6541D36F76B2FD5FA7FB;3560.
  ) 
 Here is how much of TeX's memory you used:
- 12932 strings out of 478994
- 181863 string characters out of 5858185
- 554040 words of memory out of 5000000
- 30139 multiletter control sequences out of 15000+600000
+ 13003 strings out of 478994
+ 183643 string characters out of 5858185
+ 581048 words of memory out of 5000000
+ 30191 multiletter control sequences out of 15000+600000
  415346 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,16n,88p,1097b,514s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,16n,88p,1097b,510s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
@@ -911,10 +876,10 @@ public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
 lic/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/h
 elvetic/uhvr8a.pfb>
-Output written on ms.pdf (9 pages, 775950 bytes).
+Output written on ms.pdf (10 pages, 1004459 bytes).
 PDF statistics:
- 527 PDF objects out of 1000 (max. 8388607)
- 471 compressed objects within 5 object streams
- 81 named destinations out of 1000 (max. 500000)
- 112 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 632 PDF objects out of 1000 (max. 8388607)
+ 566 compressed objects within 6 object streams
+ 98 named destinations out of 1000 (max. 500000)
+ 130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

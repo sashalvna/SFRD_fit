@@ -61,7 +61,7 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     #default Madau & Fragos 17
     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=0.01, b=2.6, c=3.2, d=6.2), 
              label = 'Madau $\&$ Fragos 2017\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.6,3.2,6.2)
-             , c = '#356288', ls = ':',lw=6)
+             , c = 'grey', ls = ':',lw=6)
 
 #     #default Coen
 #     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=0.01, b=2.77, c=2.9, d=4.7), 
@@ -72,8 +72,8 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     #Resembling thick brown line in Fig. 11 Chruslinska + 2021
     a_max, b_max, c_max, d_max = 0.04,2.5,2.9,4.5 
     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=a_max, b=b_max, c=c_max, d=d_max), 
-             label = 'Maximum SFRD \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
-             , c = 'brown', lw=5, ls = '-')
+             label = 'Max, \ Chruslinska \ et \ al. \ 2021:  \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
+             , c = '#356288', lw=5, ls = '-')
 
     # BEST FIT
     try:

@@ -10,47 +10,225 @@ Reallocated out_buf (elt_size=1) to 40000 items from 20000.
 Reallocated name_tok (elt_size=4) to 40000 items from 20000.
 Reallocated name_sep_char (elt_size=1) to 40000 items from 20000.
 Database file #2: main_bib.bib
-Warning--I didn't find a database entry for "Chruslinska2019"
+Repeated entry---line 1 of file main_bib.bib
+ : @article{Pakmor+2022
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 20 of file main_bib.bib
+ : @article{vanson+2022
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1151 of file main_bib.bib
+ : @article{Dominik2015
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3423 of file main_bib.bib
+ : @article{Neijssel2019
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3460 of file main_bib.bib
+ : @article{Mapelli2017
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3825 of file main_bib.bib
+ : @article{GWTC3
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3844 of file main_bib.bib
+ : @article{GWTC3_popPaper2021
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3898 of file main_bib.bib
+ : @article{Briel+2021
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3917 of file main_bib.bib
+ : @article{Hemler+2021
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3972 of file main_bib.bib
+ : @article{Chruslinska+2021
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 7693 of file main_bib.bib
+ : @article{FirstResTNG_Naiman2018
+ :                                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 7714 of file main_bib.bib
+ : @article{FirstResTNG_Marinacci2018
+ :                                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 7734 of file main_bib.bib
+ : @article{FirstResTNG_Nelson2018
+ :                                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 7755 of file main_bib.bib
+ : @article{FirstResTNG_Springel2018
+ :                                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 7775 of file main_bib.bib
+ : @article{FirstResTNG_Pillepich2018
+ :                                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 8515 of file main_bib.bib
+ : @article{Langer2006
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 8555 of file main_bib.bib
+ : @article{Pillepich2018
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9092 of file main_bib.bib
+ : @article{Broekgaarden+2021a
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9109 of file main_bib.bib
+ : @article{Broekgaarden+2021b
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9126 of file main_bib.bib
+ : @article{COMPAS_method
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9149 of file main_bib.bib
+ : @article{Kummer_thesis
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9329 of file main_bib.bib
+ : @article{MadauDickinson2014
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 11432 of file main_bib.bib
+ : @article{GWTC1
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 11447 of file main_bib.bib
+ : @article{GWTC2
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 11739 of file main_bib.bib
+ : @article{Chruslinska2019_effectCO
+ :                                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 11757 of file main_bib.bib
+ : @article{Chruslinska2019_obs
+ :                             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 11793 of file main_bib.bib
+ : @article{BelczynskiVink2010
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 11912 of file main_bib.bib
+ : @article{Ohagan+1976
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12334 of file main_bib.bib
+ : @article{Schaye+2015
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12352 of file main_bib.bib
+ : @article{Crain+2015
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12370 of file main_bib.bib
+ : @book{NocedalWright_numerical_optimization
+ :                                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12385 of file main_bib.bib
+ : @article{chruslinska2022_review
+ :                                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12402 of file main_bib.bib
+ : @article{Schmidt1959
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12415 of file main_bib.bib
+ : @article{Kennicutt1989
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12429 of file main_bib.bib
+ : @article{Bavera+2022
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12447 of file main_bib.bib
+ : @article{Farmer2021_carbonfootprint
+ :                                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12466 of file main_bib.bib
+ : @article{DoughtyFinlator2021
+ :                             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12484 of file main_bib.bib
+ : @article{Gotberg+2020
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12502 of file main_bib.bib
+ : @article{Torrey+2019
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12521 of file main_bib.bib
+ : @article{Dray+2003
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12536 of file main_bib.bib
+ : @article{Renzo+2020
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12555 of file main_bib.bib
+ : @article{Tang+2020
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12574 of file main_bib.bib
+ : @article{WANG201995
+ :                    ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Chruslinska+2018"
+Warning--I didn't find a database entry for "Madau+2017"
+Warning--I didn't find a database entry for "Neijssel+2019"
+Warning--I didn't find a database entry for "Hurley+2000"
+Warning--I didn't find a database entry for "Hurley+2002"
+Warning--I didn't find a database entry for "Pols+1998"
+Warning--I didn't find a database entry for "Stevenson+2017"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 30 entries,
+You've used 43 entries,
             3168 wiz_defined-function locations,
-            892 strings with 13825 characters,
-and the built_in function-call counts, 15744 in all, are:
-= -- 1249
-> -- 1286
-< -- 5
-+ -- 429
-- -- 476
-* -- 1529
-:= -- 2877
-add.period$ -- 34
-call.type$ -- 30
-change.case$ -- 169
-chr.to.int$ -- 26
-cite$ -- 30
-duplicate$ -- 510
-empty$ -- 888
-format.name$ -- 509
-if$ -- 3176
-int.to.chr$ -- 5
+            1010 strings with 19590 characters,
+and the built_in function-call counts, 22623 in all, are:
+= -- 1716
+> -- 1928
+< -- 13
++ -- 635
+- -- 691
+* -- 2204
+:= -- 4189
+add.period$ -- 52
+call.type$ -- 43
+change.case$ -- 221
+chr.to.int$ -- 46
+cite$ -- 43
+duplicate$ -- 725
+empty$ -- 1282
+format.name$ -- 744
+if$ -- 4550
+int.to.chr$ -- 4
 int.to.str$ -- 0
-missing$ -- 30
-newline$ -- 102
-num.names$ -- 120
-pop$ -- 200
+missing$ -- 43
+newline$ -- 146
+num.names$ -- 172
+pop$ -- 257
 preamble$ -- 1
-purify$ -- 169
+purify$ -- 219
 quote$ -- 0
-skip$ -- 457
+skip$ -- 670
 stack$ -- 0
-substring$ -- 717
-swap$ -- 8
+substring$ -- 1008
+swap$ -- 9
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 270
+type$ -- 384
 warning$ -- 0
-while$ -- 106
+while$ -- 149
 width$ -- 0
-write$ -- 336
-(There was 1 warning)
+write$ -- 479
+(There were 43 error messages)

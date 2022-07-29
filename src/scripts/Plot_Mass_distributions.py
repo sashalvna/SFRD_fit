@@ -69,7 +69,7 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 ######################################
 # Distribution plot function
 ######################################
-def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma0%s_sigmaz0.05_zBinned'%(x) for x in [0.8, 1.125, 1.4]],
+def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma0%s_sigmaz0.05_zBinned'%(x) for x in [0.8, 1.125, 1.4]],channel_string = 'all',
                    bins = np.arange(0.,55,2.5), z_bin_edges = [0,0.25], 
                    plot_LIGO = False, show_hist = False, show_KDE = True, kde_width = 0.1,  
                    only_stable = True, only_CE = True, 
@@ -262,15 +262,18 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
         print()
         ax.vlines(x=reference_masses[m], ymin=min(mpoint), ymax=max(mpoint), colors='k', lw=3, zorder = 20)
         ax.hlines(y=[min(mpoint), max(mpoint)], xmin=reference_masses[m]-0.5, xmax=reference_masses[m]+0.5, linewidth=3, color='k', zorder = 20)
-        ax.text(reference_masses[m] - 0.7, (max(mpoint)+min(mpoint))/2 , r'%s $\times $'%(np.round( (max(mpoint)/min(mpoint))[0] , 1)) ,
-            bbox=dict(facecolor='white', edgecolor='none', boxstyle='round,pad=0.1', alpha = 0.5), ha = 'right', size = 25, zorder = 20)
+        ax.text(reference_masses[m] - 0.7, (max(mpoint)+min(mpoint))/2 , r'%s $\times $'%(np.round( (max(mpoint)/min(mpoint))[0] , 1)), 
+            bbox=dict(facecolor='white', edgecolor='none', boxstyle='round,pad=0.1', alpha = 0.5), clip_on=True, ha = 'right', size = 25, zorder = 20)
 
     #########################################
     # plot values
-    plt.text(0.63, 0.85, titletext, ha = 'center', transform=ax.transAxes, size = 25)
-
     ax.set_xlim(x_lim)
     ax.set_ylim(y_lim)
+    
+    # SFRD variaton
+    plt.text(0.63, 0.85, titletext, ha = 'center', transform=ax.transAxes, size = 25)
+    # Channel
+    plt.text(0.75, 0.66, '$\mathrm{%s \ channel}$'%(channel_string), ha = 'center', transform=ax.transAxes, size = 29)
 
     #####
     # add legend for simulations
@@ -332,7 +335,7 @@ for i in range(2):
     #add first subplot in layout that has 3 rows and 2 columns
     subplot1 = fig.add_subplot(321)
 
-    ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys  = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma0%s_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.7, 1.129, 2.0]],
+    ax1 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys  = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma0%s_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.7, 1.129, 2.0]], channel_string = channel_string,
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color =  'navy',
                            only_CE = only_CE, only_stable = only_stable, 
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = "Width of metallicity dist."+"\n"+r"$\omega_0$, (scale $z=0$)",
@@ -350,7 +353,7 @@ for i in range(2):
     #add Second subplot in layout that has 3 rows and 2 columns
     subplot2 = fig.add_subplot(322)
 
-    ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz%s_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, 0.048, 0.1]],
+    ax2 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz%s_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, 0.048, 0.1]],channel_string = channel_string,
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#00a6a0', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = "Redshift evol. width of metallicity dist." +"\n"+ r"$\omega_z$, (scale z evol.)",
@@ -366,7 +369,7 @@ for i in range(2):
     #add third subplot in layout that has 3 rows and 2 columns
     subplot3 = fig.add_subplot(323)
 
-    ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.007, 0.025, 0.035]],
+    ax3 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.007, 0.025, 0.035]],channel_string = channel_string,
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#e1131d', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = 'Mean metallicity'+"\n"+r"$\mu_0$",
@@ -381,7 +384,7 @@ for i in range(2):
     #add 4th subplot in layout that has 3 rows and 2 columns
     subplot4 = fig.add_subplot(324)
 
-    ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -0.049, -0.5]],
+    ax4 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -0.049, -0.5]],channel_string = channel_string,
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ff717b', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', titletext = "Redshift evol. of mean metallicity" +"\n"+ r"$\mu_z$", 
@@ -397,8 +400,8 @@ for i in range(2):
     #add 5th subplot in layout that has 3 rows and 2 columns
     subplot5 = fig.add_subplot(325)
 
-    ax5 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -1.778, -6.0]],
-                           show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#acbf00', 
+    ax5 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -1.778, -6.0]],channel_string = channel_string,
+                           show_hist = False, show_KDE = True, kde_width = 0.15, plot_LIGO = True, Color = '#acbf00', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Skewness of metallicity dist." +"\n"+ r"$\alpha$, (shape)", 
                            labels = [r'$\mathrm{Symmetric: \ } (\alpha = -0.9)   \ \mathcal{R}_{0.2} = \ $',
@@ -418,12 +421,13 @@ for i in range(2):
                            rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.6_c3.2_d6.2',
                                        'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913', 
                                        'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.04_b2.5_c2.9_d4.5'],
+                                 channel_string = channel_string,
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ecb05b', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Overall SFR history"+"\n"+ r'$ \mathrm{SFRD(}z\rm{)} \ [a,b,c,d]$', 
-                           labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \phantom{xxx} \ \mathcal{R}_{0.2}= \ $', 
-                                     r'$\mathrm{Fiducial: \ } \phantom{xxxxxxxxx} \ \mathcal{R}_{0.2}= \ $', 
-                                     r'$\mathrm{Max \ SB: \ B18/C17, \ Chruslinska \ et \ al. \ 2021:}  \ \mathcal{R}_{0.2} = \ $'],
+                           labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \phantom{xxxx} \ \mathcal{R}_{0.2}= \ $', 
+                                     r'$\mathrm{Fiducial: \ } \phantom{xxxxx-xxxxx-} \ \mathcal{R}_{0.2}= \ $', 
+                                     r'$\mathrm{Max, \ Chruslinska \ et \ al. \ 2021:}  \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot6)
 
 
