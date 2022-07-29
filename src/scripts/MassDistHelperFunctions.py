@@ -58,10 +58,10 @@ def read_data(loc = '/output/COMPAS_Output_wWeights.h5', verbose=False):
     
     # Older simulations use this naming
     dcokey,  syskey, CEcount, dcomask = 'DoubleCompactObjects', 'SystemParameters', 'CE_Event_Count', 'DCOmask' 
-    try dcokey in File.keys():
+    if dcokey in File.keys():
         print('using file with key', dcokey)
     # Newer simulations use this
-    except:
+    else:
         print('using file with key', dcokey)
         dcokey,  syskey, CEcount, dcomask = 'BSE_Double_Compact_Objects', 'BSE_System_Parameters', 'CE_Event_Counter', 'DCOmask'
  
