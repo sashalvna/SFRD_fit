@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  28 JUL 2022 17:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  28 JUL 2022 21:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -761,11 +761,11 @@ Overfull \hbox (10.88353pt too wide) in paragraph at lines 434--434
 [][]| [] [][][]| 
  []
 
-<figures/SFR_redshift.pdf, id=248, 788.71286pt x 690.3502pt>
+<figures/SFR_redshift.pdf, id=248, 773.58432pt x 670.22417pt>
 File: figures/SFR_redshift.pdf Graphic file (type pdf)
 <use figures/SFR_redshift.pdf>
 Package pdftex.def Info: figures/SFR_redshift.pdf  used on input line 444.
-(pdftex.def)             Requested size: 241.16582pt x 211.08847pt.
+(pdftex.def)             Requested size: 241.16582pt x 208.94342pt.
 <figures/Mass_distributions_stable_SFRD_variations.pdf, id=249, 1468.55756pt x 
 1637.82997pt>
 File: figures/Mass_distributions_stable_SFRD_variations.pdf Graphic file (type 
@@ -873,7 +873,7 @@ Package rerunfilecheck Info: File `ms.out' has not changed.
 Here is how much of TeX's memory you used:
  12932 strings out of 478994
  181863 string characters out of 5858185
- 554039 words of memory out of 5000000
+ 554040 words of memory out of 5000000
  30139 multiletter control sequences out of 15000+600000
  415346 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -911,10 +911,10 @@ public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
 lic/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/h
 elvetic/uhvr8a.pfb>
-Output written on ms.pdf (9 pages, 776108 bytes).
+Output written on ms.pdf (9 pages, 771833 bytes).
 PDF statistics:
- 524 PDF objects out of 1000 (max. 8388607)
- 468 compressed objects within 5 object streams
+ 527 PDF objects out of 1000 (max. 8388607)
+ 471 compressed objects within 5 object streams
  81 named destinations out of 1000 (max. 500000)
  112 words of extra memory for PDF output out of 10000 (max. 10000000)
 

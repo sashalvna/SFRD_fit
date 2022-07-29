@@ -185,10 +185,12 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
             raise ValueError("Both only_stable =%s and only_CE=%s, set at least one to true"%(only_stable,only_CE))
 
         # we exclude CHE systems
-        not_CHE = merging_BBH['Stellar_Type@ZAMS(1)'] != 16
+        not_CHE  = merging_BBH['Stellar_Type@ZAMS(1)'] != 16
 
-        merging_BBH         = merging_BBH[not_CHE  * channel_bool]
-        Red_intr_rate_dens  = intrinsic_rate_density[not_CHE * channel_bool, :]
+        BBH_bool = np.logical_and(merging_BBH['Stellar_Type(1)'] == 14, merging_BBH['Stellar_Type(2)'] == 14)
+
+        merging_BBH         = merging_BBH[BBH_bool * not_CHE  * channel_bool]
+        Red_intr_rate_dens  = intrinsic_rate_density[BBH_bool* not_CHE * channel_bool, :]
 
 
         # # # # # # # # # # # # # # # # # # 
