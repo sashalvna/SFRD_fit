@@ -42,8 +42,8 @@ import time
 save_loc    =  str(paths.figures) + '/'
 data_dir    =  str(paths.data) + '/'
 
-rate_file       = '/RateData/Rate_info.h5'#'/RateData/small_Rate_info.h5' #
-simulation_data = '/COMPAS_Output_wWeights.h5'#'/small_COMPAS_Output_wWeights.h5' #
+rate_file       = '/RateData/small_Rate_info.h5'#'/RateData/small_Rate_info.h5' #
+simulation_data = '/small_COMPAS_Output_wWeights.h5'#'/small_COMPAS_Output_wWeights.h5' #
 
 only_stable = False
 only_CE = True
@@ -317,6 +317,8 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
 #                                          Call plots                                           #
 #                                                                                               #
 #################################################################################################
+
+
 
 fig = plt.figure( figsize = (24, 28))
 
