@@ -166,8 +166,6 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
 
     
         # Older simulations use this naming
-        print('omega0' in Fid_SzZParams.columns)
-
         CEcount = 'CE_Event_Count'                # Old simulations use this
         if CEcount in DCO.columns:
             print('using file with key', CEcount)
