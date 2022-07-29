@@ -45,8 +45,8 @@ data_dir    =  str(paths.data) + '/'
 rate_file       = '/RateData/Rate_info.h5'#'/RateData/small_Rate_info.h5' #
 simulation_data = '/COMPAS_Output_wWeights.h5'#'/small_COMPAS_Output_wWeights.h5' #
 
-only_stable = True 
-only_CE = False
+only_stable = False
+only_CE = True
  
 
 if np.logical_and(only_stable, only_CE):
