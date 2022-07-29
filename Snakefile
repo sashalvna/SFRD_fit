@@ -1,9 +1,9 @@
-rule extract:
-    priority: 10
-    output:
-        "src/data/COMPAS_Output_wWeights.h5"
-    script:
-        "src/scripts/ExtractZenodoData.py"
+# rule extract:
+#     priority: 10
+#     output:
+#         "src/data/COMPAS_Output_wWeights.h5"
+#     script:
+#         "src/scripts/ExtractZenodoData.py"
 
 rule CosmicIntegration:
     priority: 5
