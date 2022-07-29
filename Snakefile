@@ -7,6 +7,8 @@ rule extract:
 rule CosmicIntegration:
     output:
         "src/data/RateData/CI_job_IDs.txt"
+    cache:
+        True
     script:
         "src/scripts/CosmicIntegration/CallCosmicIntegration.py"
 
