@@ -19,9 +19,6 @@ from scipy import stats
 from astropy.cosmology import WMAP9 as cosmo
 from astropy.cosmology import z_at_value
 
-dcokey,  syskey, CEcount, dcomask = 'DoubleCompactObjects', 'SystemParameters', 'CE_Event_Count', 'DCOmask' 
-# dcokey,  syskey, CEcount, dcomask = 'BSE_Double_Compact_Objects', 'BSE_System_Parameters', 'CE_Event_Counter', 'DCOmask'
-
 #########################################
 # Chirp mass
 #########################################
@@ -58,7 +55,17 @@ def read_data(loc = '/output/COMPAS_Output_wWeights.h5', verbose=False):
     ## Open hdf5 file
     File        = h5.File(loc ,'r')
     if verbose: print(File.keys(), File[rate_key].keys())
-         
+    
+    # Older simulations use this naming
+    dcokey,  syskey, CEcount, dcomask = 'DoubleCompactObjects', 'SystemParameters', 'CE_Event_Count', 'DCOmask' 
+    try dcokey in File.keys():
+        print('using file with key', dcokey)
+    # Newer simulations use this
+    except:
+        print('using file with key', dcokey)
+        dcokey,  syskey, CEcount, dcomask = 'BSE_Double_Compact_Objects', 'BSE_System_Parameters', 'CE_Event_Counter', 'DCOmask'
+ 
+        
     DCO = Table()
     DCO['SEED']                  = File[dcokey]['SEED'][()] 
 

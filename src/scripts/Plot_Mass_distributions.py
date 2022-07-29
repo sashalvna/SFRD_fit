@@ -164,11 +164,18 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
             #(contains filter for RLOF>CE and optimistic CE)
             intrinsic_rate_density    = File[rate_key]['merger_rate'][()]
 
+    
+        # Older simulations use this naming
+        print('omega0' in Fid_SzZParams.columns)
 
-#         except:
-#             print('\n error reading', rate_key)
-#             continue
-            
+        CEcount = 'CE_Event_Count'                # Old simulations use this
+        try CEcount in DCO.columns:
+            print('using file with key', CEcount)
+        except:
+            print('using file with key', CEcount)
+            CEcount = 'CE_Event_Counter'          # Newer simulations use this
+
+
         # # # # # # # # # # # # # # # # # # 
         #first bring it to the same shape as the rate table
         merging_BBH    = DCO[DCO_mask]
@@ -178,9 +185,9 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
             print("Both only_stable and only_CE, I assume you just want both")
             channel_bool = np.full(len(merging_BBH), True)
         elif only_stable:
-            channel_bool = merging_BBH['CE_Event_Count'] == 0
+            channel_bool = merging_BBH[CEcount] == 0
         elif only_CE:
-            channel_bool = merging_BBH['CE_Event_Count'] > 0
+            channel_bool = merging_BBH[CEcount] > 0
         else:
             raise ValueError("Both only_stable =%s and only_CE=%s, set at least one to true"%(only_stable,only_CE))
 
