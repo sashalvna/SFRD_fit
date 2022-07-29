@@ -310,17 +310,19 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
 
 
 # Run once for each channel
-for i in range(len(2)):
+for i in range(2):
     
     if i ==0:
         only_stable = True
         only_CE     = False
         channel_string = 'stable'
         
-    if i ==0:
+    else:
         only_stable = False
         only_CE     = True
         channel_string = 'CE'
+
+    print('making Figure ', save_loc + '/Mass_distributions_'+ channel_string+'_SFRD_variations.pdf')
 
     fig = plt.figure( figsize = (24, 28))
 
