@@ -42,10 +42,10 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 # plot different SFRs
 ########################################################
 def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
-             redshift_list  = np.linspace(0,15, num=100), x_redshift = True, tmin=0.0, tmax = 13.7):
+             redshift_list  = np.linspace(0,15, num=100), x_redshift = True, tmin=0.0, tmax = 13.7, show_legend = True):
     ########################################################
     # Start plotting
-    fig, ax = plt.subplots(figsize=(12,10))
+    fig, ax = plt.subplots(figsize=(10,8))
 
     if x_redshift:
         x1  = redshift_list
@@ -150,7 +150,7 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
         # And annotate the tick labels :)
         ax2.set_xticks([z for z in redshift_tick_list])
         ax2.set_xticklabels(['${:.1f}$'.format(cosmo.lookback_time(z).value) for z in redshift_tick_list])
-        ax2.set_xlabel('$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 20)
+        ax2.set_xlabel('$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 30)
 
     else:
         ###################
@@ -177,7 +177,9 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
         plt.yscale('log')
     ax.set_ylabel(r'$\frac{dM}{dt dV_c}$ $\mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$', fontsize = 30)
     ax.set_ylim(1e-3, 1.)
-    ax.legend()
+    
+    if show_legend:
+        ax.legend()
     if x_redshift:
         print('saving here', save_loc + 'SFR_redshift'+'.pdf')
         plt.savefig(save_loc + 'SFR_redshift'+'.pdf',  bbox_inches='tight')
@@ -190,10 +192,10 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     
 
 # redshift axis
-plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
+plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913, show_legend = False,
          redshift_list  = np.linspace(0,15, num=100), x_redshift = True, tmin=0.0, tmax = 15)
 
     
 # time axis
-# plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
-#          redshift_list  = np.linspace(0,15, num=100), x_redshift = False, tmin=0.0, tmax = 13.7)
+plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913, show_legend = True,
+         redshift_list  = np.linspace(0,15, num=100), x_redshift = False, tmin=0.0, tmax = 13.7)

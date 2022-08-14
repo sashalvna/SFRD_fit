@@ -207,7 +207,7 @@ def plot_mass_distribution(sim_dir = '', x_key = 'M_moreMassive', rate_keys = ['
         center_bins = (bin_edge[:-1] + bin_edge[1:])/2.
 
         # And the KDE
-        kernel = stats.gaussian_kde(x_vals, bw_method=kde_width, weights=Weights)
+        kernel = stats.gaussian_kde(x_vals, bw_method='scott', weights=Weights)
         binwidth = np.diff(bin_edge)
 
         m10.append(kernel(10)*sum(hist)) # append value at reference mass 
