@@ -545,9 +545,10 @@ for ir in range(3):
             
             lowZfraction             = 100 * np.sum(model_SFRD_uptoz[low_Z])/np.sum(model_SFRD_uptoz)  
             highZfraction            = 100 * np.sum(model_SFRD_uptoz[high_Z])/np.sum(model_SFRD_uptoz)            
-            ax.plot(highZfraction, lowZfraction,'x' , markersize = 25, color = var_colors[v], zorder = 10)
+            ax.plot(highZfraction, lowZfraction,'x' , markersize = 25, color = 'k', zorder = 10) #var_colors[v]
             ax.text(highZfraction+1, lowZfraction+1, s = r'%s:%s'%(str(symbols[v]), var[i]), 
-                    zorder = 10, color =  var_colors[v], rotation = 30)
+                    zorder = 10, color =  'k', rotation = 30) #var_colors[v]
+
     
     
     ###########
@@ -570,7 +571,7 @@ l2 += [l]
 for m in ['o','s','D','v','o']:
     l, = ax.plot( -1, -1, m, mfc="None", mec="k")
     l2 += [l]
-legend2 = matplotlib.pyplot.legend( l2, ["$\mathrm{Chruslinska19}$", "$\mathrm{Chruslinska21}$","$\mathrm{TNG50}$", "$\mathrm{Illustris}$", "$\mathrm{SIMBA}$", "$\mathrm{EAGLE}$", "$\mathrm{TNG100}$", ], markerscale = 2.5,
+legend2 = matplotlib.pyplot.legend( l2, ["$\mathrm{Chruslinska19}$", "$\mathrm{Chruslinska21}$","$\mathrm{TNG50}$", "$\mathrm{Illustris}$", "$\mathrm{SIMBA}$", "$\mathrm{EAGLE}$", "$\mathrm{TNG100}$", ], markerscale = 3.5,
                                    frameon=False, numpoints=1, fontsize=22,loc=(0.05,0.4) )#loc=(0.55,0.50) )
 f.tight_layout()
 f.savefig(str(paths.figures)+ "/High_Low_metalFractionSFMass.pdf"  )
