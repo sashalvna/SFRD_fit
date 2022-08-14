@@ -568,9 +568,9 @@ l2 = [l]
 l, = ax.plot( -1, -1, 'P', alpha=0.3, mfc="None", mec="k" )
 l2 += [l]
 for m in ['o','s','D','v','o']:
-    l, = ax.plot( -1, -1, m, mfc="None", mec="k" )
+    l, = ax.plot( -1, -1, m, mfc="None", mec="k")
     l2 += [l]
-legend2 = matplotlib.pyplot.legend( l2, ["$\mathrm{Chruslinska19}$", "$\mathrm{Chruslinska21}$","$\mathrm{TNG50}$", "$\mathrm{Illustris}$", "$\mathrm{SIMBA}$", "$\mathrm{EAGLE}$", "$\mathrm{TNG100}$", ], 
+legend2 = matplotlib.pyplot.legend( l2, ["$\mathrm{Chruslinska19}$", "$\mathrm{Chruslinska21}$","$\mathrm{TNG50}$", "$\mathrm{Illustris}$", "$\mathrm{SIMBA}$", "$\mathrm{EAGLE}$", "$\mathrm{TNG100}$", ], markerscale = 2.5,
                                    frameon=False, numpoints=1, fontsize=22,loc=(0.05,0.4) )#loc=(0.55,0.50) )
 f.tight_layout()
 f.savefig(str(paths.figures)+ "/High_Low_metalFractionSFMass.pdf"  )
