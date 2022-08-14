@@ -15,7 +15,7 @@ rule CosmicIntegration:
 rule combineFiles:
     priority: 1
     output:
-        "src/data/RateData/small_Rate_info.h5"
+        "src/data/RateData/Rate_info.h5"
     cache:
         True
     script:
