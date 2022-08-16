@@ -37,21 +37,45 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 
 
 
+########################################################
+# Powerlaw fit function from Chruslinska + 2021
+########################################################
+def powerlaw_fit_Chruslinska21(z_bounds= [0,1.0,1.8,4.0,7.0,8.8, 10.0], 
+                               kappa_list = [2.3822, 2.2105, -1.2278,-2.4769, -12.5280, 0],
+                               A_list = [0.0248, 0.028, 0.964, 7.2, 8.6*10**9, 0.00328]):
+    """
+    Powerlaw approximation from Chruslinska +2021 (Fig. 11 and tables 3 and B2)
+    Default values are upper edge of Cosmic SFH – SB: B18/C17 == Thick brown line in fig. 11
+    """
+    redshifts, SFRD = [], []
+    for i in range(len(z_bounds) -1):
+        z    = np.linspace(z_bounds[i], z_bounds[i+1], num = 20)
+        z    = (z[:-1] + z[1:])/2.
+        redshifts.append(z)
+        
+        vals = A_list[i] * (1 + z)**kappa_list[i]
+        SFRD.append(A_list[i] * (1 + z)**kappa_list[i])
+        
+    redshifts = np.array(redshifts).flatten()
+    SFRD      = np.array(SFRD).flatten()
+    
+    return redshifts, SFRD # Msun /yr /Mpc^3    
+
 
 ########################################################
 # plot different SFRs
 ########################################################
-def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
-             redshift_list  = np.linspace(0,15, num=100), x_redshift = True, tmin=0.0, tmax = 13.7, show_legend = True):
+def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913, show_legend = True,
+             redshift_list  = np.linspace(0,15, num=100), x_redshift = True, show_powerlaw_fit = False,
+             tmin=0.0, tmax = 13.7):
     ########################################################
     # Start plotting
-    fig, ax = plt.subplots(figsize=(10,8))
+    fig, ax = plt.subplots(figsize=(12,10))
 
     if x_redshift:
         x1  = redshift_list
     else:
         x1 = cosmo.lookback_time(redshift_list)
-
 
 #     #default M&D 14
 #     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list), 
@@ -68,11 +92,23 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
 #              label = 'Neijssel et al 2019\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.77,2.9,4.7)
 #              , c = '#aacfdd', lw=5, ls = '--')
 
-    # Some kind of max SFRD
+    #########
+    # Approximate max SFRD
+    if show_powerlaw_fit:
+        # --> Thick brown line in Fig. 11 Chruslinska + 2021 (models: 30*f14SBBiC)
+        upper_redshifts, upper_SFRD = powerlaw_fit_Chruslinska21()
+        if x_redshift:
+            upper_x = upper_redshifts
+        else:
+            upper_x = cosmo.lookback_time(upper_redshifts)
+        ax.plot(upper_x, upper_SFRD, 
+             label = r'$\rm{Max \ SFR, \ Chruslinska \ et \ al. \ 2021: (SB: \ B18/C17)}$',
+                c = 'brown', lw=5, ls = '-.')
+
     #Resembling thick brown line in Fig. 11 Chruslinska + 2021
-    a_max, b_max, c_max, d_max = 0.04,2.5,2.9,4.5 
+    a_max, b_max, c_max, d_max = 0.025,2.6,3.3,5.9 #2.5,2.9,4.5 
     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=a_max, b=b_max, c=c_max, d=d_max), 
-             label = 'Max, \ Chruslinska \ et \ al. \ 2021:  \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
+             label = 'Approximation \ to \ max: \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
              , c = '#356288', lw=5, ls = '-')
 
     # BEST FIT
@@ -177,7 +213,6 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
         plt.yscale('log')
     ax.set_ylabel(r'$\frac{dM}{dt dV_c}$ $\mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$', fontsize = 30)
     ax.set_ylim(1e-3, 1.)
-    
     if show_legend:
         ax.legend()
     if x_redshift:
@@ -186,16 +221,15 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,
     else:
         print('saving here', save_loc + 'SFR_tlookback'+'.pdf')
         plt.savefig(save_loc + 'SFR_tlookback'+'.pdf',  bbox_inches='tight')
-
-    #plt.show()
-    return
     
+    plt.show()
 
-# redshift axis
-plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913, show_legend = False,
-         redshift_list  = np.linspace(0,15, num=100), x_redshift = True, tmin=0.0, tmax = 15)
-
+    
     
 # time axis
-plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913, show_legend = True,
+plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,show_legend = True,
          redshift_list  = np.linspace(0,15, num=100), x_redshift = False, tmin=0.0, tmax = 13.7)
+
+# redshift axis
+plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,show_legend = False,
+         redshift_list  = np.linspace(0,15, num=100), x_redshift = True, tmin=0.0, tmax = 15)
