@@ -345,7 +345,7 @@ Below we briefly discuss the Illustris-TNG simulations, and elaborate on our fit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Illustris-TNG Cosmological simulations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Both the large observational uncertainties in \SFRDzZ (as discussed in section \ref{sec: intro}), and the many uncertainties in cosmological simulations (as discussed below) call for a generalised form of the \SFRDzZ that can be easily updated when new information becomes available, which is the motivation for this work. Although here, we only fit our model to the TNG100 simulation, our prescription can be easily be used to fit other simulated or observational data of the metallicity dependent star formation rate density \footnote{We provide a Jupyter notebook to facilitate this fit here: \url{https://github.com/LiekeVanSon/SFRD_fit/blob/main/src/scripts/Fit_To_Cosmological_Simulation.ipynb} }.
+Both the large observational uncertainties in \SFRDzZ (as discussed in section \ref{sec: intro}), and the many uncertainties in cosmological simulations (as discussed below) call for a generalised form of the \SFRDzZ that can be easily updated when new information becomes available, which is the motivation for this work. Although here, we only fit our model to the TNG100 simulation, our prescription can be easily be used to fit other simulated or observational data of the metallicity dependent star formation rate density\footnote{We provide a Jupyter notebook to facilitate this fit here: \url{https://github.com/LiekeVanSon/SFRD_fit/blob/main/src/scripts/Fit_To_Cosmological_Simulation.ipynb} }.
 
 The IllustrisTNG-project \citep[or TNG in short,][]{FirstResTNG_Springel2018,FirstResTNG_Marinacci2018, FirstResTNG_Nelson2018,FirstResTNG_Pillepich2018, FirstResTNG_Naiman2018} considers galaxy formation and evolution through large-scale cosmological hydrodynamical simulations.
 Such simulations provide the tools to study parts of the Universe that are not easily accessible by observations. In particular of interest for this work, they simulate the high redshift enrichment of galaxies and the tail of low metallicity star formation at low redshift.
@@ -437,8 +437,7 @@ Adopting a skewed-lognormal metallicity distribution allows for a tail of low me
 \script{SFR_z.py}
 \includegraphics[width=0.47\textwidth]{figures/SFR_redshift.pdf}
 \includegraphics[width=0.47\textwidth]{figures/SFR_tlookback.pdf}
-\caption{Comparison of different \SFRDz
- \label{fig: SFR(z)}}
+\caption{Comparison of different overall star-formation histories with redshift, \SFRDz. The solid orange and dashed red lines respectively show the star formation data from TNG100 and our corresponding fit adopting eq. \ref{eq: sfr1} (fiducial model). The dotted gray and solid blue lines are variations of eq. \ref{eq: sfr1} used to approximate the lower and upper edge of possible star-formation histories. The dotted gray line shows the model from \cite{Madau+2017}, while the solid blue line mimics the behaviour of the powerlaw-fit to the \texttt{SB: B18/C17} variations with a non-evolving low-mass end of the galaxy stellar mass function from \cite{Chruslinska+2021}.  \label{fig: SFR(z)}}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -448,6 +447,36 @@ Adopting a skewed-lognormal metallicity distribution allows for a tail of low me
 \section{Application: systematic variations of \SFRDzZ and the effect on the mass distribution of merging BBHs \label{sec: mass dists}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We will now demonstrate the application of our analytical model by systematically varying the parameters in our fiducial \SFRDzZ model, and investigate their effect on the local mass distribution of BBH mergers originating from isolated binaries. 
+
+
+We use the publicly available rapid binary population synthesis simulations presented in \cite{vanson+2022}. 
+These simulations were run using version v02.19.04 of the open source \COMPAS suite \citep{COMPAS_method}\footnote{\url{https://github.com/TeamCOMPAS/COMPAS}}. \COMPAS is based on algorithms that model the evolution of massive binary stars following \citet{Hurley+2000, Hurley+2002} using detailed evolutionary models by \citet{Pols+1998}.  We refer the reader to the methods section of \cite{vanson+2022} for a detailed description of our adopted physics parameters and assumptions.
+%
+Metallicities of each binary system were sampled from a smooth probability distribution to avoid artificial peaks in the BH mass distribution \citep[e.g.][]{Dominik2015,Kummer_thesis}. 
+These simulations provide us with an estimate of the yield of BBH mergers per unit of star-forming mass and metallicity. 
+
+We combine the aforementioned yield with variations of the fiducial \SFRDzZ model described in this work. By integrating over cosmic history, we obtain the local merger rates of BBH systems, which allow us to construct the distribution of source properties at every redshift. The details of this framework are described in \cite{vanson+2022}, but also in \cite{Broekgaarden+2021a} and \cite{Neijssel+2019}. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Determining reasonable variations of \SFRDzZ \label{ss: reasonable var}}
+We consider variations in both the shape of the cosmic metallicity distribution \dpdZ, and the shape of the overall star-formation history, \SFRDz. To determine the range that is reasonably allowed by observations, we compare our variations to the observation-based \SFRDzZ models described in \cite{Chruslinska+2021}.
+
+For the cosmic metallicity distribution, we vary every parameter that determines the shape of \dpdZ independently (left two columns of Table \ref{tab: fit params}).
+For every variation, we inspect the fraction of stellar mass that is formed at low-metallicity ($Z<0.1 Z_{\odot}$) versus the fraction of stellar mass that is formed at high-metallicity ($Z> Z_{\odot}$), for all star formation that occurred below a certain threshold redshift.
+We compare this to the models from \cite{Chruslinska+2021} in Figure \ref{fig: low high Z fraction} in Appendix \ref{app: reasonable var}.
+We have chosen our variations such that they span the range of reasonable cosmic metallicity distributions as determined by observation-based and cosmological simulations-based models.
+For completeness, we furthermore inspect every variation by eye, and make sure none of the variations significantly exceeds the low and high metallicity extremes from \cite{Chruslinska+2021}.\footnote{We  compare to the low metallicity extreme model: \texttt{214f14SBBiC\_FMR270\_FOH\_z\_dM.dat}, and the high metallicity extreme model: \texttt{302f14SBBoco\_FMR270\_FOH\_z\_dM.dat}.}
+
+Lastly, we consider two variations of the overall star-formation history, \SFRDz, where we keep the metallicity distribution \dpdZ fixed, but vary all four \SFRDz parameters at once (right two columns of Table \ref{tab: fit params}). 
+We use Figure 11 from \cite{Chruslinska+2021} to determine approximate upper and lower bounds to the overall star-formation history. We choose \cite{Madau+2017} as an approximation of the lower limit. For the upper limit, we use the \texttt{SB: B18/C17} model variations with a non-evolving low-mass end of the galaxy stellar mass function from \cite{Chruslinska+2021} (thick brown line in their Fig. 11). To approximate these models, we fit equation \ref{eq: sfr1} by eye to the broken power law description for the  \texttt{SB: B18/C17} model variations as presented in appendix B1 from \cite{Chruslinska+2021}.
+We show all \SFRDz variations in Figure \ref{fig: SFR(z)}. \\
+%30*f14SBBiC
+% low_Z_file = '214f14SBBiC_FMR270_FOH_z_dM.dat'            
+% high_Z_file = '302f14SBBoco_FMR270_FOH_z_dM.dat'
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}
@@ -456,67 +485,69 @@ Adopting a skewed-lognormal metallicity distribution allows for a tail of low me
 \includegraphics[width=0.8\textwidth]{figures/Mass_distributions_stable_SFRD_variations.pdf}
 \caption{The primary mass distribution of merging BBH systems from the stable mass transfer channel for several variations in \SFRDzZ. 
 The first five panels show variations of the cosmic metallicity distribution  \dpdZ (eq. \ref{eq: z log skew}, parameters listed in the first three columns of Table \ref{tab: fit params}). The bottom right panel shows variations in the magnitude of the star formation rate with redshift, i.e. \SFRDz. For the latter we vary the four fiducial parameters of \SFRDz simultaneously (last two columns of Table \ref{tab: fit params}). All panels are shown at a reference redshift of $z=0.2$, with the corresponding predicted BBH merger rate annotated in the legend. We show the power-law + peak model from \protect\cite{GWTC3_popPaper2021} in grey. Lastly we annotate the relative change in the rate at three reference masses: $10\Msun$, $25\Msun$ and $40\Msun$. Variations in \SFRDzZ have the largest impact on the high mass end of the distribution, while around $\Mbheen=10$, variations are smaller than a factor of 3.  
-  \label{fig: mass dists}}
+  \label{fig: stable mass dists}}
 \end{figure*}
 
 \begin{figure*}
 \centering
 \script{Plot_Mass_distributions.py}
 \includegraphics[width=0.8\textwidth]{figures/Mass_distributions_CE_SFRD_variations.pdf}
-\caption{Same as Figure \ref{fig: mass dists}, but for the Common envelope channel. 
-   \label{fig: mass dists}
+\caption{Same as Figure \ref{fig: stable mass dists}, but for the Common envelope channel. 
+   \label{fig: CE mass dists}
   }
 \end{figure*}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The effect of the \SFRDzZ on the primary BH mass distribution}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+To isolate the effect of the \SFRDzZ from the effects of mixing different formation channels, we split the data from \cite{vanson+2022} between the stable mass transfer channel \citep[e.g.,][]{van-den-Heuvel+2017,Inayoshi2017,Bavera2021,Marchant2021,GallegosGarcia2021,vanson+2022}, and the `classical' common-envelope channel \citep[or CE channel, e.g.,\  ][]{Belczynski+2007,PostnovYungelson2014,Belczynski+2016Natur,vignaGomez+2018}. 
+These channels are distinguished based on whether the binary experiences common envelope evolution (CE channel) or only stable mass transfer (stable channel in short from now on).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In Figures \ref{fig: stable mass dists} and \ref{fig: CE mass dists}, we show the resulting primary mass distribution of merging BBHs from the stable channel and CE channel respectively.
+The primary (secondary) component refers to the more (less) massive component of merging BBHs. 
+Each panel varies one aspect of the \SFRDzZ.  
 
-We will now demonstrate the application of our analytical model by systematically varying the parameters in our fiducial \SFRDzZ model, and investigate their effect on the local mass distribution of BBH mergers originating from isolated binaries. 
-
-
-We use the publicly available rapid binary population synthesis simulations presented in \cite{vanson+2022}. 
-These simulations were run using version v02.19.04 of the open source \COMPAS suite \citep{COMPAS_method}\footnote{\url{https://github.com/TeamCOMPAS/COMPAS}}. \COMPAS is based on algorithms that model the evolution of massive binary stars following \citet{Hurley+2000, Hurley+2002}, based on detailed evolutionary models by \citet{Pols+1998}.  We refer the reader to the methods section of \cite{vanson+2022} for a detailed description of our adopted physics parameters and assumptions.
+% The location of features is robust
+The first thing we note is that the location of the features in the primary mass distribution are robust against variations in the \SFRDzZ. For the CE channel, the global peak of the mass distribution remains at approximately $\Mbheen=16\Msun$ for all variations. 
+Similarly, the stable channel displays two peaks that are visible in all variations: a peak at $\Mbheen\approx9\Msun$ and a peak at $\Mbheen\approx22\Msun$. 
+Two more peaks are visible in the stable channel at the high mass end for almost all \SFRDzZ (at $\Mbheen\approx35\Msun$ and $\Mbheen\approx45\Msun$), these peaks only fade for variations where the rate of high mass BHs is generally suppressed (dashed lines in top panel of Fig. \ref{fig: stable mass dists}). 
 %
-Metallicities of each binary system were sampled from a smooth probability distribution to avoid artificial peaks in the BH mass distribution \citep[e.g.][]{Dominik2015,Kummer_thesis}. 
-These simulations provide us with an estimate of the yield of BBH mergers per unit of star-forming mass and metallicity. 
+This is consistent with the results in \cite{Broekgaarden+2021b}. Although peaks in the probability distribution of chirp masses as shown in their Fig. 4 can disappear when a the \SFRDzZ prohibits the formation of certain (typically higher) mass BHs, the \textit{location} of features remains the same. 
+%
+This result is furthermore consistent with recent findings in \cite{chruslinska2022_review}. In their Figure 5, they compare two very different models of \SFRDzZ and find that, although the normalisation between the two BBH merger rates is completely different, the location of the peaks remains the same. 
+%
+This implies that the \textit{locations} of features in the mass distribution of BBHs are determined by the formation channel and its underlying stellar and binary physics. The location of features could therefore serve as tell tales of the underlying physics. 
 
 
-We combine the aforementioned yield with a variation of the fiducial \SFRDzZ model described in this work. By integrating over cosmic history, we obtain the local merger rates of BBH systems, which allow us to construct the distribution of source properties at every redshift. The details of this framework are described in \cite{vanson+2022}, and also in \cite{Broekgaarden+2021a} and \cite{Neijssel+2019}. 
-
-We consider variations of each of the parameters that determine the shape of the cosmic metallicity distribution \dpdZ (left two columns of Table \ref{tab: fit params}) and two variations of the \SFRDz, where we keep the metallicity distribution \dpdZ fixed, but vary the overall star-formation rate history  \SFRDz (i.e. all four \SFRDz parameters at once), to match the values used in \cite{Madau+2017} and \cite{Neijssel2019} respectively (see Figure \ref{fig: SFR(z)} for reference). To determine the range of parameters that is reasonably allowed by observations, we have compared the \SFRDzZ in the metallicity-redshift plane to the high and low metallicity extreme from \cite{Chruslinska+2021} by eye for every variation. \\
-
-
-In Figure \ref{fig: mass dists} we show the resulting mass distribution of the more massive component from merging BBHs. We will refer to the more (less) massive component as the primary (secondary) from hereon. 
-
-Most notably, we see that the main features in the primary mass distribution remain distinguishable throughout all \SFRDzZ variations. \todo{\cite{chruslinska2022_review} Fig. 5 actually shows that the \textit{shape} of the mass distribution is \textit{not at all} impacted that much by the SFRD!!}
-\todo{ This is in particular hopeful to measure cosmology with third generation detectors \cite{MariaEzquiaga2022} } 
 
 % Low masses are less affected
-Changes in the \SFRDzZ have the largest impact on the high mass end of the primary mass distribution, while the impact on the low mass is relatively modest.
+Second, we see that the low mass end of the primary mass distribution is relatively robust against variations in the \SFRDzZ. 
 To quantify this, we annotate the ratio between the maximum and minimum rate at three reference masses; \Mbheen = $10, 25$, and $40\Msun$.
-At $\Mbheen=10\Msun$, we find that the rate changes by at most a factor 3 for the variations explored in this work. While we find a factor of at most 11 for the change in rate at $\Mbheen=40\Msun$. 
-
+At $\Mbheen=10\Msun$, we find that the rate changes by at most a factor of about 3.5 for the stable channel, and at most about a factor of 6.5 for the CE channel. 
+On the other hand, the change in rate at $\Mbheen=40\Msun$ can scale up to a factor of about 110 and 60 for the stable and CE channel respectively. 
+The low mass end of the mass distribution of merging double compact objects will also provide a particularly powerful cosmological constraint in the era of third generation gravitational wave telescopes \citep{MariaEzquiaga2022}. Our finding that the low mass end is more robust against variations in \SFRDzZ supports this claim. 
 
 % The normalisation at z=0 changes the overal rate / normalisation
-Parameter variations that affect shape of \SFRDzZ at low redshift primarily change the normalisation of the mass distribution. See also  $\mathcal{R}_{0.2}$, the total BBH merger rate at redshift 0.2, annotated in the legends of Figure \ref{fig: mass dists} ($z=0.2$ is where the observations are best constrained by the data \citealt{GWTC3_popPaper2021}). 
-This is visible for variations that impact the width of the cosmic metallicity distribution at $z=0$, $\omega_0$, the mean metallicity of the cosmic metallicity distribution at $z=0$, $\mu_0$, and the skewness of the cosmic metallicity distribution, $\alpha$ (left column of Figure \ref{fig: mass dists}).
-Variations that \textit{increase} the amount of star formation at low metallicity (i.e. for a low mean metallicity $\mu_0=0.015$ and a wide metallicity distribution $\omega_0 = 1.4$ ) increase the predicted BBH merger rate. This is consistent with other work that finds merging BBHs form more efficiently at low metallicities \citep[e.g.][]{BelczynskiVink2010, Stevenson+2017,Mapelli2017,Chruslinska2019_effectCO,Broekgaarden+2021b}.
-
-Although a skewed distribution allows the metallicity distribution to extend to lower values, it simultaniously pushes the expected value of the metallicity distribution to higher values. Hence, the local rate of BBH mergers is lower for the skewed distribution ($\alpha = -3.5$) with respect to the more symmetric variation ($\alpha = -0.9$). However, the total rate of BBH mergers is only changed by about a factor of 2. 
-
-
-% The paramters that affect the redshift evolution change the slope of high mass BHs
-Parameters that change the evolution of the metallicity distribution \dpdZ with redshift, such as $\omega_z$ and $\mu_z$ (top right and centre right panel), primarily affect the slope of the high mass end of the BBH mass distribution.
-By reducing the amount of low-metallicity star formation at high redshifts, formation channels with long delay times are excluded. In these simulations, the higher mass systems come from the `stable mass transfer channel' which is characterised by longer delay times \citep[][see also their Figure 6]{vanson+2022}.  
-% This is similar to the redshift evolution of the mass distribution as discussed in \cite{vanson+2022} (Figure 6). 
-% The difference between the effect on the low mass end with respect to the high mass end of the mass distribution is largest for these variations.
+Parameter variations that affect shape of \SFRDzZ at low redshift primarily change the normalisation of the mass distribution. This is the case for variations of the width of the cosmic metallicity distribution at $z=0$ ($\omega_0$), the mean metallicity of the cosmic metallicity distribution at $z=0$ ($\mu_0$), and the skewness of the cosmic metallicity distribution ($\alpha$, left columns of Figures \ref{fig: stable mass dists} and \ref{fig: CE mass dists}).
+To emphasise this point, we annotate the total BBH merger rate at redshift 0.2, $\mathcal{R}_{0.2}$, in the legends of Figures \ref{fig: stable mass dists} and \ref{fig: CE mass dists} (0.2 if the redshift where the observations are best constrained \citealt{GWTC3_popPaper2021}). 
+%
+Variations that \textit{increase} the amount of star formation at low metallicity (i.e. for a low mean metallicity $\mu_0=0.007$ and a wide metallicity distribution $\omega_0 = 2.0$ ) increase the predicted BBH merger rate. This is consistent with other work that finds merging BBHs form more efficiently at low metallicities \citep[e.g.][]{BelczynskiVink2010, Stevenson+2017,Mapelli2017,Chruslinska2019_effectCO,Broekgaarden+2021b}.
+A more skewed cosmic metallicity distribution pushes the peak of the distribution to higher metallicities and thus forms overall more stars at high metallicity when compared to a symmetric distribution. Hence, the local rate of BBH mergers is lower for the skewed distribution ($\alpha = -6$) with respect to the symmetric variation ($\alpha = 0.0$).
+% However, the total rate of BBH mergers is only changed by about a factor of 2. 
 
 
 % Effect of the star formation 
-Lastly, changing the \SFRDz has a relatively small effect. 
-\todo{this is in line with findings from \citep{Tang+2020}.}
-We vary the \SFRDz to match the form described in \cite{Madau+2017} and \cite{Neijssel+2019} respectively. Both these variations peak at approximately redshift 2. Our fiducial model (that follows the \SFRDz from TNG) peaks at about redshift 2.8. The overall normalisation of \cite{Neijssel+2019} is higher than the normalisation of our fiducial model. Regardless of these differences, the rate of BBH mergers at $z=0.2$ changes no more than $20\%$, and the shape of the primary mass distribution remains almost constant. We understand this small effect as follows: our fiducial metallicity distribution \dpdZ is almost constant up to redshift $\sim3$. Hence shifting the location of the peak \SFRDz from 2.8 to 2 has a small effect. Furthermore, even though these models have varying peak values for \SFRDz, the integrated total stellar mass formed is similar between the models. %\todo{add value here}
+Changing the overall star-formation history (\SFRDz, bottom right panels of Figures \ref{fig: stable mass dists} and \ref{fig: CE mass dists}) also affects the overall normalisation of the mass distribution, but has a smaller effect than the width and the mean of the cosmic metallicity distribution at $z=0$ ($\omega_0$ and $\mu_0$). This underlines the importance of the amount of low-metallicity star formation \citep[e.g.,][]{chruslinska2022_review}, and is furthermore in line with findings from \cite{Tang+2020}.
+As discussed in Section \ref{ss: reasonable var}, we use \cite{Madau+2017} and the solid blue line in Figure \ref{fig: SFR(z)} as an approximate lower and upper bound to the \SFRDz respectively. 
+The model from \cite{Madau+2017} is very similar to our Fiducial model (Figure \ref{fig: SFR(z)}), and the differences between the resulting mass distributions are correspondingly small. Our approximation of the upper limit to the allowed \SFRDz leads to an overall increase of the BBH merger rate by a factor of about 3. 
+
+
+% The paramters that affect the redshift evolution change the slope of high mass BHs
+Parameters that change the evolution of the metallicity distribution \dpdZ with redshift, such as the redshift dependence of the with and mean; $\omega_z$ and $\mu_z$ (top right and centre right panels of Figures \ref{fig: stable mass dists} and \ref{fig: CE mass dists}) primarily affect the high mass end of the stable channel. 
+We understand this as an effect of the different delay time distributions for both formation channels. Namely, $\omega_z$ and $\mu_z$ both influence the amount of low metallicity stellar mass formed at high redshifts, and hence they will mostly affect systems with longer delay times. The stable channel has been shown to produce more high mass BHs with longer delay times when compared to the CE channel \citep{vanson+2022, Briel+2022}. 
+Hence we find these variations affect the slope of the high mass end of the BBH mass distribution for the stable channel, while they have a relatively small impact on the CE channel.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -530,19 +561,18 @@ Our analytical expression for \SFRDzZ is composed of a cosmic metallicity distri
 We show that our model captures the shape and general behaviour of the cosmological simulations well (Figure \ref{fig: fit SFRD}). 
 
 \paragraph{The model allows for a controlled experiment on the effect of \SFRDzZ on the local distribution of merging BBH}
-As an example, we apply our model to calculate the local rate and mass distribution of the more massive components from merging BBHs (\Mbheen) in Figure \ref{fig: mass dists}. 
-We systematically vary all five parameters that shape the cosmic metallicity distribution, and explore two additional variations of the overall star-formation rate \SFRDz, following \cite{Madau+2017} and \cite{Neijssel+2019} respectively. 
-Our main conclusions are as follows:
+As an example, we apply our model to calculate the local rate and mass distribution of the more massive components from merging BBHs (\Mbheen) in Figures \ref{fig: stable mass dists} and \ref{fig: CE mass dists}.
+We systematically vary all five parameters that shape the cosmic metallicity distribution, and explore two additional variations of the overall star-formation history \SFRDz.
+Our main findings are as follows:
 \begin{itemize}
     
     \item The location of features in the distribution of primary BH masses are robust against variations in the \SFRDzZ. The location of features in the mass distribution of BHs could thus be used as tell-tale signatures of their formation channel. 
     
     \item For all variations, the low mass end of the mass distribution is least affected by changes in the \SFRDzZ. This suggest that lower end of the BH mass distribution (component masses of $\leq 15\Msun$) is potentially very powerful for constraining the physics of the formation channels, irrespective of the cosmic star formation rate uncertainties.
     
-    \item The metallicity distribution of star formation at low redshift, primarily impacts the normalisation of the primary BH mass distribution (i.e. the total rate of BBH mergers at redshift 0.2).
+    \item The metallicity distribution of star formation at low redshift, primarily impacts the normalisation of the BBH merger rate. Changing the overall star-formation history, \SFRDz also affects the rate, but to a lesser degree. This underlines how low-metallicity star formation at low redshifts dominates the overall normalisation of the BBH merger rate. 
     
-    \item Parameters that influence the redshift evolution of the mean and the width of the metallicity distribution, affect the slope of the high mass end of the \Mbheen distribution. %Specifically this impacts the for masses above the peak of the \Mbheen distribution which occurs at approximately 18\Msun. 
-    \item Changing the overall star-formation history, \SFRDz varies the normalisation of the rate by at most a factor of about 5. This is because reasonable variations of the \SFRDz have a similar value for the total local star-formation rate density, which is relatively well constrained by observations. 
+    \item Parameters that influence the redshift evolution of the mean and the width of the metallicity distribution, affect the slope of the high mass end of the primary BH mass distribution for the stable channel. This reflects the longer delay times of the stable channel with respect to the CE channel. 
     
 \end{itemize}
 
@@ -565,23 +595,25 @@ The authors acknowledge partial financial support from the  National Science Fou
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 
-\section{Determining reasonable variations of the \SFRDzZ}
+\section{Determining reasonable variations of the \SFRDzZ \label{app: reasonable var}}
 
+To determine reasonable variations of our fiducial model for \SFRDzZ
+Fig. 2 in \cite{Pakmor+2022} which builds on Fig. 9 from \cite{Chruslinska2019_obs}
 
 \begin{figure}
 \centering
 \script{LowHighZ_fraction.py}
 \includegraphics[width=\textwidth]{figures/High_Low_metalFractionSFMass.pdf}
-\caption{Fraction of high vs low metallicity stellar mass.
-   \label{fig: low high Z fraction}
+\caption{Percentage of stellar mass formed at low metallicity ($Z < 0.1 \rm{Z_{\odot}}$) , versus high metallicity ($Z>\rm{Z_{\odot}}$) for all star formation below a certain threshold redshift: $z<0.5$ (left), $z < 3.0$ (middle) and $z<10$ (right). Data from observation-based variations are shown with semi-transparent thick crosses,  \citep[][]{Chruslinska2019_obs} and semi-transparent thick plus signs \citep[][]{Chruslinska+2021}, the low- and high-metallicity extremes are indicated with opague symbols. For data from cosmological simulations, we follow \cite{Pakmor+2022} and show Illustris \citep[][squares]{Vogelsberger+2014}, Simba \citep[][diamonds]{Dave+2019}, EAGLE \citep[][triangles]{Schaye+2015}, TNG50 and TNG100 \citep[][filled and open circles respectively]{FirstResTNG_Springel2018}. Black thin crosses display variations of the cosmic metallicity distribution that is part of our fiducial \SFRDzZ. The parameter that is varied with respect to the fiducial and its new value are annotated. This shows that our \SFRDzZ variations span the range of reasonable cosmic metallicity distributions as determined by observation-based and cosmological simulations-based models.
+\label{fig: low high Z fraction}
   }
 \end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Yield per metallicity and mass \label{app: mass metal yield}}
+% \section{Yield per metallicity and mass \label{app: mass metal yield}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The yield of merging BBH with certain masses, per star forming mass per metallicity
+% The yield of merging BBH with certain masses, per star forming mass per metallicity
 
 %%%%%%%%%%%%%%%%%%%%%
 % Rate - mass

@@ -427,7 +427,7 @@ for i in range(2):
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Overall SFR history"+"\n"+ r'$ \mathrm{SFRD(}z\rm{)} \ [a,b,c,d]$', 
                            labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \phantom{xxxx} \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Fiducial: \ } \phantom{xxxxx-xxxxx-} \ \mathcal{R}_{0.2}= \ $', 
-                                     r'$\mathrm{Approximation \ Max, \ Chruslinska \ et \ al. \ 2021:}  \ \mathcal{R}_{0.2} = \ $'],
+                                     r'$\mathrm{Approx. \ to \ upper \ limit:}  \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot6)
 
 

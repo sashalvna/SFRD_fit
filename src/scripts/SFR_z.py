@@ -62,6 +62,7 @@ def powerlaw_fit_Chruslinska21(z_bounds= [0,1.0,1.8,4.0,7.0,8.8, 10.0],
     return redshifts, SFRD # Msun /yr /Mpc^3    
 
 
+
 ########################################################
 # plot different SFRs
 ########################################################
@@ -108,13 +109,13 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913, show_legen
     #Resembling thick brown line in Fig. 11 Chruslinska + 2021
     a_max, b_max, c_max, d_max = 0.025,2.6,3.3,5.9 #2.5,2.9,4.5 
     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=a_max, b=b_max, c=c_max, d=d_max), 
-             label = 'Approximation \ to \ upper \ limit: \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
+             label = 'Approx. \ to \ upper \ limit: \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
              , c = '#356288', lw=5, ls = '-')
 
     # BEST FIT
     try:
         y_vals = Z_SFRD.Madau_Dickinson2014(redshift_list, a=sf_a, b=sf_b, c=sf_c,  d=sf_d)
-        ax.plot(x1, y_vals,label = 'Using best fit parameters \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (sf_a,sf_b,sf_c, sf_d), 
+        ax.plot(x1, y_vals,label = 'Using best fit parameters \ (fiducial) \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (sf_a,sf_b,sf_c, sf_d), 
                  c = '#fe1100', lw=5, ls = '--', zorder =10)
         print('max value', y_vals[np.argmax(y_vals)], ' at x_max = ', x1[np.argmax(y_vals)])
     except:
@@ -233,4 +234,3 @@ plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,show_legend = T
 # redshift axis
 plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,show_legend = False,
          redshift_list  = np.linspace(0,15, num=100), x_redshift = True, tmin=0.0, tmax = 15)
-
