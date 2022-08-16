@@ -79,7 +79,7 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913, show_legen
 
 #     #default M&D 14
 #     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list), 
-#              label = 'Madau $\&$ Dickinson 2014\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.015,2.77,2.9,5.6)
+#              label = 'Madau $\&$ Dickinson 2014\n $a=%.3f, b=%.2f, c=%.2f, d=%.2f$'% (0.015,2.7,2.9,5.6)
 #              , c = 'royalblue', ls = '--',lw=2)
 
     #default Madau & Fragos 17
@@ -108,7 +108,7 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913, show_legen
     #Resembling thick brown line in Fig. 11 Chruslinska + 2021
     a_max, b_max, c_max, d_max = 0.025,2.6,3.3,5.9 #2.5,2.9,4.5 
     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=a_max, b=b_max, c=c_max, d=d_max), 
-             label = 'Approximation \ to \ max: \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
+             label = 'Approximation \ to \ upper \ limit: \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
              , c = '#356288', lw=5, ls = '-')
 
     # BEST FIT
@@ -233,3 +233,4 @@ plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,show_legend = T
 # redshift axis
 plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913,show_legend = False,
          redshift_list  = np.linspace(0,15, num=100), x_redshift = True, tmin=0.0, tmax = 15)
+
