@@ -24,8 +24,8 @@ def init():
     data_dir   = str(paths.data)[0:-8] + 'data/'
     script_dir = str(paths.scripts)[0:-11] + 'scripts/'
 
-    COMPASfilename  = 'small_COMPAS_Output_wWeights.h5'#'small_COMPAS_Output_wWeights.h5'#
-    rate_file_name  = 'small_Rate_info.h5'#'small_Rate_info.h5'#'Rate_info.h5'
+    COMPASfilename  = 'COMPAS_Output_wWeights.h5'#'small_COMPAS_Output_wWeights.h5'#
+    rate_file_name  = 'Rate_info.h5'#'small_Rate_info.h5'#'Rate_info.h5'
     user_email      = "aac.van.son@gmail.com"
 
 
@@ -245,7 +245,7 @@ if __name__ == "__main__":
                                                  [[mu0_best, muz_best, sigma0_best, sigmaz_best, 0], fid_sfr_parameters],# alpha_variations
                                                 [[mu0_best, muz_best, sigma0_best, sigmaz_best, -6], fid_sfr_parameters],
                                                  [fid_dpdZ_parameters, [0.01, 2.60, 3.20, 6.20]],# SFR(z) variations
-                                                 [fid_dpdZ_parameters, [0.04,2.5,2.9,4.5]] ],
+                                                 [fid_dpdZ_parameters, [0.03,2.6,3.3,5.9]] ],
                            partitions = 'demink,conroy,hernquist,shared', Wtime = "1:00:00", mem = "120000")
 
 

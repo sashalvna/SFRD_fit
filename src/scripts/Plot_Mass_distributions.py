@@ -420,14 +420,14 @@ for i in range(2):
     ax6 = plot_mass_distribution(sim_dir = data_dir, x_key = 'M_moreMassive',  
                            rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.6_c3.2_d6.2',
                                        'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913', 
-                                       'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.04_b2.5_c2.9_d4.5'],
+                                       'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.03_b2.6_c3.3_d5.9'],
                                  channel_string = channel_string,
                            show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ecb05b', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Overall SFR history"+"\n"+ r'$ \mathrm{SFRD(}z\rm{)} \ [a,b,c,d]$', 
                            labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \phantom{xxxx} \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Fiducial: \ } \phantom{xxxxx-xxxxx-} \ \mathcal{R}_{0.2}= \ $', 
-                                     r'$\mathrm{Max, \ Chruslinska \ et \ al. \ 2021:}  \ \mathcal{R}_{0.2} = \ $'],
+                                     r'$\mathrm{Approximation \ Max, \ Chruslinska \ et \ al. \ 2021:}  \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot6)
 
 
