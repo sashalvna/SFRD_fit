@@ -79,7 +79,9 @@ def plot_SFR(sf_a = 0.017, sf_b = 1.481, sf_c = 4.452,  sf_d = 5.913, show_legen
         x1 = cosmo.lookback_time(redshift_list)
 
 #     #default M&D 14
-#     ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list), 
+#     # Because MD14 was computed using a salpeter IMF, you need to correct the SFRD!
+#     salpeter_to_kroupa = (1./1.55) 
+#     ax.plot(x1, salpeter_to_kroupa*Z_SFRD.Madau_Dickinson2014(redshift_list), 
 #              label = 'Madau $\&$ Dickinson 2014\n $a=%.3f, b=%.2f, c=%.2f, d=%.2f$'% (0.015,2.7,2.9,5.6)
 #              , c = 'royalblue', ls = '--',lw=2)
 

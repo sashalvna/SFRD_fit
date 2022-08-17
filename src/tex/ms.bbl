@@ -199,11 +199,27 @@
 {Belczynski}, K., {Bulik}, T., {Fryer}, C.~L., {et~al.} 2010, \apj, 714, 1217,
   \dodoi{10.1088/0004-637X/714/2/1217}
 
+\bibitem[{{Belczynski} {et~al.}(2016){Belczynski}, {Holz}, {Bulik}, \&
+  {O'Shaughnessy}}]{Belczynski+2016Natur}
+{Belczynski}, K., {Holz}, D.~E., {Bulik}, T., \& {O'Shaughnessy}, R. 2016,
+  \nat, 534, 512, \dodoi{10.1038/nature18322}
+
+\bibitem[{{Belczynski} {et~al.}(2007){Belczynski}, {Taam}, {Kalogera}, {Rasio},
+  \& {Bulik}}]{Belczynski+2007}
+{Belczynski}, K., {Taam}, R.~E., {Kalogera}, V., {Rasio}, F.~A., \& {Bulik}, T.
+  2007, \apj, 662, 504, \dodoi{10.1086/513562}
+
 \bibitem[{{Briel} {et~al.}(2021){Briel}, {Eldridge}, {Stanway}, {Stevance}, \&
   {Chrimes}}]{Briel+2021}
 {Briel}, M.~M., {Eldridge}, J.~J., {Stanway}, E.~R., {Stevance}, H.~F., \&
   {Chrimes}, A.~A. 2021, arXiv e-prints, arXiv:2111.08124.
 \newblock \doarXiv{2111.08124}
+
+\bibitem[{{Briel} {et~al.}(2022){Briel}, {Stevance}, \&
+  {Eldridge}}]{Briel+2022}
+{Briel}, M.~M., {Stevance}, H.~F., \& {Eldridge}, J.~J. 2022, arXiv e-prints,
+  arXiv:2206.13842.
+\newblock \doarXiv{2206.13842}
 
 \bibitem[{{Broekgaarden} {et~al.}(2021{\natexlab{a}}){Broekgaarden}, {Berger},
   {Neijssel}, {Vigna-G{\'o}mez}, {Chattopadhyay}, {Stevenson},
@@ -244,6 +260,16 @@
   {Jenkins}, {Rosas-Guevara}, {White}, \& {Trayford}}]{Crain+2015}
 {Crain}, R.~A., {Schaye}, J., {Bower}, R.~G., {et~al.} 2015, \mnras, 450, 1937,
   \dodoi{10.1093/mnras/stv725}
+
+\bibitem[{{Cresci} {et~al.}(2019){Cresci}, {Mannucci}, \&
+  {Curti}}]{Cresci+2019}
+{Cresci}, G., {Mannucci}, F., \& {Curti}, M. 2019, \aap, 627, A42,
+  \dodoi{10.1051/0004-6361/201834637}
+
+\bibitem[{{Dav{\'e}} {et~al.}(2019){Dav{\'e}}, {Angl{\'e}s-Alc{\'a}zar},
+  {Narayanan}, {Li}, {Rafieferantsoa}, \& {Appleby}}]{Dave+2019}
+{Dav{\'e}}, R., {Angl{\'e}s-Alc{\'a}zar}, D., {Narayanan}, D., {et~al.} 2019,
+  \mnras, 486, 2827, \dodoi{10.1093/mnras/stz937}
 
 \bibitem[{{Dominik} {et~al.}(2013){Dominik}, {Belczynski}, {Fryer}, {Holz},
   {Berti}, {Bulik}, {Mandel}, \& {O'Shaughnessy}}]{Dominik+2013}
@@ -317,6 +343,13 @@
 \bibitem[{{Kennicutt}(1989)}]{Kennicutt1989}
 {Kennicutt}, Robert~C., J. 1989, \apj, 344, 685, \dodoi{10.1086/167834}
 
+\bibitem[{{Kewley} \& {Ellison}(2008)}]{KewleyEllison2008}
+{Kewley}, L.~J., \& {Ellison}, S.~L. 2008, \apj, 681, 1183,
+  \dodoi{10.1086/587500}
+
+\bibitem[{{Kroupa}(2001)}]{Kroupa2001}
+{Kroupa}, P. 2001, \mnras, 322, 231, \dodoi{10.1046/j.1365-8711.2001.04022.x}
+
 \bibitem[{{Kummer}(2020)}]{Kummer_thesis}
 {Kummer}, F. 2020, UvA Scripties
 
@@ -339,6 +372,10 @@
 \bibitem[{{Madau} \& {Fragos}(2017)}]{Madau+2017}
 {Madau}, P., \& {Fragos}, T. 2017, \apj, 840, 39,
   \dodoi{10.3847/1538-4357/aa6af9}
+
+\bibitem[{{Maiolino} \& {Mannucci}(2019)}]{MaiolinoMannucci2019}
+{Maiolino}, R., \& {Mannucci}, F. 2019, \aapr, 27, 3,
+  \dodoi{10.1007/s00159-018-0112-2}
 
 \bibitem[{{Mapelli} {et~al.}(2017){Mapelli}, {Giacobbo}, {Ripamonti}, \&
   {Spera}}]{Mapelli2017}
@@ -409,11 +446,50 @@ O'Hagan, A., \& Leonard, T. 1976, Biometrika, 63, 201,
 {Pillepich}, A., {Springel}, V., {Nelson}, D., {et~al.} 2018{\natexlab{b}},
   \mnras, 473, 4077, \dodoi{10.1093/mnras/stx2656}
 
+\bibitem[{{Planck Collaboration} {et~al.}(2020){Planck Collaboration},
+  {Aghanim}, {Akrami}, {Ashdown}, {Aumont}, {Baccigalupi}, {Ballardini},
+  {Banday}, {Barreiro}, {Bartolo}, {Basak}, {Battye}, {Benabed}, {Bernard},
+  {Bersanelli}, {Bielewicz}, {Bock}, {Bond}, {Borrill}, {Bouchet}, {Boulanger},
+  {Bucher}, {Burigana}, {Butler}, {Calabrese}, {Cardoso}, {Carron},
+  {Challinor}, {Chiang}, {Chluba}, {Colombo}, {Combet}, {Contreras}, {Crill},
+  {Cuttaia}, {de Bernardis}, {de Zotti}, {Delabrouille}, {Delouis}, {Di
+  Valentino}, {Diego}, {Dor{\'e}}, {Douspis}, {Ducout}, {Dupac}, {Dusini},
+  {Efstathiou}, {Elsner}, {En{\ss}lin}, {Eriksen}, {Fantaye}, {Farhang},
+  {Fergusson}, {Fernandez-Cobos}, {Finelli}, {Forastieri}, {Frailis},
+  {Fraisse}, {Franceschi}, {Frolov}, {Galeotta}, {Galli}, {Ganga},
+  {G{\'e}nova-Santos}, {Gerbino}, {Ghosh}, {Gonz{\'a}lez-Nuevo}, {G{\'o}rski},
+  {Gratton}, {Gruppuso}, {Gudmundsson}, {Hamann}, {Handley}, {Hansen},
+  {Herranz}, {Hildebrandt}, {Hivon}, {Huang}, {Jaffe}, {Jones}, {Karakci},
+  {Keih{\"a}nen}, {Keskitalo}, {Kiiveri}, {Kim}, {Kisner}, {Knox},
+  {Krachmalnicoff}, {Kunz}, {Kurki-Suonio}, {Lagache}, {Lamarre}, {Lasenby},
+  {Lattanzi}, {Lawrence}, {Le Jeune}, {Lemos}, {Lesgourgues}, {Levrier},
+  {Lewis}, {Liguori}, {Lilje}, {Lilley}, {Lindholm}, {L{\'o}pez-Caniego},
+  {Lubin}, {Ma}, {Mac{\'\i}as-P{\'e}rez}, {Maggio}, {Maino}, {Mandolesi},
+  {Mangilli}, {Marcos-Caballero}, {Maris}, {Martin}, {Martinelli},
+  {Mart{\'\i}nez-Gonz{\'a}lez}, {Matarrese}, {Mauri}, {McEwen}, {Meinhold},
+  {Melchiorri}, {Mennella}, {Migliaccio}, {Millea}, {Mitra},
+  {Miville-Desch{\^e}nes}, {Molinari}, {Montier}, {Morgante}, {Moss}, {Natoli},
+  {N{\o}rgaard-Nielsen}, {Pagano}, {Paoletti}, {Partridge}, {Patanchon},
+  {Peiris}, {Perrotta}, {Pettorino}, {Piacentini}, {Polastri}, {Polenta},
+  {Puget}, {Rachen}, {Reinecke}, {Remazeilles}, {Renzi}, {Rocha}, {Rosset},
+  {Roudier}, {Rubi{\~n}o-Mart{\'\i}n}, {Ruiz-Granados}, {Salvati}, {Sandri},
+  {Savelainen}, {Scott}, {Shellard}, {Sirignano}, {Sirri}, {Spencer},
+  {Sunyaev}, {Suur-Uski}, {Tauber}, {Tavagnacco}, {Tenti}, {Toffolatti},
+  {Tomasi}, {Trombetti}, {Valenziano}, {Valiviita}, {Van Tent}, {Vibert},
+  {Vielva}, {Villa}, {Vittorio}, {Wandelt}, {Wehus}, {White}, {White},
+  {Zacchei}, \& {Zonca}}]{Planck18_VI}
+{Planck Collaboration}, {Aghanim}, N., {Akrami}, Y., {et~al.} 2020, \aap, 641,
+  A6, \dodoi{10.1051/0004-6361/201833910}
+
 \bibitem[{{Pols} {et~al.}(1998){Pols}, {Schr{\"o}der}, {Hurley}, {Tout}, \&
   {Eggleton}}]{Pols+1998}
 {Pols}, O.~R., {Schr{\"o}der}, K.-P., {Hurley}, J.~R., {Tout}, C.~A., \&
   {Eggleton}, P.~P. 1998, \mnras, 298, 525,
   \dodoi{10.1046/j.1365-8711.1998.01658.x}
+
+\bibitem[{{Postnov} \& {Yungelson}(2014)}]{PostnovYungelson2014}
+{Postnov}, K.~A., \& {Yungelson}, L.~R. 2014, Living Reviews in Relativity, 17,
+  3, \dodoi{10.12942/lrr-2014-3}
 
 \bibitem[{{Riley} {et~al.}(2022){Riley}, {Agrawal}, {Barrett}, {Boyett},
   {Broekgaarden}, {Chattopadhyay}, {Gaebel}, {Gittins}, {Hirai}, {Howitt},
@@ -422,6 +498,12 @@ O'Hagan, A., \& Leonard, T. 1976, Biometrika, 63, 201,
   {Willcox}, \& {Team Compas}}]{COMPAS_method}
 {Riley}, J., {Agrawal}, P., {Barrett}, J.~W., {et~al.} 2022, \apjs, 258, 34,
   \dodoi{10.3847/1538-4365/ac416c}
+
+\bibitem[{{Sanders} {et~al.}(2022){Sanders}, {Shapley}, {Clarke}, {Topping},
+  {Reddy}, {Kriek}, {Jones}, {Stark}, \& {Tang}}]{Sanders+2022}
+{Sanders}, R.~L., {Shapley}, A.~E., {Clarke}, L., {et~al.} 2022, arXiv
+  e-prints, arXiv:2207.12430.
+\newblock \doarXiv{2207.12430}
 
 \bibitem[{{Schaye} {et~al.}(2015){Schaye}, {Crain}, {Bower}, {Furlong},
   {Schaller}, {Theuns}, {Dalla Vecchia}, {Frenk}, {McCarthy}, {Helly},
@@ -468,6 +550,18 @@ O'Hagan, A., \& Leonard, T. 1976, Biometrika, 63, 201,
   {Mandel}}]{vanson+2022}
 {van Son}, L.~A.~C., {de Mink}, S.~E., {Callister}, T., {et~al.} 2022, \apj,
   931, 17, \dodoi{10.3847/1538-4357/ac64a3}
+
+\bibitem[{{Vigna-G{\'o}mez} {et~al.}(2018){Vigna-G{\'o}mez}, {Neijssel},
+  {Stevenson}, {Barrett}, {Belczynski}, {Justham}, {de Mink}, {M{\"u}ller},
+  {Podsiadlowski}, {Renzo}, {Sz{\'e}csi}, \& {Mandel}}]{vignaGomez+2018}
+{Vigna-G{\'o}mez}, A., {Neijssel}, C.~J., {Stevenson}, S., {et~al.} 2018,
+  \mnras, 481, 4009, \dodoi{10.1093/mnras/sty2463}
+
+\bibitem[{{Vogelsberger} {et~al.}(2014){Vogelsberger}, {Genel}, {Springel},
+  {Torrey}, {Sijacki}, {Xu}, {Snyder}, {Nelson}, \&
+  {Hernquist}}]{Vogelsberger+2014}
+{Vogelsberger}, M., {Genel}, S., {Springel}, V., {et~al.} 2014, \mnras, 444,
+  1518, \dodoi{10.1093/mnras/stu1536}
 
 \bibitem[{Wang {et~al.}(2019)Wang, Yu, \& Peng}]{WANG201995}
 Wang, K., Yu, S., \& Peng, W. 2019, Journal of Aerosol Science, 134, 95,

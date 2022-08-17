@@ -15,7 +15,7 @@
 \newcommand{\yr}{\ensuremath{\,\rm{yr}}\xspace}
 \newcommand{\Myr}{\ensuremath{\,\rm{Myr}}\xspace}
 \newcommand{\Gyr}{\ensuremath{\,\rm{Gyr}}\xspace}
-\newcommand{\Mpc}{\ensuremath{\,\rm{Gpc}}\xspace}
+\newcommand{\Mpc}{\ensuremath{\,\rm{Mpc}}\xspace}
 \newcommand{\Gpc}{\ensuremath{\,\rm{Gpc}}\xspace}
 \newcommand{\cGpc}{\ensuremath{\,\rm{cGpc}}\xspace}
 
@@ -70,7 +70,7 @@
 % Title
 % \title{ A flexible and intuitive analytic expression for the metallicity-dependent cosmic star formation rate  }
 % \title{ A flexible expression for the metallicity-dependent cosmic star formation rate: }
-\title{The location of features in the mass distribution of merging binary black holes does not depend on the metallicity-dependent cosmic star formation rate}
+\title{The location of features in the mass distribution of merging binary black holes does not depend on the metallicity-dependent cosmic star formation.}
 
 
 
@@ -78,27 +78,29 @@
 \correspondingauthor{L.~van Son}
 \email{lieke.van.son@cfa.harvard.edu}
 
+%%%%%%%%%%%%%%%
 \author[0000-0001-5484-4987]{L.~A.~C.~van~Son}
 \affiliation{Center for Astrophysics $|$ Harvard $\&$ Smithsonian,
 60 Garden St., Cambridge, MA 02138, USA}
 \affiliation{Anton Pannekoek Institute of Astronomy and GRAPPA, Science Park 904, University of Amsterdam, 1098XH Amsterdam, The Netherlands}
 \affiliation{Max Planck Institute for Astrophysics, Karl-Schwarzschild-Str. 1, 85748 Garching, Germany}
-
- \author[0000-0001-9336-2825]{S. E. de Mink}
- \affiliation{Max Planck Institute for Astrophysics, Karl-Schwarzschild-Str. 1, 85748 Garching, Germany}
-\affiliation{Anton Pannekoek Institute of Astronomy and GRAPPA, Science Park 904, University of Amsterdam, 1098XH Amsterdam, The Netherlands}
-\affiliation{Center for Astrophysics $|$ Harvard $\&$ Smithsonian, 60 Garden St., Cambridge, MA 02138, USA}
-% %%%%%
-
-\author[0000-0002-8901-6994]{M. Chru{\'s}li{\'n}ska}
-\affiliation{Max Planck Institute for Astrophysics, Karl-Schwarzschild-Str. 1, 85748 Garching, Germany}
-
-
-\author[0000-0002-8901-6994]{L. Hernquist}
-
- \author[0000-0003-3308-2420]{R. Pakmor}
- \affiliation{Max Planck Institute for Astrophysics, Karl-Schwarzschild-Str. 1, 85748 Garching, Germany}
-  
+\author[0000-0001-5484-4987]{et. al}
+% %%%%%%%%%%%%%%%
+% \author[0000-0001-9336-2825]{S. E. de Mink}
+% \affiliation{Max Planck Institute for Astrophysics, Karl-Schwarzschild-Str. 1, 85748 Garching, Germany}
+% \affiliation{Anton Pannekoek Institute of Astronomy and GRAPPA, Science Park 904, University of Amsterdam, 1098XH Amsterdam, The Netherlands}
+% \affiliation{Center for Astrophysics $|$ Harvard $\&$ Smithsonian, 60 Garden St., Cambridge, MA 02138, USA}
+% %%%%%%%%%%%%%%%
+% \author[0000-0002-8901-6994]{M. Chru{\'s}li{\'n}ska}
+% \affiliation{Max Planck Institute for Astrophysics, Karl-Schwarzschild-Str. 1, 85748 Garching, Germany}
+% %%%%%%%%%%%%%%%
+% \author[0000-0002-8901-6994]{L. Hernquist}
+% \affiliation{Center for Astrophysics $|$ Harvard $\&$ Smithsonian,
+% 60 Garden St., Cambridge, MA 02138, USA}
+% %%%%%%%%%%%%%%%
+% \author[0000-0003-3308-2420]{R. Pakmor}
+% \affiliation{Max Planck Institute for Astrophysics, Karl-Schwarzschild-Str. 1, 85748 Garching, Germany}
+%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,25 +142,35 @@ Gravitational astronomy in particular has seen explosive growth in the number of
 
 
 It is difficult to observationally constrain the shape of \SFRDzZ, see \cite{Chruslinska2019_obs} for an extensive overview and discussion of relevant observational caveats. Even at low redshifts, the low metallicity part of the distribution is poorly constrained \citep{Chruslinska+2021}.
-Nonetheless, several methods exist to estimate the metallicity dependent star-formation rate. The first method combines a galaxy mass-metallicity relation, MZ-relation and a galaxy stellar mass function, GSMF \citep[see e.g.][]{Dominik+2013}.
+Nonetheless, several methods exist to estimate the metallicity dependent star-formation rate. 
+
+The first method combines a galaxy mass-metallicity relation, MZ-relation and a galaxy stellar mass function, GSMF \citep[see e.g.][]{Dominik+2013}. However, the applied methods to infer galaxy properties and subsequently scaling relations such as the MZ-relation differ greatly, which makes it difficult to interpret these results in a consistent way \citep[e.g.,][]{KewleyEllison2008,MaiolinoMannucci2019,Cresci+2019}. Moreover, observations are generally incomplete at high redshifts and low galaxy luminosity \citep[e.g.,][]{Chruslinska+2021}.
+
 % \citep[see e.g.][]{Chruslinska+2018, Chruslinska2019_effectCO, Broekgaarden+2021a}.
-On can also directly extract the metallicity density fraction from cosmological simulations \citep[e.g.][]{Mapelli2017, Briel+2021}.
-Alternatively, one can combine an observed star formation rate, \SFRDz, like from \cite{MadauDickinson2014} or \cite{Madau+2017}, and convolve this with an assumed function for the shape of the shape of the metallicity density distribution, such as was was done in \cite{LangerNorman, Neijssel+2019}.
+One can also directly extract the metallicity density fraction from cosmological simulations \citep[e.g.][]{Mapelli2017, Briel+2021}. However, these simulations currently lack the resolution to resolve the lowest mass galaxies, and their variations in \SFRDzZ span a smaller range than those observed in observationally-based models \citep{Pakmor+2022}.
+
+Alternatively, one can combine analytical models for the observed star formation rate, \SFRDz, like those from \cite{MadauDickinson2014} or \cite{Madau+2017}, and convolve this with an assumed function for the shape of the shape of the metallicity density distribution, such as was was done in e.g., \cite{LangerNorman, Neijssel+2019}.
 
 %Arguments: cosmological simulations work at high z,  but are they real? observations 
 In this work we follow the latter approach and propose a flexible analytical model for the \SFRDzZ that can be fit to the output of both cosmological simulations, and observational data constraints where available. 
-In contrast to earlier work  \citep{LangerNorman, Neijssel+2019}, we adopt a skewed-lognormal distribution of metallicities that can capture the asymmetry in the low and high metallicity tails. %to capture the tail of low metallicity star formation at low redshift. 
-% The novelty of this model lies in a skewed-lognormal distribution of metallicities, that captures the tail of low metallicity star formation at low redshift.
+In contrast to earlier work, we adopt a skewed-lognormal distribution of metallicities that can capture the asymmetry in the low and high metallicity tails. %\citep{LangerNorman, Neijssel+2019}
 
 The purpose of this proposed form is twofold.  
-First of all, the form we propose allows for an intuitive interpretation of the free parameters. This allows us to get better insight of the impact of changes in these parameters on the inferred ranges of astrophysical transients (as we demonstrate in this work using GW predictions as an example). By adopting an analytical, parametrized form for \SFRDzZ, the large uncertainties in \SFRDzZ can be systematically explored.
-Secondly, we hope that this form will facilitate a more sensible way for useful inference on large (future) datasets of astrophysical transients, such as the ever growing catalogue of gravitational wave transients. Our hope is that the constraints on the free parameters in the analytical form we propose, can provide a more useful guidance when comparing with the outcome of the predictions of cosmological simulations. 
+First of all, the form we propose allows for an intuitive interpretation of the free parameters. This allows us to get better insight of the impact of changes in these parameters on the inferred ranges of astrophysical transients (as we demonstrate in Section \ref{sec: mass dists} using GW predictions as an example). By adopting an analytical, parametrized form for \SFRDzZ, the large uncertainties can be systematically explored.
+%
+Secondly, both the large complications in observational constraints, and the many uncertainties in cosmological simulations call for a generalised form of the \SFRDzZ that can be easily updated when new information becomes available. % which is the motivation for this work. 
+In particular, the advent of observations with the James Webb Space Telescope promises a new era of high-redshift
+metallicity studies of previously unexplored regimes \citep[e.g.,][]{Sanders+2022}. We hope that this form will facilitate the flexibility needed to keep up with observations. 
+% we hope that this form will facilitate a more sensible way for useful inference on large (future) datasets of astrophysical transients, such as the ever growing catalogue of gravitational wave transients. Our hope is that the constraints on the free parameters in the analytical form we propose, can provide a more useful guidance when comparing with the outcome of the predictions of cosmological simulations. 
+
 % is to allow for an intuitive interpretation of the effects of the \SFRDzZ on the inferred rates of astrophysical transients. By adopting an analytical, parametrized form for \SFRDzZ, the large uncertainties in \SFRDzZ can be systematically explored.% through varying the parameters that control its shape.
 
 
 We describe our model for \SFRDzZ in Section \ref{sec: model for sfrd(zZ)}.
-We fit our model to to the star-forming gas in the Illustris TNG100 simulation in Section \ref{sec: mass dists} we demonstrate an example application of our model by systematically varying the parameters that determine the shape of \SFRDzZ and investigate their impact on the local distribution of merging BBH masses.
+We fit our model to to the star-forming gas in the Illustris TNG100 simulation in Section \ref{sec: fit against tng} we demonstrate an example application of our model by systematically varying the parameters that determine the shape of \SFRDzZ and investigate their impact on the local distribution of merging BBH masses in Section \ref{sec: mass dists}.
 We summarise our findings in Section \ref{sec: summary}.
+
+Throughout this work, we adopt a Kroupa initial mass function \citep{Kroupa2001} and a flat $\Lambda$CDM cosmology with $\Omega_{\rm{M}}=0.31$, $\Omega_{\rm{\Lambda}}=0.69$ and $H_0=67.7\rm{km\,s^{-1}\,Mpc^{-1}}$ \citep{Planck18_VI}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,7 +190,7 @@ The first term is the star formation rate density, \SFRDz, that is the amount of
 
 % $a=0.02$, $b=1.48$, $c=4.45$ and $d=5.9$ as best fitting parameters,
 \subsection{The metallicity probability density function}
-For the probability distribution of metallicities we draw inspiration from the approach by \citep[e.g.\ ][]{Neijssel+2019} who used a log-normal distribution. Unfortunately, this expression does not capture the asymmetry well that we see in the results of the cosmological simulations, which show an extended tail in  $\log_{10} Z$ towards low metallicity combined with a very limited tail towards higher metallicity. To capture this behaviour we adopt a skewed-log-normal distribution instead. This is an extension of the normal distribution that introduces an additional shape parameter, $\alpha$, that regulates the skewness \citep[first introduced by][]{Ohagan+1976}. 
+For the probability distribution of metallicities we draw inspiration from the approach by e.g., \cite{Neijssel+2019} who used a log-normal distribution. Unfortunately, this expression does not capture the asymmetry well that we see in the results of the cosmological simulations, which show an extended tail in  $\log_{10} Z$ towards low metallicity, combined with a very limited tail towards higher metallicity. To capture this behaviour we adopt a skewed-log-normal distribution instead. This is an extension of the normal distribution that introduces an additional shape parameter, $\alpha$, that regulates the skewness \citep[first introduced by][]{Ohagan+1976}. 
 
 The skewed-log-normal distribution of metallicities is defined as:
 % See eq. 1 here: https://www.emis.de/journals/RCE/V36/v36n1a03.pdf
@@ -335,7 +347,7 @@ For comparison, we also show the phenomenological model from \protect\cite{Neijs
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We fit our new functional form of \SFRDzZ as defined by equations \ref{eq: total sfrd}, \ref{eq: z log skew} and \ref{eq: sfr1} to the Illustris-TNG cosmological simulations. 
-We fit for the following nine free parameters $\alpha, \mu_0, \mu_z, \omega_0, \omega_z$, which govern the metallicity dependence and $a,b, c$ and $d$, which set the overall star formation rate.
+We simultaneously fit for the following nine free parameters $\alpha, \mu_0, \mu_z, \omega_0, \omega_z$, which govern the metallicity dependence and $a,b, c$ and $d$, which set the overall star formation rate.
 
 Below we briefly discuss the Illustris-TNG simulations, and elaborate on our fitting procedure.
 
@@ -345,7 +357,10 @@ Below we briefly discuss the Illustris-TNG simulations, and elaborate on our fit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Illustris-TNG Cosmological simulations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Both the large observational uncertainties in \SFRDzZ (as discussed in section \ref{sec: intro}), and the many uncertainties in cosmological simulations (as discussed below) call for a generalised form of the \SFRDzZ that can be easily updated when new information becomes available, which is the motivation for this work. Although here, we only fit our model to the TNG100 simulation, our prescription can be easily be used to fit other simulated or observational data of the metallicity dependent star formation rate density\footnote{We provide a Jupyter notebook to facilitate this fit here: \url{https://github.com/LiekeVanSon/SFRD_fit/blob/main/src/scripts/Fit_To_Cosmological_Simulation.ipynb} }.
+% Both the large observational uncertainties in \SFRDzZ (as discussed in section \ref{sec: intro}), and the many uncertainties in cosmological simulations (as discussed below) call for a generalised form of the \SFRDzZ that can be easily updated when new information becomes available, which is the motivation for this work. 
+% In particular, the advent of observations with the James Webb Space Telescope promises a new era of high-redshift% metallicity studies in previously unexplored regimes \citep[e.g.,][]{Sanders+2022}.
+%
+Although here, we only fit our model to the TNG100 simulation, our prescription can be easily be used to fit other simulated or observational data of the metallicity dependent star formation rate density\footnote{We provide a Jupyter notebook to facilitate this fit here: \url{https://github.com/LiekeVanSon/SFRD_fit/blob/main/src/scripts/Fit_To_Cosmological_Simulation.ipynb} }.
 
 The IllustrisTNG-project \citep[or TNG in short,][]{FirstResTNG_Springel2018,FirstResTNG_Marinacci2018, FirstResTNG_Nelson2018,FirstResTNG_Pillepich2018, FirstResTNG_Naiman2018} considers galaxy formation and evolution through large-scale cosmological hydrodynamical simulations.
 Such simulations provide the tools to study parts of the Universe that are not easily accessible by observations. In particular of interest for this work, they simulate the high redshift enrichment of galaxies and the tail of low metallicity star formation at low redshift.
@@ -367,7 +382,7 @@ Moreover, the uniform ionising UV background is turned on abruptly at $z=6$, whi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Choices and binning of the data}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We fit equation \ref{eq: total sfrd} to the metallicity-dependent star formation rate of the star-forming gas in the TNG100 simulation. For this we use a binned version of the TNG data $\SFRDzZ_{\rm sim}$. We consider metallicities between $Z= -5$ to $\log_{10} Z= 0$ in 30 bins, where we use $Z_i$ to refer to the logarithmic centres of the bins. We ignore star formation in metallicities $\log_{10} Z \le -5$ as this accounts for less than 1\% of the total cosmic star formation rate in these simulations.
+We fit equation \ref{eq: total sfrd} to the metallicity-dependent star formation rate of the star-forming gas in the TNG100 simulation. For this we use a binned version of the TNG data $\SFRDzZ_{\rm sim}$. We consider metallicities between $\log_{10} Z= -5$ to $\log_{10} Z= 0$ in 30 bins, where we use $Z_i$ to refer to the logarithmic centres of the bins. We ignore star formation in metallicities $\log_{10} Z \le -5$ as this accounts for less than 1\% of the total cosmic star formation rate in these simulations.
 We consider bins in redshifts between $z=0$ and $z=10$, with a step size of $dz=0.05$, where $z_j$ refers to the centres of the bins. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -419,13 +434,13 @@ $\omega_z$ & $z$-dependence of the scale  & $0.048  \pm 0.0001$ &   \\
 \enddata
 \end{deluxetable*}
 
-In Figure \ref{fig: fit SFRD} we show our fiducial  model at different redshifts and metallicities. For clarity, we also show the overall rate of star formation \SFRDz in Figure \ref{fig: SFR(z)}.
+In Figure \ref{fig: fit SFRD} we show our fiducial  model at different redshifts and metallicities. We also show the overall rate of star formation \SFRDz in Figure \ref{fig: SFR(z)}.
 In general, our analytical model captures the metallicity dependent star formation in the TNG100 simulations well (bottom panels of Figure \ref{fig: fit SFRD}). 
 The skewed-log normal metallicity distribution is able to reproduce the overall behaviour that is observed in TNG100 \citep[bottom left panel, but cf. ][for an in-depth discussion of low metallicity star formation in the TNG50 simulation]{Pakmor+2022}.
 Only minor features like the additional bump just above $\log_{10}(Z) = -2$ at redshift 2 are missed. 
 However, for our purposes, it is more important to prioritise fitting the large scale trends, while we are not so interested in smaller scale fluctuations.
 
-Adopting a skewed-lognormal metallicity distribution allows for a tail of low metallicity star formation out to low redshifts. To emphasise the difference between a skewed-lognormal and a symmetric lognormal distribution, we show the phenomenological model from \cite{Neijssel+2019} in dotted grey. Their model falls within the family of functions that is encompassed by our model described in Section \ref{sec: model for sfrd(zZ)}, but we note that their model is distinctly different. \footnote{The phenomenological model from \cite{Neijssel+2019} is recovered by adopting $\mu_0= 0.035$, $\mu_z=-0.23$, $\omega_0=0.39 $, $\omega_z = 0$, $\alpha = 0$, $a=0.01$, $b=2.77$, $c=2.9$ and $d=4.7$. }
+Adopting a skewed-lognormal metallicity distribution allows for a tail of low metallicity star formation out to low redshifts. To emphasise the difference between a skewed-lognormal and a symmetric lognormal distribution, we show the phenomenological model from \cite{Neijssel+2019} in dotted grey. Their model falls within the family of functions that is encompassed by our model described in Section \ref{sec: model for sfrd(zZ)}, but we note that their model is very distinctly different.\footnote{The phenomenological model from \cite{Neijssel+2019} is recovered by adopting $\mu_0= 0.035$, $\mu_z=-0.23$, $\omega_0=0.39 $, $\omega_z = 0$, $\alpha = 0$, $a=0.01$, $b=2.77$, $c=2.9$ and $d=4.7$. }
 % The \SFRDzZ from \cite{Neijssel+2019} was optimised to match the local rate of double compact object mergers as presented in the second gravitational-wave catalogue. However, the resulting symmetric distribution cuts-off virtually all low-metallicity ($Z\leq 10^{-2.5}$) star formation.
 
 % For both \SFRDzZ distributions, most star formation happens at metallicities above $Z \geq 10^{-2}$ (top panel).
@@ -472,7 +487,7 @@ For completeness, we furthermore inspect every variation by eye, and make sure n
 
 Lastly, we consider two variations of the overall star-formation history, \SFRDz, where we keep the metallicity distribution \dpdZ fixed, but vary all four \SFRDz parameters at once (right two columns of Table \ref{tab: fit params}). 
 We use Figure 11 from \cite{Chruslinska+2021} to determine approximate upper and lower bounds to the overall star-formation history. We choose \cite{Madau+2017} as an approximation of the lower limit. For the upper limit, we use the \texttt{SB: B18/C17} model variations with a non-evolving low-mass end of the galaxy stellar mass function from \cite{Chruslinska+2021} (thick brown line in their Fig. 11). To approximate these models, we fit equation \ref{eq: sfr1} by eye to the broken power law description for the  \texttt{SB: B18/C17} model variations as presented in appendix B1 from \cite{Chruslinska+2021}.
-We show all \SFRDz variations in Figure \ref{fig: SFR(z)}. \\
+We show all \SFRDz variations in Figure~\ref{fig: SFR(z)}. \\
 %30*f14SBBiC
 % low_Z_file = '214f14SBBiC_FMR270_FOH_z_dM.dat'            
 % high_Z_file = '302f14SBBoco_FMR270_FOH_z_dM.dat'
@@ -484,7 +499,7 @@ We show all \SFRDz variations in Figure \ref{fig: SFR(z)}. \\
 \script{Plot_Mass_distributions.py}
 \includegraphics[width=0.8\textwidth]{figures/Mass_distributions_stable_SFRD_variations.pdf}
 \caption{The primary mass distribution of merging BBH systems from the stable mass transfer channel for several variations in \SFRDzZ. 
-The first five panels show variations of the cosmic metallicity distribution  \dpdZ (eq. \ref{eq: z log skew}, parameters listed in the first three columns of Table \ref{tab: fit params}). The bottom right panel shows variations in the magnitude of the star formation rate with redshift, i.e. \SFRDz. For the latter we vary the four fiducial parameters of \SFRDz simultaneously (last two columns of Table \ref{tab: fit params}). All panels are shown at a reference redshift of $z=0.2$, with the corresponding predicted BBH merger rate annotated in the legend. We show the power-law + peak model from \protect\cite{GWTC3_popPaper2021} in grey. Lastly we annotate the relative change in the rate at three reference masses: $10\Msun$, $25\Msun$ and $40\Msun$. Variations in \SFRDzZ have the largest impact on the high mass end of the distribution, while around $\Mbheen=10$, variations are smaller than a factor of 3.  
+The first five panels show variations of the cosmic metallicity distribution  \dpdZ, eq. \ref{eq: z log skew}, (parameters listed in the first three columns of Table \ref{tab: fit params}). The bottom right panel shows variations in the magnitude of the star formation rate with redshift, i.e. \SFRDz. For the latter we vary the four fiducial parameters of \SFRDz simultaneously (last two columns of Table \ref{tab: fit params}). All panels are shown at a reference redshift of $z=0.2$, with the corresponding predicted BBH merger rate annotated in the legend. For reference, we show the power-law + peak model from \protect\cite{GWTC3_popPaper2021} in grey. We annotate the relative change in the rate at three reference masses: $10\Msun$, $25\Msun$ and $40\Msun$. 
   \label{fig: stable mass dists}}
 \end{figure*}
 
@@ -492,7 +507,7 @@ The first five panels show variations of the cosmic metallicity distribution  \d
 \centering
 \script{Plot_Mass_distributions.py}
 \includegraphics[width=0.8\textwidth]{figures/Mass_distributions_CE_SFRD_variations.pdf}
-\caption{Same as Figure \ref{fig: stable mass dists}, but for the Common envelope channel. 
+\caption{Same as Figure \ref{fig: stable mass dists}, but for the Common envelope channel. These Figures show that the low mass end of the primary mass distribution is least affected by the adopted \SFRDzZ. Moreover, the \textit{location} of features in the mass distribution are robust against all explored variations.
    \label{fig: CE mass dists}
   }
 \end{figure*}
@@ -501,15 +516,15 @@ The first five panels show variations of the cosmic metallicity distribution  \d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The effect of the \SFRDzZ on the primary BH mass distribution}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To isolate the effect of the \SFRDzZ from the effects of mixing different formation channels, we split the data from \cite{vanson+2022} between the stable mass transfer channel \citep[e.g.,][]{van-den-Heuvel+2017,Inayoshi2017,Bavera2021,Marchant2021,GallegosGarcia2021,vanson+2022}, and the `classical' common-envelope channel \citep[or CE channel, e.g.,\  ][]{Belczynski+2007,PostnovYungelson2014,Belczynski+2016Natur,vignaGomez+2018}. 
-These channels are distinguished based on whether the binary experiences common envelope evolution (CE channel) or only stable mass transfer (stable channel in short from now on).
+To isolate the effect of the \SFRDzZ from the effects of different formation channels, we split the data from \cite{vanson+2022} between the stable mass transfer channel \citep[e.g.,][]{van-den-Heuvel+2017,Inayoshi2017,Bavera2021,Marchant2021,GallegosGarcia2021,vanson+2022}, and the `classical' common-envelope channel \citep[or CE channel, e.g.,\  ][]{Belczynski+2007,PostnovYungelson2014,Belczynski+2016Natur,vignaGomez+2018}. 
+These channels are distinguished based on whether the binary system has experienced a common envelope phase (CE channel) or only stable mass transfer (stable channel in short from now on).
 
 In Figures \ref{fig: stable mass dists} and \ref{fig: CE mass dists}, we show the resulting primary mass distribution of merging BBHs from the stable channel and CE channel respectively.
 The primary (secondary) component refers to the more (less) massive component of merging BBHs. 
 Each panel varies one aspect of the \SFRDzZ.  
 
 % The location of features is robust
-The first thing we note is that the location of the features in the primary mass distribution are robust against variations in the \SFRDzZ. For the CE channel, the global peak of the mass distribution remains at approximately $\Mbheen=16\Msun$ for all variations. 
+The first thing we note is that the location of the features in the primary mass distribution are robust against variations in the \SFRDzZ. For the CE channel, the global peak of the mass distribution remains at approximately $\Mbheen\approx16\Msun$ for all variations. 
 Similarly, the stable channel displays two peaks that are visible in all variations: a peak at $\Mbheen\approx9\Msun$ and a peak at $\Mbheen\approx22\Msun$. 
 Two more peaks are visible in the stable channel at the high mass end for almost all \SFRDzZ (at $\Mbheen\approx35\Msun$ and $\Mbheen\approx45\Msun$), these peaks only fade for variations where the rate of high mass BHs is generally suppressed (dashed lines in top panel of Fig. \ref{fig: stable mass dists}). 
 %
@@ -525,7 +540,7 @@ This implies that the \textit{locations} of features in the mass distribution of
 Second, we see that the low mass end of the primary mass distribution is relatively robust against variations in the \SFRDzZ. 
 To quantify this, we annotate the ratio between the maximum and minimum rate at three reference masses; \Mbheen = $10, 25$, and $40\Msun$.
 At $\Mbheen=10\Msun$, we find that the rate changes by at most a factor of about 3.5 for the stable channel, and at most about a factor of 6.5 for the CE channel. 
-On the other hand, the change in rate at $\Mbheen=40\Msun$ can scale up to a factor of about 110 and 60 for the stable and CE channel respectively. 
+On the other hand, the change in rate at $\Mbheen=40\Msun$ can be as high as a factor of about 110 and 60 for the stable and CE channel respectively. 
 The low mass end of the mass distribution of merging double compact objects will also provide a particularly powerful cosmological constraint in the era of third generation gravitational wave telescopes \citep{MariaEzquiaga2022}. Our finding that the low mass end is more robust against variations in \SFRDzZ supports this claim. 
 
 % The normalisation at z=0 changes the overal rate / normalisation
@@ -545,7 +560,7 @@ The model from \cite{Madau+2017} is very similar to our Fiducial model (Figure \
 
 % The paramters that affect the redshift evolution change the slope of high mass BHs
 Parameters that change the evolution of the metallicity distribution \dpdZ with redshift, such as the redshift dependence of the with and mean; $\omega_z$ and $\mu_z$ (top right and centre right panels of Figures \ref{fig: stable mass dists} and \ref{fig: CE mass dists}) primarily affect the high mass end of the stable channel. 
-We understand this as an effect of the different delay time distributions for both formation channels. Namely, $\omega_z$ and $\mu_z$ both influence the amount of low metallicity stellar mass formed at high redshifts, and hence they will mostly affect systems with longer delay times. The stable channel has been shown to produce more high mass BHs with longer delay times when compared to the CE channel \citep{vanson+2022, Briel+2022}. 
+We understand this as an effect of the different delay time distributions for both formation channels. Since both, $\omega_z$ and $\mu_z$ influence the amount of low metallicity stellar mass formed at high redshifts they will mostly affect systems with longer delay times. The stable channel has been shown to produce more high mass BHs with longer delay times when compared to the CE channel \citep{vanson+2022, Briel+2022}. 
 Hence we find these variations affect the slope of the high mass end of the BBH mass distribution for the stable channel, while they have a relatively small impact on the CE channel.
 
 
@@ -596,9 +611,7 @@ The authors acknowledge partial financial support from the  National Science Fou
 \appendix
 
 \section{Determining reasonable variations of the \SFRDzZ \label{app: reasonable var}}
-
-To determine reasonable variations of our fiducial model for \SFRDzZ
-Fig. 2 in \cite{Pakmor+2022} which builds on Fig. 9 from \cite{Chruslinska2019_obs}
+To determine reasonable variations of our fiducial model for \SFRDzZ, we compute the fraction of low and high metallicity stellar mass formed for redshifts below $z<0.5$, $z < 3.0$ and $z<10$. We show the results in Figure \ref{fig: low high Z fraction}, which is an adaptation of Fig. 2 in \cite{Pakmor+2022}, which in turn builds on Fig. 9 from \cite{Chruslinska2019_obs}.
 
 \begin{figure}
 \centering
