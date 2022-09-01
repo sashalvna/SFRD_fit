@@ -376,7 +376,8 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, o
 
     ax_metals.set_ylim(-0.005, 0.075)
     ax_metals.set_xlim(-4, -0.5)
-    
+    ax_metals.set_yscale('log')
+
     
     ##################################################################################
     ##                                                                              ##
@@ -435,11 +436,12 @@ def three_panel_SFRD_plot(obs_SFRD = [], mu_0=0.025, mu_z=-0.49,alpha = -1.77, o
     
     ax_redsh.set_xlim(0, 10)
     ax_redsh.set_ylim(-0.005, 0.075)
+    ax_redsh.set_yscale('log')
     
     
     ##############################################################################
     print('saving here', paths.figures / 'SFRD_FIT_evaluation_compare.pdf')
-    fig.savefig(paths.figures / 'SFRD_FIT_evaluation_compare.pdf',  bbox_inches='tight', dpi=300)
+    fig.savefig(paths.figures / 'testSFRD_FIT_evaluation_compare.pdf',  bbox_inches='tight', dpi=300)
     
     # plt.show()
 
