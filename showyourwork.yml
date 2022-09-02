@@ -14,8 +14,8 @@ dependencies:
     - src/data/SFRMetallicityFromGasTNG100.hdf5
     - src/data/test_best_fit_parameters.txt
 
-  # src/scripts/ExtractZenodoData.py:
-  #   - src/data/COMPAS_Output_wRates.tar.gz
+  src/scripts/ExtractZenodoData.py:
+    - src/data/COMPAS_Output_wRates.tar.gz
 
   src/scripts/Plot_Mass_distributions.py:
     - src/data/COMPAS_Output_wWeights.h5
@@ -52,7 +52,7 @@ datasets:
 
         SFRMetallicityFromGasTNG100.hdf5: src/data/SFRMetallicityFromGasTNG100.hdf5
 
-        COMPAS_Output_wWeights.tar.gz: src/data/COMPAS_Output_wWeights.h5
+        COMPAS_Output_wWeights.tar.gz: #src/data/COMPAS_Output_wWeights.h5
         #  COMPAS_Output_wWeights.h5: src/data/COMPAS_Output_wWeights.h5
 
         Figure5.tar.gz:

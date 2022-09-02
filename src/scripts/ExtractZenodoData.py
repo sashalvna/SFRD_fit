@@ -5,10 +5,18 @@ import matplotlib.pyplot as plt
 import os
 import tarfile
 import paths
+import init_values as In
 
 data_dir = str(paths.data)
 
-out_fname = data_dir +'/COMPAS_Output_wWeights.h5'
+
+if __name__ == "__main__": 
+
+    # Initialize values
+    In.init()
+
+
+out_fname = data_dir + In.COMPASfilename #'/COMPAS_Output_wWeights.h5'
 tar_name  = data_dir + '/COMPAS_Output_wRates.tar.gz'
 
 

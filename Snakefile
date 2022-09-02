@@ -6,12 +6,13 @@ rule fit_data:
     script:
         "src/scripts/Fit_model_to_sfrdzZ.py"
 
-# rule extract:
-#     priority: 10
-#     output:
-#         "src/data/COMPAS_Output_wWeights.h5"
-#     script:
-#         "src/scripts/ExtractZenodoData.py"
+rule extract:
+    priority: 10
+    input:"src/data/COMPAS_Output_wWeights.tar.gz"
+    output:
+        "src/data/COMPAS_Output_wWeights.h5"
+    script:
+        "src/scripts/ExtractZenodoData.py"
 
 rule CosmicIntegration:
     priority: 5
