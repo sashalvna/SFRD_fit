@@ -7,7 +7,7 @@ import tarfile
 import paths
 import init_values as In
 
-data_dir = str(paths.data)
+data_dir = str(paths.data) +'/'
 
 
 if __name__ == "__main__": 
