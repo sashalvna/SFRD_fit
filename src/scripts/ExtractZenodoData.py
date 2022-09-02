@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
 
 out_fname = data_dir + In.COMPASfilename #'/COMPAS_Output_wWeights.h5'
-tar_name  = data_dir + '/COMPAS_Output_wRates.tar.gz'
+tar_name  = data_dir + '/COMPAS_Output_wWeights.tar.gz'
 
 
 # check if file exists, if not, extract it
