@@ -58,6 +58,9 @@ if __name__ == "__main__":
             elif b"CANCELLED" in line:
                 print('Job was CANCELLED  ID=%s'%(job_id) )
                 done = True
+            elif b"TIMEOUT" in line:
+                print('Job timed out! :(  ID=%s'%(job_id) )
+                done = True
             elif np.logical_or(b"RUNNING" in line, b"PENDING" in line):
                 print('darn, still running, check back in 2 min')
                 time.sleep(120) # Sleep 2 min and then check back
