@@ -14,6 +14,15 @@ rule extract:
     script:
         "src/scripts/ExtractZenodoData.py"
 
+rule extractFig5:
+    input:
+        "src/data/Figure5.tar.gz"
+    output:
+        directory("src/data/Figure5")
+    script:
+        "src/scripts/Extract_fig5data.py"
+
+
 rule CosmicIntegration:
     priority: 5
     input: 
