@@ -52,8 +52,8 @@ datasets:
 
         SFRMetallicityFromGasTNG100.hdf5: src/data/SFRMetallicityFromGasTNG100.hdf5
 
-        COMPAS_Output_wRates.tar.gz: 
-          COMPAS_Output_wWeights.h5: src/data/COMPAS_Output_wWeights.h5
+        COMPAS_Output_wWeights.tar.gz: src/data/COMPAS_Output_wWeights.h5
+        #  COMPAS_Output_wWeights.h5: src/data/COMPAS_Output_wWeights.h5
 
         Figure5.tar.gz:
           stellar_mass_fractions_Zsun_Asplund09_zmax_3.dat:       # auto extracted to `src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_3.dat'
