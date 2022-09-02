@@ -6,12 +6,11 @@ import os
 from subprocess import Popen, PIPE, call
 import subprocess
 import sys
-import paths
 import time
 from fnmatch import fnmatch
 import h5py
+sys.path.append( str(os.getcwd()) + '/src/scripts/')
 import paths
-sys.path.append(paths.scripts)
 import init_values as In
 
 ##################################################################
