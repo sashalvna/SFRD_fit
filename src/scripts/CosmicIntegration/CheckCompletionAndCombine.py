@@ -9,6 +9,7 @@ import sys
 import time
 from fnmatch import fnmatch
 import h5py
+sys.path.append( str(os.getcwd()) + '/src/scripts/')
 
 import init_values as In
 
