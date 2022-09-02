@@ -30,7 +30,7 @@ def Mchirp(m1, m2):
 #########################################
 # Read data
 #########################################
-def read_data(loc = '/output/COMPAS_Output_wWeights.h5', verbose=False):
+def read_data(loc = '', verbose=False):
     """
         Read DCO, SYS and merger rate data, necesarry to make the plots in this 
         
@@ -97,7 +97,7 @@ def read_data(loc = '/output/COMPAS_Output_wWeights.h5', verbose=False):
 #########################################
 # Read data
 #########################################
-def read_rate_data(loc = '/output/COMPAS_Output_wWeights.h5', rate_key = 'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned', verbose = True):
+def read_rate_data(loc = '', rate_key = 'Rates_mu00.025_muz-0.05_alpha-1.77_sigma01.125_sigmaz0.05_zBinned', verbose = True):
     """
         Read DCO, SYS and merger rate data, necesarry to make the plots in this 
         

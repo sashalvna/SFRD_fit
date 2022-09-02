@@ -1,7 +1,7 @@
 """
 # Make smaller hdf5 files out of your data
 
-This notebook is meant to grab the large and bulky COMPAS_Output_wWeights.hdf5 file and extract individual rate files taht only contain the rate up to z = 0.5
+This notebook is meant to grab the large and bulky COMPAS_Output_wWeights.hdf5 file and extract individual rate files that only contain the rate up to z = 0.5
 
 This file is heavily based on the beautifully written h5copy.py written by Jeff Riley
 """
