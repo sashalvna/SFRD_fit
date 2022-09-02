@@ -1,3 +1,10 @@
+rule fit_data:
+    priority: 10
+    output:
+        "src/data/test_best_fit_parameters.txt"
+    script:
+        "src/scripts/Fit_model_to_sfrdzZ.py"
+
 rule extract:
     priority: 10
     output:
@@ -12,8 +19,10 @@ rule CosmicIntegration:
     script:
         "src/scripts/CosmicIntegration/CallCosmicIntegration.py"
 
+
 rule combineFiles:
     priority: 1
+    input: "src/data/RateData/CI_job_IDs.txt"
     output:
         "src/data/RateData/Rate_info.h5"
     cache:

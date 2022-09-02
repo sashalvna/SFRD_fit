@@ -13,11 +13,14 @@ import matplotlib
 
 # Custom scripts
 import get_ZdepSFRD as Z_SFRD
+import paths
+
 
 ######################################
 ## locations
-save_loc    =  'src/tex/figures/' #/n/home04/lvanson/ '/Users/lieke/surfdrive/Documents'+SFRD_fit
-TNGlocation = 'src/data/' #'/Users/lieke/surfdrive/Documents/CompareCOMPAS/'
+save_loc    =  'src/tex/figures/' 
+TNGlocation = str(paths.data)
+
 
 
 ############################
