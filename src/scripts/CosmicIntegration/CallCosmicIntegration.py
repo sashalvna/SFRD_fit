@@ -12,36 +12,11 @@ from fnmatch import fnmatch
 import h5py
 import init_values as In
 
-
-#################################################################
-## 
-##   Should be Changed by user ##
-##
-#################################################################
-# def init():
-#     # define initial settings
-#     global data_dir, script_dir, COMPASfilename, rate_file_name, user_email, fid_dpdZ_parameters, fid_sfr_parameters, SlurmJobString
-#     global mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best
-#     # there is an extra /src in the paths. due to the import location (remove it)
-#     data_dir   = str(paths.data)[0:-8] + 'data/'
-#     In.script_dir = str(paths.scripts)[0:-11] + 'scripts/'
-
-#     COMPASfilename  = 'COMPAS_Output_wWeights.h5'#'small_COMPAS_Output_wWeights.h5'#
-#     rate_file_name  = 'Rate_info.h5'#'small_Rate_info.h5'#'Rate_info.h5'
-#     user_email      = "aac.van.son@gmail.com"
-
-
-#     mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best = np.loadtxt(data_dir+ '/best_fit_parameters.txt',unpack=True)
-
-#     fid_dpdZ_parameters = [mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best]
-#     fid_sfr_parameters  = [sf_a_best, sf_b_best, sf_c_best, sf_d_best]
-
-
-    ##################################################################
-    # This is the slurm script youre using
-    #SBATCH --partition=%s              # Partition to submit to
-    ##################################################################
-    # note indentation needs to be like this
+##################################################################
+# This is the slurm script youre using
+#SBATCH --partition=%s              # Partition to submit to
+##################################################################
+# note indentation needs to be like this
     SlurmJobString="""#!/bin/bash
 #SBATCH --job-name=%s          #job name
 #SBATCH --nodes=%s             # Number of nodes
