@@ -15,6 +15,8 @@ rule fit_data:
 
 rule CosmicIntegration:
     priority: 5
+    input: 
+        "src/data/test_best_fit_parameters.txt"
     output:
         "src/data/RateData/CI_job_IDs.txt"
     script:
