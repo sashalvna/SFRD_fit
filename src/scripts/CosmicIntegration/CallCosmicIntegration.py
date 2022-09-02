@@ -17,7 +17,7 @@ import init_values as In
 #SBATCH --partition=%s              # Partition to submit to
 ##################################################################
 # note indentation needs to be like this
-    SlurmJobString="""#!/bin/bash
+SlurmJobString="""#!/bin/bash
 #SBATCH --job-name=%s          #job name
 #SBATCH --nodes=%s             # Number of nodes
 #SBATCH --ntasks=%s            # Number of cores
