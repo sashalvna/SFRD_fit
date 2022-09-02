@@ -10,7 +10,9 @@ import paths
 import time
 from fnmatch import fnmatch
 import h5py
-sys.path.append('../')
+import paths
+
+sys.path.append(paths.scripts)
 import init_values as In
 
 ##################################################################
