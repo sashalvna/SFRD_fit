@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  1 SEP 2022 17:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  2 SEP 2022 16:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -635,103 +635,103 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 4832) in paragraph at lines 152--153
+Underfull \hbox (badness 4832) in paragraph at lines 147--148
 []\OT1/cmr/m/n/10 One can also di-rectly ex-tract the metallicity-
  []
 
 
-LaTeX Warning: Command \textendash invalid in math mode on input line 176.
+LaTeX Warning: Command \textendash invalid in math mode on input line 171.
 
 
-Underfull \hbox (badness 1163) in paragraph at lines 190--192
+Underfull \hbox (badness 1163) in paragraph at lines 185--187
 \OT1/cmr/m/n/10 The first term is the star for-ma-tion rate den-sity,
  []
 
 [2]
-Overfull \hbox (17.33469pt too wide) detected at line 315
+Overfull \hbox (17.33469pt too wide) detected at line 310
 [] \OML/cmm/m/it/10 ;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 330--332
+Underfull \hbox (badness 10000) in paragraph at lines 325--327
 
  []
 
-<figures/SFRD_FIT_evaluation_compare.pdf, id=211, 1053.12146pt x 949.13078pt>
+<figures/SFRD_FIT_evaluation_compare.pdf, id=212, 1053.12146pt x 949.13078pt>
 File: figures/SFRD_FIT_evaluation_compare.pdf Graphic file (type pdf)
 <use figures/SFRD_FIT_evaluation_compare.pdf>
 Package pdftex.def Info: figures/SFRD_FIT_evaluation_compare.pdf  used on input
- line 345.
+ line 340.
 (pdftex.def)             Requested size: 461.80255pt x 416.19954pt.
 
-Underfull \hbox (badness 7631) in paragraph at lines 365--365
+Underfull \hbox (badness 7631) in paragraph at lines 360--360
 []\OT1/cmr/m/n/8 We pro-vide a Jupyter note-book to fa-cil-i-tate this fit
  []
 
 
-Underfull \hbox (badness 2126) in paragraph at lines 365--365
+Underfull \hbox (badness 2126) in paragraph at lines 360--360
 \OT1/cmr/m/n/8 here: [][]$https : / / github . com / LiekeVanSon / SFRD[]^^Lt /
  blob / main /
  []
 
 
-Overfull \hbox (10.88353pt too wide) in paragraph at lines 365--365
+Overfull \hbox (10.88353pt too wide) in paragraph at lines 360--360
 [][]| [] [][][]| 
  []
 
 [3]
-Overfull \hbox (10.88353pt too wide) in paragraph at lines 371--371
+Overfull \hbox (10.88353pt too wide) in paragraph at lines 366--366
 [][]| [] [][][]| 
  []
 
 [4 <./figures/SFRD_FIT_evaluation_compare.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 426--428
+Underfull \hbox (badness 10000) in paragraph at lines 421--423
 []\OT1/cmr/m/n/10 To min-i-mize this cost funci-ton, we use
  []
 
 
-Underfull \hbox (badness 1831) in paragraph at lines 426--428
+Underfull \hbox (badness 1831) in paragraph at lines 421--423
 \OT1/cmr/m/n/10 im-ple-ments the quasi-Newton method of Broy-den,
  []
 
 [5]
-Overfull \hbox (10.88353pt too wide) in paragraph at lines 454--454
+Overfull \hbox (10.88353pt too wide) in paragraph at lines 449--449
 [][]| [] [][][]| 
  []
 
-<figures/SFR_redshift.pdf, id=397, 773.58432pt x 666.87468pt>
+<figures/SFR_redshift.pdf, id=398, 773.58432pt x 677.71516pt>
 File: figures/SFR_redshift.pdf Graphic file (type pdf)
 <use figures/SFR_redshift.pdf>
-Package pdftex.def Info: figures/SFR_redshift.pdf  used on input line 469.
-(pdftex.def)             Requested size: 241.16582pt x 207.89922pt.
-<figures/SFR_tlookback.pdf, id=398, 773.58432pt x 668.51434pt>
+Package pdftex.def Info: figures/SFR_redshift.pdf  used on input line 464.
+(pdftex.def)             Requested size: 241.16582pt x 211.27875pt.
+<figures/SFR_tlookback.pdf, id=399, 773.58432pt x 679.35483pt>
 File: figures/SFR_tlookback.pdf Graphic file (type pdf)
 <use figures/SFR_tlookback.pdf>
-Package pdftex.def Info: figures/SFR_tlookback.pdf  used on input line 470.
-(pdftex.def)             Requested size: 241.16582pt x 208.41037pt.
+Package pdftex.def Info: figures/SFR_tlookback.pdf  used on input line 465.
+(pdftex.def)             Requested size: 241.16582pt x 211.78992pt.
 
-Overfull \hbox (10.88353pt too wide) in paragraph at lines 486--486
+Overfull \hbox (10.88353pt too wide) in paragraph at lines 481--481
 [][]| [] [][][]| 
  []
 
 
-Overfull \hbox (10.88353pt too wide) in paragraph at lines 500--500
+Overfull \hbox (10.88353pt too wide) in paragraph at lines 495--495
 [][]| [] [][][]| 
  []
 
 
-Underfull \hbox (badness 1163) in paragraph at lines 498--504
+Underfull \hbox (badness 1163) in paragraph at lines 493--499
 \OT1/cmr/m/n/10 the mod-els \OT1/cmtt/m/n/10 214f14SBBiC[]FMR270[]FOH[]z[]dM.da
 t\OT1/cmr/m/n/10 , and
  []
 
 [6]
-Underfull \hbox (badness 1303) in paragraph at lines 506--512
+Underfull \hbox (badness 1303) in paragraph at lines 501--507
 \OT1/cmr/m/n/10 ([][]2021[][]) to de-ter-mine ap-prox-i-mate up-per and lower
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 506--512
+Underfull \hbox (badness 10000) in paragraph at lines 501--507
 
  []
 
@@ -740,77 +740,74 @@ Underfull \hbox (badness 10000) in paragraph at lines 506--512
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/SFR_tlookback.pdf)
 : PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<figures/Mass_distributions_stable_SFRD_variations.pdf, id=515, 1468.55756pt x 
+<figures/Mass_distributions_stable_SFRD_variations.pdf, id=516, 1468.55756pt x 
 1637.82997pt>
 File: figures/Mass_distributions_stable_SFRD_variations.pdf Graphic file (type 
 pdf)
 <use figures/Mass_distributions_stable_SFRD_variations.pdf>
 Package pdftex.def Info: figures/Mass_distributions_stable_SFRD_variations.pdf 
- used on input line 518.
+ used on input line 513.
 (pdftex.def)             Requested size: 410.4955pt x 457.81454pt.
-<figures/Mass_distributions_CE_SFRD_variations.pdf, id=526, 1468.55756pt x 1637
+<figures/Mass_distributions_CE_SFRD_variations.pdf, id=527, 1468.55756pt x 1637
 .82997pt>
 File: figures/Mass_distributions_CE_SFRD_variations.pdf Graphic file (type pdf)
 
 <use figures/Mass_distributions_CE_SFRD_variations.pdf>
 Package pdftex.def Info: figures/Mass_distributions_CE_SFRD_variations.pdf  use
-d on input line 527.
+d on input line 522.
 (pdftex.def)             Requested size: 410.4955pt x 457.81454pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--539
+Underfull \hbox (badness 10000) in paragraph at lines 532--534
 
  []
 
 [8] [9 <./figures/Mass_distributions_stable_SFRD_variations.pdf>]
-Underfull \hbox (badness 1675) in paragraph at lines 580--583
+Underfull \hbox (badness 1675) in paragraph at lines 575--578
 []\OT1/cmr/m/n/10 Changing the over-all star-formation rate den-sity
  []
 
 [10 <./figures/Mass_distributions_CE_SFRD_variations.pdf>]
-Underfull \hbox (badness 1275) in paragraph at lines 630--634
+Underfull \hbox (badness 1275) in paragraph at lines 625--629
 \OT1/cmr/m/n/10 the Na-tional Sci-ence Foun-da-tion un-der Grant No.
  []
 
 [11]
-Underfull \hbox (badness 2903) in paragraph at lines 639--642
+Underfull \hbox (badness 2903) in paragraph at lines 634--637
 \OT1/cmr/m/n/10 et al.[][] ([][]2021[][]) for the ob-ser-va-tional stuff can be
 
  []
 
 
-Underfull \hbox (badness 6332) in paragraph at lines 639--642
+Underfull \hbox (badness 6332) in paragraph at lines 634--637
 \OT1/cmr/m/n/10 found: [][]$https : / / ftp . science . ru . nl / astro / mchru
 slinska /
  []
 
 
 Package natbib Warning: Citation `PythonReferenceManual' on page 12 undefined o
-n input line 646.
+n input line 641.
 
-<figures/High_Low_metalFractionSFMass.pdf, id=721, 867.24pt x 1300.86pt>
+<figures/High_Low_metalFractionSFMass.pdf, id=722, 867.24pt x 1300.86pt>
 File: figures/High_Low_metalFractionSFMass.pdf Graphic file (type pdf)
 <use figures/High_Low_metalFractionSFMass.pdf>
 Package pdftex.def Info: figures/High_Low_metalFractionSFMass.pdf  used on inpu
-t line 659.
+t line 654.
 (pdftex.def)             Requested size: 384.83807pt x 577.26315pt.
 
-LaTeX Warning: Float too large for page by 40.69426pt on input line 663.
+LaTeX Warning: Float too large for page by 40.69426pt on input line 658.
 
 (./ms.bbl [12] [13 <./figures/High_Low_metalFractionSFMass.pdf>] [14]) [15]
 
 Package natbib Warning: There were undefined citations.
 
 (./ms.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `ms.out' has not changed.
 (rerunfilecheck)             Checksum: 8B4AA7F372E0187C44F1BDE81EFD2A22;4025.
  ) 
 Here is how much of TeX's memory you used:
  13210 strings out of 478994
  188073 string characters out of 5858185
- 643616 words of memory out of 5000000
+ 643882 words of memory out of 5000000
  30343 multiletter control sequences out of 15000+600000
  415154 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -849,10 +846,10 @@ ic/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
 blic/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/
 helvetic/uhvr8a.pfb>
-Output written on ms.pdf (15 pages, 1033374 bytes).
+Output written on ms.pdf (15 pages, 1032932 bytes).
 PDF statistics:
- 1026 PDF objects out of 1200 (max. 8388607)
- 926 compressed objects within 10 object streams
+ 1027 PDF objects out of 1200 (max. 8388607)
+ 927 compressed objects within 10 object streams
  152 named destinations out of 1000 (max. 500000)
  143 words of extra memory for PDF output out of 10000 (max. 10000000)
 
