@@ -34,13 +34,14 @@ dependencies:
     - src/scripts/CosmicIntegration/CallCosmicIntegration.py
 
   src/scripts/LowHighZ_fraction.py:
-    - src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_3.dat
-    - src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_10.0.dat
-    - src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_0.5.dat
-    - src/data/Figure5/StellarMassMetallicityTNG50-1.hdf5
-    - src/data/Figure5/StellarMassMetallicitySimba.hdf5
-    - src/data/Figure5/StellarMassMetallicityIllustris.hdf5
-    - src/data/Figure5/StellarMassMetallicityEagle.hdf5
+    - src/data/Figure5/
+    # - src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_3.dat
+    # - src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_10.0.dat
+    # - src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_0.5.dat
+    # - src/data/Figure5/StellarMassMetallicityTNG50-1.hdf5
+    # - src/data/Figure5/StellarMassMetallicitySimba.hdf5
+    # - src/data/Figure5/StellarMassMetallicityIllustris.hdf5
+    # - src/data/Figure5/StellarMassMetallicityEagle.hdf5
 
 
 datasets:
@@ -55,7 +56,7 @@ datasets:
         COMPAS_Output_wWeights.tar.gz: #src/data/COMPAS_Output_wWeights.h5
         #  COMPAS_Output_wWeights.h5: src/data/COMPAS_Output_wWeights.h5
 
-        Figure5.tar.gz:
+        Figure5.tar.gz: 
           # stellar_mass_fractions_Zsun_Asplund09_zmax_3.dat:       # auto extracted to `src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_3.dat'
           # stellar_mass_fractions_Zsun_Asplund09_zmax_10.0.dat:    # """ `src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_10.0.dat'
           # stellar_mass_fractions_Zsun_Asplund09_zmax_0.5.dat:     # """ `src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_0.5.dat'
