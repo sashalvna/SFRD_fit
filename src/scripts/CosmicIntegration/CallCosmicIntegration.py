@@ -10,29 +10,31 @@ import paths
 import time
 from fnmatch import fnmatch
 import h5py
+import init_values as In
+
 
 #################################################################
 ## 
 ##   Should be Changed by user ##
 ##
 #################################################################
-def init():
-    # define initial settings
-    global data_dir, script_dir, COMPASfilename, rate_file_name, user_email, fid_dpdZ_parameters, fid_sfr_parameters, SlurmJobString
-    global mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best
-    # there is an extra /src in the paths. due to the import location (remove it)
-    data_dir   = str(paths.data)[0:-8] + 'data/'
-    script_dir = str(paths.scripts)[0:-11] + 'scripts/'
+# def init():
+#     # define initial settings
+#     global data_dir, script_dir, COMPASfilename, rate_file_name, user_email, fid_dpdZ_parameters, fid_sfr_parameters, SlurmJobString
+#     global mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best
+#     # there is an extra /src in the paths. due to the import location (remove it)
+#     data_dir   = str(paths.data)[0:-8] + 'data/'
+#     In.script_dir = str(paths.scripts)[0:-11] + 'scripts/'
 
-    COMPASfilename  = 'COMPAS_Output_wWeights.h5'#'small_COMPAS_Output_wWeights.h5'#
-    rate_file_name  = 'Rate_info.h5'#'small_Rate_info.h5'#'Rate_info.h5'
-    user_email      = "aac.van.son@gmail.com"
+#     COMPASfilename  = 'COMPAS_Output_wWeights.h5'#'small_COMPAS_Output_wWeights.h5'#
+#     rate_file_name  = 'Rate_info.h5'#'small_Rate_info.h5'#'Rate_info.h5'
+#     user_email      = "aac.van.son@gmail.com"
 
 
-    mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best = np.loadtxt(data_dir+ '/best_fit_parameters.txt',unpack=True)
+#     mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best = np.loadtxt(data_dir+ '/best_fit_parameters.txt',unpack=True)
 
-    fid_dpdZ_parameters = [mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best]
-    fid_sfr_parameters  = [sf_a_best, sf_b_best, sf_c_best, sf_d_best]
+#     fid_dpdZ_parameters = [mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best]
+#     fid_sfr_parameters  = [sf_a_best, sf_b_best, sf_c_best, sf_d_best]
 
 
     ##################################################################
@@ -95,7 +97,7 @@ def RunSlurmBatch(run_dir = None, job_name = "stroopwafel_interface", dependency
 #########################################################
 # Assuming you have The COMPAS simulation data output
 # Make a slurm job to call 
-def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname = 'CI',
+def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, user_email, jname = 'CI',
                             ZdepSFRD_param_sets = [[],[]], #[[fid_dpdZ_parameters, fid_sfr_parameters]],
                            partitions = 'demink,conroy,hernquist,shared', Wtime = "5:00:00", mem = "150000",
                            number_of_nodes = 1, number_of_cores = 1):
@@ -139,13 +141,13 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
         DEPEND, append_job_id = False, 0
 
         # Flag to pass to FasCosmicIntegrator   #'/RateData/'+str(n_CI)+'_'+rate_file_name+\
-        Flags = " --path "+root_out_dir + " --filename "+COMPASfilename+" --outfname " +'/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'+str(n_CI)+'_'+rate_file_name+\
+        Flags = " --path "+root_out_dir + " --filename "+ COMPASfilename+" --outfname " +'/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'+str(n_CI)+'_'+rate_file_name+\
         " --mu0 " +str(mu0)+" --muz "+str(muz)+" --sigma0 "+str(sigma0)+" --sigmaz "+str(sigmaz)+" --alpha "+str(alpha0)+\
         " --aSF " +str(sf_a)+" --bSF "+str(sf_b)+" --cSF "+str(sf_c)+" --dSF "+str(sf_d)+\
         " --weight "+"mixture_weight"+ " --zstep "+"0.01"+" --sens "+"O3"+ " --m1min "+"10."+ " --dco_type BBH"+\
         " --redshiftBinSize "+"0.05" + ' --maxzdet ' + "0.5" #+ " --BinAppend "
 
-        run_dir = script_dir +'/CosmicIntegration/'
+        run_dir = In.script_dir +'/CosmicIntegration/'
 
         # Make and safe a slurm command
         job_line = "python FastCosmicIntegration.py "+Flags+" > "+ root_out_dir + "/slurm_out/"+job_name+".log"
@@ -172,68 +174,22 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, jname 
     
     np.savetxt(root_out_dir+'/RateData/CI_job_IDs.txt', np.c_[check_job_completionID],header = "# job IDs ", delimiter=',', fmt="%s")
 
-
-    # ###########################
-    # # Now wait for your (last) job to be done
-    # for job_id in check_job_completionID:
-    #     command = "sacct  -j %s --format State "%(job_id.decode("utf-8"))
-    #     print(command)
-    #     done = False
-    #     while not done:
-    #         # First check the status of your job with sacct
-    #         p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    #         nline = 0
-    #         while True:
-    #             line = p.stdout.readline()
-    #             nline +=1
-    #             #print(line)
-    #             if not line:
-    #                 break
-    #             if nline == 3:
-    #                 break
-
-
-    #         result = str(line)
-    #         print('result = ', result)
-    #         if b"COMPLETE" in line:
-    #             print('YAY your job finished!')
-    #             done = True
-    #         elif b"FAILED" in line:
-    #             print('Job failed :( %s'%(job_id.decode("utf-8")))
-    #             done = True
-    #         elif b"CANCELLED" in line:
-    #             print('Job was CANCELLED  %s'%(job_id.decode("utf-8")))
-    #             done = True
-    #         elif np.logical_or(b"RUNNING" in line, b"PENDING" in line):
-    #             print('darn, still running, check back in 2 min')
-    #             time.sleep(120) # Sleep 2 min and then check back
-
-    # # Wait a little longer to make sure all jobs finished
-    # time.sleep(30)
-    # print(10* "*" + " You are all done with this job! " + 10* "*")
-
-
-    # # Copy your files into one filter for files with rate_file_name, but remove the extension .h5
-    # input_Ratedata_dir = '/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'
-    # h5_copy_string = 'python %s/h5copy.py  %s -o %s --filter *%s  > %s'%(script_dir, input_Ratedata_dir, data_dir+'/RateData/'+rate_file_name, rate_file_name[:-3] ,data_dir+"/slurm_out/combineh5.log" )
-    
-    # os.system(h5_copy_string)
-    # # wait 1 min for h5copy to finish
-    # time.sleep(60)
-
-
-
 if __name__ == "__main__": 
     # MAIN
 
+    # Initialize values
+    In.init()
 
-    init()
+    # Best fit parameters
+    mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best = In.mu0_best, In.muz_best, In.sigma0_best, In.sigmaz_best, In.alpha0_best,In.sf_a_best, In.sf_b_best, In.sf_c_best, In.sf_d_best
+    fid_dpdZ_parameters = [mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best]
+    fid_sfr_parameters  = [sf_a_best, sf_b_best, sf_c_best, sf_d_best]
 
     ################################################################
     # All at once
     ################################################################
-    Call_Cosmic_Integration(data_dir, COMPASfilename, rate_file_name, 
-                           ZdepSFRD_param_sets =[[fid_dpdZ_parameters, fid_sfr_parameters],
+    Call_Cosmic_Integration(In.data_dir, In.COMPASfilename, In.rate_file_name, In.user_email,
+                           ZdepSFRD_param_sets =[[In.fid_dpdZ_parameters, fid_sfr_parameters],
                                                  [[0.007, muz_best, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters], # mu0_variations
                                                 [[0.035, muz_best, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],
                                                  [[mu0_best, 0.0, sigma0_best, sigmaz_best, alpha0_best], fid_sfr_parameters],# muz_variations

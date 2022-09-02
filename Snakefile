@@ -1,16 +1,17 @@
 rule fit_data:
     priority: 10
+    input: "src/data/SFRMetallicityFromGasTNG100.hdf5"
     output:
         "src/data/test_best_fit_parameters.txt"
     script:
         "src/scripts/Fit_model_to_sfrdzZ.py"
 
-rule extract:
-    priority: 10
-    output:
-        "src/data/COMPAS_Output_wWeights.h5"
-    script:
-        "src/scripts/ExtractZenodoData.py"
+# rule extract:
+#     priority: 10
+#     output:
+#         "src/data/COMPAS_Output_wWeights.h5"
+#     script:
+#         "src/scripts/ExtractZenodoData.py"
 
 rule CosmicIntegration:
     priority: 5

@@ -10,7 +10,7 @@ import time
 from fnmatch import fnmatch
 import h5py
 
-import CallCosmicIntegration as CI
+import init_values as In
 
 
 
@@ -18,10 +18,10 @@ import CallCosmicIntegration as CI
 if __name__ == "__main__": 
 
     # Initialize values
-    CI.init()
+    In.init()
 
 
-    check_job_completionID = np.loadtxt(CI.data_dir+ '/RateData/CI_job_IDs.txt', delimiter=',')
+    check_job_completionID = np.loadtxt(In.data_dir+ '/RateData/CI_job_IDs.txt', delimiter=',')
     print('check_job_completionID', check_job_completionID)
 
     ###########################
@@ -66,10 +66,13 @@ if __name__ == "__main__":
 
     # Copy your files into one filter for files with rate_file_name, but remove the extension .h5
     input_Ratedata_dir = '/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'
-    h5_copy_string = 'python %s/h5copy.py  %s -o %s --filter *%s  > %s'%(CI.script_dir, input_Ratedata_dir, CI.data_dir+'/RateData/'+CI.rate_file_name, CI.rate_file_name[:-3] , CI.data_dir+"/slurm_out/combineh5.log" )
+    h5_copy_string = 'python %s/h5copy.py  %s -o %s --filter *%s  > %s'%(In.script_dir, input_Ratedata_dir, In.data_dir+'/RateData/'+In.rate_file_name, CI.rate_file_name[:-3] , CI.data_dir+"/slurm_out/combineh5.log" )
     
     print(h5_copy_string)
 
     os.system(h5_copy_string)
     # wait 2 min for h5copy to finish
-    time.sleep(120)
+    # time.sleep(120)
+
+    # rename the job_ID file to trigger re-run when needed
+    os.rename(In.data_dir+ '/RateData/CI_job_IDs.txt', In.data_dir+ '/RateData/used_CI_job_IDs.txt')
