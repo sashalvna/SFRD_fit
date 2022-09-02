@@ -14,15 +14,16 @@ verbose: true
 #        - src/tex/main_bib.bib
 
 datasets:
+  10.5072/zenodo.1094095:
+    destination: src/data/               # default folder to extract files to
+    contents:
+        COMPAS_Output_wRates.tar.gz: #src/data/COMPAS_Output_wRates.tar.gz
+        o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5: #src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5
+        SFRMetallicityFromGasTNG100.hdf5: #src/data/SFRMetallicityFromGasTNG100.hdf5
 #  10.5281/zenodo.5544170:
 #    destination: src/data/               # default folder to extract files to
 #    contents:
 #        COMPAS_Output_wRates.tar.gz:     # remote tarballs behave like folders w/ same name
-  10.5072/zenodo.1094095:
-    contents:
-        o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5: src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5
-        SFRMetallicityFromGasTNG100.hdf5: src/data/SFRMetallicityFromGasTNG100.hdf5
-        COMPAS_Output_wRates.tar.gz: src/data/COMPAS_Output_wRates.tar.gz
 
 
 dependencies:
@@ -39,5 +40,5 @@ dependencies:
     - src/data/COMPAS_Output_wWeights.h5
     - src/data/RateData/Rate_info.h5
     - src/scripts/CosmicIntegration/CallCosmicIntegration.py
-  
+    - src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5
 
