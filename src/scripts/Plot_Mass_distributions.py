@@ -70,7 +70,7 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 def plot_mass_distribution(sim_dir = '', rate_file = '', simulation_data = '', 
                     x_key = 'M_moreMassive', rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma0%s_sigmaz0.05_zBinned'%(x) for x in [0.8, 1.125, 1.4]],channel_string = 'all',
                    bins = np.arange(0.,55,2.5), z_bin_edges = [0,0.25], 
-                   plot_LIGO = False, show_hist = False, show_KDE = True, kde_width = 0.1,  
+                   plot_LIGO = False, show_hist = False, show_KDE = True,   
                    only_stable = True, only_CE = True, 
                    bootstrap = False, bootstraps = 10, x_lim=(0.,50),  y_lim = (1e-2,30), 
                    Color = '#e388b0', linestyles = ['--','-', ':'], titletext = '',
@@ -88,10 +88,8 @@ def plot_mass_distribution(sim_dir = '', rate_file = '', simulation_data = '',
      plot
 
     """
-
     #########################################
     mass_binw = np.diff(bins)[0]
-
     plot_lines = []
     leg_labels = []
 
@@ -106,6 +104,7 @@ def plot_mass_distribution(sim_dir = '', rate_file = '', simulation_data = '',
     # GWTC-3 Powerlaw + Peak Mass distribution
     ################################################ 
     if plot_LIGO:
+        print('plotting LIGO')
         color_plpeak = 'grey'#'#1f78b4'
         #################################################
         ## grab Powerlaw + Peak data from O3
@@ -144,8 +143,6 @@ def plot_mass_distribution(sim_dir = '', rate_file = '', simulation_data = '',
         print('rate_key', rate_key)
 
         # ### ## Reading Rate data ##
-#         try:
-            #     DCO_mask, redshifts, intrinsic_rate_density, intrinsic_rate_density_z0  = mfunc.read_rate_data(loc = sim_dir + '/Rate_info.hdf5', rate_key = rate_key)
         with h5.File(sim_dir + '/' + rate_file ,'r') as File:
             redshifts                 = File[rate_key]['redshifts'][()]
             # Different per rate key:
@@ -153,7 +150,8 @@ def plot_mass_distribution(sim_dir = '', rate_file = '', simulation_data = '',
             #(contains filter for RLOF>CE and optimistic CE)
             intrinsic_rate_density    = File[rate_key]['merger_rate'][()]
 
-    
+        #############################
+        print('start masking data')    
         # Older simulations use this naming
         CEcount = 'CE_Event_Count'                # Old simulations use this
         if CEcount in DCO.columns:
@@ -162,11 +160,9 @@ def plot_mass_distribution(sim_dir = '', rate_file = '', simulation_data = '',
             print('using file with key', CEcount)
             CEcount = 'CE_Event_Counter'          # Newer simulations use this
 
-
         # # # # # # # # # # # # # # # # # # 
         #first bring it to the same shape as the rate table
         merging_BBH    = DCO[DCO_mask]
-
         #apply the additional mask based on your prefs
         if np.logical_and(only_stable, only_CE):
             print("Both only_stable and only_CE, I assume you just want both")
@@ -177,30 +173,29 @@ def plot_mass_distribution(sim_dir = '', rate_file = '', simulation_data = '',
             channel_bool = merging_BBH[CEcount] > 0
         else:
             raise ValueError("Both only_stable =%s and only_CE=%s, set at least one to true"%(only_stable,only_CE))
-
         # we exclude CHE systems
         not_CHE  = merging_BBH['Stellar_Type@ZAMS(1)'] != 16
-
         BBH_bool = np.logical_and(merging_BBH['Stellar_Type(1)'] == 14, merging_BBH['Stellar_Type(2)'] == 14)
+        print('BBH_bool should already contain all stuff, np.sum(BBH_bool) ', np.sum(BBH_bool), ' len(merging_BBH)', len(merging_BBH))
 
+        #################
         merging_BBH         = merging_BBH[BBH_bool * not_CHE  * channel_bool]
         Red_intr_rate_dens  = intrinsic_rate_density[BBH_bool* not_CHE * channel_bool, :]
 
 
         # # # # # # # # # # # # # # # # # # 
         ## Calculate average rate density per z-bin
-        # crude_rate_density  = mfunc.get_crude_rate_density(Red_intr_rate_dens[:,:], redshifts, z_bin_edges)
         #########################################
-        # X value and weight
+        print('grad rate at redshift 0.2')
         x_vals              = merging_BBH[x_key]
         i_redshift = np.where(redshifts == 0.2)[0][0]
         print('i_redshift', i_redshift)
         Weights             = Red_intr_rate_dens[:, i_redshift]#crude_rate_density[:,0]
-        print('!X!X!X!', np.shape(Weights), np.shape(x_vals) )
-        print(labels[i], ' len(table)=', len(merging_BBH) , ' Rate = ', np.sum(Weights), ' Gpc-3 yr-1')
+        print(labels[i], ' len(merging_BBH)=', len(merging_BBH) , ' Rate = ', np.sum(Weights), ' Gpc-3 yr-1')
 
         ########################
         # Get the Hist    
+        print('get the hist')
         hist, bin_edge = np.histogram(x_vals, weights = Weights, bins=bins)
         y_vals = hist/mass_binw
         center_bins = (bin_edge[:-1] + bin_edge[1:])/2.
@@ -339,7 +334,7 @@ if __name__ == "__main__":
 
         ax1 = plot_mass_distribution(sim_dir = data_dir, rate_file='/RateData/'+str(In.rate_file_name), simulation_data = '/'+str(In.COMPASfilename),
                                x_key = 'M_moreMassive',  rate_keys  = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma0%s_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.7, 1.129, 2.0]], channel_string = channel_string,
-                               show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color =  'navy',
+                               show_hist = False, show_KDE = True,  plot_LIGO = True, Color =  'navy',
                                only_CE = only_CE, only_stable = only_stable, 
                                bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = "Width of metallicity dist."+"\n"+r"$\omega_0$, (scale $z=0$)",
                                labels = [r'$\mathrm{Narrow: \ }  (\omega_0 = 0.70) \  \mathcal{R}_{0.2} = \ $',
@@ -358,7 +353,7 @@ if __name__ == "__main__":
 
         ax2 = plot_mass_distribution(sim_dir = data_dir,rate_file='/RateData/'+str(In.rate_file_name) , simulation_data = '/'+str(In.COMPASfilename),
                                x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz%s_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, 0.048, 0.1]],channel_string = channel_string,
-                               show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#00a6a0', 
+                               show_hist = False, show_KDE = True,  plot_LIGO = True, Color = '#00a6a0', 
                                only_CE = only_CE, only_stable = only_stable,
                                bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = "Redshift evol. width of metallicity dist." +"\n"+ r"$\omega_z$, (scale z evol.)",
                                labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\omega_z = 0.00) \ \mathcal{R}_{0.2} = \ $',
@@ -375,7 +370,7 @@ if __name__ == "__main__":
 
         ax3 = plot_mass_distribution(sim_dir = data_dir,rate_file='/RateData/'+str(In.rate_file_name) , simulation_data = '/'+str(In.COMPASfilename),
                                x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.007, 0.025, 0.035]],channel_string = channel_string,
-                               show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#e1131d', 
+                               show_hist = False, show_KDE = True,  plot_LIGO = True, Color = '#e1131d', 
                                only_CE = only_CE, only_stable = only_stable,
                                bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = 'Mean metallicity'+"\n"+r"$\mu_0$",
                                labels = [r'$\mathrm{low \ <Z_0> : \ } \phantom{x} (\mu_0 = 0.007) \ \mathcal{R}_{0.2} = \ $',
@@ -391,7 +386,7 @@ if __name__ == "__main__":
 
         ax4 = plot_mass_distribution(sim_dir = data_dir,rate_file='/RateData/'+str(In.rate_file_name) , simulation_data = '/'+str(In.COMPASfilename),
                                x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -0.049, -0.5]],channel_string = channel_string,
-                               show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ff717b', 
+                               show_hist = False, show_KDE = True,  plot_LIGO = True, Color = '#ff717b', 
                                only_CE = only_CE, only_stable = only_stable,
                                bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', titletext = "Redshift evol. of mean metallicity" +"\n"+ r"$\mu_z$", 
                                labels = [r'$\mathrm{Flat: \ } \phantom{xxi} (\mu_z = 0.0) \ \mathcal{R}_{0.2} = \ $',
@@ -408,7 +403,7 @@ if __name__ == "__main__":
 
         ax5 = plot_mass_distribution(sim_dir = data_dir,rate_file='/RateData/'+str(In.rate_file_name) , simulation_data = '/'+str(In.COMPASfilename),
                                x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -1.778, -6.0]],channel_string = channel_string,
-                               show_hist = False, show_KDE = True, kde_width = 0.15, plot_LIGO = True, Color = '#acbf00', 
+                               show_hist = False, show_KDE = True, , plot_LIGO = True, Color = '#acbf00', 
                                only_CE = only_CE, only_stable = only_stable,
                                bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Skewness of metallicity dist." +"\n"+ r"$\alpha$, (shape)", 
                                labels = [r'$\mathrm{Symmetric: \ } (\alpha = 0.0)   \ \mathcal{R}_{0.2} = \ $',
@@ -430,7 +425,7 @@ if __name__ == "__main__":
                                            'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913', 
                                            'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.03_b2.6_c3.3_d5.9'],
                                      channel_string = channel_string,
-                               show_hist = False, show_KDE = True, kde_width = 0.1, plot_LIGO = True, Color = '#ecb05b', 
+                               show_hist = False, show_KDE = True,  plot_LIGO = True, Color = '#ecb05b', 
                                only_CE = only_CE, only_stable = only_stable,
                                bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Overall SFR history"+"\n"+ r'$ \mathrm{SFRD(}z\rm{)} \ [a,b,c,d]$', 
                                labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \phantom{xxxx} \ \mathcal{R}_{0.2}= \ $', 

@@ -72,10 +72,10 @@ def read_data(loc = '', verbose=False):
     DCO[CEcount]                 = File[dcokey][CEcount][()] 
     DCO['Mass(1)']               = File[dcokey]['Mass(1)'][()]
     DCO['Mass(2)']               = File[dcokey]['Mass(2)'][()]
-    DCO['M_tot']                 = DCO['Mass(1)'] + DCO['Mass(2)']
+    #DCO['M_tot']                 = DCO['Mass(1)'] + DCO['Mass(2)']
     DCO['M_moreMassive']         = np.maximum(File[dcokey]['Mass(1)'][()], File[dcokey]['Mass(2)'][()])
-    DCO['M_lessMassive']         = np.minimum(File[dcokey]['Mass(1)'][()], File[dcokey]['Mass(2)'][()])
-    DCO['Mchirp']                = Mchirp(DCO['M_moreMassive'], DCO['M_lessMassive'])
+    #DCO['M_lessMassive']         = np.minimum(File[dcokey]['Mass(1)'][()], File[dcokey]['Mass(2)'][()])
+    #DCO['Mchirp']                = Mchirp(DCO['M_moreMassive'], DCO['M_lessMassive'])
     DCO['Stellar_Type(1)']       = File[dcokey]['Stellar_Type(1)'][()]
     DCO['Stellar_Type(2)']       = File[dcokey]['Stellar_Type(2)'][()]
     DCO['Optimistic_CE']         = File[dcokey]['Optimistic_CE'][()]
@@ -89,6 +89,7 @@ def read_data(loc = '', verbose=False):
     
     File.close()
     
+    print('Done with reading DCO data for this file :)')
     return DCO
 
 
@@ -202,6 +203,5 @@ def get_crude_rate_density(intrinsic_rate_density, fine_redshifts, crude_redshif
     
     return crude_rate_density
 
-
-
+    
 
