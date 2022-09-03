@@ -136,7 +136,7 @@ if __name__ == "__main__":
 
     ax5 = pltmass.plot_mass_distribution(sim_dir = data_dir,rate_file='/RateData/'+str(In.rate_file_name) , simulation_data = '/'+str(In.COMPASfilename),
                            x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -1.778, -6.0]],channel_string = channel_string,
-                           show_hist = False, show_KDE = True, , plot_LIGO = True, Color = '#acbf00', 
+                           show_hist = False, show_KDE = True, plot_LIGO = True, Color = '#acbf00', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Skewness of metallicity dist." +"\n"+ r"$\alpha$, (shape)", 
                            labels = [r'$\mathrm{Symmetric: \ } (\alpha = 0.0)   \ \mathcal{R}_{0.2} = \ $',
