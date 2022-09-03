@@ -14,8 +14,6 @@ sys.path.append( str(os.getcwd()) + '/src/scripts/')
 import init_values as In
 
 
-
-
 if __name__ == "__main__": 
 
     # Initialize values
