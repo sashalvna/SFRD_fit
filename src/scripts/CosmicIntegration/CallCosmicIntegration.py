@@ -120,7 +120,7 @@ def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, user_e
         Flags = " --path "+root_out_dir + " --filename "+ COMPASfilename+" --outfname " +'/n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/'+str(n_CI)+'_'+rate_file_name+\
         " --mu0 " +str(mu0)+" --muz "+str(muz)+" --sigma0 "+str(sigma0)+" --sigmaz "+str(sigmaz)+" --alpha "+str(alpha0)+\
         " --aSF " +str(sf_a)+" --bSF "+str(sf_b)+" --cSF "+str(sf_c)+" --dSF "+str(sf_d)+\
-        " --weight "+"mixture_weight"+ " --zstep "+"0.01"+" --sens "+"O3"+ " --m1min "+"10."+ " --dco_type BBH"+\
+        " --weight "+"mixture_weight"+ " --zstep "+"0.01"+" --sens "+"O3"+ " --m1min "+"5."+ " --dco_type BBH"+\
         " --redshiftBinSize "+"0.05" + ' --maxzdet ' + "0.5" #+ " --BinAppend "
 
         run_dir = In.script_dir +'/CosmicIntegration/'
