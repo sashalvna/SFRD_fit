@@ -51,7 +51,6 @@ if __name__ == "__main__":
     # Initialize values
     In.init()
     
-    if i ==0:
     only_stable = True
     only_CE     = False
     channel_string = 'stable'
