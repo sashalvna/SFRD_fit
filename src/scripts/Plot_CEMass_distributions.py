@@ -26,19 +26,37 @@ from astropy.cosmology import z_at_value
 
 import json
 import argparse
-
-# My own helper funcitons:
-import importlib
-import MassDistHelperFunctions as mfunc
-importlib.reload(mfunc)
-
 import gc
+
+# Custum scripts
+import MassDistHelperFunctions as mfunc
 import paths
 import init_values as In
-
-import time
-
 import Plot_Mass_distributions as pltmass
+
+
+######################################
+## locations
+save_loc    =  str(paths.figures) + '/'
+data_dir    =  str(paths.data) + '/'
+
+
+######################################
+## PLOT setttings
+plt.rc('font', family='serif')
+from matplotlib import rc
+import matplotlib
+matplotlib.rcParams['mathtext.fontset'] = 'stix'
+matplotlib.rcParams['font.family'] = 'STIXGeneral'
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('text', usetex=True)
+fsize, SMALL_SIZE, MEDIUM_SIZE, BIGGER_SIZE = 30,25,25,30
+for obj in ['axes','xtick','ytick']:
+    plt.rc(obj, labelsize=MEDIUM_SIZE)          # controls default text sizes
+for obj in ['figure','axes']:
+    plt.rc(obj, titlesize=BIGGER_SIZE)    # fontsize of the tick labels
+plt.rc('font', size=MEDIUM_SIZE)          # controls default text sizes
+plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 
 
 #################################################################################################
