@@ -77,14 +77,14 @@ if __name__ == "__main__":
 
     fig = plt.figure( figsize = (24, 28))
 
-    ####################################################
+   ####################################################
     # width of SFRD at z=0
     ####################################################
     #add first subplot in layout that has 3 rows and 2 columns
     subplot1 = fig.add_subplot(321)
 
     ax1 = pltmass.plot_mass_distribution(sim_dir = data_dir, rate_file='/RateData/'+str(In.rate_file_name), simulation_data = '/'+str(In.COMPASfilename),
-                           x_key = 'M_moreMassive',  rate_keys  = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma0%s_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.7, 1.129, 2.0]], channel_string = channel_string,
+                           x_key = 'M_moreMassive',  rate_keys  = ['Rates_mu00.025_muz-0.049_alpha-1.79_sigma0%s_sigmaz0.048_a0.017_b1.487_c4.442_d5.886'%(x) for x in [0.7, 1.129, 2.0]], channel_string = channel_string,
                            show_hist = False, show_KDE = True,  plot_LIGO = True, Color =  'navy',
                            only_CE = only_CE, only_stable = only_stable, 
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_width_variations.pdf', titletext = "Width of metallicity dist."+"\n"+r"$\omega_0$, (scale $z=0$)",
@@ -93,8 +93,8 @@ if __name__ == "__main__":
                                      r'$\mathrm{Wide: \ } \phantom{xx} (\omega_0 = 2.00) \  \mathcal{R}_{0.2} = \ $'],
                           multipanel = True, subplot = subplot1)
 
-    # 'Rates_mu00.025_muz-0.049_alpha-3.5_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913
-    # Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913
+    # 'Rates_mu00.025_muz-0.049_alpha-3.5_sigma01.129_sigmaz0.048_a0.017_b1.487_c4.442_d5.886
+    # Rates_mu00.025_muz-0.049_alpha-1.79_sigma01.129_sigmaz0.048_a0.017_b1.487_c4.442_d5.886
 
     ####################################################
     # Redshift evolution of the width
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     subplot2 = fig.add_subplot(322)
 
     ax2 = pltmass.plot_mass_distribution(sim_dir = data_dir,rate_file='/RateData/'+str(In.rate_file_name) , simulation_data = '/'+str(In.COMPASfilename),
-                           x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz%s_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, 0.048, 0.1]],channel_string = channel_string,
+                           x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.79_sigma01.129_sigmaz%s_a0.017_b1.487_c4.442_d5.886'%(x) for x in [0.0, 0.048, 0.1]],channel_string = channel_string,
                            show_hist = False, show_KDE = True,  plot_LIGO = True, Color = '#00a6a0', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_width_variations.pdf',  titletext = "Redshift evol. width of metallicity dist." +"\n"+ r"$\omega_z$, (scale z evol.)",
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     subplot3 = fig.add_subplot(323)
 
     ax3 = pltmass.plot_mass_distribution(sim_dir = data_dir,rate_file='/RateData/'+str(In.rate_file_name) , simulation_data = '/'+str(In.COMPASfilename),
-                           x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.007, 0.025, 0.035]],channel_string = channel_string,
+                           x_key = 'M_moreMassive',  rate_keys = ['Rates_mu0%s_muz-0.049_alpha-1.79_sigma01.129_sigmaz0.048_a0.017_b1.487_c4.442_d5.886'%(x) for x in [0.007, 0.025, 0.035]],channel_string = channel_string,
                            show_hist = False, show_KDE = True,  plot_LIGO = True, Color = '#e1131d', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_meanZ_variations.pdf',  titletext = 'Mean metallicity'+"\n"+r"$\mu_0$",
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     subplot4 = fig.add_subplot(324)
 
     ax4 = pltmass.plot_mass_distribution(sim_dir = data_dir,rate_file='/RateData/'+str(In.rate_file_name) , simulation_data = '/'+str(In.COMPASfilename),
-                           x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -0.049, -0.5]],channel_string = channel_string,
+                           x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz%s_alpha-1.79_sigma01.129_sigmaz0.048_a0.017_b1.487_c4.442_d5.886'%(x) for x in [0.0, -0.049, -0.5]],channel_string = channel_string,
                            show_hist = False, show_KDE = True,  plot_LIGO = True, Color = '#ff717b', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_zevol_mean_variations.pdf', titletext = "Redshift evol. of mean metallicity" +"\n"+ r"$\mu_z$", 
@@ -153,7 +153,7 @@ if __name__ == "__main__":
     subplot5 = fig.add_subplot(325)
 
     ax5 = pltmass.plot_mass_distribution(sim_dir = data_dir,rate_file='/RateData/'+str(In.rate_file_name) , simulation_data = '/'+str(In.COMPASfilename),
-                           x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913'%(x) for x in [0.0, -1.778, -6.0]],channel_string = channel_string,
+                           x_key = 'M_moreMassive',  rate_keys = ['Rates_mu00.025_muz-0.049_alpha%s_sigma01.129_sigmaz0.048_a0.017_b1.487_c4.442_d5.886'%(x) for x in [0.0, -1.79, -6.0]],channel_string = channel_string,
                            show_hist = False, show_KDE = True, plot_LIGO = True, Color = '#acbf00', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Skewness of metallicity dist." +"\n"+ r"$\alpha$, (shape)", 
@@ -172,9 +172,9 @@ if __name__ == "__main__":
 
     ax6 = pltmass.plot_mass_distribution(sim_dir = data_dir, rate_file='/RateData/'+str(In.rate_file_name), simulation_data = '/'+str(In.COMPASfilename),
                            x_key = 'M_moreMassive',  
-                           rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.01_b2.6_c3.2_d6.2',
-                                       'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.017_b1.481_c4.452_d5.913', 
-                                       'Rates_mu00.025_muz-0.049_alpha-1.778_sigma01.129_sigmaz0.048_a0.03_b2.6_c3.3_d5.9'],
+                           rate_keys = ['Rates_mu00.025_muz-0.049_alpha-1.79_sigma01.129_sigmaz0.048_a0.01_b2.6_c3.2_d6.2',
+                                       'Rates_mu00.025_muz-0.049_alpha-1.79_sigma01.129_sigmaz0.048_a0.017_b1.487_c4.442_d5.886', 
+                                       'Rates_mu00.025_muz-0.049_alpha-1.79_sigma01.129_sigmaz0.048_a0.03_b2.6_c3.3_d5.9'],
                                  channel_string = channel_string,
                            show_hist = False, show_KDE = True,  plot_LIGO = True, Color = '#ecb05b', 
                            only_CE = only_CE, only_stable = only_stable,
