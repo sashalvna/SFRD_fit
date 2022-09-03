@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1            # Number of cores
 #SBATCH --output=/n/home04/lvanson/SFRD_fit/src/data//slurm_out/CI5.out            # output storage file
 #SBATCH --error=/n/home04/lvanson/SFRD_fit/src/data//slurm_out/CI5.err             # error storage file
-#SBATCH --time=1:00:00              # Runtime in minutes
+#SBATCH --time=2:00:00              # Runtime in minutes
 #SBATCH --mem=120000               # Memory per cpu in MB (see also --mem-per-cpu)
 #SBATCH -p demink,conroy,hernquist,shared
 #SBATCH --mail-user=aac.van.son@gmail.com         # Send email to user

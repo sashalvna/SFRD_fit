@@ -435,7 +435,7 @@ if __name__ == "__main__":
         
         ##############################################################################
         print('saving here', paths.figures / 'SFRD_FIT_evaluation_compare.pdf')
-        fig.savefig(paths.figures / 'testSFRD_FIT_evaluation_compare.pdf',  bbox_inches='tight', dpi=300)
+        fig.savefig(paths.figures / 'SFRD_FIT_evaluation_compare.pdf',  bbox_inches='tight', dpi=300)
         
         # plt.show()
 
