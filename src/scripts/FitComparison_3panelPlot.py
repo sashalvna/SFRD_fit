@@ -428,9 +428,7 @@ if __name__ == "__main__":
         ax_redsh.set_ylabel(r"$ \mathcal{S}(Z,z) \ \mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$", size =25)
         
         ax_redsh.set_xlim(0, 10)
-        ax_redsh.set_ylim(-0.005, 0.075)
-        ax_redsh.set_yscale('log')
-        
+        ax_redsh.set_ylim(-0.005, 0.075)        
         
         ##############################################################################
         print('saving here', paths.figures / 'SFRD_FIT_evaluation_compare.pdf')
