@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  2 SEP 2022 16:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  3 SEP 2022 20:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -657,12 +657,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 325--327
 
  []
 
-<figures/SFRD_FIT_evaluation_compare.pdf, id=212, 1053.12146pt x 949.13078pt>
+<figures/SFRD_FIT_evaluation_compare.pdf, id=212, 1069.9605pt x 949.13078pt>
 File: figures/SFRD_FIT_evaluation_compare.pdf Graphic file (type pdf)
 <use figures/SFRD_FIT_evaluation_compare.pdf>
 Package pdftex.def Info: figures/SFRD_FIT_evaluation_compare.pdf  used on input
  line 340.
-(pdftex.def)             Requested size: 461.80255pt x 416.19954pt.
+(pdftex.def)             Requested size: 461.80255pt x 409.65343pt.
 
 Underfull \hbox (badness 7631) in paragraph at lines 360--360
 []\OT1/cmr/m/n/8 We pro-vide a Jupyter note-book to fa-cil-i-tate this fit
@@ -784,10 +784,17 @@ slinska /
  []
 
 
-Package natbib Warning: Citation `PythonReferenceManual' on page 12 undefined o
-n input line 641.
+Underfull \hbox (badness 5077) in paragraph at lines 641--642
+[]\OT1/cmr/m/n/10 Further soft-ware used in this work: Python
+ []
 
-<figures/High_Low_metalFractionSFMass.pdf, id=722, 867.24pt x 1300.86pt>
+
+Underfull \hbox (badness 2781) in paragraph at lines 641--642
+[][]\OT1/cmr/m/n/10 2020[][]), \OT1/cmtt/m/n/10 ipython$\OML/cmm/m/it/10 =$\OT1
+/cmtt/m/n/10 jupyter \OT1/cmr/m/n/10 ([][]Perez & Granger[][] [][]2007[][];
+ []
+
+<figures/High_Low_metalFractionSFMass.pdf, id=724, 867.24pt x 1300.86pt>
 File: figures/High_Low_metalFractionSFMass.pdf Graphic file (type pdf)
 <use figures/High_Low_metalFractionSFMass.pdf>
 Package pdftex.def Info: figures/High_Low_metalFractionSFMass.pdf  used on inpu
@@ -797,21 +804,18 @@ t line 654.
 LaTeX Warning: Float too large for page by 40.69426pt on input line 658.
 
 (./ms.bbl [12] [13 <./figures/High_Low_metalFractionSFMass.pdf>] [14]) [15]
-
-Package natbib Warning: There were undefined citations.
-
 (./ms.aux)
 Package rerunfilecheck Info: File `ms.out' has not changed.
 (rerunfilecheck)             Checksum: 8B4AA7F372E0187C44F1BDE81EFD2A22;4025.
  ) 
 Here is how much of TeX's memory you used:
- 13210 strings out of 478994
- 188073 string characters out of 5858185
- 643882 words of memory out of 5000000
- 30343 multiletter control sequences out of 15000+600000
+ 13214 strings out of 478994
+ 188186 string characters out of 5858185
+ 645044 words of memory out of 5000000
+ 30346 multiletter control sequences out of 15000+600000
  415154 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,16n,88p,10467b,638s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,16n,88p,10467b,636s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
@@ -846,10 +850,10 @@ ic/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
 blic/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/
 helvetic/uhvr8a.pfb>
-Output written on ms.pdf (15 pages, 1032932 bytes).
+Output written on ms.pdf (15 pages, 1019727 bytes).
 PDF statistics:
- 1027 PDF objects out of 1200 (max. 8388607)
- 927 compressed objects within 10 object streams
- 152 named destinations out of 1000 (max. 500000)
+ 1030 PDF objects out of 1200 (max. 8388607)
+ 930 compressed objects within 10 object streams
+ 153 named destinations out of 1000 (max. 500000)
  143 words of extra memory for PDF output out of 10000 (max. 10000000)
 

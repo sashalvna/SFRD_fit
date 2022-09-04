@@ -648,6 +648,10 @@ O'Hagan, A., \& Leonard, T. 1976, Biometrika, 63, 201,
 {van den Heuvel}, E.~P.~J., {Portegies Zwart}, S.~F., \& {de Mink}, S.~E. 2017,
   \mnras, 471, 4256, \dodoi{10.1093/mnras/stx1430}
 
+\bibitem[{Van~Rossum \& Drake(2009)}]{PythonReferenceManual}
+Van~Rossum, G., \& Drake, F.~L. 2009, Python 3 Reference Manual (Scotts Valley,
+  CA: CreateSpace)
+
 \bibitem[{{van Son} {et~al.}(2022){van Son}, {de Mink}, {Callister}, {Justham},
   {Renzo}, {Wagg}, {Broekgaarden}, {Kummer}, {Pakmor}, \&
   {Mandel}}]{vanson+2022}

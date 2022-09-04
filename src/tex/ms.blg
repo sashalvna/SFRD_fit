@@ -9,48 +9,46 @@ Reallocated ex_buf (elt_size=1) to 40000 items from 20000.
 Reallocated out_buf (elt_size=1) to 40000 items from 20000.
 Reallocated name_tok (elt_size=4) to 40000 items from 20000.
 Reallocated name_sep_char (elt_size=1) to 40000 items from 20000.
-Warning--I didn't find a database entry for "PythonReferenceManual"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated str_pool (elt_size=1) to 130000 items from 65000.
-You've used 89 entries,
+You've used 90 entries,
             3168 wiz_defined-function locations,
-            1356 strings with 59101 characters,
-and the built_in function-call counts, 63222 in all, are:
-= -- 3548
-> -- 7855
-< -- 24
-+ -- 2607
-- -- 2724
-* -- 7104
-:= -- 12488
-add.period$ -- 102
-call.type$ -- 89
-change.case$ -- 472
-chr.to.int$ -- 90
-cite$ -- 89
-duplicate$ -- 1507
-empty$ -- 2609
-format.name$ -- 2830
-if$ -- 11890
+            1361 strings with 59194 characters,
+and the built_in function-call counts, 63598 in all, are:
+= -- 3579
+> -- 7877
+< -- 25
++ -- 2614
+- -- 2731
+* -- 7133
+:= -- 12553
+add.period$ -- 103
+call.type$ -- 90
+change.case$ -- 477
+chr.to.int$ -- 91
+cite$ -- 90
+duplicate$ -- 1523
+empty$ -- 2644
+format.name$ -- 2841
+if$ -- 11971
 int.to.chr$ -- 6
 int.to.str$ -- 0
-missing$ -- 87
-newline$ -- 288
-num.names$ -- 356
-pop$ -- 537
+missing$ -- 88
+newline$ -- 291
+num.names$ -- 360
+pop$ -- 546
 preamble$ -- 1
-purify$ -- 470
+purify$ -- 475
 quote$ -- 0
-skip$ -- 1356
+skip$ -- 1370
 stack$ -- 0
-substring$ -- 1974
+substring$ -- 1981
 swap$ -- 19
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 798
+type$ -- 804
 warning$ -- 0
-while$ -- 316
+while$ -- 319
 width$ -- 0
-write$ -- 986
-(There was 1 warning)
+write$ -- 996
