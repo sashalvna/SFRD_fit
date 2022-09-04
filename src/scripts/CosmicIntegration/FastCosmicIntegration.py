@@ -604,9 +604,17 @@ def append_rates(path, outfilename, detection_rate, formation_rate, merger_rate,
                 if redshift_bins[i] < redshifts[n_redshifts_detection]:
                     # The detection rate was already multiplied by the shell volumes, so we can sum it directly
                     binned_detection_rate[:,i] = np.sum(detection_rate[:, digitized_det == i+1], axis = 1)
-            save_redshifts        = redshift_bins
-            save_merger_rate      = binned_merger_rate
-            save_detection_rate   = binned_detection_rate
+
+            #  To avoid huge filesizes, we don't really wan't All the data, 
+            # so we're going to save up to some redshift
+            z_index = np.digitize(maxz, redshift_bins) -1
+
+            # The detection_rate is a smaller array, make sure you don't go beyond the end
+            detection_index = z_index if z_index < n_redshifts_detection else n_redshifts_detection
+            
+            save_redshifts        = redshift_bins[:z_index]
+            save_merger_rate      = binned_merger_rate[:,:z_index]
+            # save_detection_rate   = binned_detection_rate[:,:detection_index]
 
         else: 
             #  To avoid huge filesizes, we don't really wan't All the data, 
@@ -619,7 +627,7 @@ def append_rates(path, outfilename, detection_rate, formation_rate, merger_rate,
             print('You will only save data up to redshift ', maxz, ', i.e. index', z_index)
             save_redshifts        = redshifts[:z_index]
             save_merger_rate      = merger_rate[:,:z_index]
-            save_detection_rate   = detection_rate[:,:detection_index]
+            # save_detection_rate   = detection_rate[:,:detection_index]
 
         print('save_redshifts', save_redshifts)
         print('shape of save_merger_rate ', np.shape(save_merger_rate))
