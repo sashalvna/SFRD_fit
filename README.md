@@ -4,7 +4,11 @@
 </a>
 
 <h1>
-The locations of features in the mass distribution of merging binary black holes are robust against uncertainties in the metallicity-dependent cosmic star formation history.</h1>
+An analytical fit to the SFRD(z,Z)
+<h1>
+
+<h3>
+The locations of features in the mass distribution of merging binary black holes are robust against uncertainties in the metallicity-dependent cosmic star formation history.</h3>
 
 <p>
 Source and code associated to the paper 
