@@ -1,7 +1,15 @@
 <p align="center">
 <a href="https://github.com/showyourwork/showyourwork">
-<img width = "450" src="https://raw.githubusercontent.com/showyourwork/.github/main/images/showyourwork.png" alt="showyourwork"/>
+<img width = "250" src="https://raw.githubusercontent.com/showyourwork/.github/main/images/showyourwork.png" alt="showyourwork"/>
 </a>
+
+<h1>
+The locations of features in the mass distribution of merging binary black holes are robust against uncertainties in the metallicity-dependent cosmic star formation history.</h1>
+
+<p>
+Source and code associated to the paper 
+</p>
+
 <br>
 <br>
 <a href="https://github.com/LiekeVanSon/SFRD_fit/actions/workflows/build.yml">
