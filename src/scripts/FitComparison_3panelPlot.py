@@ -15,7 +15,6 @@ from astropy.cosmology import Planck18  as cosmo# Planck 2018
 from astropy.cosmology import z_at_value
 from astropy.table import Table
 
-
 from matplotlib import rc
 import matplotlib
 from matplotlib import ticker, cm

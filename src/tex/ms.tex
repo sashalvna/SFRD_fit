@@ -1,5 +1,5 @@
 % Define document class
-\documentclass[twocolumn]{aastex631}
+\documentclass[linenumbers,twocolumn]{aastex631}
 \usepackage{showyourwork}
 
 
@@ -67,10 +67,7 @@
 % Begin!
 \begin{document}
 
-% Title
-% \title{ A flexible and intuitive analytic expression for the metallicity-dependent cosmic star formation history  }
-% \title{ A flexible expression for the metallicity-dependent cosmic star formation history: }
-% \title{The location of features in the mass distribution of merging binary black holes does not depend on the metallicity-dependent cosmic star formation history.}
+
 \title{The locations of features in the mass distribution of merging binary black holes are robust against uncertainties in the metallicity-dependent cosmic star formation history.}
 
 
@@ -428,13 +425,13 @@ Incorporating more complex functional forms for our the mean metallicity could p
 We will now demonstrate the application of our analytical model by systematically varying the parameters in our fiducial \SFRDzZ model, and investigate their effect on the local mass distribution of BBH mergers originating from isolated binaries. 
 
 
-We use the publicly available rapid binary population synthesis simulations presented in van Son et al (in prep).\footnote{Available for download at \url{https://doi.org/10.5072/zenodo.1098287},  see also the Software and Data section in the acknowledgements} 
+We use the publicly available rapid binary population synthesis simulations presented in van Son et al (in prep).\footnote{Available for download at \url{https://sandbox.zenodo.org/record/1101303},  see also the Software and Data section in the acknowledgements}  
 These simulations were run using version v02.26.03 of the open source \COMPAS suite \citep{COMPAS_method}\footnote{\url{https://github.com/TeamCOMPAS/COMPAS}}. \COMPAS is based on algorithms that model the evolution of massive binary stars following \citet{Hurley+2000, Hurley+2002} using detailed evolutionary models by \citet{Pols+1998}.  We refer the reader to the methods section of \cite{vanson+2022} for a detailed description of our adopted physics parameters and assumptions.
 %
 Metallicities of each binary system were sampled from a smooth probability distribution to avoid artificial peaks in the BH mass distribution \citep[e.g.][]{Dominik2015,Kummer_thesis}. 
 These simulations provide us with an estimate of the yield of BBH mergers per unit of star-forming mass and metallicity. 
 
-We combine the aforementioned yield with variations of the fiducial \SFRDzZ model described in this work. By integrating over cosmic history, we obtain the local merger rates of BBH systems, which allow us to construct the distribution of source properties at every redshift. The details of this framework are described in \cite{vanson+2022}, but also in \cite{Broekgaarden+2021a} and \cite{Neijssel+2019}. 
+We combine the aforementioned yield with variations of the fiducial \SFRDzZ model described in this work. By integrating over cosmic history, we obtain the local merger rates of BBH systems, which allow us to construct the distribution of source properties at every redshift. We use the cosmic integration scheme that is part of the publicly available \COMPAS suite. The details of this framework are described in \cite{Neijssel+2019}, but also in \cite{vanson+2022}, where more similar settings to this work are used. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -578,7 +575,7 @@ The authors acknowledge partial financial support from the  National Science Fou
 \section*{Software and Data}
 % Code and Data 
 All code associated to reproduce the data and plots in this paper is publicly available at \url{https://github.com/LiekeVanSon/SFRD_fit}.
-The data used in this work is available on Zenodo under an open-source Creative Commons Attribution license at \dataset[doi:10.5072/zenodo.1098287]{https://doi.org/10.5072/zenodo.1098287}.
+The data used in this work is available on Zenodo under an open-source Creative Commons Attribution license at \dataset[10.5072/zenodo.1101303]{https://sandbox.zenodo.org/record/1101303}.
 % \dataset[doi:10.5281/zenodo.5544170]{https://doi.org/10.5281/zenodo.5544170}.
 All observationally constrained models of the \SFRDzZ from \cite{Chruslinska+2021} can be found online at: \url{https://ftp.science.ru.nl/astro/mchruslinska/Chruslinska_et_al_2021/}.
 

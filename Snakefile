@@ -23,24 +23,24 @@ rule extractFig5:
         "src/scripts/Extract_fig5data.py"
 
 
-rule CosmicIntegration:
-    priority: 5
-    input: 
-        "src/data/test_best_fit_parameters.txt"
-    output:
-        "src/data/RateData/CI_job_IDs.txt"
-    script:
-        "src/scripts/CosmicIntegration/CallCosmicIntegration.py"
+# rule CosmicIntegration:
+#     priority: 5
+#     input: 
+#         "src/data/test_best_fit_parameters.txt"
+#     output:
+#         "src/data/RateData/CI_job_IDs.txt"
+#     script:
+#         "src/scripts/CosmicIntegration/CallCosmicIntegration.py"
 
 
-rule combineFiles:
-    priority: 1
-    input: "src/data/RateData/CI_job_IDs.txt"
-    output:
-        "src/data/RateData/Rate_info.h5"
-    cache:
-        True
-    script:
-        "src/scripts/CosmicIntegration/CheckCompletionAndCombine.py"
+# rule combineFiles:
+#     priority: 1
+#     input: "src/data/RateData/CI_job_IDs.txt"
+#     output:
+#         "src/data/RateData/Rate_info.h5"
+#     cache:
+#         True
+#     script:
+#         "src/scripts/CosmicIntegration/CheckCompletionAndCombine.py"
 
 
