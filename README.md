@@ -4,7 +4,7 @@
 </a>
 
 <h1>
-An analytical fit to the SFRD(z,Z)
+An analytical fit to the metallicity-dependent cosmic star formation history, SFRD(z,Z)
 <h1>
 
 <h3>
