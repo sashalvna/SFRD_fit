@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
         #default Madau & Fragos 17
         ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=0.01, b=2.6, c=3.2, d=6.2), 
-                 label = r'Madau $\&$ Fragos 2017\n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.6,3.2,6.2)
+                 label = r'Madau and Fragos 2017 \n $a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.6,3.2,6.2)
                  , c = 'grey', ls = ':',lw=6)
 
     #     #default Coen
