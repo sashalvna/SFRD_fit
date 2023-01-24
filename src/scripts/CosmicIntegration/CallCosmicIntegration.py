@@ -178,6 +178,6 @@ if __name__ == "__main__":
                                                 [[mu0_best, muz_best, sigma0_best, sigmaz_best, -6], fid_sfr_parameters],
                                                  [fid_dpdZ_parameters, [0.01, 2.60, 3.20, 6.20]],# SFR(z) variations
                                                  [fid_dpdZ_parameters, [0.03,2.6,3.3,5.9]] ],
-                           partitions = 'demink,conroy,hernquist,shared', Wtime = "2:00:00", mem = "120000")
+                           partitions = 'demink,conroy', Wtime = "2:00:00", mem = "120000") #demink,conroy,hernquist,share
 
 
