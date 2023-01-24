@@ -15,7 +15,6 @@ from astropy.cosmology import Planck18  as cosmo# Planck 2018
 from astropy.cosmology import z_at_value
 from astropy.table import Table
 
-
 from matplotlib import rc
 import matplotlib
 from matplotlib import ticker, cm
@@ -53,6 +52,8 @@ if __name__ == "__main__":
 
     # Initialize values
     In.init()
+
+    Zsun = 0.014 # Solar metallicity
 
     mu0_best, muz_best, omega0_best, omegaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best = np.loadtxt(str(paths.data)+'/'+In.fit_param_filename,unpack=True, delimiter=',')
     # mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best = np.loadtxt(data_dir+ '/best_fit_parameters.txt',unpack=True)
@@ -180,7 +181,7 @@ if __name__ == "__main__":
             ######################################
             # now actually plot it
             tng_color = sns.light_palette("#fe875d", as_cmap=True, n_colors = 7) # construct smooth cmap from one colour
-            TNG = ax.pcolormesh(Obs_Lookbacktimes, Obs_center_Zbin, Obs_cosmic_SFR/step_obs_logZ, 
+            TNG = ax.pcolormesh(Obs_Lookbacktimes, Obs_center_Zbin/Zsun, Obs_cosmic_SFR/step_obs_logZ, 
                                 rasterized=True, norm=matplotlib.colors.LogNorm(vmin=1e-8,vmax=1e-1), 
                                 cmap=tng_color, alpha=0.95 ) #matplotlib.cm.YlGnBu
             cbaxes1 = fig.add_axes([0.925, 0.1, 0.03, 0.8]) #[left, bottom, width, height]
@@ -210,7 +211,7 @@ if __name__ == "__main__":
             #####################################
             COMPAS_cmap = sns.color_palette(FITkleur, as_cmap=True)
             
-            cs = ax.contour(high_res_t, high_res_metals, model_SFRD/step_logZ, levels, linewidths=4, cmap=COMPAS_cmap,
+            cs = ax.contour(high_res_t, high_res_metals/Zsun, model_SFRD/step_logZ, levels, linewidths=4, cmap=COMPAS_cmap,
                              locator=ticker.LogLocator(), alpha = 0.95, zorder=0)
             ax.clabel(cs,inline=1,fontsize=20, levels = levels, use_clabeltext=True, fmt = '%.0e')
 
@@ -242,7 +243,7 @@ if __name__ == "__main__":
 
             greys = cm.get_cmap('Greys')
             greys = greys(np.linspace(0.2,1,10)) # Don't start the cmap in white
-            cs_N = ax.contour(high_res_t, high_res_metals, Neijssel_SFRDzZ, levels, linewidths=4,linestyles =':', alpha = 0.95, zorder=0,
+            cs_N = ax.contour(high_res_t, high_res_metals/Zsun, Neijssel_SFRDzZ, levels, linewidths=4,linestyles =':', alpha = 0.95, zorder=0,
                               cmap=ListedColormap(greys),locator=ticker.LogLocator())
             
         ##############################################################################
@@ -252,7 +253,7 @@ if __name__ == "__main__":
         ax.xaxis.grid(5) # vertical lines
         ax.set_yscale('log')
         ax.set_xlabel('$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 25)
-        ax.set_ylabel('$\mathrm{Metallicity}$', fontsize = 25)
+        ax.set_ylabel(r'$\mathrm{Metallicity}, \ Z/Z_{\rm{\odot}}$', fontsize = 25)
         
         ######################################
         #### Add redshift Axis ####
@@ -271,7 +272,7 @@ if __name__ == "__main__":
         ax.set_xlim(tmin, tmax)
         ax2.set_xlim(tmin, tmax)
         
-        ax.set_ylim(1e-5, 1e0)
+        ax.set_ylim(1e-3, 1e2)
 
 
 
@@ -334,12 +335,12 @@ if __name__ == "__main__":
             shift_step = (len(redshift_indces)-1)*0.01 - 0.01*i 
             ######################################
             # Observed: TNG data
-            ax_metals.plot(np.log10(Obs_center_Zbin), Obs_cosmic_SFR[:,redshift_i] + shift_step,
+            ax_metals.plot(np.log10(Obs_center_Zbin/Zsun), Obs_cosmic_SFR[:,redshift_i] + shift_step,
                                  lw = 9, c = 'darkgrey', label = LAB)  
 
             ######################################
             # Model: new SFRD
-            l = ax_metals.plot(np.log10(low_res_metallicities), low_res_model_SFRD[:,redshift_i] + shift_step,
+            l = ax_metals.plot(np.log10(low_res_metallicities/Zsun), low_res_model_SFRD[:,redshift_i] + shift_step,
                            lw = 4, ls = '--', c = colors[i], label = "$z=%s$"%(np.round(Obs_redshifts[redshift_i], 1)) )    
             plot_lines.append([l])
             
@@ -347,7 +348,7 @@ if __name__ == "__main__":
             # Model: OLD (Neijssel et al. 2019)       
             if neijssel_fit:
                 #print('Redshift used in Neijssel: ', np.round(neijssel_redshifts[redshift_i],3))
-                ax_metals.plot(np.log10(low_res_metallicities), low_res_Neijssel_SFRDzZ[:,redshift_i] + shift_step,
+                ax_metals.plot(np.log10(low_res_metallicities/Zsun), low_res_Neijssel_SFRDzZ[:,redshift_i] + shift_step,
                                  lw = 3, c = 'slategrey', ls = ':', zorder=0, alpha = 0.5)         
             
         ##############################################################################
@@ -365,11 +366,11 @@ if __name__ == "__main__":
         legend3 = ax_metals.legend(lines[1::3], ["$%s$"%(np.round(Obs_redshifts[redshift_i], 1)) for redshift_i in redshift_indces],
                          ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title=r'$\mathrm{redshift}$')
         
-        ax_metals.set_xlabel(r'$\log_{10}(Z)$', size =25)
+        ax_metals.set_xlabel(r'$\log_{10}(Z/Z_{\odot})$', size =25)
         ax_metals.set_ylabel(r"$ \mathcal{S}(Z,z) \ \mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$", size =25)
 
         ax_metals.set_ylim(-0.005, 0.075)
-        ax_metals.set_xlim(-4, -0.5)
+        ax_metals.set_xlim(-2.5, 1.5)#-0.5)
 
         
         ##################################################################################
@@ -421,8 +422,8 @@ if __name__ == "__main__":
                          bbox_to_anchor=(0.4, 1.0), loc='lower left')
         ax_redsh.add_artist(legend2)
         
-        legend3 = ax_redsh.legend(lines[1::3], ["$%s$"%(np.round(np.log10(Obs_center_Zbin[metal_i]), 1)) for metal_i in metal_indices],
-                         ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title=r'$\log_{10}Z$')
+        legend3 = ax_redsh.legend(lines[1::3], ["$%s$"%(np.round(np.log10(Obs_center_Zbin[metal_i]/Zsun), 1)) for metal_i in metal_indices],
+                         ncol=1, bbox_to_anchor=(1.02, 1), loc='upper left', title=r'$\log_{10}Z/Z_{\rm{\odot}}$')
         
         ax_redsh.set_xlabel(r'$\mathrm{redshift}$', size =25)
         ax_redsh.set_ylabel(r"$ \mathcal{S}(Z,z) \ \mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$", size =25)

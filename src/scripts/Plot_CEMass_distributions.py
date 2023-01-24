@@ -1,7 +1,5 @@
 """
-
 # Plotting the stable BH mass distribution for several SFRD Z-distribution variations
-
 """
 
 import sys

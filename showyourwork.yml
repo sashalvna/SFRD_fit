@@ -1,4 +1,5 @@
-version: 0.3.0.dev8
+version: cadb4086dd2a46cb68e6acffa73c2f7976e6d64d
+
 verbose: true
 
 
@@ -17,37 +18,40 @@ dependencies:
   src/scripts/ExtractZenodoData.py:
     - src/data/COMPAS_Output_wRates.tar.gz
 
-  src/scripts/Plot_Mass_distributions.py:
+  src/scripts/Plot_CEMass_distributions.py:
     - src/data/COMPAS_Output_wWeights.h5
     - src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5
     - src/data/RateData/Rate_info.h5
-    - src/scripts/CosmicIntegration/CallCosmicIntegration.py
 
-  src/scripts/CosmicIntegration/CallCosmicIntegration.py:
+  src/scripts/Plot_StableMass_distributions.py:
     - src/data/COMPAS_Output_wWeights.h5
+    - src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5
+    - src/data/RateData/Rate_info.h5
 
-  src/scripts/CosmicIntegration/CheckCompletionAndCombine.py:
-    - src/data/RateData/CI_job_IDs.txt
-    - src/scripts/CosmicIntegration/CallCosmicIntegration.py
+    # - src/scripts/CosmicIntegration/CallCosmicIntegration.py
 
-  src/data/RateData/CI_job_IDs.txt:
-    - src/scripts/CosmicIntegration/CallCosmicIntegration.py
+  # src/scripts/CosmicIntegration/CallCosmicIntegration.py:
+  #   - src/data/COMPAS_Output_wWeights.h5
+
+  # src/scripts/CosmicIntegration/CheckCompletionAndCombine.py:
+  #   - src/data/RateData/CI_job_IDs.txt
+  #   - src/scripts/CosmicIntegration/CallCosmicIntegration.py
+
+  # src/data/RateData/CI_job_IDs.txt:
+  #   - src/scripts/CosmicIntegration/CallCosmicIntegration.py
 
   src/scripts/LowHighZ_fraction.py:
+    - src/data/test_best_fit_parameters.txt
     - src/data/Figure5/
-    # - src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_3.dat
-    # - src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_10.0.dat
-    # - src/data/Figure5/stellar_mass_fractions_Zsun_Asplund09_zmax_0.5.dat
-    # - src/data/Figure5/StellarMassMetallicityTNG50-1.hdf5
-    # - src/data/Figure5/StellarMassMetallicitySimba.hdf5
-    # - src/data/Figure5/StellarMassMetallicityIllustris.hdf5
-    # - src/data/Figure5/StellarMassMetallicityEagle.hdf5
+
 
 
 datasets:
-  10.5072/zenodo.1098287:
+  10.5072/zenodo.1101303:
     destination: src/data/                                         # default folder to extract files to
     contents:
+
+        Rate_info.h5: src/data/RateData/Rate_info.h5
 
         o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5: src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5
 
@@ -67,18 +71,3 @@ datasets:
 
 
 
-
-#  10.5281/zenodo.5544170:
-#    destination: src/data/               # default folder to extract files to
-#    contents:
-#        COMPAS_Output_wRates.tar.gz:     # remote tarballs behave like folders w/ same name
-#overleaf:
-#    id: 62a0c20fae14a6458d579921
-#    push:
-#        - src/tex/figures
-#        - src/tex/output
-#    pull:
-#        - src/tex/ms.tex
-#        - src/tex/bib.bib
-#        - src/tex/my_bib.bib
-#        - src/tex/main_bib.bib

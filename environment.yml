@@ -2,7 +2,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - numpy=1.20.0
+  - numpy=1.19.4
   - pip=21.0.1
   - python=3.9
   - h5py

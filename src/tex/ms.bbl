@@ -246,6 +246,11 @@
 {Belczynski}, K., {Taam}, R.~E., {Kalogera}, V., {Rasio}, F.~A., \& {Bulik}, T.
   2007, \apj, 662, 504, \dodoi{10.1086/513562}
 
+\bibitem[{{Bisigello} {et~al.}(2018){Bisigello}, {Caputi}, {Grogin}, \&
+  {Koekemoer}}]{Bisigello+2018}
+{Bisigello}, L., {Caputi}, K.~I., {Grogin}, N., \& {Koekemoer}, A. 2018, \aap,
+  609, A82, \dodoi{10.1051/0004-6361/20173139910.48550/arXiv.1706.06154}
+
 \bibitem[{{Boco} {et~al.}(2021){Boco}, {Lapi}, {Chruslinska}, {Donevski},
   {Sicilia}, \& {Danese}}]{Boco+2021}
 {Boco}, L., {Lapi}, A., {Chruslinska}, M., {et~al.} 2021, \apj, 907, 110,
@@ -263,21 +268,19 @@
   arXiv e-prints, arXiv:2206.13842.
 \newblock \doarXiv{2206.13842}
 
-\bibitem[{{Broekgaarden} {et~al.}(2021{\natexlab{a}}){Broekgaarden}, {Berger},
-  {Stevenson}, {Justham}, {Mandel}, {Chru{\'s}li{\'n}ska}, {van Son}, {Wagg},
+\bibitem[{{Broekgaarden} {et~al.}(2021){Broekgaarden}, {Berger}, {Stevenson},
+  {Justham}, {Mandel}, {Chru{\'s}li{\'n}ska}, {van Son}, {Wagg},
   {Vigna-G{\'o}mez}, {de Mink}, {Chattopadhyay}, \&
   {Neijssel}}]{Broekgaarden+2021b}
-{Broekgaarden}, F.~S., {Berger}, E., {Stevenson}, S., {et~al.}
-  2021{\natexlab{a}}, arXiv e-prints, arXiv:2112.05763.
+{Broekgaarden}, F.~S., {Berger}, E., {Stevenson}, S., {et~al.} 2021, arXiv
+  e-prints, arXiv:2112.05763.
 \newblock \doarXiv{2112.05763}
 
-\bibitem[{{Broekgaarden} {et~al.}(2021{\natexlab{b}}){Broekgaarden}, {Berger},
-  {Neijssel}, {Vigna-G{\'o}mez}, {Chattopadhyay}, {Stevenson},
-  {Chru{\'s}li{\'n}ska}, {Justham}, {de Mink}, \&
-  {Mandel}}]{Broekgaarden+2021a}
-{Broekgaarden}, F.~S., {Berger}, E., {Neijssel}, C.~J., {et~al.}
-  2021{\natexlab{b}}, arXiv e-prints, arXiv:2103.02608.
-\newblock \doarXiv{2103.02608}
+\bibitem[{{Caputi} {et~al.}(2017){Caputi}, {Deshmukh}, {Ashby}, {Cowley},
+  {Bisigello}, {Fazio}, {Fynbo}, {Le F{\`e}vre}, {Milvang-Jensen}, \&
+  {Ilbert}}]{Caputi+2017}
+{Caputi}, K.~I., {Deshmukh}, S., {Ashby}, M.~L.~N., {et~al.} 2017, \apj, 849,
+  45, \dodoi{10.3847/1538-4357/aa901e10.48550/arXiv.1705.06179}
 
 \bibitem[{{Chru{\'s}li{\'n}ska}(2022)}]{chruslinska2022_review}
 {Chru{\'s}li{\'n}ska}, M. 2022, arXiv e-prints, arXiv:2206.10622.
@@ -409,6 +412,10 @@ Harris, C.~R., Millman, K.~J., van~der Walt, S.~J., {et~al.} 2020, Nature, 585,
   {et~al.}}]{Kluyver2016jupyter}
 Kluyver, T., Ragan-Kelley, B., P{\'e}rez, F., {et~al.} 2016, in ELPUB, 87--90
 
+\bibitem[{{Kobulnicky} \& {Kewley}(2004)}]{KobulnickyKewley2004}
+{Kobulnicky}, H.~A., \& {Kewley}, L.~J. 2004, \apj, 617, 240,
+  \dodoi{10.1086/42529910.48550/arXiv.astro-ph/0408128}
+
 \bibitem[{{Kroupa}(2001)}]{Kroupa2001}
 {Kroupa}, P. 2001, \mnras, 322, 231, \dodoi{10.1046/j.1365-8711.2001.04022.x}
 
@@ -516,6 +523,10 @@ O'Hagan, A., \& Leonard, T. 1976, Biometrika, 63, 201,
 \bibitem[{{Perez} \& {Granger}(2007)}]{2007CSE.....9c..21P}
 {Perez}, F., \& {Granger}, B.~E. 2007, Computing in Science and Engineering, 9,
   21, \dodoi{10.1109/MCSE.2007.53}
+
+\bibitem[{{Pettini} \& {Pagel}(2004)}]{PettiniPagel2004}
+{Pettini}, M., \& {Pagel}, B. E.~J. 2004, \mnras, 348, L59,
+  \dodoi{10.1111/j.1365-2966.2004.07591.x10.48550/arXiv.astro-ph/0401128}
 
 \bibitem[{{Pillepich} {et~al.}(2018{\natexlab{a}}){Pillepich}, {Nelson},
   {Hernquist}, {Springel}, {Pakmor}, {Torrey}, {Weinberger}, {Genel}, {Naiman},
@@ -657,6 +668,9 @@ Van~Rossum, G., \& Drake, F.~L. 2009, Python 3 Reference Manual (Scotts Valley,
   {Mandel}}]{vanson+2022}
 {van Son}, L.~A.~C., {de Mink}, S.~E., {Callister}, T., {et~al.} 2022, \apj,
   931, 17, \dodoi{10.3847/1538-4357/ac64a3}
+
+\bibitem[{{van Son}(2022)}]{vanson2022_lowMbh}
+{van Son}, L.~A.~C.~a. 2022, \apj
 
 \bibitem[{{Vigna-G{\'o}mez} {et~al.}(2018){Vigna-G{\'o}mez}, {Neijssel},
   {Stevenson}, {Barrett}, {Belczynski}, {Justham}, {de Mink}, {M{\"u}ller},
