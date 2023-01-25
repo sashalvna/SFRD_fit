@@ -17,3 +17,4 @@ src/tex/figures/*
 __pycache__
 Writing
 Talks
+.DS_Store
