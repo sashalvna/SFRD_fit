@@ -50,7 +50,7 @@ def read_data(loc = '', verbose=False):
             intrinsic_rate_density_z0  --> [2D array] merger rate in N/Gpc^3/yr at finest/lowest redshift bin calculated
 
     """
-    if verbose: print('Reading ',loc)
+    print('Reading ',loc)
     ################################################
     ## Open hdf5 file
     File        = h5.File(loc ,'r')
@@ -59,16 +59,15 @@ def read_data(loc = '', verbose=False):
     # Older simulations use this naming
     dcokey,  syskey, CEcount, dcomask = 'DoubleCompactObjects', 'SystemParameters', 'CE_Event_Count', 'DCOmask' 
     if dcokey in File.keys():
-        print('using file with key', dcokey)
+        if verbose: print('using file with key', dcokey)
     # Newer simulations use this
     else:
-        print('using file with key', dcokey)
+        if verbose: print('using file with key', dcokey)
         dcokey,  syskey, CEcount, dcomask = 'BSE_Double_Compact_Objects', 'BSE_System_Parameters', 'CE_Event_Counter', 'DCOmask'
  
-        
     DCO = Table()
-    DCO['SEED']                  = File[dcokey]['SEED'][()] 
 
+    DCO['SEED']                  = File[dcokey]['SEED'][()] 
     DCO[CEcount]                 = File[dcokey][CEcount][()] 
     DCO['Mass(1)']               = File[dcokey]['Mass(1)'][()]
     DCO['Mass(2)']               = File[dcokey]['Mass(2)'][()]
@@ -80,12 +79,13 @@ def read_data(loc = '', verbose=False):
     DCO['Stellar_Type(2)']       = File[dcokey]['Stellar_Type(2)'][()]
     DCO['Optimistic_CE']         = File[dcokey]['Optimistic_CE'][()]
     DCO['Immediate_RLOF>CE']     = File[dcokey]['Immediate_RLOF>CE'][()]
-#     DCO['CH_on_MS(1)']           = File[dcokey]['CH_on_MS(1)'][()]
-#     DCO['CH_on_MS(2)']           = File[dcokey]['CH_on_MS(2)'][()]
 
     SYS_DCO_seeds_bool           = np.in1d(File[syskey]['SEED'][()], DCO['SEED']) #Bool to point SYS to DCO
-    DCO['Stellar_Type@ZAMS(1)']  = File[syskey]['Stellar_Type@ZAMS(1)'][SYS_DCO_seeds_bool]
-    DCO['Stellar_Type@ZAMS(2)']  = File[syskey]['Stellar_Type@ZAMS(2)'][SYS_DCO_seeds_bool]
+    # This needs to be done in two steps, otherwise the Snakemake workflow gets stuck for unknown reasons
+    SYS_ZAMSType1 = File[syskey]['Stellar_Type@ZAMS(1)'][()]
+    SYS_ZAMSType2 = File[syskey]['Stellar_Type@ZAMS(2)'][()]
+    DCO['Stellar_Type@ZAMS(1)']  = SYS_ZAMSType1[SYS_DCO_seeds_bool] #File[syskey]['Stellar_Type@ZAMS(1)'][SYS_DCO_seeds_bool]
+    DCO['Stellar_Type@ZAMS(2)']  = SYS_ZAMSType2[SYS_DCO_seeds_bool] #File[syskey]['Stellar_Type@ZAMS(2)'][SYS_DCO_seeds_bool]
     
     File.close()
     
