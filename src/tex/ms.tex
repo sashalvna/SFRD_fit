@@ -115,7 +115,6 @@ As an example application, we investigate the effect of systematic variations in
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction \label{sec: intro}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\todo{Make sure to address the difference in rate between this paper and \citep{vanson2022_lowMbh}!}
 A myriad of astrophysical phenomena depend critically on the rate of star formation throughout the cosmic history of the Universe. Exotic transient phenomena, including (pulsational) pair-instability supernovae, long gamma-ray bursts and gravitational wave (GW) events appear to be especially sensitive to the metallicity at which star formation occurs at different epochs throughout the Universe \citep[e.g.,][]{Langer+2007,Fruchter+2006,LIGO2016_implications}.
 Gravitational astronomy in particular has seen explosive growth in the number of detections in the past decade \citep[][]{GWTC1,GWTC2,GWTC3}, while theoretical predictions vary greatly due to uncertainties in the aforementioned metallicity of star formation \citep[e.g.,][]{Santoliquido+2021,Broekgaarden+2021b}. In order to correctly model and interpret these observations, it is thus fundamental to know the rate of star formation at different metallicities throughout cosmic history; i.e. the metallicity-dependent cosmic star formation history \citep[\SFRDzZ, see also the recent review by][]{chruslinska2022_review}. Throughout this work little $z$ refers to the redshift and $Z$ to the metallicity of star formation. 
 
@@ -138,6 +137,8 @@ First of all, the form we propose allows for an intuitive interpretation of the 
 Secondly, both the large complications in observational constraints, and the many uncertainties in cosmological simulations call for a generalised form of \SFRDzZ that can be easily updated when new information becomes available. 
 In particular, the advent of observations with the James Webb Space Telescope promises a new era of high-redshift
 metallicity studies of previously unexplored regimes \citep[e.g.,][]{Sanders+2022}. We hope that this form will facilitate the flexibility needed to keep up with observations. 
+\edit1{The model described in this work is incorporated in the publicly available `Cosmic Integration' suite of the \COMPAS code.\footnote{\url{https://github.com/TeamCOMPAS/COMPAS/tree/dev/utils/CosmicIntegration}} 
+}
 
 
 We describe our model for \SFRDzZ in Section \ref{sec: model for sfrd(zZ)}.
@@ -417,8 +418,8 @@ Incorporating more complex functional forms for our the mean metallicity could p
 We will now demonstrate the application of our analytical model by systematically varying the parameters in our fiducial \SFRDzZ model, and investigate their effect on the local mass distribution of BBH mergers originating from isolated binaries. 
 
 
-We use the publicly available rapid binary population synthesis simulations presented in van Son et al (in prep).\footnote{Available for download at \url{https://sandbox.zenodo.org/record/1101303},  see also the Software and Data section in the acknowledgements}  
-These simulations were run using version v02.26.03 of the open source \COMPAS suite \citep{COMPAS_method}\footnote{\url{https://github.com/TeamCOMPAS/COMPAS}}. \COMPAS is based on algorithms that model the evolution of massive binary stars following \citet{Hurley+2000, Hurley+2002} using detailed evolutionary models by \citet{Pols+1998}.  We refer the reader to the methods section of \cite{vanson+2022} for a detailed description of our adopted physics parameters and assumptions.
+We use the publicly available rapid binary population synthesis simulations presented in \cite{vanson2022_lowMbh}.\footnote{Available for download at \url{https://sandbox.zenodo.org/record/1101303},  see also the Software and Data section in the acknowledgements}  
+These simulations were run using version v02.26.03 of the open source \COMPAS suite \citep{COMPAS_method}\footnote{\url{https://github.com/TeamCOMPAS/COMPAS}}. \COMPAS is based on algorithms that model the evolution of massive binary stars following \citet{Hurley+2000, Hurley+2002} using detailed evolutionary models by \citet{Pols+1998}. \edit1{In particular, we use the simulations behind Figure 1 from \cite{vanson2022_lowMbh}, and we refer the reader to their methods section for a detailed description of the adopted physics parameters and assumptions.}\footnote{ \edit1{ We note that the rate in \cite{vanson2022_lowMbh} is slightly higher than the fiducial rate presented in Figure \ref{fig: stable mass dists} in this work. This difference is caused by the use of rounded parameter values of \SFRDzZ in \cite{vanson2022_lowMbh}.} } % In particular the value of $\mu_z$ has a significant effect on the inferred rate for the stable channel.} 
 %
 Metallicities of each binary system were sampled from a smooth probability distribution to avoid artificial peaks in the BH mass distribution \citep[e.g.][]{Dominik2015,Kummer_thesis}. 
 These simulations provide us with an estimate of the yield of BBH mergers per unit of star-forming mass and metallicity. 
