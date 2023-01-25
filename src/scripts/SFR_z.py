@@ -77,7 +77,7 @@ if __name__ == "__main__":
                  tmin=0.0, tmax = 13.7):
         ########################################################
         # Start plotting
-        fig, ax = plt.subplots(figsize=(12,10))
+        fig, ax = plt.subplots(figsize=(10,8))
 
         if x_redshift:
             x1  = redshift_list
@@ -191,10 +191,11 @@ if __name__ == "__main__":
             ax.set_xlabel(r'$\mathrm{redshift}$', fontsize = 30)
 
             # Find loockback location for each of our redshifts
-            redshift_tick_list = [0, 0.5, 2, 3, 6, 10, 12]#[0, 0.5, 1.0, 1.5, 2, 3, 6, 10, 12]
+            # redshift_tick_list = [0, 0.5, 2, 3, 6, 10, 12]#[0, 0.5, 1.0, 1.5, 2, 3, 6, 10, 12]
+            redshift_tick_list = [0, 2, 6, 10, 12]#[0, 0.5, 1.0, 1.5, 2, 3, 6, 10, 12]
             # And annotate the tick labels :)
             ax2.set_xticks([z for z in redshift_tick_list])
-            ax2.set_xticklabels(['${:.1f}$'.format(cosmo.lookback_time(z).value) for z in redshift_tick_list])
+            ax2.set_xticklabels(['${:.1f}$'.format(cosmo.lookback_time(z).value) for z in redshift_tick_list], fontsize = 24)
             ax2.set_xlabel(r'$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 30)
 
         else:
@@ -208,7 +209,7 @@ if __name__ == "__main__":
 
             # And annotate the tick labels :)
             ax2.set_xticks([cosmo.lookback_time(z).value for z in redshift_tick_list])
-            ax2.set_xticklabels(['${:g}$'.format(z) for z in redshift_tick_list])
+            ax2.set_xticklabels(['${:g}$'.format(z) for z in redshift_tick_list], fontsize = 24)
             ax2.set_xlabel(r'$\mathrm{redshift}$', fontsize = 30)
 
 
@@ -220,7 +221,8 @@ if __name__ == "__main__":
         logy = True
         if logy:
             plt.yscale('log')
-        ax.set_ylabel(r'$\frac{dM}{dt dV_c}$ $\mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$', fontsize = 30)
+        ax.set_ylabel(r'$dM/dt dV_c$ $\mathrm{[M_{\odot} yr^{-1} Mpc^{-3}]}$', fontsize = 30)
+        ax.yaxis.set_tick_params(labelsize=24)
         ax.set_ylim(1e-3, 1.)
         if show_legend:
             ax.legend()
