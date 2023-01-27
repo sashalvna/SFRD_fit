@@ -211,3 +211,44 @@ if __name__ == "__main__":
                    header = "mu0, muz, omega0, omegaz, alpha0,sf_a, sf_b, sf_c, sf_d", delimiter=',', fmt="%s")
 
 
+    #########################################
+    # Visualize the fit
+    # plotting the squared residuals because that is what is used to optimize
+    ############################
+    ##PLOT setttings
+    from matplotlib import rc
+    import matplotlib
+    from matplotlib import ticker, cm
+    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+    plt.rc('font', family='serif')
+    matplotlib.rcParams['mathtext.fontset'] = 'stix'
+    matplotlib.rcParams['font.family'] = 'STIXGeneral'
+
+    Zsun = 0.014 # Solar metallicity
+
+    ########################
+    fig, ax = plt.subplots(figsize = (11,6))
+
+    X,Y = np.meshgrid(redshift_new,  np.log10(metals_new/Zsun))
+
+    levs = np.linspace(-10, -3, num=8)
+    cs = plt.contourf(X, Y, np.log10(res_squared.T), 
+                      levs, cmap ="bone",extend ='min')
+    #                   locator = ticker.LogLocator(),
+    #                   levs, norm=mpl.colors.LogNorm(),
+
+    cbar = plt.colorbar(cs)
+    cbar.ax.set_ylabel('$\log$ squared residuals', fontsize = 30)
+    cbar.ax.tick_params(labelsize=20)
+
+    ######
+    # Plot values
+    ax.set_xlabel('Redshifts', fontsize = 30)
+    ax.set_ylabel('$\mathrm{Metallicities}, \ \log_{10}(Z/Z_{\odot})$', fontsize = 30)
+    ax.tick_params(axis='both', which='major', labelsize=22)
+    ax.tick_params(axis='both', which='minor', labelsize=22)
+    plt.ylim(-3,1.5)
+
+    plt.savefig(paths.figures / 'log_squared_res.pdf',  bbox_inches='tight')
+    # plt.show()
+    

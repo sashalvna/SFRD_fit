@@ -379,19 +379,21 @@ For comparison, we also show the phenomenological model from \protect\cite{Neijs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-Our best fitting parameters are listed in Table \ref{tab: fit params}. With these fit parameters, $\chi^2(z_j)$ is smaller than $2\cdot 10^{-4}$ at any given redshift. We will refer to the \SFRDzZ with the parameters listed in Table \ref{tab: fit params} as our fiducial model. 
+Our best fitting parameters are listed in Table \ref{tab: fit params}. With these fit parameters, $\chi^2(z_j)$ is smaller than $2\cdot 10^{-4}$ at any given redshift. 
+\edit1{To evaluate our fit, we show the residuals in Appendix \ref{app: residuals}. }
+We will refer to the \SFRDzZ with the parameters listed in Table \ref{tab: fit params} as our fiducial model. 
 
-\begin{deluxetable*}{cll | cl}
+\begin{deluxetable*}{clr | cl}
 \label{tab: fit params}
 \tablecaption{Best fitting parameters for our \SFRDzZ fit to TNG100 data.}
 \tablehead{\colhead{dP/dZ } & \colhead{description} & \colhead{best fit} &  \colhead{SFRD(z)} & \colhead{best fit} \\
  \colhead{ } & \colhead{} & \colhead{}  & \colhead{$\Msun\yr^{-1}\Mpc^{-3}$} & \colhead{} } 
 \startdata
-$\mu_0$    & mean metallicity at $z=0$    & $0.025  \pm 0.001$ &  $a$ &  $0.02 \pm 0.05$ \\% \, \Msun\yr^{-1}\Mpc^{-3}$\\
-$\mu_z$    & $z$-dependence of the mean   & $-0.048 \pm 0.001$ &  $b$ &  $1.48 \pm 0.01$\\
-$\alpha$   & shape (skewness)             & $-1.767 \pm 0.05 $ &  $c$ &  $4.45 \pm 0.01$\\
-$\omega_0$ & scale at $z=0$               & $1.125  \pm 0.005$ &  $d$ &  $5.90 \pm 0.02$\\
-$\omega_z$ & $z$-dependence of the scale  & $0.048  \pm 0.0001$ &   \\
+$\mu_0$    & mean metallicity at $z=0$    & $0.025  \pm 0.036$ &  $a$ &  $0.02 \pm 0.072$ \\% \, \Msun\yr^{-1}\Mpc^{-3}$\\
+$\mu_z$    & $z$-dependence of the mean   & $-0.048 \pm 0.006$ &  $b$ &  $1.48 \pm 0.002$\\
+$\alpha$   & shape (skewness)             & $-1.778 \pm 0.002$ &  $c$ &  $4.44 \pm 0.001$\\
+$\omega_0$ & scale at $z=0$               & $1.122  \pm 0.001$ &  $d$ &  $5.90 \pm 0.002$\\
+$\omega_z$ & $z$-dependence of the scale  & $0.049  \pm 0.009$ &   \\
 \enddata
 \end{deluxetable*}
 
@@ -424,7 +426,7 @@ These simulations were run using version v02.26.03 of the open source \COMPAS su
 Metallicities of each binary system were sampled from a smooth probability distribution to avoid artificial peaks in the BH mass distribution \citep[e.g.][]{Dominik2015,Kummer_thesis}. 
 These simulations provide us with an estimate of the yield of BBH mergers per unit of star-forming mass and metallicity. 
 
-We combine the aforementioned yield with variations of the fiducial \SFRDzZ model described in this work. By integrating over cosmic history, we obtain the local merger rates of BBH systems, which allow us to construct the distribution of source properties at every redshift. We use the cosmic integration scheme that is part of the publicly available \COMPAS suite. The details of this framework are described in \cite{Neijssel+2019}, but also in \cite{vanson+2022}, where more similar settings to this work are used. 
+We combine the aforementioned yield with variations of the fiducial \SFRDzZ model described in this work. By integrating over cosmic history, we obtain the local merger rates of BBH systems, which allow us to construct the distribution of source properties at every redshift. We use the cosmic integration scheme that is part of the publicly available \COMPAS suite, \edit1{which includes the \SFRDzZ model described in this work.} The details of this framework are described in \cite{Neijssel+2019}, but also in \cite{vanson+2022}, where more similar settings to this work are used. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -443,13 +445,12 @@ For every variation, we either swap the value of an individual \dpdZ parameter, 
 \dpdZ &       &  &  \\
 $\mu_0$          &   0.007   & $0.025$  &  0.035  \\
 $\mu_z$          &   0.0   & $-0.048$ &   -0.5 \\
-$\alpha$         &   -6.0   & $-1.767$ &  0.0  \\
+$\alpha$         &   -6.0   & $-1.778$ &  0.0  \\
 $\omega_0$       &   0.7   & $1.125$  &  2.0  \\
 $\omega_z$       &   0.0   & $0.048$  &  0.1  \\ \hline
 \SFRDz &       &  &  \\
 ($a$,$b$ ... &  ($0.01$, $2.60$   & ($0.02$, $1.48$ &  ($0.03$, $2.6$ \\
-... $c$,$d$) &  $3.20$, $6.20$)   & $4.45$, $5.90$) &   $3.3$, $5.9$) \\
-% \parbox{1.75cm}{($a$,$b$, \hspace{0.7cm} $c$,$d$)} &  \parbox{1.75cm}{($0.01$, $2.60$, $3.20$, $6.20$)}   & \parbox{1.75cm}{($0.02$, $1.48$, $4.45$, $5.90$)} &  \parbox{1.75cm}{($0.03$, $2.6$, $3.3$, $5.9$)} \\
+... $c$,$d$) &  $3.20$, $6.20$)   & $4.44$, $5.90$) &   $3.3$, $5.9$) \\
 \enddata
 \end{deluxetable}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -644,6 +645,25 @@ Further software used in this work: Python \citep{PythonReferenceManual},  Astro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\edit1{Evaluating our fit; the squared residuals \label{app: residuals} } }
+
+\begin{figure}[h]
+\centering
+\script{Fit_model_to_sfrdzZ.py}
+\includegraphics[width=0.75\textwidth]{figures/log_squared_res.pdf}
+\caption{$\log$ of the squared residuals, which appear in equation \ref{eq: cost function} to optimise our fit. \label{fig: residuals}
+  }
+\end{figure}
+
+\edit1{In Figure \ref{fig: residuals} we show the $\log$ of the squared residuals. The residuals are the content of the sum in equation \ref{eq: chisquare}, which is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We see that the maximum residuals appear just below the peak of star formation. 
+We note that we chose to minimise the squared residuals (which is similar to minimising the mean squared error) in favour of e.g. minimising the relative error, to prevent overfitting regions of very low star-formation rate. 
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Determining reasonable variations of the \SFRDzZ \label{app: reasonable var}}
 To determine reasonable variations of our fiducial model for \SFRDzZ, we compute the fraction of low and high metallicity stellar mass formed for redshifts below $z<0.5$, $z < 3.0$ and $z<10$. We show the results in Figure \ref{fig: low high Z fraction}, which is an adaptation of Fig. 2 in \cite{Pakmor+2022}, which in turn builds on Fig. 9 from \cite{Chruslinska2019_obs}.
 
@@ -657,6 +677,12 @@ To determine reasonable variations of our fiducial model for \SFRDzZ, we compute
 \end{figure}
 
 
+
+
+  
+
+
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{main_bib}
 
