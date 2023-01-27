@@ -6,7 +6,7 @@
 #SBATCH --error=/n/home04/lvanson/SFRD_fit/src/data//slurm_out/CI3.err             # error storage file
 #SBATCH --time=2:00:00              # Runtime in minutes
 #SBATCH --mem=120000               # Memory per cpu in MB (see also --mem-per-cpu)
-#SBATCH -p test
+#SBATCH -p conroy,shared
 #SBATCH --mail-user=aac.van.son@gmail.com         # Send email to user
 #SBATCH --mail-type=FAIL       #
 #
@@ -21,4 +21,4 @@ export QT_QPA_PLATFORM=offscreen # To avoid the X Display error
 cd /n/home04/lvanson/SFRD_fit/src/scripts//CosmicIntegration/
 #
 # Run your job
-python FastCosmicIntegration.py  --path /n/home04/lvanson/SFRD_fit/src/data/ --filename COMPAS_Output_wWeights.h5 --outfname /n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/3_Rate_info.h5 --mu0 0.035 --muz -0.049 --sigma0 1.129 --sigmaz 0.048 --alpha -1.79 --aSF 0.017 --bSF 1.487 --cSF 4.442 --dSF 5.886 --weight mixture_weight --zstep 0.01 --sens O3 --m1min 5. --dco_type BBH --BinAppend --redshiftBinSize 0.05 --maxzdet 0.5 > /n/home04/lvanson/SFRD_fit/src/data//slurm_out/CI3.log
+python FastCosmicIntegration.py  --path /n/home04/lvanson/SFRD_fit/src/data/ --filename CompactCOMPAS_Output_wWeights.h5 --outfname /n/holystore01/LABS/hernquist_lab/Users/lvanson/home_output/SFRD_fit/src/data/RateData/3_CompactRate_info.h5 --mu0 0.035 --muz -0.049 --sigma0 1.129 --sigmaz 0.048 --alpha -1.79 --aSF 0.017 --bSF 1.487 --cSF 4.442 --dSF 5.886 --weight mixture_weight --zstep 0.01 --sens O3 --m1min 5. --dco_type BBH --BinAppend --redshiftBinSize 0.05 --maxzdet 0.5 > /n/home04/lvanson/SFRD_fit/src/data//slurm_out/CI3.log

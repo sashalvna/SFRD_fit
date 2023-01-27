@@ -18,8 +18,8 @@ def init():
     data_dir   = str(paths.data) +'/'    #str(paths.data)[0:-8] + 'data/'
     script_dir = str(paths.scripts) +'/' #str(paths.scripts)[0:-11] + 'scripts/'
 
-    COMPASfilename  = 'COMPAS_Output_wWeights.h5'#'small_COMPAS_Output_wWeights.h5'#
-    rate_file_name  = 'Rate_info.h5'#'small_Rate_info.h5'#'Rate_info.h5'
+    COMPASfilename  = 'CompactCOMPAS_Output_wWeights.h5'#'COMPAS_Output_wWeights.h5'#'small_COMPAS_Output_wWeights.h5'#
+    rate_file_name  = 'CompactRate_info.h5'#'Rate_info.h5'#'small_Rate_info.h5'#'Rate_info.h5'
     user_email      = "aac.van.son@gmail.com"
 
 
