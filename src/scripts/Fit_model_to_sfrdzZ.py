@@ -163,7 +163,7 @@ if __name__ == "__main__":
         chi_square = res_squared/np.sum(model, axis = 1)[:,np.newaxis]
         
         # Return sum Chi_squared and the max squared residual
-        return np.sum(chi_square), np.amax(res_squared)
+        return np.sum(chi_square), res_squared
 
      
     # Run your chi square calculations
@@ -173,7 +173,7 @@ if __name__ == "__main__":
     ## Function wrapper to minimize the Chi_square
     #################################################################
     def test_chi(x0 = [-0.09, 0.026, 1.9, 0.1, -3.3, 0.01, 2.6, 3.2, 6.2] ):
-        chi_square, max_res_square = calc_chi_square(metals_new, Redshifts = redshift_new, simulation_SFRD = SFRDnew.T, 
+        chi_square, res_squared = calc_chi_square(metals_new, Redshifts = redshift_new, simulation_SFRD = SFRDnew.T, 
                                            muz  =x0[0], mu_0  =x0[1],sigma0  =x0[2], sigmaz =x0[3], alpha  =x0[4],
                                            sf_a =x0[5], sf_b=x0[6], sf_c=x0[7], sf_d=x0[8])
         return chi_square
@@ -183,14 +183,8 @@ if __name__ == "__main__":
     #        # mu_z        # mu_0     # omega_0 #omega_z  #alpha       #sf_a       #sf_b       #sf_c       #sf_d
     bounds = ((-1., 0), (0.001, 0.1), (0.01, 5), (0, 1.), (-10, 0), (None,None),(None,None),(None,None),(None,None))
     # FIT
-    res = minimize(test_chi, x0= x0, method = 'BFGS',#'nelder-mead',# L-BFGS-B
+    res = minimize(test_chi, x0= x0, method = 'BFGS',# other options include: 'nelder-mead', L-BFGS-B
                    options = {'gtol': 0.05})#{'maxiter': 5000})
-
-    # res = opt.basinhopping(test_chi, x0= x0, minimizer_kwargs={'method':'BFGS'})
-    # The covariance matrix can be approximated by the inverse Hessian matrix (assuming the errors have a Gaussian distribution)
-    cov_matrix    = res['hess_inv']#.todense() #res['lowest_optimization_result']['hess_inv']
-    # the standard error is the sqrt of the diagonal elements
-    standard_dev  = np.sqrt(np.diagonal(cov_matrix))
 
     print(res.success, res.message, 'N iterations: ', res.nit)
     muz_best, mu0_best, sigma0_best, sigmaz_best, alpha_best = res.x[0], res.x[1], res.x[2], res.x[3],res.x[4]
@@ -200,10 +194,20 @@ if __name__ == "__main__":
     print('mu0 =%s, muz =%s, sigma_0 =%s, sigma_z =%s, alpha=%s'% (mu0_best, muz_best, sigma0_best, sigmaz_best, alpha_best) )
     print('sf_a =%s, sf_b =%s, sf_c =%s, sf_d =%s'% (sf_a_best, sf_b_best, sf_c_best, sf_d_best) )
 
-    chi_square, max_res_square = calc_chi_square(metals_new, Redshifts = redshift_new, simulation_SFRD = SFRDnew.T, 
+    chi_square, res_squared = calc_chi_square(metals_new, Redshifts = redshift_new, simulation_SFRD = SFRDnew.T, 
                                        muz =muz_best, mu_0 =mu0_best,sigma0 =sigma0_best, sigmaz=sigmaz_best,alpha=alpha_best,
                                        sf_a =sf_a_best, sf_b=sf_b_best, sf_c=sf_c_best, sf_d=sf_d_best)
-    print('chi_square',chi_square, 'max_res_square', max_res_square)
+    print('chi_square',chi_square, 'max res_squared', np.amax(res_squared) )
+
+    # Calculate standard error on params
+    from numpy.linalg import inv
+    N_elements  = len(res_squared.flatten()) 
+    v = res['fun']/   N_elements  # variance of residuals, sse/n
+    var = v*inv(res['hess_inv'])
+    se = np.sqrt(np.diag(var))
+    print('standard error', se)
+    # for i, val in enumerate(res['x']):
+    #     print(np.round(val,3), ' pm ',  np.round(se[i],4) )
 
     if res.success:
         np.savetxt(paths.data / fit_filename,
@@ -251,4 +255,4 @@ if __name__ == "__main__":
 
     plt.savefig(paths.figures / 'log_squared_res.pdf',  bbox_inches='tight')
     # plt.show()
-    
+

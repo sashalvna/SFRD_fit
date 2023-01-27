@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  27 JAN 2023 13:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  27 JAN 2023 13:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -697,16 +697,12 @@ Underfull \hbox (badness 1831) in paragraph at lines 362--364
 \OT1/cmr/m/n/10 im-ple-ments the quasi-Newton method of Broy-den,
  []
 
-<figures/SFRD_FIT_evaluation_compare.pdf, id=356, 1053.12146pt x 949.17422pt>
+<figures/SFRD_FIT_evaluation_compare.pdf, id=360, 1053.12146pt x 949.17422pt>
 File: figures/SFRD_FIT_evaluation_compare.pdf Graphic file (type pdf)
 <use figures/SFRD_FIT_evaluation_compare.pdf>
 Package pdftex.def Info: figures/SFRD_FIT_evaluation_compare.pdf  used on input
  line 373.
 (pdftex.def)             Requested size: 461.80255pt x 416.2186pt.
-
-LaTeX Warning: Reference `app: residuals' on page 5 undefined on input line 383
-.
-
 
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 406--406
 [][]| [] [][][]| 
@@ -755,17 +751,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 485--493
 
  []
 
-<figures/SFR_redshift.pdf, id=517, 660.81647pt x 569.97519pt>
+<figures/SFR_redshift.pdf, id=522, 660.81647pt x 569.97519pt>
 File: figures/SFR_redshift.pdf Graphic file (type pdf)
 <use figures/SFR_redshift.pdf>
 Package pdftex.def Info: figures/SFR_redshift.pdf  used on input line 498.
 (pdftex.def)             Requested size: 241.16582pt x 208.00877pt.
-<figures/SFR_tlookback.pdf, id=518, 660.81647pt x 571.61485pt>
+<figures/SFR_tlookback.pdf, id=523, 660.81647pt x 571.61485pt>
 File: figures/SFR_tlookback.pdf Graphic file (type pdf)
 <use figures/SFR_tlookback.pdf>
 Package pdftex.def Info: figures/SFR_tlookback.pdf  used on input line 499.
 (pdftex.def)             Requested size: 241.16582pt x 208.60715pt.
-<figures/Mass_distributions_stable_SFRD_variations.pdf, id=531, 1468.55756pt x 
+<figures/Mass_distributions_stable_SFRD_variations.pdf, id=536, 1468.55756pt x 
 1637.82997pt>
 File: figures/Mass_distributions_stable_SFRD_variations.pdf Graphic file (type 
 pdf)
@@ -773,7 +769,7 @@ pdf)
 Package pdftex.def Info: figures/Mass_distributions_stable_SFRD_variations.pdf 
  used on input line 510.
 (pdftex.def)             Requested size: 410.4955pt x 457.81454pt.
-<figures/Mass_distributions_CE_SFRD_variations.pdf, id=542, 1468.55756pt x 1637
+<figures/Mass_distributions_CE_SFRD_variations.pdf, id=547, 1468.55756pt x 1637
 .82997pt>
 File: figures/Mass_distributions_CE_SFRD_variations.pdf Graphic file (type pdf)
 
@@ -807,47 +803,31 @@ Underfull \hbox (badness 1275) in paragraph at lines 620--626
  []
 
 [12]
-<figures/log_squared_res.pdf, id=784, 692.02809pt x 406.72012pt>
+<figures/log_squared_res.pdf, id=789, 692.33778pt x 413.22444pt>
 File: figures/log_squared_res.pdf Graphic file (type pdf)
 <use figures/log_squared_res.pdf>
 Package pdftex.def Info: figures/log_squared_res.pdf  used on input line 655.
-(pdftex.def)             Requested size: 384.83807pt x 226.18536pt.
-
-
-LaTeX Warning: Reference `fig: residuals' on page 13 undefined on input line 66
-2.
-
-<figures/High_Low_metalFractionSFMass.pdf, id=793, 867.24pt x 1300.86pt>
+(pdftex.def)             Requested size: 384.83807pt x 229.69537pt.
+<figures/High_Low_metalFractionSFMass.pdf, id=799, 867.24pt x 1300.86pt>
 File: figures/High_Low_metalFractionSFMass.pdf Graphic file (type pdf)
 <use figures/High_Low_metalFractionSFMass.pdf>
 Package pdftex.def Info: figures/High_Low_metalFractionSFMass.pdf  used on inpu
 t line 673.
 (pdftex.def)             Requested size: 384.83807pt x 577.26315pt.
 
+
 LaTeX Warning: Float too large for page by 40.69426pt on input line 677.
 
 (./ms.bbl [13 <./figures/log_squared_res.pdf>] [14 <./figures/High_Low_metalFra
 ctionSFMass.pdf>] [15] [16]) [17] (./ms.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `ms.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `ms.out':
-(rerunfilecheck)             Before: 8B4AA7F372E0187C44F1BDE81EFD2A22;4025
-(rerunfilecheck)             After:  903F95D80AFA0392AA26F1EACBDE96BE;4314.
+Package rerunfilecheck Info: File `ms.out' has not changed.
+(rerunfilecheck)             Checksum: 903F95D80AFA0392AA26F1EACBDE96BE;4314.
  ) 
 Here is how much of TeX's memory you used:
- 13261 strings out of 478994
- 189094 string characters out of 5858185
- 655879 words of memory out of 5000000
- 30378 multiletter control sequences out of 15000+600000
+ 13262 strings out of 478994
+ 189106 string characters out of 5858185
+ 656044 words of memory out of 5000000
+ 30379 multiletter control sequences out of 15000+600000
  415775 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,16n,88p,10467b,694s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -885,10 +865,10 @@ ic/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
 blic/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/
 helvetic/uhvr8a.pfb>
-Output written on ms.pdf (17 pages, 1335418 bytes).
+Output written on ms.pdf (17 pages, 1188537 bytes).
 PDF statistics:
- 1163 PDF objects out of 1200 (max. 8388607)
- 1024 compressed objects within 11 object streams
+ 1168 PDF objects out of 1200 (max. 8388607)
+ 1029 compressed objects within 11 object streams
  165 named destinations out of 1000 (max. 500000)
- 148 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 
