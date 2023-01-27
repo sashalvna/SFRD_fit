@@ -75,7 +75,7 @@ def RunSlurmBatch(run_dir = None, job_name = "stroopwafel_interface", dependency
 # Make a slurm job to call 
 def Call_Cosmic_Integration(root_out_dir, COMPASfilename, rate_file_name, user_email, jname = 'CI',
                             ZdepSFRD_param_sets = [[],[]], #[[fid_dpdZ_parameters, fid_sfr_parameters]],
-                           partitions = 'demink,conroy,hernquist,shared', Wtime = "5:00:00", mem = "150000",
+                           partitions = 'conroy,hernquist,shared', Wtime = "5:00:00", mem = "150000",
                            number_of_nodes = 1, number_of_cores = 1):
     """
     Call slurm batch 
@@ -178,6 +178,6 @@ if __name__ == "__main__":
                                                 [[mu0_best, muz_best, sigma0_best, sigmaz_best, -6], fid_sfr_parameters],
                                                  [fid_dpdZ_parameters, [0.01, 2.60, 3.20, 6.20]],# SFR(z) variations
                                                  [fid_dpdZ_parameters, [0.03,2.6,3.3,5.9]] ],
-                           partitions = 'demink,conroy', Wtime = "2:00:00", mem = "120000") #demink,conroy,hernquist,share
+                           partitions = 'conroy,share', Wtime = "2:00:00", mem = "120000") #conroy,hernquist,share
 
 
