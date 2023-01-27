@@ -117,8 +117,8 @@ class COMPASData(object):
                     print('youre just setting rlof_mask to True')
                     rlof_mask = np.repeat(True, len(dco_seeds))
                     
-            except: # Except use the DoubleCompactObjects 
-                rlof_flag     = self.get_COMPAS_variables("DoubleCompactObjects", "Immediate_RLOF>CE").astype(bool)
+            except: # Except use the BSE_Double_Compact_Objects 
+                rlof_flag     = self.get_COMPAS_variables("BSE_Double_Compact_Objects", "Immediate_RLOF>CE").astype(bool)
                 rlof_mask     = np.logical_not(rlof_flag)
 
 
@@ -131,8 +131,8 @@ class COMPASData(object):
                         pessimistic_flag = self.get_COMPAS_variables("CommonEnvelopes", "Optimistic_CE")[dco_from_ce].astype(bool)
                     pessimistic_seeds = np.unique(dco_ce_seeds[pessimistic_flag])
                     pessimistic_mask = np.logical_not(np.in1d(dco_seeds, pessimistic_seeds))
-                except: # Except use the DoubleCompactObjects
-                    pessimistic_flag    = self.get_COMPAS_variables("DoubleCompactObjects", "Optimistic_CE").astype(bool)
+                except: # Except use the BSE_Double_Compact_Objects
+                    pessimistic_flag    = self.get_COMPAS_variables("BSE_Double_Compact_Objects", "Optimistic_CE").astype(bool)
                     pessimistic_mask    = np.logical_not(pessimistic_flag)
 
                     
