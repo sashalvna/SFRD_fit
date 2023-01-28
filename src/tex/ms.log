@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  28 JAN 2023 17:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  28 JAN 2023 17:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -697,21 +697,12 @@ Underfull \hbox (badness 1831) in paragraph at lines 362--364
 \OT1/cmr/m/n/10 im-ple-ments the quasi-Newton method of Broy-den,
  []
 
-
-LaTeX Warning: File `figures/SFRD_FIT_evaluation_compare.pdf' not found on inpu
-t line 373.
-
-
-./ms.tex:373: Package pdftex.def Error: File `figures/SFRD_FIT_evaluation_compa
-re.pdf' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.373 ...{figures/SFRD_FIT_evaluation_compare.pdf}
-                                                  
-? 
+<figures/SFRD_FIT_evaluation_compare.pdf, id=360, 1053.12146pt x 949.17422pt>
+File: figures/SFRD_FIT_evaluation_compare.pdf Graphic file (type pdf)
+<use figures/SFRD_FIT_evaluation_compare.pdf>
+Package pdftex.def Info: figures/SFRD_FIT_evaluation_compare.pdf  used on input
+ line 373.
+(pdftex.def)             Requested size: 461.80255pt x 416.2186pt.
 
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 406--406
 [][]| [] [][][]| 
@@ -732,7 +723,7 @@ Overfull \hbox (10.88353pt too wide) in paragraph at lines 424--424
 [][]| [] [][][]| 
  []
 
-[5] [6]
+[5] [6 <./figures/SFRD_FIT_evaluation_compare.pdf>]
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 462--462
 [][]| [] [][][]| 
  []
@@ -750,64 +741,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 485--493
 
  []
 
+<figures/SFR_redshift.pdf, id=524, 660.81647pt x 569.97519pt>
+File: figures/SFR_redshift.pdf Graphic file (type pdf)
+<use figures/SFR_redshift.pdf>
+Package pdftex.def Info: figures/SFR_redshift.pdf  used on input line 498.
+(pdftex.def)             Requested size: 241.16582pt x 208.00877pt.
+<figures/SFR_tlookback.pdf, id=525, 660.81647pt x 571.61485pt>
+File: figures/SFR_tlookback.pdf Graphic file (type pdf)
+<use figures/SFR_tlookback.pdf>
+Package pdftex.def Info: figures/SFR_tlookback.pdf  used on input line 499.
+(pdftex.def)             Requested size: 241.16582pt x 208.60715pt.
+<figures/Mass_distributions_stable_SFRD_variations.pdf, id=538, 1468.55756pt x 
+1637.82997pt>
+File: figures/Mass_distributions_stable_SFRD_variations.pdf Graphic file (type 
+pdf)
+<use figures/Mass_distributions_stable_SFRD_variations.pdf>
+Package pdftex.def Info: figures/Mass_distributions_stable_SFRD_variations.pdf 
+ used on input line 510.
+(pdftex.def)             Requested size: 410.4955pt x 457.81454pt.
+<figures/Mass_distributions_CE_SFRD_variations.pdf, id=549, 1468.55756pt x 1637
+.82997pt>
+File: figures/Mass_distributions_CE_SFRD_variations.pdf Graphic file (type pdf)
 
-LaTeX Warning: File `figures/SFR_redshift.pdf' not found on input line 498.
-
-
-./ms.tex:498: Package pdftex.def Error: File `figures/SFR_redshift.pdf' not fou
-nd: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.498 ...0.47\textwidth]{figures/SFR_redshift.pdf}
-                                                  
-? 
-
-LaTeX Warning: File `figures/SFR_tlookback.pdf' not found on input line 499.
-
-
-./ms.tex:499: Package pdftex.def Error: File `figures/SFR_tlookback.pdf' not fo
-und: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.499 ....47\textwidth]{figures/SFR_tlookback.pdf}
-                                                  
-? 
-
-LaTeX Warning: File `figures/Mass_distributions_stable_SFRD_variations.pdf' not
- found on input line 510.
-
-
-./ms.tex:510: Package pdftex.def Error: File `figures/Mass_distributions_stable
-_SFRD_variations.pdf' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.510 ...distributions_stable_SFRD_variations.pdf}
-                                                  
-? 
-
-LaTeX Warning: File `figures/Mass_distributions_CE_SFRD_variations.pdf' not fou
-nd on input line 519.
-
-
-./ms.tex:519: Package pdftex.def Error: File `figures/Mass_distributions_CE_SFR
-D_variations.pdf' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.519 ...ass_distributions_CE_SFRD_variations.pdf}
-                                                  
-? 
+<use figures/Mass_distributions_CE_SFRD_variations.pdf>
+Package pdftex.def Info: figures/Mass_distributions_CE_SFRD_variations.pdf  use
+d on input line 519.
+(pdftex.def)             Requested size: 410.4955pt x 457.81454pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 529--531
 
@@ -818,58 +777,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 543--550
 
  []
 
-[8] [9]
+[8] [9 <./figures/SFR_redshift.pdf> <./figures/SFR_tlookback.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/SFR_tlookback.pdf)
+: PDF inclusion: multiple pdfs with page group included in a single page
+>]
 Underfull \hbox (badness 1675) in paragraph at lines 574--577
 []\OT1/cmr/m/n/10 Changing the over-all star-formation rate den-sity
  []
 
-[10] [11]
+[10 <./figures/Mass_distributions_stable_SFRD_variations.pdf>] [11 <./figures/M
+ass_distributions_CE_SFRD_variations.pdf>]
 Underfull \hbox (badness 1275) in paragraph at lines 620--626
 \OT1/cmr/m/n/10 the Na-tional Sci-ence Foun-da-tion un-der Grant No.
  []
 
 [12]
-
-LaTeX Warning: File `figures/log_squared_res.pdf' not found on input line 655.
-
-
-./ms.tex:655: Package pdftex.def Error: File `figures/log_squared_res.pdf' not 
-found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.655 ...5\textwidth]{figures/log_squared_res.pdf}
-                                                  
-? 
-
-LaTeX Warning: File `figures/High_Low_metalFractionSFMass.pdf' not found on inp
-ut line 673.
+<figures/log_squared_res.pdf, id=791, 692.33778pt x 413.22444pt>
+File: figures/log_squared_res.pdf Graphic file (type pdf)
+<use figures/log_squared_res.pdf>
+Package pdftex.def Info: figures/log_squared_res.pdf  used on input line 656.
+(pdftex.def)             Requested size: 384.83807pt x 229.69537pt.
+<figures/High_Low_metalFractionSFMass.pdf, id=801, 867.24pt x 1300.86pt>
+File: figures/High_Low_metalFractionSFMass.pdf Graphic file (type pdf)
+<use figures/High_Low_metalFractionSFMass.pdf>
+Package pdftex.def Info: figures/High_Low_metalFractionSFMass.pdf  used on inpu
+t line 673.
+(pdftex.def)             Requested size: 384.83807pt x 577.26315pt.
 
 
-./ms.tex:673: Package pdftex.def Error: File `figures/High_Low_metalFractionSFM
-ass.pdf' not found: using draft setting.
+LaTeX Warning: Float too large for page by 40.69426pt on input line 677.
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.673 ...figures/High_Low_metalFractionSFMass.pdf}
-                                                  
-? 
-(./ms.bbl [13] [14] [15] [16]) [17] (./ms.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+(./ms.bbl [13 <./figures/log_squared_res.pdf>] [14 <./figures/High_Low_metalFra
+ctionSFMass.pdf>] [15] [16]) [17] (./ms.aux)
 Package rerunfilecheck Info: File `ms.out' has not changed.
 (rerunfilecheck)             Checksum: 903F95D80AFA0392AA26F1EACBDE96BE;4314.
  ) 
 Here is how much of TeX's memory you used:
- 13351 strings out of 478994
- 192036 string characters out of 5858185
- 655645 words of memory out of 5000000
- 30449 multiletter control sequences out of 15000+600000
+ 13262 strings out of 478994
+ 189106 string characters out of 5858185
+ 656044 words of memory out of 5000000
+ 30379 multiletter control sequences out of 15000+600000
  415775 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,16n,88p,10467b,694s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -880,33 +828,37 @@ usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
 r/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></us
 r/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
 /local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
-local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/lo
-cal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/loca
-l/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/
-texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/te
-xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texl
-ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
-e/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2
-021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2021/texmf
--dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2021/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2021/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
-ublic/amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
-e1/public/cm-super/sfrm1000.pfb>
-Output written on ms.pdf (17 pages, 456877 bytes).
+local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/l
+ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/loc
+al/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local
+/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/t
+exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/tex
+live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2
+021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/202
+1/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2021/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2021/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmti9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public
+/amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
+blic/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/
+helvetic/uhvr8a.pfb>
+Output written on ms.pdf (17 pages, 1188741 bytes).
 PDF statistics:
- 1009 PDF objects out of 1200 (max. 8388607)
- 923 compressed objects within 10 object streams
+ 1170 PDF objects out of 1200 (max. 8388607)
+ 1031 compressed objects within 11 object streams
  165 named destinations out of 1000 (max. 500000)
- 121 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 

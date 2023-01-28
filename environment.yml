@@ -9,6 +9,7 @@ dependencies:
   - astropy
   - seaborn
   - scipy
+  
   - pip:
       - matplotlib==3.4.3
 
