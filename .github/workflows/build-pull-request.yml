@@ -21,15 +21,10 @@ jobs:
           wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
           sudo ~/bin/tlmgr install type1cm cm-super
           
-    - name: Set environment variables
-      run: |
-        echo "TEXINPUTS=.:$TEXMFHOME//:" >> $GITHUB_ENV
-        echo "TEXMFHOME=$HOME/texmf" >> $GITHUB_ENV
-
-    - name: Update TinyTex
-      run: |
-        tlmgr update --self --all
-
+      - name: Install dvipng
+        run: |
+          apt-get update
+          apt-get install -y dvipng
 
       - name: Build the article PDF
         id: build
