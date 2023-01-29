@@ -237,7 +237,7 @@ if __name__ == "__main__":
             print('saving here', save_loc + 'SFR_tlookback'+'.pdf')
             plt.savefig(save_loc + 'SFR_tlookback'+'.pdf',  bbox_inches='tight')
         
-        plt.show()
+        # plt.show()
 
 
     # Best fit params 
