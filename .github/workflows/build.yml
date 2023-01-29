@@ -21,9 +21,9 @@ jobs:
           wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
           sudo ~/bin/tlmgr install type1cm cm-super
           
-#      - name: Install dvipng
-#        run: |
-#          sudo apt-get install -y dvipng
+      - name: Install dvipng
+        run: |
+          sudo apt-get install -y dvipng
 
       - name: Build the article PDF
         id: build
