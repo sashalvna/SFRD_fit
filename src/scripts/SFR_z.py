@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
         #default Madau & Fragos 17
         ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=0.01, b=2.6, c=3.2, d=6.2), 
-                 label = r'Madau and Fragos 2017'+'\n'+'$a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.6,3.2,6.2)
+                 label = 'Madau and Fragos 2017'+'\n'+'$a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (0.01,2.6,3.2,6.2)
                  , c = 'grey', ls = ':',lw=6)
 
     #     #default Coen
@@ -111,19 +111,20 @@ if __name__ == "__main__":
             else:
                 upper_x = cosmo.lookback_time(upper_redshifts)
             ax.plot(upper_x, upper_SFRD, 
-                 label = r'$\rm{Max \ SFR, \ Chruslinska \ et \ al. \ 2021: (SB: \ B18/C17)}$',
+                 # label = r'$\rm{Max \ SFR, \ Chruslinska \ et \ al. \ 2021: (SB: \ B18/C17)}$',
+                 label = 'Max  SFR,  Chruslinska  et  al.  2021: (SB:  B18/C17)',
                     c = 'brown', lw=5, ls = '-.')
 
         #Resembling thick brown line in Fig. 11 Chruslinska + 2021
         a_max, b_max, c_max, d_max = 0.025,2.6,3.3,5.9 #2.5,2.9,4.5 
         ax.plot(x1, Z_SFRD.Madau_Dickinson2014(redshift_list, a=a_max, b=b_max, c=c_max, d=d_max), 
-                 label = r'Approx. \ to \ upper \ limit:'+'\n'+'$a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
+                 label = 'Approx. to  upper limit:'+'\n'+'$a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (a_max, b_max, c_max, d_max)
                  , c = '#356288', lw=5, ls = '-')
 
         # BEST FIT
         try:
             y_vals = Z_SFRD.Madau_Dickinson2014(redshift_list, a=sf_a, b=sf_b, c=sf_c,  d=sf_d)
-            ax.plot(x1, y_vals,label = r'Using best fit parameters \ (fiducial)'+'\n'+'$a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (sf_a,sf_b,sf_c, sf_d), 
+            ax.plot(x1, y_vals,label = 'Using best fit parameters (fiducial)'+'\n'+'$a=%.2f, b=%.2f, c=%.2f, d=%.2f$'% (sf_a,sf_b,sf_c, sf_d), 
                      c = '#fe1100', lw=5, ls = '--', zorder =10)
             print('max value', y_vals[np.argmax(y_vals)], ' at x_max = ', x1[np.argmax(y_vals)])
         except:
@@ -196,12 +197,14 @@ if __name__ == "__main__":
             # And annotate the tick labels :)
             ax2.set_xticks([z for z in redshift_tick_list])
             ax2.set_xticklabels(['${:.1f}$'.format(cosmo.lookback_time(z).value) for z in redshift_tick_list], fontsize = 24)
-            ax2.set_xlabel(r'$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 30)
+            # ax2.set_xlabel(r'$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 30)
+            ax2.set_xlabel('Lookback time [Gyr]', fontsize = 30)
 
         else:
             ###################
             #Plotvalues
-            ax.set_xlabel(r'$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 30)
+            # ax.set_xlabel(r'$\mathrm{Lookback \ time \ [Gyr]}$', fontsize = 30)
+            ax.set_xlabel('Lookback time [Gyr]', fontsize = 30)
             
             redshift_tick_list = [0,0.1, 0.25, 0.5, 0.75, 1.0,1.5, 2, 3, 6, ]
             # Find loockback location for each of our ages
@@ -210,7 +213,8 @@ if __name__ == "__main__":
             # And annotate the tick labels :)
             ax2.set_xticks([cosmo.lookback_time(z).value for z in redshift_tick_list])
             ax2.set_xticklabels(['${:g}$'.format(z) for z in redshift_tick_list], fontsize = 24)
-            ax2.set_xlabel(r'$\mathrm{redshift}$', fontsize = 30)
+            # ax2.set_xlabel(r'$\mathrm{redshift}$', fontsize = 30)
+            ax2.set_xlabel('redshift', fontsize = 30)
 
 
         ##########################################################################
