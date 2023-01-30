@@ -14,6 +14,10 @@ jobs:
         with:
           fetch-depth: 0
           
+      - name: Set strict channel priorities
+        run: |
+          conda config --set channel_priority strict
+          
       - name: Install TinyTex for matplotlib LaTeX rendering
         id: tinytex
         shell: bash -l {0}
@@ -21,9 +25,14 @@ jobs:
           wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
           sudo ~/bin/tlmgr install type1cm cm-super
           
+      - name: Use tlmgr to install more fonts
+        run: |
+          tlmgr install psnfss helvetic
+          
       - name: Install dvipng
         run: |
           sudo apt-get install -y dvipng
+          
 
       - name: Build the article PDF
         id: build
