@@ -46,7 +46,7 @@ import matplotlib
 matplotlib.rcParams['mathtext.fontset'] = 'stix'
 matplotlib.rcParams['font.family'] = 'STIXGeneral'
 rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
-rc('text', usetex=True)
+rc('text', usetex=False)
 fsize, SMALL_SIZE, MEDIUM_SIZE, BIGGER_SIZE = 30,25,25,30
 for obj in ['axes','xtick','ytick']:
     plt.rc(obj, labelsize=MEDIUM_SIZE)          # controls default text sizes
@@ -89,13 +89,7 @@ if __name__ == "__main__":
                            labels = [r'$\mathrm{Narrow: \ }  (\omega_0 = 0.70) \  \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{Fiducial: \ } (\omega_0 = 1.13) \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Wide: \ } (\omega_0 = 2.00) \  \mathcal{R}_{0.2} = \ $'],
-                           # labels = [r'$\mathrm{Narrow: \ }  (\omega_0 = 0.70) \  \mathcal{R}_{0.2} = \ $',
-                           #           r'$\mathrm{Fiducial: \ } (\omega_0 = 1.13) \ \mathcal{R}_{0.2}= \ $', 
-                           #           r'$\mathrm{Wide: \ } \phantom{xx} (\omega_0 = 2.00) \  \mathcal{R}_{0.2} = \ $'],
                           multipanel = True, subplot = subplot1)
-
-    # 'Rates_mu00.025_muz-0.049_alpha-3.5_sigma01.129_sigmaz0.048_a0.017_b1.487_c4.442_d5.886
-    # Rates_mu00.025_muz-0.049_alpha-1.79_sigma01.129_sigmaz0.048_a0.017_b1.487_c4.442_d5.886
 
     ####################################################
     # Redshift evolution of the width
@@ -111,9 +105,6 @@ if __name__ == "__main__":
                            labels = [r'$\mathrm{Flat \ width: \ } (\omega_z = 0.00) \ \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{Fiducial: \ } (\omega_z = 0.05) \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Steep \ width: \ } (\omega_z = 0.10) \ \mathcal{R}_{0.2} = \ $'],
-                           # labels = [r'$\mathrm{Flat \ width: \ } \phantom{i} (\omega_z = 0.00) \ \mathcal{R}_{0.2} = \ $',
-                           #           r'$\mathrm{Fiducial: \ } \phantom{xxi} (\omega_z = 0.05) \ \mathcal{R}_{0.2}= \ $', 
-                           #           r'$\mathrm{Steep \ width: \ } (\omega_z = 0.10) \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot2)
 
 
@@ -131,9 +122,6 @@ if __name__ == "__main__":
                            labels = [r'$\mathrm{low \ <Z_0> : \ } (\mu_0 = 0.007) \ \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{Fiducial : \ }  (\mu_0 = 0.025) \ \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{high \ <Z_0> : \ } (\mu_0 = 0.035) \ \mathcal{R}_{0.2} = \ $'],
-                           # labels = [r'$\mathrm{low \ <Z_0> : \ } \phantom{x} (\mu_0 = 0.007) \ \mathcal{R}_{0.2} = \ $',
-                           #           r'$\mathrm{Fiducial : \ } \phantom{xxxi} (\mu_0 = 0.025) \ \mathcal{R}_{0.2} = \ $',
-                           #           r'$\mathrm{high \ <Z_0> : \ } \phantom{i} (\mu_0 = 0.035) \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot3)
 
     ####################################################
@@ -150,9 +138,6 @@ if __name__ == "__main__":
                            labels = [r'$\mathrm{Flat: \ }  (\mu_z = 0.0) \ \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{Fiducial: \ } (\mu_z = -0.05) \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Steep: \ } (\mu_z = -0.5) \ \mathcal{R}_{0.2} = \ $'],
-                           # labels = [r'$\mathrm{Flat: \ } \phantom{xxi} (\mu_z = 0.0) \ \mathcal{R}_{0.2} = \ $',
-                           #           r'$\mathrm{Fiducial: \ } (\mu_z = -0.05) \ \mathcal{R}_{0.2}= \ $', 
-                           #           r'$\mathrm{Steep: \ } \phantom{xx} (\mu_z = -0.5) \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot4)
 
 
@@ -170,9 +155,6 @@ if __name__ == "__main__":
                            labels = [r'$\mathrm{Symmetric: \ } (\alpha = 0.0)   \ \mathcal{R}_{0.2} = \ $',
                                      r'$\mathrm{Fiducial: \  } (\alpha = -1.77)  \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Skewed: \    } (\alpha = -6)  \ \mathcal{R}_{0.2} = \ $'],
-                           # labels = [r'$\mathrm{Symmetric: \ } (\alpha = 0.0)   \ \mathcal{R}_{0.2} = \ $',
-                           #           r'$\mathrm{Fiducial: \  } \phantom{xx} (\alpha = -1.77)  \ \mathcal{R}_{0.2}= \ $', 
-                           #           r'$\mathrm{Skewed: \    } \phantom{xxi} (\alpha = -6)  \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot5)
 
 
@@ -195,9 +177,6 @@ if __name__ == "__main__":
                            labels = [r'$\mathrm{Madau \ and \ Fragos \ 2017: }  \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Fiducial: \ } \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Approx. \ to \ upper \ limit:}  \ \mathcal{R}_{0.2} = \ $'],
-                           # labels = [r'$\mathrm{Madau \ and \ Fragos \ 2017: } \phantom{x} \ \mathcal{R}_{0.2}= \ $', 
-                           #           r'$\mathrm{Fiducial: \ } \phantom{xxxxx-xx} \ \mathcal{R}_{0.2}= \ $', 
-                           #           r'$\mathrm{Approx. \ to \ upper \ limit:}  \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot6)
 
 
