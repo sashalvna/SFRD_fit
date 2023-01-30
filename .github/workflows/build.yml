@@ -23,11 +23,8 @@ jobs:
         shell: bash -l {0}
         run: |
           wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
-          sudo ~/bin/tlmgr install type1cm cm-super
-          
-      - name: Use tlmgr to install more fonts
-        run: |
-          tlmgr install psnfss helvetic
+          sudo ~/bin/tlmgr install type1cm cm-super psnfss helvetic
+        
           
       - name: Install dvipng
         run: |
