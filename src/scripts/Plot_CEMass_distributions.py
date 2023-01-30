@@ -192,10 +192,10 @@ if __name__ == "__main__":
                            show_hist = False, show_KDE = True,  plot_LIGO = True, Color = '#ecb05b', 
                            only_CE = only_CE, only_stable = only_stable,
                            bootstrap = False, bootstraps = 50, save_name = 'SFRD_skewness_variations.pdf', titletext = "Overall SFR history"+"\n"+ r'$ \mathrm{SFRD(}z\rm{)} \ [a,b,c,d]$', 
-                           labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \ \mathcal{R}_{0.2}= \ $', 
+                           labels = [r'$\mathrm{Madau \ and \ Fragos \ 2017: } \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Fiducial: \ } \ \mathcal{R}_{0.2}= \ $', 
                                      r'$\mathrm{Approx. \ to \ upper \ limit:}  \ \mathcal{R}_{0.2} = \ $'],
-                           # labels = [r'$\mathrm{Madau \ \& \ Fragos \ 2017: } \phantom{x} \ \mathcal{R}_{0.2}= \ $', 
+                           # labels = [r'$\mathrm{Madau \ and \ Fragos \ 2017: } \phantom{x} \ \mathcal{R}_{0.2}= \ $', 
                            #           r'$\mathrm{Fiducial: \ } \phantom{xxxxx-xx} \ \mathcal{R}_{0.2}= \ $', 
                            #           r'$\mathrm{Approx. \ to \ upper \ limit:}  \ \mathcal{R}_{0.2} = \ $'],
                             multipanel = True, subplot = subplot6)

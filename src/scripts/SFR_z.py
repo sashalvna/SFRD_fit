@@ -88,7 +88,7 @@ if __name__ == "__main__":
     #     # Because MD14 was computed using a salpeter IMF, you need to correct the SFRD!
     #     salpeter_to_kroupa = (1./1.55) 
     #     ax.plot(x1, salpeter_to_kroupa*Z_SFRD.Madau_Dickinson2014(redshift_list), 
-    #              label = 'Madau $\&$ Dickinson 2014\n $a=%.3f, b=%.2f, c=%.2f, d=%.2f$'% (0.015,2.7,2.9,5.6)
+    #              label = 'Madau and Dickinson 2014\n $a=%.3f, b=%.2f, c=%.2f, d=%.2f$'% (0.015,2.7,2.9,5.6)
     #              , c = 'royalblue', ls = '--',lw=2)
 
         #default Madau & Fragos 17
