@@ -17,7 +17,7 @@ Source and code associated to the paper <a href="http://arxiv.org/abs/2209.03385
 
 <br>
 <br>
-<!-- <a href="https://github.com/LiekeVanSon/SFRD_fit/actions/workflows/build.yml">
+<a href="https://github.com/LiekeVanSon/SFRD_fit/actions/workflows/build.yml">
 <img src="https://github.com/LiekeVanSon/SFRD_fit/actions/workflows/build.yml/badge.svg?branch=main" alt="Article status"/>
 </a>
 <a href="https://github.com/LiekeVanSon/SFRD_fit/raw/main-pdf/arxiv.tar.gz">
@@ -26,6 +26,6 @@ Source and code associated to the paper <a href="http://arxiv.org/abs/2209.03385
 <a href="https://github.com/LiekeVanSon/SFRD_fit/raw/main-pdf/ms.pdf">
 <img src="https://img.shields.io/badge/article-pdf-blue.svg?style=flat" alt="Read the article"/>
 </a>
-</p> -->
+</p> 
 
 An open source scientific article created using the [showyourwork](https://github.com/showyourwork/showyourwork) workflow.
