@@ -467,14 +467,16 @@ We use the models \texttt{214-f14SB-BiC\_FMR270\_FOH\_z\_dM.dat}, and \texttt{30
 % nabla\_FMR0 = 0.27 dex, describing the strength of the SFR-metallicity correlation in the high SFR, low mass regime. }
 %
 \edit1{\texttt{Chr21\_lowZ} is characterised by a star formation–galaxy mass relation that is flat at high galaxy masses (reducing the star formation rate for the highest-mass galaxies), a galaxy stellar mass function that evolves with redshift (predicting an increasing number density of low-mass galaxies), 
-and a galaxy mass-metallicity relation following \cite{PettiniPagel2004}. 
-This model further approximates the contribution of starburst galaxies following \cite{Bisigello+2018} and \cite{Caputi+2017}. Including starbursts shift the peak of \SFRDzZ to lower metallicities and broadens the low metallicity part of the distribution.
+and a local galaxy mass-metallicity relation as in \cite{PettiniPagel2004}. 
+This model further approximates the contribution of starburst galaxies following \cite{Bisigello+2018} and \cite{Caputi+2017}. 
+Assuming that starburst galaxies follow the empirical fundamental metallicity relation (leading to anti-correlation between the SFR and metallicity), their inclusion tends to shift the peak of \SFRDzZ to
+lower metallicities and broadens the low-metallicity part of the distribution.
 }
 % highZ model: 3: no flattening (high mass part of the SFMR), 0: alpha\_fix = -1.45 (low mass end of the GSMF), 2: KK04a (MZR at $z\approx0$) --  
 % Starburst galaxies are treated as in  Boco : the properties of starbursts are based on the studies of Sargent+12/Bethermin+12, as used in Boco+21. -- 
 % nabla\_FMR0 = 0.27 dex, describing the strength of the SFR-metallicity correlation in the high SFR, low mass regime.}
 %
-\edit1{On the other hand, \texttt{Chr21\_highZ} assumes the star formation–galaxy mass relation does not flatten towards higher galaxy masses, a galaxy stellar mass function that is constant over redshift, and a galaxy mass-metallicity relation following \cite{KobulnickyKewley2004}. Lastly, this model adopts the starburst prescription from \cite{Boco+2021}, which produces results that are similar to models without starburst galaxies. 
+\edit1{On the other hand, \texttt{Chr21\_highZ} assumes the star formation–galaxy mass relation does not flatten towards higher galaxy masses, a galaxy stellar mass function where the slope for the low-mass end is constant over redshift, and a local galaxy mass-metallicity relation following \cite{KobulnickyKewley2004}. Lastly, this model adopts the starburst prescription from \cite{Boco+2021}, which produces results that are similar to models without starburst galaxies. 
 }
 
 %
@@ -646,7 +648,6 @@ Further software used in this work: Python \citep{PythonReferenceManual},  Astro
 \appendix
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\edit1{Evaluating our fit; the squared residuals \label{app: residuals} } }
 
@@ -659,7 +660,8 @@ Further software used in this work: Python \citep{PythonReferenceManual},  Astro
 \end{figure}
 
 \edit1{In Figure \ref{fig: residuals} we show the $\log$ of the squared residuals. The residuals are the content of the sum in equation \ref{eq: chisquare}, which is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We see that the maximum residuals appear just below the peak of star formation. 
-We note that we chose to minimise the squared residuals (which is similar to minimising the mean squared error) in favour of e.g. minimising the relative error, to prevent overfitting regions of very low star-formation rate. }
+We note that we chose to minimise the squared residuals (which is similar to minimising the mean squared error) in favour of e.g. minimising the relative error, to prevent overfitting regions of very low star-formation rate. 
+}
 
 
 
