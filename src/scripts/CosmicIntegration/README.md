@@ -5,7 +5,7 @@ Cosmic integration
 <p>
 
 The scripts in this folder will perform the cosmic integration on $\texttt{COMPAS\\_Output\\_wWeights.h5}$ and produce a file called $\texttt{Rate\\_info.h5}$.
-These files can be downloaded from <a href="https://sandbox.zenodo.org/deposit/1153294">Zenodo.</a> 
+These files can be downloaded from <a href="https://zenodo.org/record/7612755">Zenodo.</a> 
 
 If you rename the files (in particular $\texttt{COMPAS\\_Output\\_wWeights.h5}$ ), make sure to update <a href="../init_values.py"> init_values.py</a> correspondingly.
 

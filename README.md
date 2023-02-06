@@ -17,7 +17,7 @@ The files in src/scripts/ form the core of this work (i.e. reproduce all the Fig
 Additionally, we provide a Jupyter notebook called <a href="./src/scripts/Notebooks/Fit_model_to_sfrdzZ.ipynb">Fit_model_to_sfrdzZ.ipynb</a> that fits our $\mathcal{S}(z,Z)$ model to an arbitrary input star formation rate - metallicity grid. Our fiducial is fit to data from the TNG 100 simulation ( $\texttt{SFRMetallicityFromGasTNG100.hdf5}$ ). 
 
   
-The COMPAS binary population simulation data that was used to calculate the BBH mass distribution can be found <a href="https://sandbox.zenodo.org/deposit/1153294">on Zenodo.</a> If you would like to re-run the Figures in this work with your own variation of the cosmic starformation history, you can use the scripts in the <a href="./src/scripts/CosmicIntegration/">CosmicIntegration!</a>
+The COMPAS binary population simulation data that was used to calculate the BBH mass distribution can be found <a href="https://zenodo.org/record/7612755">on Zenodo.</a> If you would like to re-run the Figures in this work with your own variation of the cosmic starformation history, you can use the scripts in the <a href="./src/scripts/CosmicIntegration/">CosmicIntegration!</a>
 
 If anything is unlcear, don't hesitate to shoot me a message, find my contact info  <a href="https://liekevanson.github.io/contact.html"> here</a>
   
