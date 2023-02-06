@@ -1,19 +1,19 @@
-<p align="center">
-<a href="https://github.com/showyourwork/showyourwork">
-<img width = "250" src="https://raw.githubusercontent.com/showyourwork/.github/main/images/showyourwork.png" alt="showyourwork"/>
-</a>
 
 <h1>
-An analytical fit to the metallicity-dependent cosmic star formation history, SFRD(z,Z)
-<h1>
+An analytical fit to the metallicity-dependent cosmic star formation history SFRD(z,Z)
+</h1>
+<p>
+This is the source code associated to the paper titled:
+</p>
 
 <h3>
-The locations of features in the mass distribution of merging binary black holes are robust against uncertainties in the metallicity-dependent cosmic star formation history.</h3>
+<a href="https://ui.adsabs.harvard.edu/abs/2022arXiv220903385V/abstract">The locations of features in the mass distribution of merging binary black holes are robust against uncertainties in the metallicity-dependent cosmic star formation history.</a>
+</h3>
 
 <p>
-Source and code associated to the paper <a href="http://arxiv.org/abs/2209.03385"> that can be found here</a>
 
 </p>
+
 
 <br>
 <br>
@@ -27,5 +27,7 @@ Source and code associated to the paper <a href="http://arxiv.org/abs/2209.03385
 <img src="https://img.shields.io/badge/article-pdf-blue.svg?style=flat" alt="Read the article"/>
 </a>
 </p> 
-
-An open source scientific article created using the [showyourwork](https://github.com/showyourwork/showyourwork) workflow.
+This work was made using
+<a href="https://github.com/showyourwork/showyourwork">
+<img width = "150" src="https://raw.githubusercontent.com/showyourwork/.github/main/images/showyourwork.png" alt="showyourwork"/>
+</a>
