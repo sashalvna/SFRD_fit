@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  28 JAN 2023 17:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.2)  6 FEB 2023 15:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**ms.tex
-(./ms.tex
+**article.tex
+(./article.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/usr/local/texlive/2021/texmf-dist/tex/latex/aastex/aastex631.cls
@@ -540,8 +540,8 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count343
 \l__pdf_internal_box=\box85
 )
-(./ms.aux)
-\openout1 = `ms.aux'.
+(./article.aux)
+\openout1 = `article.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
 LaTeX Font Info:    ... okay on input line 68.
@@ -609,9 +609,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 68.
 LaTeX Info: Redefining \pageref on input line 68.
 LaTeX Info: Redefining \nameref on input line 68.
- (./ms.out) (./ms.out)
+ (./article.out) (./article.out)
 \@outlinefile=\write4
-\openout4 = `ms.out'.
+\openout4 = `article.out'.
 
 Class revtex4-1 Info: Overriding lineo.sty, restoring output routine, on input 
 line 68.
@@ -635,11 +635,113 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+
+Package natbib Warning: Citation `Langer+2007' on page 1 undefined on input lin
+e 118.
+
+
+Package natbib Warning: Citation `Fruchter+2006' on page 1 undefined on input l
+ine 118.
+
+
+Package natbib Warning: Citation `LIGO2016_implications' on page 1 undefined on
+ input line 118.
+
+
+Package natbib Warning: Citation `GWTC1' on page 1 undefined on input line 119.
+
+
+
+Package natbib Warning: Citation `GWTC2' on page 1 undefined on input line 119.
+
+
+
+Package natbib Warning: Citation `GWTC3' on page 1 undefined on input line 119.
+
+
+
+Package natbib Warning: Citation `Santoliquido+2021' on page 1 undefined on inp
+ut line 119.
+
+
+Package natbib Warning: Citation `Broekgaarden+2021b' on page 1 undefined on in
+put line 119.
+
+
+Package natbib Warning: Citation `chruslinska2022_review' on page 1 undefined o
+n input line 119.
+
+
+Package natbib Warning: Citation `Chruslinska2019_obs' on page 1 undefined on i
+nput line 122.
+
+
+Package natbib Warning: Citation `Boco+2021' on page 1 undefined on input line 
+122.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 1 undefined on inpu
+t line 122.
+
+
+Package natbib Warning: Citation `Dominik+2013' on page 1 undefined on input li
+ne 125.
+
+
+Package natbib Warning: Citation `KewleyEllison2008' on page 1 undefined on inp
+ut line 125.
+
+
+Package natbib Warning: Citation `MaiolinoMannucci2019' on page 1 undefined on 
+input line 125.
+
+
+Package natbib Warning: Citation `Cresci+2019' on page 1 undefined on input lin
+e 125.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 1 undefined on inpu
+t line 125.
+
+
+Package natbib Warning: Citation `Mapelli2017' on page 1 undefined on input lin
+e 127.
+
+
+Package natbib Warning: Citation `Briel+2022_rates' on page 1 undefined on inpu
+t line 127.
+
+
+Package natbib Warning: Citation `Pakmor+2022' on page 1 undefined on input lin
+e 127.
+
+
 Underfull \hbox (badness 4832) in paragraph at lines 127--128
 []\OT1/cmr/m/n/10 One can also di-rectly ex-tract the metallicity-
  []
 
 [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package natbib Warning: Citation `MadauDickinson2014' on page 2 undefined on in
+put line 129.
+
+
+Package natbib Warning: Citation `Madau+2017' on page 2 undefined on input line
+ 129.
+
+
+Package natbib Warning: Citation `LangerNorman2006' on page 2 undefined on inpu
+t line 129.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 2 undefined on input l
+ine 129.
+
+
+Package natbib Warning: Citation `Sanders+2022' on page 2 undefined on input li
+ne 139.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 141--141
 [][][]$\OT1/cmr/m/n/8 https : / / github . com / TeamCOMPAS / COMPAS / tree / d
 ev / utils /
@@ -651,14 +753,55 @@ Overfull \hbox (10.88353pt too wide) in paragraph at lines 141--141
  []
 
 
+Package natbib Warning: Citation `Kroupa2001' on page 2 undefined on input line
+ 148.
+
+
+Package natbib Warning: Citation `Planck18_VI' on page 2 undefined on input lin
+e 149.
+
+
+Package natbib Warning: Citation `LangerNorman2006' on page 2 undefined on inpu
+t line 156.
+
+
+Package natbib Warning: Citation `chruslinska2022_review' on page 2 undefined o
+n input line 156.
+
+
 Underfull \hbox (badness 1163) in paragraph at lines 163--165
 \OT1/cmr/m/n/10 The first term is the star for-ma-tion rate den-sity,
  []
 
+
+Package natbib Warning: Citation `Neijssel+2019' on page 2 undefined on input l
+ine 168.
+
+
+Package natbib Warning: Citation `Ohagan+1976' on page 2 undefined on input lin
+e 168.
+
 [2]
+
+Package natbib Warning: Citation `WANG201995' on page 3 undefined on input line
+ 230.
+
+
+Package natbib Warning: Citation `LangerNorman2006' on page 3 undefined on inpu
+t line 232.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 3 undefined on input l
+ine 232.
+
+
 Overfull \hbox (17.33469pt too wide) detected at line 275
 [] \OML/cmm/m/it/10 ;
  []
+
+
+Package natbib Warning: Citation `MadauDickinson2014' on page 3 undefined on in
+put line 280.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 288--290
@@ -682,12 +825,134 @@ Overfull \hbox (10.88353pt too wide) in paragraph at lines 306--306
 [][]| [] [][][]| 
  []
 
+
+Package natbib Warning: Citation `FirstResTNG_Springel2018' on page 3 undefined
+ on input line 308.
+
+
+Package natbib Warning: Citation `FirstResTNG_Marinacci2018' on page 3 undefine
+d on input line 308.
+
+
+Package natbib Warning: Citation `FirstResTNG_Nelson2018' on page 3 undefined o
+n input line 308.
+
+
+Package natbib Warning: Citation `FirstResTNG_Pillepich2018' on page 3 undefine
+d on input line 308.
+
+
+Package natbib Warning: Citation `FirstResTNG_Naiman2018' on page 3 undefined o
+n input line 308.
+
+
+Package natbib Warning: Citation `Nelson2019a' on page 3 undefined on input lin
+e 308.
+
+
+Package natbib Warning: Citation `Pillepich2019' on page 3 undefined on input l
+ine 308.
+
 [3]
+
+Package natbib Warning: Citation `Nelson2019b' on page 4 undefined on input lin
+e 311.
+
+
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 311--311
 [][]| [] [][][]| 
  []
 
+
+Package natbib Warning: Citation `Pakmor+2022' on page 4 undefined on input lin
+e 314.
+
+
+Package natbib Warning: Citation `Schmidt1959' on page 4 undefined on input lin
+e 314.
+
+
+Package natbib Warning: Citation `Kennicutt1989' on page 4 undefined on input l
+ine 314.
+
+
+Package natbib Warning: Citation `SpringelHernquist2003' on page 4 undefined on
+ input line 314.
+
+
+Package natbib Warning: Citation `Pillepich2018' on page 4 undefined on input l
+ine 314.
+
+
+Package natbib Warning: Citation `Torrey+2019' on page 4 undefined on input lin
+e 316.
+
+
+Package natbib Warning: Citation `FirstResTNG_Naiman2018' on page 4 undefined o
+n input line 316.
+
+
+Package natbib Warning: Citation `Hemler+2021' on page 4 undefined on input lin
+e 316.
+
+
+Package natbib Warning: Citation `Nelson2021' on page 4 undefined on input line
+ 316.
+
+
+Package natbib Warning: Citation `Briel+2022_rates' on page 4 undefined on inpu
+t line 317.
+
+
+Package natbib Warning: Citation `Bavera+2022' on page 4 undefined on input lin
+e 317.
+
+
+Package natbib Warning: Citation `vanson+2022' on page 4 undefined on input lin
+e 317.
+
+
+Package natbib Warning: Citation `Briel+2022_rates' on page 4 undefined on inpu
+t line 318.
+
+
+Package natbib Warning: Citation `Springel2005' on page 4 undefined on input li
+ne 324.
+
+
+Package natbib Warning: Citation `Weinberger2017' on page 4 undefined on input 
+line 324.
+
+
+Package natbib Warning: Citation `Dray+2003' on page 4 undefined on input line 
+324.
+
+
+Package natbib Warning: Citation `Smith2014' on page 4 undefined on input line 
+324.
+
+
+Package natbib Warning: Citation `Gotberg+2020' on page 4 undefined on input li
+ne 324.
+
+
+Package natbib Warning: Citation `DoughtyFinlator2021' on page 4 undefined on i
+nput line 324.
+
+
+Package natbib Warning: Citation `Farmer2021_carbonfootprint' on page 4 undefin
+ed on input line 324.
+
+
+Package natbib Warning: Citation `Goswami+2022' on page 4 undefined on input li
+ne 324.
+
 [4]
+
+Package natbib Warning: Citation `NocedalWright_numerical_optimization' on page
+ 5 undefined on input line 362.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 362--364
 []\OT1/cmr/m/n/10 To min-i-mize this cost funci-ton, we use
  []
@@ -697,16 +962,52 @@ Underfull \hbox (badness 1831) in paragraph at lines 362--364
 \OT1/cmr/m/n/10 im-ple-ments the quasi-Newton method of Broy-den,
  []
 
-<figures/SFRD_FIT_evaluation_compare.pdf, id=360, 1053.12146pt x 949.17422pt>
+<figures/SFRD_FIT_evaluation_compare.pdf, id=159, 1053.12146pt x 949.17422pt>
 File: figures/SFRD_FIT_evaluation_compare.pdf Graphic file (type pdf)
 <use figures/SFRD_FIT_evaluation_compare.pdf>
 Package pdftex.def Info: figures/SFRD_FIT_evaluation_compare.pdf  used on input
  line 373.
 (pdftex.def)             Requested size: 461.80255pt x 416.2186pt.
 
+Package natbib Warning: Citation `Neijssel+2019' on page 5 undefined on input l
+ine 377.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 5 undefined on input l
+ine 377.
+
+
+Package natbib Warning: Citation `Pakmor+2022' on page 5 undefined on input lin
+e 402.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 5 undefined on input l
+ine 406.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 5 undefined on input l
+ine 406.
+
+
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 406--406
 [][]| [] [][][]| 
  []
+
+
+Package natbib Warning: Citation `MadauDickinson2014' on page 5 undefined on in
+put line 408.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 5 undefined on inpu
+t line 408.
+
+
+Package natbib Warning: Citation `Chruslinska2019_obs' on page 5 undefined on i
+nput line 409.
+
+
+Package natbib Warning: Citation `vanson2022_lowMbh' on page 5 undefined on inp
+ut line 423.
 
 
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 423--423
@@ -714,16 +1015,73 @@ Overfull \hbox (10.88353pt too wide) in paragraph at lines 423--423
  []
 
 
-Overfull \hbox (10.88353pt too wide) in paragraph at lines 424--424
-[][]| [] [][][]| 
- []
+Package natbib Warning: Citation `COMPAS_method' on page 5 undefined on input l
+ine 424.
 
 
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 424--424
 [][]| [] [][][]| 
  []
 
-[5] [6 <./figures/SFRD_FIT_evaluation_compare.pdf>]
+
+Package natbib Warning: Citation `Hurley+2000' on page 5 undefined on input lin
+e 424.
+
+
+Package natbib Warning: Citation `Hurley+2002' on page 5 undefined on input lin
+e 424.
+
+
+Package natbib Warning: Citation `Pols+1998' on page 5 undefined on input line 
+424.
+
+
+Package natbib Warning: Citation `vanson2022_lowMbh' on page 5 undefined on inp
+ut line 424.
+
+
+Package natbib Warning: Citation `vanson2022_lowMbh' on page 5 undefined on inp
+ut line 424.
+
+
+Package natbib Warning: Citation `vanson2022_lowMbh' on page 5 undefined on inp
+ut line 424.
+
+
+Overfull \hbox (10.88353pt too wide) in paragraph at lines 424--424
+[][]| [] [][][]| 
+ []
+
+
+Package natbib Warning: Citation `Dominik2015' on page 5 undefined on input lin
+e 426.
+
+
+Package natbib Warning: Citation `Kummer_thesis' on page 5 undefined on input l
+ine 426.
+
+
+Package natbib Warning: Citation `Neijssel+2019' on page 5 undefined on input l
+ine 429.
+
+
+Package natbib Warning: Citation `vanson+2022' on page 5 undefined on input lin
+e 429.
+
+[5]
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 6 undefined on inpu
+t line 434.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 6 undefined on inpu
+t line 460.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 6 undefined on inpu
+t line 462.
+
+
 Overfull \hbox (10.88353pt too wide) in paragraph at lines 462--462
 [][]| [] [][][]| 
  []
@@ -731,96 +1089,395 @@ Overfull \hbox (10.88353pt too wide) in paragraph at lines 462--462
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 464.
 
-Underfull \hbox (badness 10000) in paragraph at lines 458--479
-\OT1/cmr/m/n/10 and \OT1/cmtt/m/n/10 302-f14SB-Boco[]FMR270[]FOH[]z[]dM.dat \OT
-1/cmr/m/n/10 from
+Package natbib Warning: Citation `PettiniPagel2004' on page 6 undefined on inpu
+t line 474.
+
+
+Package natbib Warning: Citation `Bisigello+2018' on page 6 undefined on input 
+line 474.
+
+
+Package natbib Warning: Citation `Caputi+2017' on page 6 undefined on input lin
+e 474.
+
+
+Package natbib Warning: Citation `KobulnickyKewley2004' on page 6 undefined on 
+input line 480.
+
+
+Package natbib Warning: Citation `Boco+2021' on page 6 undefined on input line 
+480.
+
+[6 <./figures/SFRD_FIT_evaluation_compare.pdf>]
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 7 undefined on inpu
+t line 488.
+
+
+Package natbib Warning: Citation `Madau+2017' on page 7 undefined on input line
+ 488.
+
+
+Package natbib Warning: Citation `Bisigello+2018' on page 7 undefined on input 
+line 490.
+
+
+Package natbib Warning: Citation `Caputi+2017' on page 7 undefined on input lin
+e 490.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 7 undefined on inpu
+t line 491.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 7 undefined on inpu
+t line 493.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 487--495
+
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 485--493
-
- []
-
-<figures/SFR_redshift.pdf, id=524, 660.81647pt x 569.97519pt>
+<figures/SFR_redshift.pdf, id=240, 660.81647pt x 569.97519pt>
 File: figures/SFR_redshift.pdf Graphic file (type pdf)
 <use figures/SFR_redshift.pdf>
-Package pdftex.def Info: figures/SFR_redshift.pdf  used on input line 498.
+Package pdftex.def Info: figures/SFR_redshift.pdf  used on input line 500.
 (pdftex.def)             Requested size: 241.16582pt x 208.00877pt.
-<figures/SFR_tlookback.pdf, id=525, 660.81647pt x 571.61485pt>
+<figures/SFR_tlookback.pdf, id=241, 660.81647pt x 571.61485pt>
 File: figures/SFR_tlookback.pdf Graphic file (type pdf)
 <use figures/SFR_tlookback.pdf>
-Package pdftex.def Info: figures/SFR_tlookback.pdf  used on input line 499.
+Package pdftex.def Info: figures/SFR_tlookback.pdf  used on input line 501.
 (pdftex.def)             Requested size: 241.16582pt x 208.60715pt.
-<figures/Mass_distributions_stable_SFRD_variations.pdf, id=538, 1468.55756pt x 
-1637.82997pt>
+
+
+Package natbib Warning: Citation `Madau+2017' on page 8 undefined on input line
+ 502.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 8 undefined on inpu
+t line 502.
+
+
+Package natbib Warning: Citation `Madau+2017' on page 8 undefined on input line
+ 502.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 8 undefined on inpu
+t line 502.
+
+<figures/Mass_distributions_stable_SFRD_variations.pdf, id=246, 1477.11847pt x 
+1634.74925pt>
 File: figures/Mass_distributions_stable_SFRD_variations.pdf Graphic file (type 
 pdf)
 <use figures/Mass_distributions_stable_SFRD_variations.pdf>
 Package pdftex.def Info: figures/Mass_distributions_stable_SFRD_variations.pdf 
- used on input line 510.
-(pdftex.def)             Requested size: 410.4955pt x 457.81454pt.
-<figures/Mass_distributions_CE_SFRD_variations.pdf, id=549, 1468.55756pt x 1637
-.82997pt>
+ used on input line 512.
+(pdftex.def)             Requested size: 410.4955pt x 454.28438pt.
+
+Package natbib Warning: Citation `GWTC3_popPaper2021' on page 8 undefined on in
+put line 515.
+
+
+Package natbib Warning: Citation `GWTC3_popPaper2021' on page 8 undefined on in
+put line 515.
+
+<figures/Mass_distributions_CE_SFRD_variations.pdf, id=253, 1477.11847pt x 1634
+.74925pt>
 File: figures/Mass_distributions_CE_SFRD_variations.pdf Graphic file (type pdf)
 
 <use figures/Mass_distributions_CE_SFRD_variations.pdf>
 Package pdftex.def Info: figures/Mass_distributions_CE_SFRD_variations.pdf  use
-d on input line 519.
-(pdftex.def)             Requested size: 410.4955pt x 457.81454pt.
+d on input line 521.
+(pdftex.def)             Requested size: 410.4955pt x 454.28438pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--531
+Package natbib Warning: Citation `vanson+2022' on page 8 undefined on input lin
+e 531.
+
+
+Package natbib Warning: Citation `van-den-Heuvel+2017' on page 8 undefined on i
+nput line 531.
+
+
+Package natbib Warning: Citation `Inayoshi2017' on page 8 undefined on input li
+ne 531.
+
+
+Package natbib Warning: Citation `Bavera2021' on page 8 undefined on input line
+ 531.
+
+
+Package natbib Warning: Citation `Marchant2021' on page 8 undefined on input li
+ne 531.
+
+
+Package natbib Warning: Citation `GallegosGarcia2021' on page 8 undefined on in
+put line 531.
+
+
+Package natbib Warning: Citation `vanson+2022' on page 8 undefined on input lin
+e 531.
+
+
+Package natbib Warning: Citation `Belczynski+2007' on page 8 undefined on input
+ line 531.
+
+
+Package natbib Warning: Citation `PostnovYungelson2014' on page 8 undefined on 
+input line 531.
+
+
+Package natbib Warning: Citation `Belczynski+2016Natur' on page 8 undefined on 
+input line 531.
+
+
+Package natbib Warning: Citation `vignaGomez+2018' on page 8 undefined on input
+ line 531.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 531--533
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 543--550
+Package natbib Warning: Citation `chruslinska2022_review' on page 8 undefined o
+n input line 547.
+
+
+Package natbib Warning: Citation `Broekgaarden+2021b' on page 8 undefined on in
+put line 549.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--552
 
  []
 
-[8] [9 <./figures/SFR_redshift.pdf> <./figures/SFR_tlookback.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/SFR_tlookback.pdf)
-: PDF inclusion: multiple pdfs with page group included in a single page
->]
-Underfull \hbox (badness 1675) in paragraph at lines 574--577
+Package natbib Warning: Citation `vanson+2022' on page 8 undefined on input lin
+e 561.
+
+
+Package natbib Warning: Citation `MariaEzquiaga2022' on page 8 undefined on inp
+ut line 565.
+
+
+Package natbib Warning: Citation `GWTC3_popPaper2021' on page 8 undefined on in
+put line 569.
+
+
+Package natbib Warning: Citation `BelczynskiVink2010' on page 8 undefined on in
+put line 571.
+
+
+Package natbib Warning: Citation `Stevenson+2017' on page 8 undefined on input 
+line 571.
+
+
+Package natbib Warning: Citation `Mapelli2017' on page 8 undefined on input lin
+e 571.
+
+
+Package natbib Warning: Citation `Chruslinska2019_effectCO' on page 8 undefined
+ on input line 571.
+
+
+Package natbib Warning: Citation `Broekgaarden+2021b' on page 8 undefined on in
+put line 571.
+
+[8]
+
+Package natbib Warning: Citation `chruslinska2022_review' on page 9 undefined o
+n input line 576.
+
+
+Package natbib Warning: Citation `Tang+2020' on page 9 undefined on input line 
+576.
+
+
+Package natbib Warning: Citation `Madau+2017' on page 9 undefined on input line
+ 577.
+
+
+Package natbib Warning: Citation `Madau+2017' on page 9 undefined on input line
+ 578.
+
+
+Underfull \hbox (badness 1675) in paragraph at lines 576--579
 []\OT1/cmr/m/n/10 Changing the over-all star-formation rate den-sity
  []
 
-[10 <./figures/Mass_distributions_stable_SFRD_variations.pdf>] [11 <./figures/M
-ass_distributions_CE_SFRD_variations.pdf>]
-Underfull \hbox (badness 1275) in paragraph at lines 620--626
+
+Package natbib Warning: Citation `vanson+2022' on page 9 undefined on input lin
+e 583.
+
+
+Package natbib Warning: Citation `Briel+2022' on page 9 undefined on input line
+ 583.
+
+[9 <./figures/SFR_redshift.pdf> <./figures/SFR_tlookback.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figures/SFR_tlookback.pdf)
+: PDF inclusion: multiple pdfs with page group included in a single page
+>] [10 <./figures/Mass_distributions_stable_SFRD_variations.pdf>] [11 <./figure
+s/Mass_distributions_CE_SFRD_variations.pdf>]
+Underfull \hbox (badness 1275) in paragraph at lines 622--628
 \OT1/cmr/m/n/10 the Na-tional Sci-ence Foun-da-tion un-der Grant No.
  []
 
-[12]
-<figures/log_squared_res.pdf, id=791, 692.33778pt x 413.22444pt>
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 12 undefined on inp
+ut line 638.
+
+
+Underfull \hbox (badness 3049) in paragraph at lines 635--639
+\OT1/cmr/m/n/10 els of the $\OMS/cmsy/m/n/10 S\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
+ Z; z\OT1/cmr/m/n/10 )$ from \OT1/cmr/bx/n/10 ? \OT1/cmr/m/n/10 can be found on
+-
+ []
+
+
+Package natbib Warning: Citation `PythonReferenceManual' on page 12 undefined o
+n input line 643.
+
+
+Package natbib Warning: Citation `astropy:2013' on page 12 undefined on input l
+ine 643.
+
+
+Package natbib Warning: Citation `astropy:2018' on page 12 undefined on input l
+ine 643.
+
+
+Package natbib Warning: Citation `2007CSE.....9...90H' on page 12 undefined on 
+input line 643.
+
+
+Package natbib Warning: Citation `2020NumPy-Array' on page 12 undefined on inpu
+t line 643.
+
+
+Package natbib Warning: Citation `2020SciPy-NMeth' on page 12 undefined on inpu
+t line 643.
+
+
+Package natbib Warning: Citation `2007CSE.....9c..21P' on page 12 undefined on 
+input line 643.
+
+
+Package natbib Warning: Citation `Kluyver2016jupyter' on page 12 undefined on i
+nput line 643.
+
+
+Package natbib Warning: Citation `waskom2020seaborn' on page 12 undefined on in
+put line 643.
+
+
+Package natbib Warning: Citation `collette_python_hdf5_2019' on page 12 undefin
+ed on input line 643.
+
+<figures/log_squared_res.pdf, id=586, 692.33778pt x 413.22444pt>
 File: figures/log_squared_res.pdf Graphic file (type pdf)
 <use figures/log_squared_res.pdf>
-Package pdftex.def Info: figures/log_squared_res.pdf  used on input line 656.
+Package pdftex.def Info: figures/log_squared_res.pdf  used on input line 657.
 (pdftex.def)             Requested size: 384.83807pt x 229.69537pt.
-<figures/High_Low_metalFractionSFMass.pdf, id=801, 867.24pt x 1300.86pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12]
+
+Package natbib Warning: Citation `Pakmor+2022' on page 13 undefined on input li
+ne 670.
+
+
+Package natbib Warning: Citation `Chruslinska2019_obs' on page 13 undefined on 
+input line 670.
+
+<figures/High_Low_metalFractionSFMass.pdf, id=607, 867.24pt x 1300.86pt>
 File: figures/High_Low_metalFractionSFMass.pdf Graphic file (type pdf)
 <use figures/High_Low_metalFractionSFMass.pdf>
 Package pdftex.def Info: figures/High_Low_metalFractionSFMass.pdf  used on inpu
-t line 673.
+t line 675.
 (pdftex.def)             Requested size: 384.83807pt x 577.26315pt.
 
+Package natbib Warning: Citation `Chruslinska2019_obs' on page 13 undefined on 
+input line 678.
 
-LaTeX Warning: Float too large for page by 40.69426pt on input line 677.
 
-(./ms.bbl [13 <./figures/log_squared_res.pdf>] [14 <./figures/High_Low_metalFra
-ctionSFMass.pdf>] [15] [16]) [17] (./ms.aux)
-Package rerunfilecheck Info: File `ms.out' has not changed.
+Package natbib Warning: Citation `Chruslinska+2021' on page 13 undefined on inp
+ut line 678.
+
+
+Package natbib Warning: Citation `Pakmor+2022' on page 13 undefined on input li
+ne 678.
+
+
+Package natbib Warning: Citation `Vogelsberger+2014' on page 13 undefined on in
+put line 678.
+
+
+Package natbib Warning: Citation `Dave+2019' on page 13 undefined on input line
+ 678.
+
+
+Package natbib Warning: Citation `Schaye+2015' on page 13 undefined on input li
+ne 678.
+
+
+Package natbib Warning: Citation `FirstResTNG_Springel2018' on page 13 undefine
+d on input line 678.
+
+
+Package natbib Warning: Citation `Chruslinska2019_obs' on page 13 undefined on 
+input line 678.
+
+
+Package natbib Warning: Citation `Chruslinska+2021' on page 13 undefined on inp
+ut line 678.
+
+
+Package natbib Warning: Citation `Pakmor+2022' on page 13 undefined on input li
+ne 678.
+
+
+Package natbib Warning: Citation `Vogelsberger+2014' on page 13 undefined on in
+put line 678.
+
+
+Package natbib Warning: Citation `Dave+2019' on page 13 undefined on input line
+ 678.
+
+
+Package natbib Warning: Citation `Schaye+2015' on page 13 undefined on input li
+ne 678.
+
+
+Package natbib Warning: Citation `FirstResTNG_Springel2018' on page 13 undefine
+d on input line 678.
+
+
+LaTeX Warning: Float too large for page by 27.94426pt on input line 679.
+
+No file article.bbl.
+[13 <./figures/log_squared_res.pdf>] [14 <./figures/High_Low_metalFractionSFMas
+s.pdf>]
+
+Package natbib Warning: There were undefined citations.
+
+(./article.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package rerunfilecheck Info: File `article.out' has not changed.
 (rerunfilecheck)             Checksum: 903F95D80AFA0392AA26F1EACBDE96BE;4314.
  ) 
 Here is how much of TeX's memory you used:
- 13262 strings out of 478994
- 189106 string characters out of 5858185
- 656044 words of memory out of 5000000
- 30379 multiletter control sequences out of 15000+600000
+ 12868 strings out of 478994
+ 180699 string characters out of 5858185
+ 571696 words of memory out of 5000000
+ 30084 multiletter control sequences out of 15000+600000
  415775 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,16n,88p,10467b,694s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,16n,88p,1233b,459s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
@@ -853,12 +1510,11 @@ ublic/amsfonts/cm/cmti9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
-blic/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/
-helvetic/uhvr8a.pfb>
-Output written on ms.pdf (17 pages, 1188741 bytes).
+blic/cm-super/sfrm1000.pfb>
+Output written on article.pdf (14 pages, 1177728 bytes).
 PDF statistics:
- 1170 PDF objects out of 1200 (max. 8388607)
- 1031 compressed objects within 11 object streams
- 165 named destinations out of 1000 (max. 500000)
+ 793 PDF objects out of 1000 (max. 8388607)
+ 473 compressed objects within 5 object streams
+ 68 named destinations out of 1000 (max. 500000)
  156 words of extra memory for PDF output out of 10000 (max. 10000000)
 
