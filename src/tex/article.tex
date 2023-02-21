@@ -152,15 +152,16 @@ limits $0.01 - 200\Msun$ and a flat $\Lambda$CDM cosmology with $\Omega_{\rm{M}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A convenient analytic expression for the metallicity-dependent cosmic star formation history \label{sec: model for sfrd(zZ)} }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We assume that the metallicity-dependent cosmic star formation history can be separated into two independent functions 
-(as was assumed in e.g., \citealt{LangerNorman2006}, but cf. \citealt{chruslinska2022_review} for a discussion on the validity on this assumption).
+% We assume that the metallicity-dependent cosmic star formation history can be separated into two independent functions  (as was assumed in e.g., \citealt{LangerNorman2006}, but cf. \citealt{chruslinska2022_review} for a discussion on the validity on this assumption).
+\edit2{We write the metallicity-dependent cosmic star formation history as}
 
 \begin{equation}
 \label{eq: total sfrd}
 \boxed{
-        \SFRDzZ = \SFRDz \times \dPdZ.
+        \SFRDzZ = \SFRDz \times \dPdZ
         }
 \end{equation}
+\edit2{(similar to e.g., \citealt{LangerNorman2006}).}
 The first term is the star formation rate density, \SFRDz, that is the amount of mass formed in stars per unit time and per unit comoving volume at each redshift, $z$. The second term, \dpdZ, is a probability density distribution that expresses what fraction of star formation occurs at which metallicity, $Z$, at each redshift. 
  
 %% SFR(z) %%
@@ -653,12 +654,13 @@ Further software used in this work: Python \citep{PythonReferenceManual},  Astro
 \begin{figure}[h]
 \centering
 \script{Fit_model_to_sfrdzZ.py}
-\includegraphics[width=0.75\textwidth]{figures/log_squared_res.pdf}
-\caption{$\log$ of the squared residuals, which appear in equation \ref{eq: cost function} to optimise our fit. \label{fig: residuals}
-  }
+\includegraphics[width=0.49\textwidth]{figures/log_res.pdf}
+\includegraphics[width=0.49\textwidth]{figures/log_relative_err.pdf}
+\caption{Left: $\log$ of the residuals, which appear in equation \ref{eq: cost function} to optimise our fit. Right: $\log$ of the relative error between the TNG100 data and our best fitting model. We show the minimum and maximum metallicity used in \COMPAS simulations with dashed lines in each plot.  \label{fig: residuals}
+ }
 \end{figure}
 
-\edit1{In Figure \ref{fig: residuals} we show the $\log$ of the squared residuals. The residuals are the content of the sum in equation \ref{eq: chisquare}, which is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We see that the maximum residuals appear just below the peak of star formation. 
+\edit1{In Figure \ref{fig: residuals} we show the $\log$ of the residuals. The residuals are the content of the sum in equation \ref{eq: chisquare}, which is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We see that the maximum residuals appear just below the peak of star formation. 
 We note that we chose to minimise the squared residuals (which is similar to minimising the mean squared error) in favour of e.g. minimising the relative error, to prevent overfitting regions of very low star-formation rate. 
 }
 

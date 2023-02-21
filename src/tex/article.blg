@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2021)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: article.aux
+The style file: aasjournal.bst
+Database file #1: main_bib.bib
+Reallocated buffer (elt_size=1) to 40000 items from 20000.
+Reallocated sv_buffer (elt_size=1) to 40000 items from 20000.
+Reallocated ex_buf (elt_size=1) to 40000 items from 20000.
+Reallocated out_buf (elt_size=1) to 40000 items from 20000.
+Reallocated name_tok (elt_size=4) to 40000 items from 20000.
+Reallocated name_sep_char (elt_size=1) to 40000 items from 20000.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated str_pool (elt_size=1) to 130000 items from 65000.
+You've used 94 entries,
+            3168 wiz_defined-function locations,
+            1395 strings with 60321 characters,
+and the built_in function-call counts, 65203 in all, are:
+= -- 3715
+> -- 8003
+< -- 27
++ -- 2655
+- -- 2776
+* -- 7280
+:= -- 12860
+add.period$ -- 106
+call.type$ -- 94
+change.case$ -- 498
+chr.to.int$ -- 95
+cite$ -- 94
+duplicate$ -- 1591
+empty$ -- 2736
+format.name$ -- 2895
+if$ -- 12285
+int.to.chr$ -- 6
+int.to.str$ -- 0
+missing$ -- 92
+newline$ -- 302
+num.names$ -- 376
+pop$ -- 567
+preamble$ -- 1
+purify$ -- 496
+quote$ -- 0
+skip$ -- 1413
+stack$ -- 0
+substring$ -- 2007
+swap$ -- 19
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 840
+warning$ -- 0
+while$ -- 334
+width$ -- 0
+write$ -- 1040
