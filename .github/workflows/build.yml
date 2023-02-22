@@ -14,9 +14,9 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Set strict channel priorities
-        run: |
-          conda config --set channel_priority strict
+#      - name: Set strict channel priorities
+#        run: |
+#          conda config --set channel_priority strict
           
       - name: Install TinyTex for matplotlib LaTeX rendering
         id: tinytex
