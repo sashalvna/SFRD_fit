@@ -154,7 +154,8 @@ if __name__ == "__main__":
             Obs_cosmic_SFR    = obs_SFRD
             
         # Convert observed lookback times to observed redshifts (lookback times are decreasing, so also obs_redshift is decreasing)
-        Obs_redshifts     = [z_at_value(cosmo.lookback_time,t*u.Gyr) for t in Obs_Lookbacktimes[:-1]] 
+        Obs_redshifts     = [z_at_value(cosmo.lookback_time,t*u.Gyr,method='Bounded') for t in Obs_Lookbacktimes[:-1]] 
+        print('Obs_redshifts', Obs_redshifts)
         Obs_redshifts.insert(len(Obs_redshifts),0) # put redshift zero at the end 
         # Obs_redshifts.insert(0,0) # put redshift zero at the end 
         Obs_redshifts = np.array(Obs_redshifts)

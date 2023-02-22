@@ -23,15 +23,18 @@ dependencies:
     - src/data/COMPAS_Output_wWeights.h5
     - src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5
     - src/data/RateData/Rate_info.h5
+    - src/data/test_best_fit_parameters.txt
 
   src/scripts/Plot_StableMass_distributions.py:
     - src/data/COMPAS_Output_wWeights.h5
     - src/data/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5
     - src/data/RateData/Rate_info.h5
+    - src/data/test_best_fit_parameters.txt
 
   src/scripts/LowHighZ_fraction.py:
     - src/data/test_best_fit_parameters.txt
     - src/data/Figure5/
+    - src/data/test_best_fit_parameters.txt
 
 
 
