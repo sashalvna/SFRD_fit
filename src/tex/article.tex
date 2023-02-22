@@ -656,13 +656,17 @@ Further software used in this work: Python \citep{PythonReferenceManual},  Astro
 \script{Fit_model_to_sfrdzZ.py}
 \includegraphics[width=0.49\textwidth]{figures/log_res.pdf}
 \includegraphics[width=0.49\textwidth]{figures/log_relative_err.pdf}
-\caption{Left: $\log$ of the residuals, which appear in equation \ref{eq: cost function} to optimise our fit. Right: $\log$ of the relative error between the TNG100 data and our best fitting model. We show the minimum and maximum metallicity used in \COMPAS simulations with dashed lines in each plot.  \label{fig: residuals}
+\caption{$\log$ of the residuals (left), and $\log$ of the relative error (right) between the TNG100 data and our best-fitting model. We show the minimum and maximum metallicity used in \COMPAS simulations with dashed lines in each plot.  \label{fig: residuals}
  }
 \end{figure}
 
-\edit1{In Figure \ref{fig: residuals} we show the $\log$ of the residuals. The residuals are the content of the sum in equation \ref{eq: chisquare}, which is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We see that the maximum residuals appear just below the peak of star formation. 
-We note that we chose to minimise the squared residuals (which is similar to minimising the mean squared error) in favour of e.g. minimising the relative error, to prevent overfitting regions of very low star-formation rate. 
-}
+\edit1{In the left panel of Figure \ref{fig: residuals}, we show the $\log$ of the absolute residuals. The \textit{square} of the residuals is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We observe that the maximum residuals appear near the peak of star formation at high metallicities.
+%
+The log of the relative errors (defined as $\frac{\lvert \mathcal{S}{\rm sim} - \mathcal{S}{\rm fit} \rvert}{\mathcal{S}_{\rm fit}}$), is shown in the right-hand panel of Figure \ref{fig: residuals}. The relative errors generally exhibit an opposite trend with respect to the residuals. The relative errors are largest in regions of very low-metallicity star formation at low redshift. This occurs due to the very low star-formation rate in this regime (of the order $10^{-8}\Msun \yr^{-1}\Mpc^{-3}$ for the TNG simulations and $10^{-11}\Msun \yr^{-1}\Mpc^{-3}$ in our model fit).
+%
+Another regime where the relative error becomes large is at very high metallicities (about 10 times $Z_{\odot}$). In this regime, the TNG data is very sparse and contains regions where the rate abruptly drops to zero. To avoid sharp features in the data, we use interpolated TNG data to produce the fit.
+%
+We note that we chose to minimise the squared residuals (which is similar to minimising the mean squared error) in favour of minimising, for example, the relative error, to prevent overfitting such regions of very low star-formation rate. For the illustration purposes in this work, we are most interested in closely fitting the \SFRDzZ between the minimum ($10^{-4}$) and maximum ($0.03$) metallicities that can be simulated with \COMPAS (or more generally, with population synthesis simulations). For applications that focus on extremely low ($<0.01 Z_{\odot}$) or extremely high ($\sim 10\times Z_{\odot}$) metallicity star formation, a different cost function would be more appropriate.}
 
 
 

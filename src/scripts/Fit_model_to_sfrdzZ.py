@@ -263,7 +263,6 @@ if __name__ == "__main__":
     plt.ylim(-3,1.5)
 
     plt.savefig(paths.figures / 'log_res.pdf',  bbox_inches='tight')
-    plt.show()
 
     ############################
     # log of the relative error
@@ -303,7 +302,6 @@ if __name__ == "__main__":
     plt.ylim(-3,1.5)
 
     plt.savefig(paths.figures / 'log_relative_err.pdf',  bbox_inches='tight')
-    plt.show()
 
 
 
