@@ -137,8 +137,7 @@ First of all, the form we propose allows for an intuitive interpretation of the 
 Secondly, both the large complications in observational constraints, and the many uncertainties in cosmological simulations call for a generalised form of \SFRDzZ that can be easily updated when new information becomes available. 
 In particular, the advent of observations with the James Webb Space Telescope promises a new era of high-redshift
 metallicity studies of previously unexplored regimes \citep[e.g.,][]{Sanders+2022}. We hope that this form will facilitate the flexibility needed to keep up with observations. 
-\edit1{The model described in this work is incorporated in the publicly available `Cosmic Integration' suite of the \COMPAS code.\footnote{\url{https://github.com/TeamCOMPAS/COMPAS/tree/dev/utils/CosmicIntegration}} 
-}
+The model described in this work is incorporated in the publicly available `Cosmic Integration' suite of the \COMPAS code.\footnote{\url{https://github.com/TeamCOMPAS/COMPAS/tree/dev/utils/CosmicIntegration}} 
 
 
 We describe our model for \SFRDzZ in Section \ref{sec: model for sfrd(zZ)}.
@@ -166,7 +165,7 @@ The first term is the star formation rate density, \SFRDz, that is the amount of
  
 %% SFR(z) %%
 \subsection{The cosmic metallicity density distribution}
-For the probability distribution of metallicities we draw inspiration from the approach by e.g., \cite{Neijssel+2019} who used a log-normal distribution for their phenomenological model. \edit1{Unfortunately, a simple log-normal distribution cannot capture the asymmetry that we see in the cosmological simulations}, which show an extended tail in  $\log_{10} Z$ towards low metallicity, combined with a very limited tail towards higher metallicity. To capture this behaviour we adopt a skewed-log-normal distribution instead. This is an extension of the normal distribution that introduces an additional shape parameter, $\alpha$, that regulates the skewness \citep[first introduced by][]{Ohagan+1976}. 
+For the probability distribution of metallicities we draw inspiration from the approach by e.g., \cite{Neijssel+2019} who used a log-normal distribution for their phenomenological model. Unfortunately, a simple log-normal distribution cannot capture the asymmetry that we see in the cosmological simulations, which show an extended tail in  $\log_{10} Z$ towards low metallicity, combined with a very limited tail towards higher metallicity. To capture this behaviour we adopt a skewed-log-normal distribution instead. This is an extension of the normal distribution that introduces an additional shape parameter, $\alpha$, that regulates the skewness \citep[first introduced by][]{Ohagan+1976}. 
 
 The skewed-log-normal distribution of metallicities is defined as:
 \begin{equation}
@@ -304,7 +303,7 @@ Below we briefly discuss the IllustrisTNG simulations, and elaborate on our fitt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{IllustrisTNG Cosmological simulations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Although here, we only fit our model to the TNG100 simulation, our prescription can be easily be used to fit other simulated or observational data of the metallicity-dependent cosmic star formation history\footnote{\edit1{We provide a Jupyter notebook to facilitate this fit here: \url{https://github.com/LiekeVanSon/SFRD_fit/blob/main/src/scripts/Notebooks/Fit_model_to_sfrdzZ.ipynb} } }.
+Although here, we only fit our model to the TNG100 simulation, our prescription can be easily be used to fit other simulated or observational data of the metallicity-dependent cosmic star formation history\footnote{We provide a Jupyter notebook to facilitate this fit here: \url{https://github.com/LiekeVanSon/SFRD_fit/blob/main/src/scripts/Notebooks/Fit_model_to_sfrdzZ.ipynb} } .
 
 The IllustrisTNG-project (or TNG in short) considers galaxy formation and evolution through large-scale cosmological hydrodynamical simulations \citep[][]{FirstResTNG_Springel2018,FirstResTNG_Marinacci2018, FirstResTNG_Nelson2018,FirstResTNG_Pillepich2018, FirstResTNG_Naiman2018, Nelson2019a, Pillepich2019}.
 Such simulations provide the tools to study parts of the Universe that are not easily accessible by observations. In particular of interest for this work, they simulate the high redshift enrichment of galaxies and the tail of low metallicity star formation at low redshift.
@@ -381,7 +380,7 @@ For comparison, we also show the phenomenological model from \protect\cite{Neijs
 
 
 Our best fitting parameters are listed in Table \ref{tab: fit params}. With these fit parameters, $\chi^2(z_j)$ is smaller than $2\cdot 10^{-4}$ at any given redshift. 
-\edit1{To evaluate our fit, we show the residuals in Appendix \ref{app: residuals}. }
+To evaluate our fit, we show the residuals in Appendix \ref{app: residuals}. 
 We will refer to the \SFRDzZ with the parameters listed in Table \ref{tab: fit params} as our fiducial model. 
 
 \begin{deluxetable*}{clr | cl}
@@ -422,25 +421,25 @@ We will now demonstrate the application of our analytical model by systematicall
 
 
 We use the publicly available rapid binary population synthesis simulations presented in \cite{vanson2022_lowMbh}.\footnote{Available for download at \url{https://zenodo.org/record/7612755},  see also the Software and Data section in the acknowledgements}  
-These simulations were run using version v02.26.03 of the open source \COMPAS suite \citep{COMPAS_method}\footnote{\url{https://github.com/TeamCOMPAS/COMPAS}}. \COMPAS is based on algorithms that model the evolution of massive binary stars following \citet{Hurley+2000, Hurley+2002} using detailed evolutionary models by \citet{Pols+1998}. \edit1{In particular, we use the simulations behind Figure 1 from \cite{vanson2022_lowMbh}, and we refer the reader to their methods section for a detailed description of the adopted physics parameters and assumptions.}\footnote{ \edit1{ We note that the rate in \cite{vanson2022_lowMbh} is slightly higher than the fiducial rate presented in Figure \ref{fig: stable mass dists} in this work. This difference is caused by the use of rounded parameter values of \SFRDzZ in \cite{vanson2022_lowMbh}.} } % In particular the value of $\mu_z$ has a significant effect on the inferred rate for the stable channel.} 
+These simulations were run using version v02.26.03 of the open source \COMPAS suite \citep{COMPAS_method}\footnote{\url{https://github.com/TeamCOMPAS/COMPAS}}. \COMPAS is based on algorithms that model the evolution of massive binary stars following \citet{Hurley+2000, Hurley+2002} using detailed evolutionary models by \citet{Pols+1998}. In particular, we use the simulations behind Figure 1 from \cite{vanson2022_lowMbh}, and we refer the reader to their methods section for a detailed description of the adopted physics parameters and assumptions. \footnote{ We note that the rate in \cite{vanson2022_lowMbh} is slightly higher than the fiducial rate presented in Figure \ref{fig: stable mass dists} in this work. This difference is caused by the use of rounded parameter values of \SFRDzZ in \cite{vanson2022_lowMbh}.}  % In particular the value of $\mu_z$ has a significant effect on the inferred rate for the stable channel.} 
 %
 Metallicities of each binary system were sampled from a smooth probability distribution to avoid artificial peaks in the BH mass distribution \citep[e.g.][]{Dominik2015,Kummer_thesis}. 
 These simulations provide us with an estimate of the yield of BBH mergers per unit of star-forming mass and metallicity. 
 
-We combine the aforementioned yield with variations of the fiducial \SFRDzZ model described in this work. By integrating over cosmic history, we obtain the local merger rates of BBH systems, which allow us to construct the distribution of source properties at every redshift. We use the cosmic integration scheme that is part of the publicly available \COMPAS suite, \edit1{which includes the \SFRDzZ model described in this work.} The details of this framework are described in \cite{Neijssel+2019}, but also in \cite{vanson+2022}, where more similar settings to this work are used. 
+We combine the aforementioned yield with variations of the fiducial \SFRDzZ model described in this work. By integrating over cosmic history, we obtain the local merger rates of BBH systems, which allow us to construct the distribution of source properties at every redshift. We use the cosmic integration scheme that is part of the publicly available \COMPAS suite, which includes the \SFRDzZ model described in this work. The details of this framework are described in \cite{Neijssel+2019}, but also in \cite{vanson+2022}, where more similar settings to this work are used. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Determining reasonable variations of \SFRDzZ \label{ss: reasonable var}}
 We consider variations in both the shape of the cosmic metallicity density distribution \dpdZ, and the shape of the overall star-formation rate density, \SFRDz. To determine the range that is reasonably allowed by observations, we compare our variations to the observation-based \SFRDzZ models described in \cite{Chruslinska+2021}.
-\edit1{An overview of the explored variations is shown in Table \ref{tab: fit variations}. Below we explain how we arrive at these values.  }
+An overview of the explored variations is shown in Table \ref{tab: fit variations}. Below we explain how we arrive at these values.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{deluxetable}{cccc}
 \label{tab: fit variations}
 \tablewidth{0.5\textwidth} 
-\tablecaption{\edit1{Variations on \SFRDzZ. 
-For every variation, we either swap the value of an individual \dpdZ parameter, or exchange the set of four \SFRDz parameters, and replace them by the the min/max values listed here. All other parameters are kept fixed at their fiducial value. }}
+\tablecaption{Variations on \SFRDzZ. 
+For every variation, we either swap the value of an individual \dpdZ parameter, or exchange the set of four \SFRDz parameters, and replace them by the the min/max values listed here. All other parameters are kept fixed at their fiducial value. }
 \tablehead{\colhead{} & \colhead{min} & \colhead{fiducial} & \colhead{max} } 
 \startdata
 \dpdZ &       &  &  \\
@@ -456,40 +455,28 @@ $\omega_z$       &   0.0   & $0.048$  &  0.1  \\ \hline
 \end{deluxetable}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-For the cosmic metallicity density distribution, we vary every parameter that determines the shape of \dpdZ independently (\edit1{three left-most columns of Table \ref{tab: fit params}, and top of Table \ref{tab: fit variations} }), while keeping all other parameters fixed at their fiducial value.
+For the cosmic metallicity density distribution, we vary every parameter that determines the shape of \dpdZ independently (three left-most columns of Table \ref{tab: fit params}, and top of Table \ref{tab: fit variations} ), while keeping all other parameters fixed at their fiducial value.
 For each variation, we inspect the fraction of stellar mass that is formed at low-metallicity ($Z<0.1 Z_{\odot}$) versus the fraction of stellar mass that is formed at high-metallicity ($Z> Z_{\odot}$), for all star formation that occurred below a certain threshold redshift.
 We compare this to the models from \cite{Chruslinska+2021} in Figure \ref{fig: low high Z fraction} in Appendix \ref{app: reasonable var}.
 We have chosen our variations such that they span a reasonable range of cosmic metallicity density distributions as allowed by observation-based and cosmological simulations-based models.
-We use the models \texttt{214-f14SB-BiC\_FMR270\_FOH\_z\_dM.dat}, and \texttt{302-f14SB-Boco\_FMR270\_FOH\_z\_dM.dat} from \cite{Chruslinska+2021}\footnote{These models \edit1{ including a detailed description of their contents } are publicly available at \url{https://ftp.science.ru.nl/astro/mchruslinska/Chruslinska_et_al_2021/} } as a representation of a very low and high metallicity star formation realisation respectively. These models are the low and high metallicity extreme under their fiducial SFR–metallicity correlation, 
+We use the models \texttt{214-f14SB-BiC\_FMR270\_FOH\_z\_dM.dat}, and \texttt{302-f14SB-Boco\_FMR270\_FOH\_z\_dM.dat} from \cite{Chruslinska+2021}\footnote{These models including a detailed description of their contents  are publicly available at \url{https://ftp.science.ru.nl/astro/mchruslinska/Chruslinska_et_al_2021/} } as a representation of a very low and high metallicity star formation realisation respectively. These models are the low and high metallicity extreme under their fiducial SFR–metallicity correlation, and so we will refer to them as \texttt{Chr21\_lowZ} and \texttt{Chr21\_highZ} respectively from hereon. The difference between these models lies in the assumptions in the underlying empirical galaxy relations. In general, low-mass galaxies contribute to low-metallicity star formation and shift the peak of \SFRDzZ to lower metallicities. 
 %
-\edit1{and so we will refer to them as \texttt{Chr21\_lowZ} and \texttt{Chr21\_highZ} respectively from hereon. The difference between these models lies in the assumptions in the underlying empirical galaxy relations. In general, low-mass galaxies contribute to low-metallicity star formation and shift the peak of \SFRDzZ to lower metallicities. }
-% lowZ model: 2: sharp flattening (high mass part of the SFMR), 1: alpha\_fix(z) (low mass end of the GSMF), 4: PP04 (MZR at $z\approx0$) -- 
-% Starburst galaxies are treated as in BiC : the properties of starbursts are based on the studies of Bisigello+18 and Caputi+17 -- 
-% nabla\_FMR0 = 0.27 dex, describing the strength of the SFR-metallicity correlation in the high SFR, low mass regime. }
-%
-\edit1{\texttt{Chr21\_lowZ} is characterised by a star formation–galaxy mass relation that is flat at high galaxy masses (reducing the star formation rate for the highest-mass galaxies), a galaxy stellar mass function that evolves with redshift (predicting an increasing number density of low-mass galaxies), 
+\texttt{Chr21\_lowZ} is characterised by a star formation–galaxy mass relation that is flat at high galaxy masses (reducing the star formation rate for the highest-mass galaxies), a galaxy stellar mass function that evolves with redshift (predicting an increasing number density of low-mass galaxies), 
 and a local galaxy mass-metallicity relation as in \cite{PettiniPagel2004}. 
 This model further approximates the contribution of starburst galaxies following \cite{Bisigello+2018} and \cite{Caputi+2017}. 
 Assuming that starburst galaxies follow the empirical fundamental metallicity relation (leading to anti-correlation between the SFR and metallicity), their inclusion tends to shift the peak of \SFRDzZ to
 lower metallicities and broadens the low-metallicity part of the distribution.
-}
-% highZ model: 3: no flattening (high mass part of the SFMR), 0: alpha\_fix = -1.45 (low mass end of the GSMF), 2: KK04a (MZR at $z\approx0$) --  
-% Starburst galaxies are treated as in  Boco : the properties of starbursts are based on the studies of Sargent+12/Bethermin+12, as used in Boco+21. -- 
-% nabla\_FMR0 = 0.27 dex, describing the strength of the SFR-metallicity correlation in the high SFR, low mass regime.}
-%
-\edit1{On the other hand, \texttt{Chr21\_highZ} assumes the star formation–galaxy mass relation does not flatten towards higher galaxy masses, a galaxy stellar mass function where the slope for the low-mass end is constant over redshift, and a local galaxy mass-metallicity relation following \cite{KobulnickyKewley2004}. Lastly, this model adopts the starburst prescription from \cite{Boco+2021}, which produces results that are similar to models without starburst galaxies. 
-}
 
 %
+On the other hand, \texttt{Chr21\_highZ} assumes the star formation–galaxy mass relation does not flatten towards higher galaxy masses, a galaxy stellar mass function where the slope for the low-mass end is constant over redshift, and a local galaxy mass-metallicity relation following \cite{KobulnickyKewley2004}. Lastly, this model adopts the starburst prescription from \cite{Boco+2021}, which produces results that are similar to models without starburst galaxies. 
+%
 
-For every variation of our model, we inspect both the full \SFRDzZ and slices at redshifts $z = 0, 0.5, 3.0$ and $6$ by eye. At each slice we compare our model variation to \edit1{\texttt{Chr21\_lowZ} and \texttt{Chr21\_highZ}}, and ensure that none of our variations significantly exceeds these extremes in \SFRDzZ. This also serves as a sanity check for the overall star-formation rate density.
+For every variation of our model, we inspect both the full \SFRDzZ and slices at redshifts $z = 0, 0.5, 3.0$ and $6$ by eye. At each slice we compare our model variation to \texttt{Chr21\_lowZ} and \texttt{Chr21\_highZ}, and ensure that none of our variations significantly exceeds these extremes in \SFRDzZ. This also serves as a sanity check for the overall star-formation rate density.
 
 
-We also consider two variations of the overall star-formation rate density, \SFRDz, where we keep the metallicity distribution \dpdZ fixed, but vary all four \SFRDz parameters at once (right two columns of Table \ref{tab: fit params} \edit1{, and bottom of Table \ref{tab: fit variations} }). 
+We also consider two variations of the overall star-formation rate density, \SFRDz, where we keep the metallicity distribution \dpdZ fixed, but vary all four \SFRDz parameters at once (right two columns of Table \ref{tab: fit params}, and bottom of Table \ref{tab: fit variations}). 
 We use Figure 11 from \cite{Chruslinska+2021} to determine approximate upper and lower bounds to the overall star-formation rate density. We choose \cite{Madau+2017} as an approximation of the lower limit. 
-For the upper limit, we use the upper edge of 
-\edit1{ models that adopt starbursts following \cite{Bisigello+2018} and \cite{Caputi+2017} (\texttt{SB: B18/C17}), combined}
-with a non-evolving low-mass end of the galaxy stellar mass function \citep[shown as a thick brown line in Fig. 11 of ][and described in their table B1]{Chruslinska+2021}.
+For the upper limit, we use the upper edge of models that adopt starbursts following \cite{Bisigello+2018} and \cite{Caputi+2017} (\texttt{SB: B18/C17}), combined with a non-evolving low-mass end of the galaxy stellar mass function \citep[shown as a thick brown line in Fig. 11 of ][and described in their table B1]{Chruslinska+2021}.
 % for the \texttt{SB: B18/C17} model variations (i.e. ) with a non-evolving low-mass end of the galaxy stellar mass function \citep[table B1 from][also shown as thick brown line in their Fig. 11]{Chruslinska+2021}. 
 To approximate these models, we fit equation \ref{eq: sfr1} by eye to the broken power law description of this model as presented in appendix B1 of \cite{Chruslinska+2021}.
 We show all \SFRDz variations in Figure~\ref{fig: SFR(z)}. \\
@@ -649,7 +636,7 @@ Further software used in this work: Python \citep{PythonReferenceManual},  Astro
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\edit1{Evaluating our fit; the squared residuals \label{app: residuals} } }
+\section{Evaluating our fit; the squared residuals \label{app: residuals} }
 
 \begin{figure}[h]
 \centering
@@ -660,7 +647,7 @@ Further software used in this work: Python \citep{PythonReferenceManual},  Astro
  }
 \end{figure}
 
-\edit1{In the left panel of Figure \ref{fig: residuals}, we show the $\log$ of the absolute residuals. The \textit{square} of the residuals is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We observe that the maximum residuals appear near the peak of star formation at high metallicities.
+\edit2{In the left panel of Figure \ref{fig: residuals}, we show the $\log$ of the absolute residuals. The \textit{square} of the residuals is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We observe that the maximum residuals appear near the peak of star formation at high metallicities.
 %
 The log of the relative errors (defined as $\frac{\lvert \mathcal{S}{\rm sim} - \mathcal{S}{\rm fit} \rvert}{\mathcal{S}_{\rm fit}}$), is shown in the right-hand panel of Figure \ref{fig: residuals}. The relative errors generally exhibit an opposite trend with respect to the residuals. The relative errors are largest in regions of very low-metallicity star formation at low redshift. This occurs due to the very low star-formation rate in this regime (of the order $10^{-8}\Msun \yr^{-1}\Mpc^{-3}$ for the TNG simulations and $10^{-11}\Msun \yr^{-1}\Mpc^{-3}$ in our model fit).
 %
