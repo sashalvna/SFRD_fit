@@ -145,7 +145,7 @@ if __name__ == "__main__":
         TNG_SFRD = BoxSfr / Rbox**3 *u.Mpc**-3
         TNG_SFRD = TNG_SFRD.value
         # the last value of Lookbacktimes = 0, which is problematic for z calculation
-        redshifts_TNG = [z_at_value(cosmo.lookback_time,t*u.Gyr) for t in Lookbacktimes[:-1]] 
+        redshifts_TNG = [z_at_value(cosmo.lookback_time,t*u.Gyr,method='Bounded') for t in Lookbacktimes[:-1]] 
         redshifts_TNG.append(0) # put redshift zero back at the end
         redshifts_TNG = np.array(redshifts_TNG)
         redshifts_TNG_inc = redshifts_TNG[::-1]

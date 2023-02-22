@@ -367,7 +367,7 @@ if __name__ == "__main__":
 
     ## Convert lookback times to redshifts
     # the last value of Lookbacktimes = 0, which is problematic for z calculation
-    TNG100_redshifts = [z_at_value(cosmo.lookback_time,t*u.Gyr) for t in TNG100_Lookbacktimes[:-1]] 
+    TNG100_redshifts = [z_at_value(cosmo.lookback_time,t*u.Gyr,method='Bounded') for t in TNG100_Lookbacktimes[:-1]] 
     TNG100_redshifts.append(0) # put redshift zero back at the end
     TNG100_redshifts = np.array(TNG100_redshifts)
 

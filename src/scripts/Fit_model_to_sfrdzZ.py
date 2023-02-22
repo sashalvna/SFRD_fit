@@ -86,7 +86,7 @@ if __name__ == "__main__":
 
     ## Convert lookback times to redshifts
     # the last value of Lookbacktimes = 0, which is problematic for z calculation
-    redshifts_Sim = [z_at_value(cosmo.lookback_time,t*u.Gyr) for t in Lookbacktimes[:-1]] 
+    redshifts_Sim = [z_at_value(cosmo.lookback_time,t*u.Gyr,method='Bounded') for t in Lookbacktimes[:-1]] 
     redshifts_Sim.append(0) # put redshift zero back at the end
     redshifts_Sim = np.array(redshifts_Sim)
 
