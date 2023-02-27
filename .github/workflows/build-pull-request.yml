@@ -19,12 +19,11 @@ jobs:
         shell: bash -l {0}
         run: |
           wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
-          sudo ~/bin/tlmgr install type1cm cm-super
+          sudo ~/bin/tlmgr install type1cm cm-super psnfss helvetic
           
-#      - name: Install dvipng
-#        run: |
-#          apt-get update
-#          apt-get install -y dvipng
+      - name: Install dvipng
+        run: |
+          sudo apt-get install -y dvipng
 
       - name: Build the article PDF
         id: build
