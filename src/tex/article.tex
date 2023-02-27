@@ -152,7 +152,7 @@ limits $0.01 - 200\Msun$ and a flat $\Lambda$CDM cosmology with $\Omega_{\rm{M}}
 \section{A convenient analytic expression for the metallicity-dependent cosmic star formation history \label{sec: model for sfrd(zZ)} }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % We assume that the metallicity-dependent cosmic star formation history can be separated into two independent functions  (as was assumed in e.g., \citealt{LangerNorman2006}, but cf. \citealt{chruslinska2022_review} for a discussion on the validity on this assumption).
-\edit2{We write the metallicity-dependent cosmic star formation history as}
+We write the metallicity-dependent cosmic star formation history as
 
 \begin{equation}
 \label{eq: total sfrd}
@@ -160,7 +160,7 @@ limits $0.01 - 200\Msun$ and a flat $\Lambda$CDM cosmology with $\Omega_{\rm{M}}
         \SFRDzZ = \SFRDz \times \dPdZ
         }
 \end{equation}
-\edit2{(similar to e.g., \citealt{LangerNorman2006}).}
+(similar to e.g., \citealt{LangerNorman2006}).
 The first term is the star formation rate density, \SFRDz, that is the amount of mass formed in stars per unit time and per unit comoving volume at each redshift, $z$. The second term, \dpdZ, is a probability density distribution that expresses what fraction of star formation occurs at which metallicity, $Z$, at each redshift. 
  
 %% SFR(z) %%
@@ -380,7 +380,7 @@ For comparison, we also show the phenomenological model from \protect\cite{Neijs
 
 
 Our best fitting parameters are listed in Table \ref{tab: fit params}. With these fit parameters, $\chi^2(z_j)$ is smaller than $2\cdot 10^{-4}$ at any given redshift. 
-To evaluate our fit, we show \edit2{the absolute residuals and relative errors} in Appendix \ref{app: residuals}. 
+To evaluate our fit, we show the absolute residuals and relative errors in Appendix \ref{app: residuals}. 
 We will refer to the \SFRDzZ with the parameters listed in Table \ref{tab: fit params} as our fiducial model. 
 
 \begin{deluxetable*}{clr | cl}
@@ -647,13 +647,13 @@ Further software used in this work: Python \citep{PythonReferenceManual},  Astro
  }
 \end{figure}
 
-\edit2{In the left panel of Figure \ref{fig: residuals}, we show the $\log$ of the absolute residuals. The \textit{square} of the residuals is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We observe that the maximum residuals appear near the peak of star formation at high metallicities.
+In the left panel of Figure \ref{fig: residuals}, we show the $\log$ of the absolute residuals. The \textit{square} of the residuals is used in the cost function, equation \ref{eq: cost function}, to optimise our fit. We observe that the maximum residuals appear near the peak of star formation at high metallicities.
 %
 The log of the relative errors (defined as $\frac{\lvert \mathcal{S}{\rm sim} - \mathcal{S}{\rm fit} \rvert}{\mathcal{S}_{\rm fit}}$), is shown in the right-hand panel of Figure \ref{fig: residuals}. The relative errors generally exhibit an opposite trend with respect to the residuals. The relative errors are largest in regions of very low-metallicity star formation at low redshift. This occurs due to the very low star-formation rate in this regime (of the order $10^{-8}\Msun \yr^{-1}\Mpc^{-3}$ for the TNG simulations and $10^{-11}\Msun \yr^{-1}\Mpc^{-3}$ in our model fit).
 %
 Another regime where the relative error becomes large is at very high metallicities (about 10 times $Z_{\odot}$). This is because in this regime, the TNG data is very sparse and contains regions where the rate abruptly drops to zero. To avoid sharp features in the data, we use interpolated TNG data to produce the fit. 
 %
-We note that we chose to minimise the squared residuals (which is similar to minimising the mean squared error) in favour of minimising, for example, the relative error, to prevent overfitting such regions of very low star-formation rate. For the illustration purposes in this work, we are most interested in closely fitting the \SFRDzZ between the minimum ($10^{-4}$) and maximum ($0.03$) metallicities that can be simulated with \COMPAS. For applications that focus on extremely low ($<0.01 Z_{\odot}$) or extremely high ($\sim 10\times Z_{\odot}$) metallicity star formation, a different cost function would be more appropriate.}
+We note that we chose to minimise the squared residuals (which is similar to minimising the mean squared error) in favour of minimising, for example, the relative error, to prevent overfitting such regions of very low star-formation rate. For the illustration purposes in this work, we are most interested in closely fitting the \SFRDzZ between the minimum ($10^{-4}$) and maximum ($0.03$) metallicities that can be simulated with \COMPAS. For applications that focus on extremely low ($<0.01 Z_{\odot}$) or extremely high ($\sim 10\times Z_{\odot}$) metallicity star formation, a different cost function would be more appropriate.
 
 
 
