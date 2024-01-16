@@ -15,12 +15,14 @@ def init():
     global mu0_best, muz_best, sigma0_best, sigmaz_best, alpha0_best,sf_a_best, sf_b_best, sf_c_best, sf_d_best
     global fit_param_filename
     # there is an extra /src in the paths. due to the import location (remove it)
-    data_dir   = str(paths.data) +'/'    #str(paths.data)[0:-8] + 'data/'
-    script_dir = str(paths.scripts) +'/' #str(paths.scripts)[0:-11] + 'scripts/'
+    data_dir   = str(paths.data)  #str(paths.data)[0:-8] + 'data/'
+    script_dir = str(paths.scripts) #str(paths.scripts)[0:-11] + 'scripts/'
+
+    print(data_dir)
 
     COMPASfilename  = 'COMPAS_Output_wWeights.h5'#'small_COMPAS_Output_wWeights.h5'
     rate_file_name  = 'Rate_info.h5'#'small_Rate_info.h5'
-    user_email      = "aac.van.son@gmail.com"
+    user_email      = "alevina1@jhu.edu"
 
 
     # Name of the txt file for best fit parameters

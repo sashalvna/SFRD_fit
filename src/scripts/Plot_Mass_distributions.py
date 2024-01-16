@@ -68,7 +68,7 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 ######################################
 # Distribution plot function
 ######################################
-def plot_mass_distribution(sim_dir = '', rate_file = '', simulation_data = '', 
+def plot_mass_distribution(sim_dir = '', data_dir = '', rate_file = '', simulation_data = '',
                     x_key = 'M_moreMassive', rate_keys = ['Rates_mu00.025_muz-0.05_alpha-1.77_sigma0%s_sigmaz0.05_zBinned'%(x) for x in [0.8, 1.125, 1.4]],channel_string = 'all',
                    bins = np.arange(0.,55,2.5), z_bin_edges = [0,0.25], 
                    plot_LIGO = False, show_hist = False, show_KDE = True,   
@@ -111,7 +111,7 @@ def plot_mass_distribution(sim_dir = '', rate_file = '', simulation_data = '',
         ## grab Powerlaw + Peak data from O3
         #################################################  
         #'/Volumes/StorageSpac/CompasOutput/output/'#'/n/home04/lvanson/LowMBH_peak/output/GWTC-3-population-data/analyses/PowerLawPeak/'
-        input_fname = data_dir+'o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5'
+        input_fname = data_dir+'/o3only_mass_c_iid_mag_iid_tilt_powerlaw_redshift_mass_data.h5'
         mass_1 = np.linspace(2, 100, 1000)
         mass_ratio = np.linspace(0.1, 1, 500)
         with h5.File(input_fname, "r") as f:

@@ -10,8 +10,8 @@ import time
 from fnmatch import fnmatch
 import h5py
 sys.path.append( str(os.getcwd()) + '/src/scripts/')
-import paths
-import init_values as In
+import /scripts/paths
+import /scripts/init_values as In
 
 ##################################################################
 # This is the slurm script youre using

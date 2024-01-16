@@ -3,7 +3,7 @@ import h5py  as h5
 import os
 import time
 import matplotlib.pyplot as plt
-from astropy.cosmology import WMAP9 as cosmology
+#from astropy.cosmology import Planck15 as cosmology
 import scipy
 from scipy.interpolate import interp1d
 from scipy.stats import norm as NormDist
@@ -12,6 +12,7 @@ import selection_effects
 import warnings
 import astropy.units as u
 import argparse
+import importlib
 
 def calculate_redshift_related_params(max_redshift=10.0, max_redshift_detection=1.0, redshift_step=0.001, z_first_SF = 10.0):
     """ 
@@ -177,6 +178,13 @@ def find_formation_and_merger_rates(n_binaries, redshifts, times, time_first_SF,
 
     # make note of the first time at which star formation occured
     age_first_sfr = time_first_SF
+    
+    print(n_formed)
+    print(n_binaries)
+    print(p_draw_metallicity)
+    print(len(COMPAS_metallicites))
+    print(len(metallicities))
+    print(len(dPdlogZ))
 
     # go through each binary in the COMPAS data
     for i in range(n_binaries):
@@ -191,7 +199,7 @@ def find_formation_and_merger_rates(n_binaries, redshifts, times, time_first_SF,
         first_too_early_index = np.digitize(age_first_sfr, time_of_formation)
 
         # include the whole array if digitize returns end of array and subtract one so we don't include the time past the limit
-        first_too_early_index = first_too_early_index + 1 if first_too_early_index == n_redshifts else first_too_early_index
+        first_too_early_index = first_too_early_index + 1 if first_too_early_index == n_redshifts else first_too_early_index      
 
         # as long as that doesn't preclude the whole range
         if first_too_early_index > 0:
@@ -393,7 +401,7 @@ def find_detection_rate(path, filename="COMPAS_Output.h5", dco_type="BBH", weigh
     assert Mc_step < Mc_max, "Chirp mass step size must be less than maximum chirp mass"
     assert eta_step < eta_max, "Symmetric mass ratio step size must be less than maximum symmetric mass ratio"
     assert snr_step < snr_max, "SNR step size must be less than maximum SNR"
-
+    
     nonnegative_args = [(max_redshift, "max_redshift"), (max_redshift_detection, "max_redshift_detection"), (m1_min.value, "m1_min"), (m1_max.value, "m1_max"),
                         (m2_min.value, "m2_min"), (mu0, "mu0"), (sigma0, "sigma0"),  
                         (step_logZ, "step_logZ"), (snr_threshold, "snr_threshold"), (Mc_max, "Mc_max"),
@@ -412,7 +420,7 @@ def find_detection_rate(path, filename="COMPAS_Output.h5", dco_type="BBH", weigh
         warnings.warn("Symmetric mass ratio step is greater than 0.1, large step sizes can produce unpredictable results", stacklevel=2)
     if snr_step > 1.0:
         warnings.warn("SNR step is greater than 1.0, large step sizes can produce unpredictable results", stacklevel=2)
-
+    
     # start by getting the necessary data from the COMPAS file
     COMPAS = ClassCOMPAS.COMPASData(path, fileName=filename, Mlower=m1_min, Mupper=m1_max, m2_min=m2_min, binaryFraction=fbin, suppress_reminder=True)
     COMPAS.setCOMPASDCOmask(types=dco_type, withinHubbleTime=merges_hubble_time, pessimistic=pessimistic_CEE, noRLOFafterCEE=no_RLOF_after_CEE)
@@ -420,9 +428,7 @@ def find_detection_rate(path, filename="COMPAS_Output.h5", dco_type="BBH", weigh
     COMPAS.set_sw_weights(weight_column)
     COMPAS.find_star_forming_mass_per_binary_sampling()
 
-    
     assert np.log(np.min(COMPAS.initialZ)) != np.log(np.max(COMPAS.initialZ)), "You cannot perform cosmic integration with just one metallicity"
-
 
     # compute the chirp masses and symmetric mass ratios only for systems of interest
     chirp_masses = (COMPAS.mass1*COMPAS.mass2)**(3/5) / (COMPAS.mass1 + COMPAS.mass2)**(1/5)
@@ -442,32 +448,37 @@ def find_detection_rate(path, filename="COMPAS_Output.h5", dco_type="BBH", weigh
     Average_SF_mass_needed = (COMPAS.mass_evolved_per_binary * COMPAS.n_systems)
     print('Average_SF_mass_needed = ', Average_SF_mass_needed) # print this, because it might come in handy to know when writing up results :)
     n_formed = sfr / Average_SF_mass_needed # Divide the star formation rate density by the representative SF mass
-
-
+       
     # work out the metallicity distribution at each redshift and probability of drawing each metallicity in COMPAS
     dPdlogZ, metallicities, p_draw_metallicity = find_metallicity_distribution(redshifts, min_logZ_COMPAS = np.log(np.min(COMPAS.initialZ)),
                                                                                 max_logZ_COMPAS = np.log(np.max(COMPAS.initialZ)),
                                                                                 mu0=mu0, muz=muz, sigma_0=sigma0, sigma_z=sigmaz, alpha = alpha,
                                                                                 min_logZ=min_logZ, max_logZ=max_logZ, step_logZ = step_logZ)
 
+    print("Calculating rates")
 
     # calculate the formation and merger rates using what we computed above
     formation_rate, merger_rate = find_formation_and_merger_rates(n_binaries, redshifts, times, time_first_SF, n_formed, dPdlogZ,
                                                                     metallicities, p_draw_metallicity, COMPAS.metallicitySystems,
                                                                     COMPAS.delayTimes, COMPAS.sw_weights)
 
+    print("Calculating snr")
     # create lookup tables for the SNR at 1Mpc as a function of the masses and the probability of detection as a function of SNR
     snr_grid_at_1Mpc, detection_probability_from_snr = compute_snr_and_detection_grids(sensitivity, snr_threshold, Mc_max, Mc_step,
                                                                                     eta_max, eta_step, snr_max, snr_step)
 
+    print("calculating detection probability")
     # use lookup tables to find the probability of detecting each binary at each redshift
     detection_probability = find_detection_probability(chirp_masses, etas, redshifts, distances, n_redshifts_detection, n_binaries,
                                                         snr_grid_at_1Mpc, detection_probability_from_snr, Mc_step, eta_step, snr_step)
 
+    print("computing detection rate")
     # finally, compute the detection rate using Neijssel+19 Eq. 2
     detection_rate = np.zeros(shape=(n_binaries, n_redshifts_detection))
     detection_rate = merger_rate[:, :n_redshifts_detection] * detection_probability \
                     * shell_volumes[:n_redshifts_detection] / (1 + redshifts[:n_redshifts_detection])
+    
+    print("rates calculated")
 
     return detection_rate, formation_rate, merger_rate, redshifts, COMPAS, Average_SF_mass_needed, shell_volumes
 
@@ -770,6 +781,7 @@ def plot_rates(save_dir, formation_rate, merger_rate, detection_rate, redshifts,
     for ax in axes.flatten():
         ax.tick_params(labelsize=0.9*fs)
 
+    print("Plotting!")
     # Save and show :)
     plt.savefig(save_dir +'Rate_Info'+"mu0%s_muz%s_alpha%s_sigma0%s_sigmaz%s_a%s_b%s_c%s_d%s"%(mu0,muz,alpha,sigma0,sigmaz,aSF, bSF,cSF,dSF)+'.png', bbox_inches='tight') 
     if show_plot:
@@ -828,11 +840,21 @@ if __name__ == "__main__":
     parser.add_argument("--BinAppend", dest= 'binned_rates',  help="Append your rates in more crude redshift bins to save space.", action='store_true', default=False)
     parser.add_argument("--redshiftBinSize", dest= 'zBinSize',  help="How big should the crude redshift bins be", type=float, default=0.05)
     parser.add_argument("--delete", dest= 'delete_rates',  help="Delete the rate group from your hdf5 output file (groupname based on dP/dZ parameters)", action='store_true', default=False)
+    parser.add_argument("--cosmology", dest='Cosmology', help="Cosmology that is used for cosmic integration", type=str, default="Planck18")
 
     args = parser.parse_args()
 
     #####################################
     # Run the cosmic integration
+
+    if args.Cosmology == "Planck18":
+        print("USING PLANCK18 AS COSMOLOGY! if working with Illustris TNG data please use Planck15 instead")
+    else:
+        print("Using %s as cosmology!"%args.Cosmology)
+    cosmology = getattr(importlib.import_module('astropy.cosmology'), args.Cosmology)
+
+    print("Calculate detection rates")
+    
     start_CI = time.time()
     detection_rate, formation_rate, merger_rate, redshifts, COMPAS, Average_SF_mass_needed, shell_volumes = find_detection_rate(args.path, filename=args.fname, dco_type=args.dco_type, weight_column=args.weight_column,
                             max_redshift=args.max_redshift, max_redshift_detection=args.max_redshift_detection, redshift_step=args.redshift_step, z_first_SF= args.z_first_SF,
@@ -842,11 +864,17 @@ if __name__ == "__main__":
                             sensitivity=args.sensitivity, snr_threshold=args.snr_threshold, 
                             min_logZ=-12.0, max_logZ=0.0, step_logZ=0.01, Mc_max=300.0, Mc_step=0.1, eta_max=0.25, eta_step=0.01, snr_max=1000.0, snr_step=0.1)
     end_CI = time.time()
+    
+    print("rates calculatd, now appending rates")
 
     #####################################
     # Append your freshly calculated merger rates to the hdf5 file
+    
+    print(args.append_rates)
+    
     start_append = time.time()
     if args.append_rates:
+        print("Appending rates!")
         n_redshifts_detection = int(args.max_redshift_detection / args.redshift_step)
         append_rates(args.path + args.fname, args.outfname, detection_rate, formation_rate, merger_rate, redshifts, COMPAS, Average_SF_mass_needed, shell_volumes, n_redshifts_detection,
             maxz=args.max_redshift_detection, sensitivity=args.sensitivity, dco_type=args.dco_type, mu0=args.mu0, muz=args.muz, sigma0=args.sigma0, sigmaz=args.sigmaz, alpha=args.alpha,
@@ -860,8 +888,8 @@ if __name__ == "__main__":
 
     end_append = time.time()
 
-
-
+    print("Plotting now")
+    
     #####################################
     # Plot your result
     start_plot = time.time()
